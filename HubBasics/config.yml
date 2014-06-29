@@ -5,15 +5,15 @@
 DisableJoinMessage: false
 #Sets if the plugin should disable the join message
 SilentOpJoin: false
-#Sets if when a OP join the server, no join message will happen ( Only If DisableJoinMessage = true )
+#Sets if when a OP join the server, no join message will happen ( Only If DisableJoinMessage = false )
 JoinMessage: '&8[&cHubBasics&8] &eWelcome &a%p &eto the server!'
-#Sets the join message here (Only if DisableJoinMessage = true)
+#Sets the join message here (Only if DisableJoinMessage = false)
 DisableLeaveMessage: false
 #Sets if the plugin should disable the leave message
 SilentOpLeave: false
-#Sets if when a OP leave the server, no leave message will happen ( Only If DisableLeaveMessage = true )
+#Sets if when a OP leave the server, no leave message will happen ( Only If DisableLeaveMessage = false )
 LeaveMessage: '&8[&cHubBasics&8] &a%p &eLeft!'
-#Sets the leave message here (Only if DisableLeaveMessage = true)
+#Sets the leave message here (Only if DisableLeaveMessage = false)
 DisableRain: false
 #Sets if it's not possible to change the weather ( WARNING: Be Sure That It's Not Raining When Setting Up This )
 DisableVoidFall: true

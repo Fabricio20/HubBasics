@@ -1,0 +1,48 @@
+###############################
+#    HubBasics Config File    #
+###############################
+#
+DisableJoinMessage: false
+#Sets if the plugin should disable the join message
+SilentOpJoin: false
+#Sets if when a OP join the server, no join message will happen ( Only If DisableJoinMessage = true )
+JoinMessage: '&8[&cHubBasics&8] &eWelcome &a%p &eto the server!'
+#Sets the join message here (Only if DisableJoinMessage = true)
+DisableLeaveMessage: false
+#Sets if the plugin should disable the leave message
+SilentOpLeave: false
+#Sets if when a OP leave the server, no leave message will happen ( Only If DisableLeaveMessage = true )
+LeaveMessage: '&8[&cHubBasics&8] &a%p &eLeft!'
+#Sets the leave message here (Only if DisableLeaveMessage = true)
+DisableRain: false
+#Sets if it's not possible to change the weather ( WARNING: Be Sure That It's Not Raining When Setting Up This )
+DisableVoidFall: true
+#Sets if when a player falls on void, he gets teleported back to spawn
+VoidFallMsg: '&8[&cHubBasics&8] &a%p &eYou were teleported back to spawn!'
+#The message sent to the player that he got teleported back to spawn ( Only if DisableVoidFall = true )
+CustomMotd: true
+#Sets if the plugin should handle the server MOTD
+2Motds: true
+#Sets if the MOTD will use the second MOTD too
+MOTD1: 'Edit this MOTD in the Config! MOTD1'
+#Set The MOTD1 ( Only if CustomMotd = true )
+MOTD2: 'Edit this MOTD in the Config! MOTD2'
+#Set The MOTD2 ( Only if CustomMotd = true and 2Motds = true )
+UseAnnouncer: true
+#Sets if the Announcer Will Be Enabled ;)
+ChatAnnouncerMsg1: '&8[&cHubBasics&8] &e1st announce message!'
+ChatAnnouncerMsg2: '&8[&cHubBasics&8] &e2nd announce message!'
+ChatAnnouncerMsg3: '&8[&cHubBasics&8] &e3rd announce message!'
+ChatAnnouncerMsg4: '&8[&cHubBasics&8] &e4th announce message!'
+ChatAnnouncerMsg5: '&8[&cHubBasics&8] &e5th announce message!'
+#Sets here the announcer messages ( Null = will not happen )
+BossAnnouncerMsg1: 'Boss1'
+BossAnnouncerMsg2: 'Boss2'
+BossAnnouncerMsg3: 'Boss3'
+BossAnnouncerMsg4: 'Boss4'
+BossAnnouncerMsg5: 'Boss5'
+#Sets here the boss announcer messages ( Null = will not happen )
+FakePlugins: '&fPlugins <5>: &aEssentials&f, &aWorldGuard&f, &aWorldEdit&f, &aHubBasics&f, &aChestCommands'
+#Set here the message that will appear to the player when /plugins or /pl is typed
+DoubleJump: true
+#Set here if DoubleJump will be enabled

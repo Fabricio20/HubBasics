@@ -1,0 +1,34 @@
+package me.Fabricio20.listeners;
+
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class CommandListener implements Listener {	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	private final JavaPlugin plugin;
+
+	public CommandListener(JavaPlugin plugin) {
+		this.plugin = plugin;
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onCommandPreProcess(PlayerCommandPreprocessEvent event){
+		if(event.getMessage().toLowerCase().startsWith("/plugins")) {
+			event.getPlayer().sendMessage(plugin.getConfig().getString("FakePlugins").replace("&", "§").replace("%p", event.getPlayer().getName()));
+			event.setCancelled(true);
+		} else {
+			if(event.getMessage().toLowerCase().startsWith("/pl")) {
+				event.getPlayer().sendMessage(plugin.getConfig().getString("FakePlugins").replace("&", "§").replace("%p", event.getPlayer().getName()));
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}

@@ -1,0 +1,15 @@
+name: HubBasics
+version: 0.1
+main: me.Fabricio20.Main
+depend: [BarAPI]
+commands:
+  plugins:
+    description: List the server plugins.
+  pl:
+    description: List the server plugins.
+  hub:
+    description: Teleports you back to hub.
+  lobby:
+    description: Teleports you back to hub.
+  sethub:
+    description: Sets the Hub location

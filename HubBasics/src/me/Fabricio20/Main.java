@@ -6,6 +6,7 @@ import me.Fabricio20.listeners.*;
 import me.Fabricio20.runnables.*;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -47,6 +48,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ServerPingListener(this), this);
 		getServer().getPluginManager().registerEvents(new CommandListener(this), this);
 		getServer().getPluginManager().registerEvents(new JumpListener(this), this);
+		getServer().getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
 		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
 		Strings.RunnablesEnabled = 1;
 		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(this, 1200, 1200);

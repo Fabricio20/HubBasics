@@ -25,10 +25,10 @@ public class RightClickHandler implements Listener {
 			if(e.getClickedBlock().getType() == Material.SIGN || e.getClickedBlock().getType() == Material.SIGN_POST || e.getClickedBlock().getType() == Material.WALL_SIGN) {
 				 Sign sign = (Sign) e.getClickedBlock().getState();
 				 if(sign.getLine(0).equals("§1[Website]")){
-					 e.getPlayer().sendMessage(plugin.getConfig().getString("WebSiteMessage"));
+					 e.getPlayer().sendMessage(plugin.getConfig().getString("WebSiteMessage").replace("&", "§"));
 				 }
 				 if(sign.getLine(0).equals("§1[TS3]")) {
-					 e.getPlayer().sendMessage(plugin.getConfig().getString("TS3Message"));
+					 e.getPlayer().sendMessage(plugin.getConfig().getString("TS3Message").replace("&", "§"));
 				 }
 			}
 		}

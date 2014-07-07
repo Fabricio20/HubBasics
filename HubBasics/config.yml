@@ -58,3 +58,14 @@ WebSiteMessage: '&8[&cHubBasics&8] &9WebSite: http://example.com'
 #Sets here the message that will appears when an user clicks on the WebSite Sign;
 TS3Message: '&8[&cHubBasics&8] &9TS3: talk.example.com'
 #Sets here the message that will appears when an user clicks on the TS3 Sign;
+Prefix: '&8[&cHubBasics&8] '
+#Sets Here The Main Prefix For Some Messages.;
+HatSet: '&cEnjoy your new hat!'
+#Sets here the message that will appears when a hat is sucefully set;
+BungeeCord: false
+#Sets if bungeecord support will be enabled;
+BungeeCordConfig:
+  LobbyServer: 'lobby'
+  #The Lobby server name ( CASE SENSITIVE );
+
+#Configure the bungeecord support here.

@@ -1,5 +1,5 @@
 name: HubBasics
-version: 0.1
+version: 0.1.2
 main: me.Fabricio20.Main
 depend: [BarAPI]
 commands:
@@ -13,3 +13,5 @@ commands:
     description: Teleports you back to hub.
   sethub:
     description: Sets the Hub location
+  hat:
+    description: Changes your hat!

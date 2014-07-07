@@ -49,6 +49,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new CommandListener(this), this);
 		getServer().getPluginManager().registerEvents(new JumpListener(this), this);
 		getServer().getPluginManager().registerEvents(new MoveListener(this), this);
+		getServer().getPluginManager().registerEvents(new RightClickListener(this), this);
 		getServer().getPluginManager().registerEvents(new SignChangeListener(this), this);
 		getServer().getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
 		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
@@ -60,7 +61,10 @@ public class Main extends JavaPlugin {
 		getCommand("hub").setExecutor(new Commands(this));
 		getCommand("lobby").setExecutor(new Commands(this));
 		getCommand("sethub").setExecutor(new Commands(this));
+		getCommand("hat").setExecutor(new Commands(this));
 		plugin = this;
+		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
+		Strings.Prefix = plugin.getConfig().getString("Prefix").replace("&", "§");
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
 		System.out.println("= Runnables: \u001B[32m" + Strings.RunnablesEnabled + "\u001B[0m");

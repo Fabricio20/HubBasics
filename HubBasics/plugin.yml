@@ -5,8 +5,7 @@ depend: [BarAPI]
 commands:
   plugins:
     description: List the server plugins.
-  pl:
-    description: List the server plugins.
+    aliases: pl
   hub:
     description: Teleports you back to hub.
   lobby:

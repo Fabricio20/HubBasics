@@ -19,7 +19,7 @@ public class SignChangeListener implements Listener {
 	@EventHandler
 	public void SignChange(SignChangeEvent e) {
 		String line = e.getLine(0);
-		if(line.equalsIgnoreCase("[Site]")) {
+		if(line.equalsIgnoreCase("[Site]") || line.equalsIgnoreCase("[Website]")) {
 			e.setLine(0, "§1[WebSite]");
 			e.setLine(1, plugin.getConfig().getString("WebSiteLink").replace("&", "§"));
 			e.setLine(2, plugin.getConfig().getString("ClickHereTo").replace("&", "§"));

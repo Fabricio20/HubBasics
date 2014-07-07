@@ -17,7 +17,6 @@ public class MoveListener implements Listener {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@SuppressWarnings("unused")
 	private final JavaPlugin plugin;
 
 	public MoveListener(JavaPlugin plugin) {
@@ -32,7 +31,7 @@ public class MoveListener implements Listener {
 	
 	@EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-            if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.REDSTONE_BLOCK) {
+            if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.getMaterial(plugin.getConfig().getString("JumpPadBlock"))) {
                     e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(3));
                     e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 1.0D, e.getPlayer().getVelocity().getZ()));
                     jumpers.add(e.getPlayer());

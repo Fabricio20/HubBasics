@@ -69,3 +69,5 @@ BungeeCordConfig:
   #The Lobby server name ( CASE SENSITIVE );
 
 #Configure the bungeecord support here.
+JumpPadBlock: 'REDSTONE_BLOCK'
+#Sets here the JumpPad Block ( MUST BE PERFECTLY A MATERIAL FROM BUKKIT ) [Materials: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html]

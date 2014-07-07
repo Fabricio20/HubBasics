@@ -51,6 +51,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new MoveListener(this), this);
 		getServer().getPluginManager().registerEvents(new RightClickListener(this), this);
 		getServer().getPluginManager().registerEvents(new SignChangeListener(this), this);
+		getServer().getPluginManager().registerEvents(new HungerListener(this), this);
+		getServer().getPluginManager().registerEvents(new HealthListener(this), this);
 		getServer().getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
 		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
 		Strings.RunnablesEnabled = 1;

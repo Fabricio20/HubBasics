@@ -1,24 +1,26 @@
-package me.Fabricio20.runnables;
+package me.Fabricio20.listeners;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
-public class KeppFoodAndHealth extends BukkitRunnable {
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private final JavaPlugin plugin;
-
-	public KeppFoodAndHealth(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
+public class HungerListener implements Listener {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public void run() {
-		if(plugin.getConfig().getBoolean("KeepFoodHealth") == true) {
-			for(Player user : Bukkit.getOnlinePlayers()) {
-				user.setHealth(20.0);
-				user.setFoodLevel(20);
+	private final JavaPlugin plugin;
+
+	public HungerListener(JavaPlugin plugin) {
+		this.plugin = plugin;
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@EventHandler
+	public void Hunger(FoodLevelChangeEvent e) {
+		if (plugin.getConfig().getBoolean("KeepFood") == true) {
+			if (e.getFoodLevel() < 20) {
+				e.setFoodLevel(20);
 			}
 		}
 	}

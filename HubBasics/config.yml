@@ -68,6 +68,10 @@ BungeeCordConfig:
   LobbyServer: 'lobby'
   #The Lobby server name ( CASE SENSITIVE );
 
-#Configure the bungeecord support here.
+#Configure the bungeecord support here;
 JumpPadBlock: 'REDSTONE_BLOCK'
-#Sets here the JumpPad Block ( MUST BE PERFECTLY A MATERIAL FROM BUKKIT ) [Materials: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html]
+#Sets here the JumpPad Block ( MUST BE PERFECTLY A MATERIAL FROM BUKKIT ) [Materials: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html ]
+KeepFood: true
+#Sets if the plugin should keep the food level of the player at maximum level;
+KeepHealth: true
+#Sets if the plugin should keep the health of the player at maximum level;

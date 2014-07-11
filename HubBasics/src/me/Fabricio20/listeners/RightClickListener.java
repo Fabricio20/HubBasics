@@ -3,7 +3,7 @@ package me.Fabricio20.listeners;
 import java.util.ArrayList;
 
 import me.Fabricio20.Permissions;
-import me.Fabricio20.methods.VecTor;
+import me.Fabricio20.methods.VEK;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -27,7 +27,7 @@ public class RightClickListener implements Listener {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static ArrayList<Player> players = new ArrayList();
-	 VecTor gv = new VecTor();
+	 VEK gv = new VEK();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -45,6 +45,8 @@ public class RightClickListener implements Listener {
 			}
 		}
 	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@EventHandler
 	public void onEntityInteract(PlayerInteractEntityEvent e) {
@@ -65,6 +67,8 @@ public class RightClickListener implements Listener {
 		}
 	}
 	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		if(plugin.getConfig().getBoolean("Stacker") == true) {
@@ -75,7 +79,7 @@ public class RightClickListener implements Listener {
 					if(players.contains(passenger)) {
 						passenger.leaveVehicle();
 			            Location loc = player.getLocation();
-			            passenger.setVelocity(this.gv.VecTor(loc).multiply(2));
+			            passenger.setVelocity(this.gv.VEC(loc).multiply(2));
 			            players.remove(passenger);
 					}
 				}

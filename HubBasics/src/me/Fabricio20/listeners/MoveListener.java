@@ -2,6 +2,8 @@ package me.Fabricio20.listeners;
 
 import java.util.ArrayList;
 
+import me.Fabricio20.Strings;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
@@ -18,6 +20,7 @@ public class MoveListener implements Listener {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@SuppressWarnings("unused")
 	private final JavaPlugin plugin;
 
 	public MoveListener(JavaPlugin plugin) {
@@ -32,7 +35,7 @@ public class MoveListener implements Listener {
 	
 	@EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-            if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.getMaterial(plugin.getConfig().getString("JumpPadBlock"))) {
+            if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.getMaterial(Strings.LaunchPadBlock)) {
 			if (e.getPlayer().getGameMode().equals(GameMode.SURVIVAL) || e.getPlayer().getGameMode().equals(GameMode.ADVENTURE)) {
 				e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(3));
 				e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 1.0D, e.getPlayer().getVelocity().getZ()));

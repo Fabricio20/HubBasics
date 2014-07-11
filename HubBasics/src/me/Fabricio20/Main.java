@@ -67,6 +67,7 @@ public class Main extends JavaPlugin {
 		plugin = this;
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		Strings.Prefix = plugin.getConfig().getString("Prefix").replace("&", "§");
+		Strings.LaunchPadBlock = getConfig().getString("JumpPadBlock");
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
 		System.out.println("= Runnables: \u001B[32m" + Strings.RunnablesEnabled + "\u001B[0m");

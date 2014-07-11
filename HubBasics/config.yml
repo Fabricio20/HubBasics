@@ -75,3 +75,7 @@ KeepFood: true
 #Sets if the plugin should keep the food level of the player at maximum level;
 KeepHealth: true
 #Sets if the plugin should keep the health of the player at maximum level;
+HubAtLogin: false
+#Sets if the player should go to hub when they login ( No BungeeCord Support [ If u want to use BC, in BC config set force_default_server to true ] )
+Stacker: true
+#Sets if the stacker should be used ;) [ Stacker Mini-Game, To Avoid Being Stacked Add The Permission HubBasics.NonStackable ]

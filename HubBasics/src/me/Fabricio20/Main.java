@@ -71,6 +71,7 @@ public class Main extends JavaPlugin {
 		try {
 			MetricsLite metrics = new MetricsLite(this);
 		    metrics.start();
+		    System.out.println("[HubBasics] Metrics Started!");
 		} catch (IOException e) {
 		   System.out.println("[HubBasics] Error when trying to submit metrics!");
 		}

@@ -64,6 +64,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 				} else {
 					sendToServer(((Player)sender), plugin.getConfig().getString("BungeeCordConfig.LobbyServer"));
 				}
+			} else {
+				sender.sendMessage(Strings.PermissionError);
 			}
 		}
 	} else {
@@ -86,6 +88,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 					} else {
 						sender.sendMessage("§8[§cHubBasics§8] §cBungeeCord Support Is Enabled!");
 					}
+				} else {
+					sender.sendMessage(Strings.PermissionError);
 				}
 			}
 		} else {

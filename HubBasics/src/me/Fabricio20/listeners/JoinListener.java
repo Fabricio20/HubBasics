@@ -1,7 +1,6 @@
 package me.Fabricio20.listeners;
 
 import java.io.File;
-
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
@@ -21,8 +20,8 @@ public class JoinListener implements Listener {
 	 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	 
-	File f = new File("/plugins/HubBasics/Location.yml");
-	YamlConfiguration yamlFile = YamlConfiguration.loadConfiguration(f);
+	public static File f = new File("/plugins/HubBasics/Location.yml");
+	public static YamlConfiguration yamlFile = YamlConfiguration.loadConfiguration(f);
 	
 	 @EventHandler(priority = EventPriority.HIGH)
 	 public void Join(PlayerJoinEvent e) {

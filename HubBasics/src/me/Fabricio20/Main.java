@@ -1,12 +1,12 @@
 package me.Fabricio20;
 
 import java.io.File;
+import java.io.IOException;
 
 import me.Fabricio20.listeners.*;
 import me.Fabricio20.runnables.*;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Difficulty;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -53,7 +53,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new SignChangeListener(this), this);
 		getServer().getPluginManager().registerEvents(new HungerListener(this), this);
 		getServer().getPluginManager().registerEvents(new HealthListener(this), this);
-		getServer().getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
+		getServer().getPluginManager().registerEvents(new JoinListenerForItems(this), this);
 		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
 		Strings.RunnablesEnabled = 1;
 		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(this, 1200, 1200);
@@ -68,6 +68,12 @@ public class Main extends JavaPlugin {
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		Strings.Prefix = plugin.getConfig().getString("Prefix").replace("&", "§");
 		Strings.LaunchPadBlock = getConfig().getString("JumpPadBlock");
+		try {
+		    Metrics metrics = new Metrics(this);
+		    metrics.start();
+		} catch (IOException e) {
+		   System.out.println("[HubBasics] Failed To Submit Metrics!");
+		}
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
 		System.out.println("= Runnables: \u001B[32m" + Strings.RunnablesEnabled + "\u001B[0m");

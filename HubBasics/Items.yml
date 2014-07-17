@@ -1,0 +1,63 @@
+Item1:
+  Enabled: false
+  Material: 'COMPASS'
+  Slot: 1 //This Will Not Change The Slot This only explains that this item will be placed on slot 1;
+  Name: '&cItem1'
+  Lore:
+    - '&7Lores Works With Colors'
+Item2:
+  Enabled: false
+  Material: 'GOLD_BLOCK'
+  Slot: 2 //This Will Not Change The Slot This only explains that this item will be placed on slot 2;
+  Name: '&cItem2'
+  Lore:
+    - '&7Lores Works With Colors'
+Item3:
+  Enabled: false
+  Material: 'GOLD_BLOCK'
+  Slot: 3 //This Will Not Change The Slot This only explains that this item will be placed on slot 3;
+  Name: '&cItem3'
+  Lore:
+    - '&7Lores Works With Colors'
+Item4:
+  Enabled: false
+  Material: 'IRON_INGOT'
+  Slot: 4 //This Will Not Change The Slot This only explains that this item will be placed on slot 4;
+  Name: '&cItem4'
+  Lore:
+    - '&7TEST'
+Item5:
+  Enabled: false
+  Material: 'DIAMOND_BLOCK'
+  Slot: 5 //This Will Not Change The Slot This only explains that this item will be placed on slot 5;
+  Name: '&cItem5'
+  Lore:
+    - '&7Lores Works With Colors'
+Item6:
+  Enabled: false
+  Material: 'GOLD_BLOCK'
+  Slot: 6 //This Will Not Change The Slot This only explains that this item will be placed on slot 6;
+  Name: '&cItem6'
+  Lore:
+    - '&7Lores Works With Colors'
+Item7:
+  Enabled: false
+  Material: 'GOLD_BLOCK'
+  Slot: 7 //This Will Not Change The Slot This only explains that this item will be placed on slot 7;
+  Name: '&cItem7'
+  Lore:
+    - '&7Lores Works With Colors'
+Item8:
+  Enabled: false
+  Material: 'GOLD_BLOCK'
+  Slot: 8 //This Will Not Change The Slot This only explains that this item will be placed on slot 8;
+  Name: '&cItem8'
+  Lore:
+    - '&7Lores Works With Colors'
+Item9:
+  Enabled: false
+  Material: 'GOLD_BLOCK'
+  Slot: 9 //This Will Not Change The Slot This only explains that this item will be placed on slot 9;
+  Name: '&cItem9'
+  Lore:
+    - '&7Lores Works With Colors'

@@ -70,12 +70,14 @@ BungeeCordConfig:
 
 #Configure the bungeecord support here;
 JumpPadBlock: 'REDSTONE_BLOCK'
-#Sets here the JumpPad Block ( MUST BE PERFECTLY A MATERIAL FROM BUKKIT ) [Materials: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html ]
+#Sets here the JumpPad Block ( MUST BE PERFECTLY A MATERIAL FROM BUKKIT ) [Materials: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html ];
 KeepFood: true
 #Sets if the plugin should keep the food level of the player at maximum level;
 KeepHealth: true
 #Sets if the plugin should keep the health of the player at maximum level;
 HubAtLogin: false
-#Sets if the player should go to hub when they login ( No BungeeCord Support [ If u want to use BC, in BC config set force_default_server to true ] )
+#Sets if the player should go to hub when they login ( No BungeeCord Support [ If u want to use BC, in BC config set force_default_server to true ] );
 Stacker: true
-#Sets if the stacker should be used ;) [ Stacker Mini-Game, To Avoid Being Stacked Add The Permission HubBasics.NonStackable ]
+#Sets if the stacker should be used ;) [ Stacker Mini-Game, To Avoid Being Stacked Add The Permission HubBasics.NonStackable ];
+JoinItems: false
+#Sets if the plugin will give custom itens on join [ CAUTION: EXTREMLY BUGGED ] To Edit The Itens Open HubBasics.jar With Winrar And Edit Items.yml;

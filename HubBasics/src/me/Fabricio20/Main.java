@@ -69,10 +69,10 @@ public class Main extends JavaPlugin {
 		Strings.Prefix = plugin.getConfig().getString("Prefix").replace("&", "§");
 		Strings.LaunchPadBlock = getConfig().getString("JumpPadBlock");
 		try {
-		    Metrics metrics = new Metrics(this);
+			MetricsLite metrics = new MetricsLite(this);
 		    metrics.start();
 		} catch (IOException e) {
-		   System.out.println("[HubBasics] Failed To Submit Metrics!");
+		   System.out.println("[HubBasics] Error when trying to submit metrics!");
 		}
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");

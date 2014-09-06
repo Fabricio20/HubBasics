@@ -82,6 +82,7 @@ public class Main extends JavaPlugin {
 		getCommand("lobby").setExecutor(new Commands(this));
 		getCommand("sethub").setExecutor(new Commands(this));
 		getCommand("hat").setExecutor(new Commands(this));
+		getCommand("hb").setExecutor(new Commands(this));
 		plugin = this;
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		Strings.Prefix = plugin.getConfig().getString("Prefix").replace("&", "§");
@@ -91,7 +92,7 @@ public class Main extends JavaPlugin {
 		    metrics.start();
 		    System.out.println("[HubBasics] Metrics Started!");
 		} catch (IOException e) {
-		   System.out.println("[HubBasics] Error when trying to submit metrics!");
+		   System.out.println("[HubBasics] Error while trying to submit metrics!");
 		}
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");

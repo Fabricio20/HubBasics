@@ -1,5 +1,5 @@
 name: HubBasics
-version: 2.0.1.45
+version: 2.0.1.48
 main: me.Fabricio20.Main
 depend: [BarAPI]
 commands:
@@ -14,3 +14,5 @@ commands:
     description: Sets the Hub location
   hat:
     description: Changes your hat!
+  hb:
+    description: HubBasics.

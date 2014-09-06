@@ -130,7 +130,24 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 					}
 				}
 			} else {
-				//TODO More Commands;
+				if(commandLabel.equalsIgnoreCase("hb")) {
+					if(sender.hasPermission(new Permissions().Hub)) {
+						if(args.length == 0) {
+							sender.sendMessage("§c<!--HubBasics Commands --!>");
+							sender.sendMessage("§c/hb reload");
+						} else if(args.length >= 1) {
+							if(args[0].equalsIgnoreCase("reload")) {
+								plugin.reloadConfig();
+								sender.sendMessage("[HubBasics] Config Reloaded!");
+							} else {
+								sender.sendMessage("§c<!--HubBasics Commands --!>");
+								sender.sendMessage("§c/hb reload");
+							}
+						}
+					}
+				} else {
+					//TODO More Commands
+				}
 			}
 		}
 	}

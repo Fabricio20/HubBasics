@@ -138,7 +138,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 						} else if(args.length >= 1) {
 							if(args[0].equalsIgnoreCase("reload")) {
 								plugin.reloadConfig();
-								sender.sendMessage("[HubBasics] Config Reloaded!");
+								sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
 							} else {
 								sender.sendMessage("§c<!--HubBasics Commands --!>");
 								sender.sendMessage("§c/hb reload");

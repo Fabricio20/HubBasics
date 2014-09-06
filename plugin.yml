@@ -1,5 +1,5 @@
 name: HubBasics
-version: 2.0.1.48
+version: 2.0.1
 main: me.Fabricio20.Main
 depend: [BarAPI]
 commands:

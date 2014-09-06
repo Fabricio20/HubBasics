@@ -88,4 +88,55 @@ public class RightClickListener implements Listener {
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@EventHandler
+	public void Interact(PlayerInteractEvent e) {
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item1.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item1.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item1.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item2.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item2.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item2.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item3.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item3.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item3.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item4.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item4.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item4.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item5.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item5.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item5.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item6.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item6.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item6.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item7.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item7.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item7.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item8.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item8.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item8.CMD"));
+			}
+		}
+		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item9.Material")))) {
+			if(JoinListenerForItems.items.getBoolean("Item9.CMDA") == true) {
+				e.getPlayer().chat(JoinListenerForItems.items.getString("Item9.CMD"));
+			}
+		}
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

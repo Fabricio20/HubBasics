@@ -81,3 +81,7 @@ Stacker: true
 #Sets if the stacker should be used ;) [ Stacker Mini-Game, To Avoid Being Stacked Add The Permission HubBasics.NonStackable ];
 JoinItems: false
 #Sets if the plugin will give custom itens on join [ CAUTION: EXTREMLY BUGGED ] To Edit The Itens Open HubBasics.jar With Winrar And Edit Items.yml;
+NoDrops: false
+#Set true to disable item drops.
+NoDeathDrops: false
+#Set true to disable item drops on death.

@@ -1,6 +1,8 @@
 Item1:
   Enabled: false
   Material: 'COMPASS'
+  CMDA: true
+  CMD: '/me It works!'
   Slot: 1 //This Will Not Change The Slot This only explains that this item will be placed on slot 1;
   Name: '&cItem1'
   Lore:
@@ -8,6 +10,8 @@ Item1:
 Item2:
   Enabled: false
   Material: 'GOLD_BLOCK'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 2 //This Will Not Change The Slot This only explains that this item will be placed on slot 2;
   Name: '&cItem2'
   Lore:
@@ -15,6 +19,8 @@ Item2:
 Item3:
   Enabled: false
   Material: 'GOLD_BLOCK'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 3 //This Will Not Change The Slot This only explains that this item will be placed on slot 3;
   Name: '&cItem3'
   Lore:
@@ -22,6 +28,8 @@ Item3:
 Item4:
   Enabled: false
   Material: 'IRON_INGOT'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 4 //This Will Not Change The Slot This only explains that this item will be placed on slot 4;
   Name: '&cItem4'
   Lore:
@@ -29,6 +37,8 @@ Item4:
 Item5:
   Enabled: false
   Material: 'DIAMOND_BLOCK'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 5 //This Will Not Change The Slot This only explains that this item will be placed on slot 5;
   Name: '&cItem5'
   Lore:
@@ -36,6 +46,8 @@ Item5:
 Item6:
   Enabled: false
   Material: 'GOLD_BLOCK'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 6 //This Will Not Change The Slot This only explains that this item will be placed on slot 6;
   Name: '&cItem6'
   Lore:
@@ -43,6 +55,8 @@ Item6:
 Item7:
   Enabled: false
   Material: 'GOLD_BLOCK'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 7 //This Will Not Change The Slot This only explains that this item will be placed on slot 7;
   Name: '&cItem7'
   Lore:
@@ -50,6 +64,8 @@ Item7:
 Item8:
   Enabled: false
   Material: 'GOLD_BLOCK'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 8 //This Will Not Change The Slot This only explains that this item will be placed on slot 8;
   Name: '&cItem8'
   Lore:
@@ -57,6 +73,8 @@ Item8:
 Item9:
   Enabled: false
   Material: 'GOLD_BLOCK'
+  CMDA: false
+  CMD: '/me It works!'
   Slot: 9 //This Will Not Change The Slot This only explains that this item will be placed on slot 9;
   Name: '&cItem9'
   Lore:

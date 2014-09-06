@@ -3,8 +3,24 @@ package me.Fabricio20;
 import java.io.File;
 import java.io.IOException;
 
-import me.Fabricio20.listeners.*;
-import me.Fabricio20.runnables.*;
+import me.Fabricio20.listeners.CommandListener;
+import me.Fabricio20.listeners.DeathListener;
+import me.Fabricio20.listeners.DropItemListener;
+import me.Fabricio20.listeners.HealthListener;
+import me.Fabricio20.listeners.HungerListener;
+import me.Fabricio20.listeners.JoinListener;
+import me.Fabricio20.listeners.JoinListenerForItems;
+import me.Fabricio20.listeners.JumpListener;
+import me.Fabricio20.listeners.LeaveListener;
+import me.Fabricio20.listeners.MoveListener;
+import me.Fabricio20.listeners.RainListener;
+import me.Fabricio20.listeners.RightClickListener;
+import me.Fabricio20.listeners.ServerPingListener;
+import me.Fabricio20.listeners.SignChangeListener;
+import me.Fabricio20.listeners.VoidFallListener;
+import me.Fabricio20.runnables.AntiOp;
+import me.Fabricio20.runnables.BossAnnouncer;
+import me.Fabricio20.runnables.ChatAnnouncer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -54,6 +70,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new HungerListener(this), this);
 		getServer().getPluginManager().registerEvents(new HealthListener(this), this);
 		getServer().getPluginManager().registerEvents(new JoinListenerForItems(this), this);
+		getServer().getPluginManager().registerEvents(new DeathListener(this), this);
+		getServer().getPluginManager().registerEvents(new DropItemListener(this), this);
 		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
 		Strings.RunnablesEnabled = 1;
 		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(this, 1200, 1200);

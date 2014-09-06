@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="HubBasics/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Luciana/Downloads/PluginsDeV/BarAPI.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Luciana/Downloads/PluginsDeV/BungeeCord.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Luciana/Downloads/PluginsDeV/spigot.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Luciana/Downloads/PluginsDeV/Vault-1.4.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

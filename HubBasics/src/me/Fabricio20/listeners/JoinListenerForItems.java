@@ -24,8 +24,8 @@ public class JoinListenerForItems implements Listener {
 	}
 	
 
-	static File f2 = new File("plugins/HubBasics/Items.yml");
-	static YamlConfiguration items = YamlConfiguration.loadConfiguration(f2);
+	public static File f2 = new File("plugins/HubBasics/Items.yml");
+	public static YamlConfiguration items = YamlConfiguration.loadConfiguration(f2);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

@@ -16,3 +16,5 @@ commands:
     description: Changes your hat!
   hb:
     description: HubBasics.
+  uuid:
+    description: Get someones UUID.

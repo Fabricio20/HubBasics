@@ -83,6 +83,7 @@ public class Main extends JavaPlugin {
 		getCommand("sethub").setExecutor(new Commands(this));
 		getCommand("hat").setExecutor(new Commands(this));
 		getCommand("hb").setExecutor(new Commands(this));
+		getCommand("uuid").setExecutor(new Commands(this));
 		plugin = this;
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		Strings.Prefix = plugin.getConfig().getString("Prefix").replace("&", "§");

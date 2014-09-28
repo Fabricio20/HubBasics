@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -146,7 +147,24 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 						}
 					}
 				} else {
-					//TODO More Commands
+					if(commandLabel.equalsIgnoreCase("uuid")) {
+						if(sender.hasPermission(new Permissions().UUID)) {
+							if(args.length == 0) {
+								sender.sendMessage("§c/uuid <nick>");
+							} else if(args.length >= 1){
+								Player target = Bukkit.getPlayer(args[0]);
+								if(target == null) {
+									sender.sendMessage("§cPlayer not found!");
+								} else {
+									sender.sendMessage("§9" + target.getName() + "'s UUID: " + target.getUniqueId());
+								}
+							}
+						} else {
+							sender.sendMessage("§cNo Permission!");
+						}
+					} else {
+						//TODO More Commands;
+					}
 				}
 			}
 		}

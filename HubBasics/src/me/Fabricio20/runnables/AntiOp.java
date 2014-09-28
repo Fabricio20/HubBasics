@@ -18,6 +18,7 @@ public class AntiOp extends BukkitRunnable {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	@SuppressWarnings("deprecation")
 	public void run() {
 		if(plugin.getConfig().getBoolean("AntiOP") == true) {
 		for (Player user : Bukkit.getOnlinePlayers()) {

@@ -19,8 +19,9 @@ public class BossAnnouncer extends BukkitRunnable {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@SuppressWarnings("deprecation")
 	public void run() {
-		if(plugin.getConfig().getBoolean("UseAnnouncer") == true) {
+		if(plugin.getConfig().getBoolean("UseAnnouncer") == true && plugin.getConfig().getBoolean("1.8Fix") == false) {
 			if(Strings.BossAnnIndex == 0) {
 				if (!(plugin.getConfig().getString("BossAnnouncerMsg1").equalsIgnoreCase("null"))) {
 					for (Player user : Bukkit.getOnlinePlayers()) {

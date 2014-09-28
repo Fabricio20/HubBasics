@@ -85,3 +85,5 @@ NoDrops: false
 #Set true to disable item drops.
 NoDeathDrops: false
 #Set true to disable item drops on death.
+1.8Fix: false
+#Disable Boss Announcer Here [ For 1.8 Servers ]

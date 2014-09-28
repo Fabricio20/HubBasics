@@ -82,8 +82,10 @@ Stacker: true
 JoinItems: false
 #Sets if the plugin will give custom itens on join [ CAUTION: EXTREMLY BUGGED ] To Edit The Itens Open HubBasics.jar With Winrar And Edit Items.yml;
 NoDrops: false
-#Set true to disable item drops.
+#Set true to disable item drops;
 NoDeathDrops: false
-#Set true to disable item drops on death.
+#Set true to disable item drops on death;
 1.8Fix: false
-#Disable Boss Announcer Here [ For 1.8 Servers ]
+#Disable Boss Announcer Here [ For 1.8 Servers ];
+BossBarOnJoin: true
+#Show the boss bar to the player when he joins;

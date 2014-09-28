@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="E:/Eclipse/Default_JRE/BungeeCord.jar"/>
 	<classpathentry kind="lib" path="E:/Eclipse/Default_JRE/NametagEdit.jar"/>
 	<classpathentry kind="lib" path="E:/Eclipse/Default_JRE/PointsAPI.jar"/>
-	<classpathentry kind="lib" path="E:/Eclipse/Default_JRE/SpigotMC #1.7.10.jar"/>
 	<classpathentry kind="lib" path="E:/Eclipse/Default_JRE/Vault-1.4.1.jar"/>
+	<classpathentry kind="lib" path="E:/Eclipse/Default_JRE/SpigotMC.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,5 +1,7 @@
 package me.Fabricio20.listeners;
 
+import me.Fabricio20.Permissions;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,12 +22,16 @@ public class CommandListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onCommandPreProcess(PlayerCommandPreprocessEvent event){
 		if(event.getMessage().toLowerCase().startsWith("/plugins")) {
-			event.getPlayer().sendMessage(plugin.getConfig().getString("FakePlugins").replace("&", "§").replace("%p", event.getPlayer().getName()));
-			event.setCancelled(true);
-		} else {
-			if(event.getMessage().toLowerCase().startsWith("/pl")) {
+			if(!event.getPlayer().hasPermission(new Permissions().Plugins)) {
 				event.getPlayer().sendMessage(plugin.getConfig().getString("FakePlugins").replace("&", "§").replace("%p", event.getPlayer().getName()));
 				event.setCancelled(true);
+			}
+		} else {
+			if(event.getMessage().toLowerCase().startsWith("/pl")) {
+				if(!event.getPlayer().hasPermission(new Permissions().Plugins)) {
+				event.getPlayer().sendMessage(plugin.getConfig().getString("FakePlugins").replace("&", "§").replace("%p", event.getPlayer().getName()));
+				event.setCancelled(true);
+				}
 			}
 		}
 	}

@@ -6,6 +6,7 @@ public class Strings {
 	public static int MOTD;
 	public static int ChatAnnIndex;
 	public static int BossAnnIndex;
+	public static int BossAnnIndexJoin;
 	public static int RunnablesEnabled;
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

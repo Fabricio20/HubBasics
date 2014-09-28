@@ -28,6 +28,7 @@ public class BossAnnouncer extends BukkitRunnable {
 						BarAPI.setMessage(user, plugin.getConfig().getString("BossAnnouncerMsg1").replace("&", "§"), 61);
 					}
 				Strings.BossAnnIndex = 1;
+				Strings.BossAnnIndexJoin = 0;
 				}
 			} else {
 				if(Strings.BossAnnIndex == 1) {
@@ -36,6 +37,7 @@ public class BossAnnouncer extends BukkitRunnable {
 							BarAPI.setMessage(user, plugin.getConfig().getString("BossAnnouncerMsg2").replace("&", "§"), 61);
 						}
 					Strings.BossAnnIndex = 2;
+					Strings.BossAnnIndexJoin = 1;
 					}
 				} else {
 					if(Strings.BossAnnIndex == 2) {
@@ -44,6 +46,7 @@ public class BossAnnouncer extends BukkitRunnable {
 								BarAPI.setMessage(user, plugin.getConfig().getString("BossAnnouncerMsg3").replace("&", "§"), 61);
 							}
 						Strings.BossAnnIndex = 3;
+						Strings.BossAnnIndexJoin = 2;
 						}
 					} else {
 						if(Strings.BossAnnIndex == 3) {
@@ -52,6 +55,7 @@ public class BossAnnouncer extends BukkitRunnable {
 									BarAPI.setMessage(user, plugin.getConfig().getString("BossAnnouncerMsg4").replace("&", "§"), 61);
 								}
 							Strings.BossAnnIndex = 4;
+							Strings.BossAnnIndexJoin = 3;
 							}
 						} else {
 							if(Strings.BossAnnIndex == 4) {
@@ -60,6 +64,7 @@ public class BossAnnouncer extends BukkitRunnable {
 										BarAPI.setMessage(user, plugin.getConfig().getString("BossAnnouncerMsg5").replace("&", "§"), 61);
 									}
 								Strings.BossAnnIndex = 0;
+								Strings.BossAnnIndexJoin = 4;
 								}
 							} else {
 								if(Strings.BossAnnIndex > 4) {

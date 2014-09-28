@@ -44,38 +44,29 @@ public class JoinListener implements Listener {
 			 e.setJoinMessage(plugin.getConfig().getString("JoinMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 		 }
 		if (plugin.getConfig().getBoolean("BossBarOnJoin") == true) {
-			if (Strings.BossAnnIndex == 0) {
+			if (Strings.BossAnnIndexJoin == 0) {
 				if (!(plugin.getConfig().getString("BossAnnouncerMsg1").equalsIgnoreCase("null"))) {
 					BarAPI.setMessage(e.getPlayer(), plugin.getConfig().getString("BossAnnouncerMsg1").replace("&", "§"),61);
-					Strings.BossAnnIndex = 1;
 				}
 			} else {
-				if (Strings.BossAnnIndex == 1) {
+				if (Strings.BossAnnIndexJoin == 1) {
 					if (!(plugin.getConfig().getString("BossAnnouncerMsg2").equalsIgnoreCase("null"))) {
 						BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg2").replace("&", "§"), 61);
-						Strings.BossAnnIndex = 2;
 					}
 				} else {
-					if (Strings.BossAnnIndex == 2) {
+					if (Strings.BossAnnIndexJoin == 2) {
 						if (!(plugin.getConfig().getString("BossAnnouncerMsg3").equalsIgnoreCase("null"))) {
 							BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg3").replace("&", "§"), 61);
-							Strings.BossAnnIndex = 3;
 						}
 					} else {
-						if (Strings.BossAnnIndex == 3) {
+						if (Strings.BossAnnIndexJoin == 3) {
 							if (!(plugin.getConfig().getString("BossAnnouncerMsg4").equalsIgnoreCase("null"))) {
 								BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg4").replace("&", "§"), 61);
-								Strings.BossAnnIndex = 4;
 							}
 						} else {
-							if (Strings.BossAnnIndex == 4) {
+							if (Strings.BossAnnIndexJoin == 4) {
 								if (!(plugin.getConfig().getString("BossAnnouncerMsg5").equalsIgnoreCase("null"))) {
 									BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg5").replace("&", "§"), 61);
-									Strings.BossAnnIndex = 0;
-								}
-							} else {
-								if (Strings.BossAnnIndex > 4) {
-									Strings.BossAnnIndex = 0;
 								}
 							}
 						}

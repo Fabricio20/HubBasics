@@ -1,10 +1,15 @@
 package me.Fabricio20.listeners;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+
+import me.Fabricio20.Main;
 
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,15 +22,11 @@ public class JoinListenerForItems implements Listener {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	private final JavaPlugin plugin;
+	private static JavaPlugin plugin;
 
 	public JoinListenerForItems(JavaPlugin plugin) {
-		this.plugin = plugin;
+		JoinListenerForItems.plugin = plugin;
 	}
-	
-
-	public static File f2 = new File("plugins/HubBasics/Items.yml");
-	public static YamlConfiguration items = YamlConfiguration.loadConfiguration(f2);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -33,133 +34,158 @@ public class JoinListenerForItems implements Listener {
 	public void PlayerJoinGetItem(PlayerJoinEvent e) {
 		 if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
 ////////////////////////////////////////////////////////////////////////////////////////- Start Of 1
-			if(items.getBoolean("Item1.Enabled") == true) {
-				ItemStack is1 = new ItemStack(Material.getMaterial(items.getString("Item1.Material")));
-				ItemMeta meta1 = is1.getItemMeta();
-				meta1.setDisplayName(items.getString("Item1.Name").replace("&", "§"));
-				List<String> list1 = items.getStringList("Item1.Lore");
-				List<String> newList1 = new ArrayList<String>();
-				for (String string : list1) {
-					newList1.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item1.Enabled") == true) {
+				ItemStack Item1 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item1.Material")));
+				ItemMeta Meta = Item1.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item1.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item1.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta1.setLore(newList1);
-				is1.setItemMeta(meta1);
-				e.getPlayer().getInventory().setItem(0, is1);
+				Meta.setLore(NewLore);
+				Item1.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item1.Slot"), Item1);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 1 & Start Of 2
-			if(items.getBoolean("Item2.Enabled") == true) {
-				ItemStack is2 = new ItemStack(Material.getMaterial(items.getString("Item2.Material")));
-				ItemMeta meta2 = is2.getItemMeta();
-				meta2.setDisplayName(items.getString("Item2.Name").replace("&", "§"));
-				List<String> list2 = items.getStringList("Item2.Lore");
-				List<String> newList2 = new ArrayList<String>();
-				for (String string : list2) {
-					newList2.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item2.Enabled") == true) {
+				ItemStack Item2 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item2.Material")));
+				ItemMeta Meta = Item2.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item2.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item2.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta2.setLore(newList2);
-				is2.setItemMeta(meta2);
-				e.getPlayer().getInventory().setItem(1, is2);
+				Meta.setLore(NewLore);
+				Item2.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item2.Slot"), Item2);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 2 & Start Of 3
-			if(items.getBoolean("Item3.Enabled") == true) {
-				ItemStack is3 = new ItemStack(Material.getMaterial(items.getString("Item3.Material")));
-				ItemMeta meta3 = is3.getItemMeta();
-				meta3.setDisplayName(items.getString("Item3.Name").replace("&", "§"));
-				List<String> list3 = items.getStringList("Item3.Lore");
-				List<String> newList3 = new ArrayList<String>();
-				for (String string : list3) {
-					newList3.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item3.Enabled") == true) {
+				ItemStack Item3 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item3.Material")));
+				ItemMeta Meta = Item3.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item3.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item3.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta3.setLore(newList3);
-				is3.setItemMeta(meta3);
-				e.getPlayer().getInventory().setItem(2, is3);
+				Meta.setLore(NewLore);
+				Item3.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item3.Slot"), Item3);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 3 & Start Of 4
-			if(items.getBoolean("Item4.Enabled") == true) {
-				ItemStack is4 = new ItemStack(Material.getMaterial(items.getString("Item4.Material")));
-				ItemMeta meta4 = is4.getItemMeta();
-				meta4.setDisplayName(items.getString("Item4.Name").replace("&", "§"));
-				List<String> list4 = items.getStringList("Item4.Lore");
-				List<String> newList4 = new ArrayList<String>();
-				for (String string : list4) {
-					newList4.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item4.Enabled") == true) {
+				ItemStack Item4 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item4.Material")));
+				ItemMeta Meta = Item4.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item4.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item4.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta4.setLore(newList4);
-				is4.setItemMeta(meta4);
-				e.getPlayer().getInventory().setItem(3, is4);
+				Meta.setLore(NewLore);
+				Item4.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item4.Slot"), Item4);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 4 & Start Of 5
-			if(items.getBoolean("Item5.Enabled") == true) {
-				ItemStack is5 = new ItemStack(Material.getMaterial(items.getString("Item5.Material")));
-				ItemMeta meta5 = is5.getItemMeta();
-				meta5.setDisplayName(items.getString("Item5.Name").replace("&", "§"));
-				List<String> list5 = items.getStringList("Item5.Lore");
-				List<String> newList5 = new ArrayList<String>();
-				for (String string : list5) {
-					newList5.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item5.Enabled") == true) {
+				ItemStack Item5 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item5.Material")));
+				ItemMeta Meta = Item5.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item5.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item5.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta5.setLore(newList5);
-				is5.setItemMeta(meta5);
-				e.getPlayer().getInventory().setItem(4, is5);
+				Meta.setLore(NewLore);
+				Item5.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item5.Slot"), Item5);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 5 & Start Of 6
-			if(items.getBoolean("Item6.Enabled") == true) {
-				ItemStack is6 = new ItemStack(Material.getMaterial(items.getString("Item6.Material")));
-				ItemMeta meta6 = is6.getItemMeta();
-				meta6.setDisplayName(items.getString("Item6.Name").replace("&", "§"));
-				List<String> list6 = items.getStringList("Item6.Lore");
-				List<String> newList6 = new ArrayList<String>();
-				for (String string : list6) {
-					newList6.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item6.Enabled") == true) {
+				ItemStack Item6 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item6.Material")));
+				ItemMeta Meta = Item6.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item6.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item6.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta6.setLore(newList6);
-				is6.setItemMeta(meta6);
-				e.getPlayer().getInventory().setItem(5, is6);
+				Meta.setLore(NewLore);
+				Item6.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item6.Slot"), Item6);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 6 & Start Of 7
-			if(items.getBoolean("Item7.Enabled") == true) {
-				ItemStack is7 = new ItemStack(Material.getMaterial(items.getString("Item7.Material")));
-				ItemMeta meta7 = is7.getItemMeta();
-				meta7.setDisplayName(items.getString("Item7.Name").replace("&", "§"));
-				List<String> list7 = items.getStringList("Item7.Lore");
-				List<String> newList7 = new ArrayList<String>();
-				for (String string : list7) {
-					newList7.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item7.Enabled") == true) {
+				ItemStack Item7 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item7.Material")));
+				ItemMeta Meta = Item7.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item7.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item7.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta7.setLore(newList7);
-				is7.setItemMeta(meta7);
-				e.getPlayer().getInventory().setItem(6, is7);
+				Meta.setLore(NewLore);
+				Item7.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item7.Slot"), Item7);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 7 & Start Of 8
-			if(items.getBoolean("Item8.Enabled") == true) {
-				ItemStack is8 = new ItemStack(Material.getMaterial(items.getString("Item8.Material")));
-				ItemMeta meta8 = is8.getItemMeta();
-				meta8.setDisplayName(items.getString("Item8.Name").replace("&", "§"));
-				List<String> list8 = items.getStringList("Item8.Lore");
-				List<String> newList8 = new ArrayList<String>();
-				for (String string : list8) {
-					newList8.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item8.Enabled") == true) {
+				ItemStack Item8 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item8.Material")));
+				ItemMeta Meta = Item8.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item8.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item8.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta8.setLore(newList8);
-				is8.setItemMeta(meta8);
-				e.getPlayer().getInventory().setItem(7, is8);
+				Meta.setLore(NewLore);
+				Item8.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item8.Slot"), Item8);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 8 & Start Of 9
-			if(items.getBoolean("Item9") == true) {
-				ItemStack is9 = new ItemStack(Material.getMaterial(items.getString("Item9.Material")));
-				ItemMeta meta9 = is9.getItemMeta();
-				meta9.setDisplayName(items.getString("Item9.Name").replace("&", "§"));
-				List<String> list9 = items.getStringList("Item9.Lore");
-				List<String> newList9 = new ArrayList<String>();
-				for (String string : list9) {
-					newList9.add(string.replace("&", "§"));
+			if(getCustomConfig().getBoolean("Item9.Enabled") == true) {
+				ItemStack Item9 = new ItemStack(Material.getMaterial(getCustomConfig().getString("Item9.Material")));
+				ItemMeta Meta = Item9.getItemMeta();
+				Meta.setDisplayName(getCustomConfig().getString("Item9.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> LoreFromConfig = getCustomConfig().getStringList("Item9.Lore");
+				List<String> NewLore = new ArrayList<String>();
+				for(String string : LoreFromConfig) {
+					NewLore.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
-				meta9.setLore(newList9);
-				is9.setItemMeta(meta9);
-				e.getPlayer().getInventory().setItem(8, is9);
+				Meta.setLore(NewLore);
+				Item9.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item9.Slot"), Item9);
 			}
 ////////////////////////////////////////////////////////////////////////////////////////- End Of 9
 		}
 	}
+	
+	public static void reloadCustomConfig() {
+	    if (Main.Storage2 == null) {
+	    Main.Storage2 = new File(plugin.getDataFolder(), "Items.yml");
+	    }
+	    Main.StorageConfig2 = YamlConfiguration.loadConfiguration(Main.Storage2);
+	}
 
+	public static FileConfiguration getCustomConfig() {
+	  if (Main.StorageConfig2 == null) {
+	        reloadCustomConfig();
+	  }
+	  return Main.StorageConfig2;
+	}
+
+	public static void saveCustomConfig() {
+	  if (Main.StorageConfig2 == null || Main.Storage2 == null) {
+	      return;
+	  }
+	  try {
+	      getCustomConfig().save(Main.Storage2);
+	  } catch (IOException ex) {
+	   plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage2, ex);
+	  }
+	}
+	
 }

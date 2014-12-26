@@ -24,6 +24,7 @@ import me.Fabricio20.listeners.VoidFallListener;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
+import me.Fabricio20.methods.MakeItemsConfig;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,6 +42,8 @@ public class Main extends JavaPlugin {
 	public static Main plugin;
 	public static FileConfiguration StorageConfig = null;
     public static File Storage = null;
+	public static FileConfiguration StorageConfig2 = null;
+    public static File Storage2 = null;
 	
 	// Console Coloring Made Easy
 	public static final String ANSI_RESET = "\u001B[0m";
@@ -63,6 +66,7 @@ public class Main extends JavaPlugin {
 		saveDefaultConfig();
 		setupConfig();
 		reloadCustomConfig();
+		reloadCustomConfig2();
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 		getServer().getPluginManager().registerEvents(new LeaveListener(this), this);
 		getServer().getPluginManager().registerEvents(new RainListener(this), this);
@@ -268,6 +272,10 @@ public class Main extends JavaPlugin {
 			getConfig().set("Others.AllowItemMove", false);
 			saveConfig();
 		}
+		if(!getConfig().contains("Others.AntiOP")) {
+			getConfig().set("Others.AntiOP", false);
+			saveConfig();
+		}
 		if(!getConfig().contains("Worlds")) {
 			ArrayList<String> worlds = new ArrayList<String>();
 			worlds.add("Example");
@@ -275,6 +283,8 @@ public class Main extends JavaPlugin {
 			saveConfig();
 		}
 	}
+	
+	/////////
 	
 	public void reloadCustomConfig() {
         if (Storage == null) {
@@ -307,6 +317,61 @@ public class Main extends JavaPlugin {
             getCustomConfig().save(Storage);
         } catch (IOException ex) {
             getLogger().log(Level.SEVERE, "Could not save config to " + Storage, ex);
+        }
+    }
+    
+    //////
+    
+    public void reloadCustomConfig2() {
+        if (Storage2 == null) {
+        	Storage2 = new File(getDataFolder(), "Items.yml");
+        }
+        StorageConfig2 = YamlConfiguration.loadConfiguration(Storage2);
+        if(!StorageConfig2.contains("Item1.Enabled")) {
+        	MakeItemsConfig.make1();
+        }
+        if(!StorageConfig2.contains("Item2.Enabled")) {
+        	MakeItemsConfig.make2();
+        }
+        if(!StorageConfig2.contains("Item3.Enabled")) {
+        	MakeItemsConfig.make3();
+        }
+        if(!StorageConfig2.contains("Item4.Enabled")) {
+        	MakeItemsConfig.make4();
+        }
+        if(!StorageConfig2.contains("Item5.Enabled")) {
+        	MakeItemsConfig.make5();
+        }
+        if(!StorageConfig2.contains("Item6.Enabled")) {
+        	MakeItemsConfig.make6();
+        }
+        if(!StorageConfig2.contains("Item7.Enabled")) {
+        	MakeItemsConfig.make7();
+        }
+        if(!StorageConfig2.contains("Item8.Enabled")) {
+        	MakeItemsConfig.make8();
+        }
+        if(!StorageConfig2.contains("Item9.Enabled")) {
+        	MakeItemsConfig.make9();
+        }
+        saveCustomConfig2();
+    }
+	
+    public FileConfiguration getCustomConfig2() {
+        if (StorageConfig2 == null) {
+            reloadCustomConfig2();
+        }
+        return StorageConfig2;
+    }
+	
+    public void saveCustomConfig2() {
+        if (StorageConfig2 == null || Storage2 == null) {
+            return;
+        }
+        try {
+            getCustomConfig2().save(Storage2);
+        } catch (IOException ex) {
+            getLogger().log(Level.SEVERE, "Could not save config to " + Storage2, ex);
         }
     }
 	

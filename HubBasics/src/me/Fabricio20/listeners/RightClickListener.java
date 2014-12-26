@@ -1,14 +1,20 @@
 package me.Fabricio20.listeners;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
+import me.Fabricio20.Main;
 import me.Fabricio20.Permissions;
 import me.Fabricio20.methods.VEK;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,10 +26,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class RightClickListener implements Listener {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	private final JavaPlugin plugin;
+	private static JavaPlugin plugin;
 
 	public RightClickListener(JavaPlugin plugin) {
-		this.plugin = plugin;
+		RightClickListener.plugin = plugin;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -98,52 +104,94 @@ public class RightClickListener implements Listener {
 	
 	@EventHandler
 	public void Interact(PlayerInteractEvent e) {
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item1.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item1.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item1.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item1.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item1.Enabled") == true) {
+				if(getCustomConfig().getString("Item1.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
+				}
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item2.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item2.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item2.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item2.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item2.Enabled") == true) {
+				if(getCustomConfig().getString("Item2.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
+				}
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item3.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item3.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item3.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item3.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item3.Enabled") == true) {
+				if(getCustomConfig().getString("Item3.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
+				}
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item4.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item4.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item4.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item4.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item4.Enabled") == true) {
+				if(getCustomConfig().getString("Item4.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
+				}
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item5.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item5.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item5.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item5.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item5.Enabled") == true) {
+				if(getCustomConfig().getString("Item5.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
+				}
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item6.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item6.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item6.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item6.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item6.Enabled") == true) {
+				if(getCustomConfig().getString("Item6.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
+				}
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item7.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item7.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item7.CMD"));
+		if(getCustomConfig().getBoolean("Item7.Enabled") == true) {
+			if(getCustomConfig().getString("Item7.Command") != null) {
+				e.getPlayer().chat(getCustomConfig().getString("Item7.Command"));
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item8.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item8.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item8.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item8.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item8.Enabled") == true) {
+				if(getCustomConfig().getString("Item8.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
+				}
 			}
 		}
-		if(e.getPlayer().getItemInHand().getType().equals(Material.getMaterial(JoinListenerForItems.items.getString("Item9.Material")))) {
-			if(JoinListenerForItems.items.getBoolean("Item9.CMDA") == true) {
-				e.getPlayer().chat(JoinListenerForItems.items.getString("Item9.CMD"));
+		if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item9.Name").replace("&", "§"))) {
+			if(getCustomConfig().getBoolean("Item9.Enabled") == true) {
+				if(getCustomConfig().getString("Item9.Command") != null) {
+					e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
+				}
 			}
 		}
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public static void reloadCustomConfig() {
+	    if (Main.Storage2 == null) {
+	    Main.Storage2 = new File(plugin.getDataFolder(), "Items.yml");
+	    }
+	    Main.StorageConfig2 = YamlConfiguration.loadConfiguration(Main.Storage2);
+	}
+
+	public static FileConfiguration getCustomConfig() {
+	  if (Main.StorageConfig2 == null) {
+	        reloadCustomConfig();
+	  }
+	  return Main.StorageConfig2;
+	}
+
+	public static void saveCustomConfig() {
+	  if (Main.StorageConfig2 == null || Main.Storage2 == null) {
+	      return;
+	  }
+	  try {
+	      getCustomConfig().save(Main.Storage2);
+	  } catch (IOException ex) {
+	   plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage2, ex);
+	  }
+	}
+	
 }

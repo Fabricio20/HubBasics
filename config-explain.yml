@@ -1,0 +1,51 @@
+JoinEvents: # Here are listed the events that happen when a player joins the server.
+  DisableMessage: false # Here you can set if the Join Message will appear or not.
+  SilentOpJoin: false # Here you can set if you want to players with OP doesnt have a join message.
+  Message: '&8[&cHubBasics&8] &eWelcome &a%p &eto the server!' # Here you can configure your custom join message if enabled.
+  HubAtLogin: false # Here you can configure if the player will be teleported to the hub on join.
+  BossBarOnJoin: false # Here you can configure if the BossBarAnnouncer system will display the boss bar on join.
+LeaveEvents: # Here are listed the events that happen when a player leaves the server.
+  DisableLeaveMessage: false # Here you can set if the Leave Message will appear or not.
+  SilentOpLeave: false # Here you can set if you want to players with OP doesnt have a leave message.
+  Message: '&8[&cHubBasics&8] &a%p &eLeft!' # Here you can configure your custom leave message if enabled.
+VoidFall: # Here are listed the events that happen when a player falls on void.
+  Enabled: true # If true, this will prevent the player from falling on void.
+  Message: '&8[&cHubBasics&8] &a%p &eYou were teleported back to spawn' # The message that is sent to the player when the plugin saves him from void.
+MotdSystem: # Here you can configure your server's .
+  CustomMotd: true # If true, a custom motd will be used.
+  MoreMotds: false # If true, more than one motd's can be used.
+  Motds: # The Motds you want are listed here. Remember: You can use COLOR CODES + \n ( To change to the second line ).
+  - '&cThis is a default motd! Change it in the config.'
+ChatAnnouncer: # Here you can configure the chat announcer system.
+  Enabled: true # If true the chat announcing system will be used.
+  Msgs: # The messages you want are listed here. Remember: You can use COLOR CODES.
+  - Announce 1
+  - Announce 2
+BossAnnouncer: # Here you can configure the boss announcer system.
+  Enabled: false # If true the boss announcing system will be used. !!WARNING!! to use this you NEED to have BarAPI installed on your server.
+  Msgs: # The messages you want are listed here. Remember: You can use COLOR CODES.
+  - Announce 1
+  - Announce 2
+FakePlugins: # Here you can configure the Fake Plugin message.
+  Enabled: true # If true the /plugins and /pl will display a fake message to players that doesn't have the right permission.
+  Msg: '&fPlugins (5): &aYou&f, &aCannot&f, &aSee&f, &aThe&f, &aPlugins' # The custom message that will be displayed. Remember: You can use COLOR CODES.
+BungeeCord: # BungeeCord configuration area.
+  Enabled: false # If BungeeCord support will be enabled.
+  LobbyServer: lobby # The default "lobby" server.
+Others: # Uncategorized features here.
+  DisableRain: false # If true, the weather changing will be disabled on your server.
+  DoubleJump: true # If true, your players will be able to double jump!
+  Prefix: '&8[&cHubBasics&8] ' # Prefix for Hat system messages.
+  HatSet: '&cEnjoy your new hat!' # Hat Sucefully changed message.
+  HatRemoved: '&cYour Hat Was Removed!' # Hat removed message.
+  JumpPadBlock: REDSTONE_BLOCK # Jump Pad block. !!WARNING!! MUST BE A MATERIAL NAME.
+  KeepFood: true # If true, players will not starv.
+  KeepHealth: true # If true, players will not take damage.
+  Stacker: true # If true, the minigame stacker will be enabled.
+  JoinItems: false # If true, the Item-Giving system will be enabled.
+  NoDrops: true # If true, the player will not be able to drop items.
+  NoDeathDrops: true # If true, the player will not drop items on death.
+  AllowItemMove: false # If false, the player will not be able to move items on the inventory.
+  AntiOP: false # If true this will remove every OP on the server every 15 seconds.
+Worlds: # Here are listed the worlds that will have this funcions enabled.
+- Example

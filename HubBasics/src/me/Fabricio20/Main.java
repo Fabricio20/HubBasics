@@ -224,8 +224,18 @@ public class Main extends JavaPlugin {
 			getConfig().set("BungeeCord.LobbyServer", "lobby");
 			saveConfig();
 		}
-		if(!getConfig().contains("Others.DisableRain")) {
-			getConfig().set("Others.DisableRain", false);
+		if(!getConfig().contains("MagicClock.Enabled")) {
+			getConfig().set("MagicClock.Enabled", false);
+			saveConfig();
+		}
+		if(!getConfig().contains("MagicClock.Name")) {
+			getConfig().set("MagicClock.Name", "&cMagic Clock");
+			saveConfig();
+		}
+		if(!getConfig().contains("MagicClock.Lore")) {
+			ArrayList<String> Lore = new ArrayList<String>();
+			Lore.add("&7- &a&oMagicClock Lore");
+			getConfig().set("MagicClock.Lore", Lore);
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.DoubleJump")) {

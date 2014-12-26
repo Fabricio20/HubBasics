@@ -195,29 +195,30 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-public static void reloadCustomConfig() {
-    if (Main.Storage == null) {
-    Main.Storage = new File(plugin.getDataFolder(), "Storage.yml");
-    }
-    Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
-}
+	public static void reloadCustomConfig() {
+		if (Main.Storage == null) {
+			Main.Storage = new File(plugin.getDataFolder(), "Storage.yml");
+		}
+		Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
+	}
 
-public static FileConfiguration getCustomConfig() {
-  if (Main.StorageConfig == null) {
-        reloadCustomConfig();
-  }
-  return Main.StorageConfig;
-}
+	public static FileConfiguration getCustomConfig() {
+		if (Main.StorageConfig == null) {
+			reloadCustomConfig();
+		}
+		return Main.StorageConfig;
+	}
 
-public static void saveCustomConfig() {
-  if (Main.StorageConfig == null || Main.Storage == null) {
-      return;
-  }
-  try {
-      getCustomConfig().save(Main.Storage);
-  } catch (IOException ex) {
-   plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage, ex);
-  }
-}
+	public static void saveCustomConfig() {
+		if (Main.StorageConfig == null || Main.Storage == null) {
+			return;
+		}
+		try {
+			getCustomConfig().save(Main.Storage);
+		} catch (IOException ex) {
+			plugin.getLogger().log(Level.SEVERE,
+					"Could not save config to " + Main.Storage, ex);
+		}
+	}
 
 }

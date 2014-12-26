@@ -46,6 +46,9 @@ public class Main extends JavaPlugin {
 	public static FileConfiguration StorageConfig2 = null;
     public static File Storage2 = null;
 	
+    int ChatTime = 0;
+    int BossTime = 0;
+    
 	// Console Coloring Made Easy
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
@@ -87,9 +90,11 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
 		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
 		Strings.RunnablesEnabled = 1;
-		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(this, 1200, 1200);
+		BossTime = getConfig().getInt("BossAnnouncer.Time");
+		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(this, 20, BossTime * 20);
 		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
-		BukkitTask ChatAnnouncer = new ChatAnnouncer(this).runTaskTimer(this, 1200, 1200);
+		ChatTime = getConfig().getInt("ChatAnnouncer.Time");
+		BukkitTask ChatAnnouncer = new ChatAnnouncer(this).runTaskTimer(this, 20, ChatTime * 20);
 		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
 		getCommand("hub").setExecutor(new Commands(this));
 		getCommand("lobby").setExecutor(new Commands(this));
@@ -209,6 +214,10 @@ public class Main extends JavaPlugin {
 			getConfig().set("ChatAnnouncer.Worlds", Worlds);
 			saveConfig();
 		}
+		if(!getConfig().contains("ChatAnnouncer.Time")) {
+			getConfig().set("ChatAnnouncer.Time", 60);
+			saveConfig();
+		}
 		if(!getConfig().contains("BossAnnouncer.Enabled")) {
 			getConfig().set("BossAnnouncer.Enabled", false);
 			saveConfig();
@@ -228,6 +237,10 @@ public class Main extends JavaPlugin {
 			ArrayList<String> Worlds = new ArrayList<String>();
 			Worlds.add("Example");
 			getConfig().set("BossAnnouncer.Worlds", Worlds);
+			saveConfig();
+		}
+		if(!getConfig().contains("BossAnnouncer.Time")) {
+			getConfig().set("BossAnnouncer.Time", 60);
 			saveConfig();
 		}
 		if(!getConfig().contains("FakePlugins.Enabled")) {

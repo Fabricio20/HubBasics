@@ -1,7 +1,7 @@
 name: HubBasics
-version: 2.1.2
+version: 2.9.0
 main: me.Fabricio20.Main
-depend: [BarAPI]
+softdepend: [BarAPI]
 commands:
   plugins:
     description: List the server plugins.

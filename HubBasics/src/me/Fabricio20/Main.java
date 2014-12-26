@@ -199,6 +199,16 @@ public class Main extends JavaPlugin {
 			getConfig().set("ChatAnnouncer.Msgs", chatann);
 			saveConfig();
 		}
+		if(!getConfig().contains("ChatAnnouncer.Perworld")) {
+			getConfig().set("ChatAnnouncer.Perworld", false);
+			saveConfig();
+		}
+		if(!getConfig().contains("ChatAnnouncer.Worlds")) {
+			ArrayList<String> Worlds = new ArrayList<String>();
+			Worlds.add("Example");
+			getConfig().set("ChatAnnouncer.Worlds", Worlds);
+			saveConfig();
+		}
 		if(!getConfig().contains("BossAnnouncer.Enabled")) {
 			getConfig().set("BossAnnouncer.Enabled", false);
 			saveConfig();

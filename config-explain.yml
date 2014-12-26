@@ -1,9 +1,9 @@
 #########################################
 #  Hub-Basics Config Explaination File  #
 #########################################
-#
-# Created by @Fabricio20.
-#
+/**
+* Created by @Fabricio20.
+*/
 JoinEvents: # Here are listed the events that happen when a player joins the server.
   DisableMessage: false # Here you can set if the Join Message will appear or not.
   SilentOpJoin: false # Here you can set if you want to players with OP doesnt have a join message.
@@ -31,12 +31,20 @@ ChatAnnouncer: # Here you can configure the chat announcer system.
   Msgs: # The messages you want are listed here. Remember: You can use COLOR CODES.
   - Announce 1
   - Announce 2
+  Perworld: false # Here you can configure if you want to limit the Chat Announcer per world.
+  Worlds: # Here the words you want to enable the Chat Announcer if Perworld = true;
+  - Example
+  Time: 60 # Here you can se the time for the message to appear ( In Seconds );
 #
 BossAnnouncer: # Here you can configure the boss announcer system.
   Enabled: false # If true the boss announcing system will be used. !!WARNING!! to use this you NEED to have BarAPI installed on your server.
   Msgs: # The messages you want are listed here. Remember: You can use COLOR CODES.
   - Announce 1
   - Announce 2
+  Perworld: false # Here you can configure if you want to limit the Boss Announcer per world.
+  Worlds:  # Here the words you want to enable the Boss Announcer if Perworld = true;
+  - Example
+  Time: 60 # Here you can se the time for the message to appear ( In Seconds );
 #
 FakePlugins: # Here you can configure the Fake Plugin message.
   Enabled: true # If true the /plugins and /pl will display a fake message to players that doesn't have the right permission.

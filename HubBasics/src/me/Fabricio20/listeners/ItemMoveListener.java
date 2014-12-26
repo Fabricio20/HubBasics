@@ -25,6 +25,20 @@ public class ItemMoveListener implements Listener {
 				}
 			}
 		}
+		if (e.getClickedInventory() != null) {
+			if (worlds.contains(e.getWhoClicked().getWorld().getName())) {
+				if (plugin.getConfig().getBoolean("MagicClock.AllowMove") == false) {
+					if (e.getSlot() == plugin.getConfig().getInt("MagicClock.Slot")) {
+						e.setCancelled(true);
+					}
+				}
+				if (plugin.getConfig().getBoolean("Others.HatAllowMove") == false) {
+					if (e.getSlot() == 103) {
+						e.setCancelled(true);
+					}
+				}
+			}
+		}
 	}
 	
 }

@@ -289,6 +289,10 @@ public class Main extends JavaPlugin {
 			getConfig().set("MagicClock.DisabledMessage", "&cMagic Clock Is Now Disabled!");
 			saveConfig();
 		}
+		if(!getConfig().contains("MagicClock.AllowMove")) {
+			getConfig().set("MagicClock.AllowMove", false);
+			saveConfig();
+		}
 		if(!getConfig().contains("Others.DoubleJump")) {
 			getConfig().set("Others.DoubleJump", true);
 			saveConfig();
@@ -303,6 +307,10 @@ public class Main extends JavaPlugin {
 		}
 		if(!getConfig().contains("Others.HatRemoved")) {
 			getConfig().set("Others.HatRemoved", "&cYour Hat Was Removed!");
+			saveConfig();
+		}
+		if(!getConfig().contains("Others.HatAllowMove")) {
+			getConfig().set("Others.HatAllowMove", false);
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.JumpPadBlock")) {

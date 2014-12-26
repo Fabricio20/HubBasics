@@ -1,5 +1,7 @@
 package me.Fabricio20.listeners;
 
+import java.util.List;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -19,9 +21,12 @@ public class RainListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void RainStart(WeatherChangeEvent e) {
-		if(plugin.getConfig().getBoolean("DisableRain") == true) {
-			if(!e.isCancelled()) {
-				e.setCancelled(true);
+		if(plugin.getConfig().getBoolean("Others.DisableRain") == true) {
+			List<String> worlds = plugin.getConfig().getStringList("Worlds");
+			if(worlds.contains(e.getWorld().getName())) {
+				if(!e.isCancelled()) {
+					e.setCancelled(true);
+				}
 			}
 		}
 	}

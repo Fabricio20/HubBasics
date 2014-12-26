@@ -1,5 +1,7 @@
 package me.Fabricio20.listeners;
 
+import java.util.List;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -23,17 +25,17 @@ public class JumpListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
-		if (plugin.getConfig().getBoolean("DoubleJump") == true) {
-			Player player = event.getPlayer();
-			if (player.getGameMode() == GameMode.CREATIVE)
-				return;
-			event.setCancelled(true);
-			player.setAllowFlight(false);
-			player.setFlying(false);
-			player.setVelocity(player.getLocation().getDirection()
-					.multiply(1.5).setY(1));
-			player.playSound(player.getLocation(), Sound.BAT_TAKEOFF, 1.0F,
-					-5.0F);
+		if (plugin.getConfig().getBoolean("Others.DoubleJump") == true) {
+				Player player = event.getPlayer();
+				if (player.getGameMode() == GameMode.CREATIVE)
+					return;
+				event.setCancelled(true);
+				player.setAllowFlight(false);
+				player.setFlying(false);
+				player.setVelocity(player.getLocation().getDirection()
+						.multiply(1.5).setY(1));
+				player.playSound(player.getLocation(), Sound.BAT_TAKEOFF, 1.0F,
+						-5.0F);
 		}
 	}
 	
@@ -41,12 +43,15 @@ public class JumpListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
-		if (plugin.getConfig().getBoolean("DoubleJump") == true) {
+		if (plugin.getConfig().getBoolean("Others.DoubleJump") == true) {
+			List<String> worlds = plugin.getConfig().getStringList("Worlds");
 			Player player = event.getPlayer();
-			if ((player.getGameMode() != GameMode.CREATIVE)
-					&& (player.getLocation().subtract(0, 1, 0).getBlock()
-							.getType() != Material.AIR) && (!player.isFlying())) {
-				player.setAllowFlight(true);
+			if(worlds.contains(player.getWorld().getName())) {
+				if ((player.getGameMode() != GameMode.CREATIVE)
+						&& (player.getLocation().subtract(0, 1, 0).getBlock()
+								.getType() != Material.AIR) && (!player.isFlying())) {
+					player.setAllowFlight(true);
+				}
 			}
 		}
 	}

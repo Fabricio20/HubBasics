@@ -1,11 +1,18 @@
 package me.Fabricio20.listeners;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 
-import me.Fabricio20.Strings;
-
+import me.Fabricio20.Main;
+import me.Fabricio20.runnables.*;
 import me.confuser.barapi.BarAPI;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,65 +23,72 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class JoinListener implements Listener {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	private final JavaPlugin plugin;
+	private static JavaPlugin plugin;
 	 
 	 public JoinListener(JavaPlugin plugin) {
-	     this.plugin = plugin;
+	     JoinListener.plugin = plugin;
 	 }
 	 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	 
-	public static File f = new File("/plugins/HubBasics/Location.yml");
-	public static YamlConfiguration yamlFile = YamlConfiguration.loadConfiguration(f);
 	
 	 @EventHandler(priority = EventPriority.HIGH)
 	 public void Join(PlayerJoinEvent e) {
-		 if(plugin.getConfig().getBoolean("DisableJoinMessage") == true) {
+		 if(plugin.getConfig().getBoolean("JoinEvents.DisableMessage") == true) {
 			 e.setJoinMessage(null);
 		 } else {
-			 if(plugin.getConfig().getBoolean("SilentOpJoin") == true) {
-				 if(e.getPlayer().isOp()) {
-					 e.setJoinMessage(null);
-				 }
-			 }
-			 if(plugin.getConfig().getBoolean("HubAtLogin") == true) {
-				 int x = yamlFile.getInt("Hub.x"), y = yamlFile.getInt("Hub.y"), z = yamlFile.getInt("Hub.z");
-				 e.getPlayer().teleport(new Location(plugin.getServer().getWorlds().get(0),x,y,z));
-			 }
-			 e.setJoinMessage(plugin.getConfig().getString("JoinMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
+			 e.setJoinMessage(plugin.getConfig().getString("JoinEvents.Message").replace("&", "§").replace("%p", e.getPlayer().getName()));
 		 }
-		if (plugin.getConfig().getBoolean("BossBarOnJoin") == true) {
-			if (Strings.BossAnnIndexJoin == 0) {
-				if (!(plugin.getConfig().getString("BossAnnouncerMsg1").equalsIgnoreCase("null"))) {
-					BarAPI.setMessage(e.getPlayer(), plugin.getConfig().getString("BossAnnouncerMsg1").replace("&", "§"),61);
-				}
-			} else {
-				if (Strings.BossAnnIndexJoin == 1) {
-					if (!(plugin.getConfig().getString("BossAnnouncerMsg2").equalsIgnoreCase("null"))) {
-						BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg2").replace("&", "§"), 61);
-					}
-				} else {
-					if (Strings.BossAnnIndexJoin == 2) {
-						if (!(plugin.getConfig().getString("BossAnnouncerMsg3").equalsIgnoreCase("null"))) {
-							BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg3").replace("&", "§"), 61);
-						}
-					} else {
-						if (Strings.BossAnnIndexJoin == 3) {
-							if (!(plugin.getConfig().getString("BossAnnouncerMsg4").equalsIgnoreCase("null"))) {
-								BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg4").replace("&", "§"), 61);
-							}
-						} else {
-							if (Strings.BossAnnIndexJoin == 4) {
-								if (!(plugin.getConfig().getString("BossAnnouncerMsg5").equalsIgnoreCase("null"))) {
-									BarAPI.setMessage(e.getPlayer(),plugin.getConfig().getString("BossAnnouncerMsg5").replace("&", "§"), 61);
-								}
-							}
-						}
-					}
+		 if(plugin.getConfig().getBoolean("JoinEvents.SilentOpJoin") == true) {
+			 if(e.getPlayer().isOp()) {
+				 e.setJoinMessage(null);
+			 }
+		 }
+		if(plugin.getConfig().getBoolean("JoinEvents.HubAtLogin") == true) {
+			if(getCustomConfig().contains("Hub.World")) {
+				Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
+				if(Bukkit.getWorld(getCustomConfig().getString("Hub.World")) != null) {
+					loc.setWorld(Bukkit.getWorld(getCustomConfig().getString("Hub.World")));
+					loc.setX(getCustomConfig().getInt("Hub.X"));
+					loc.setY(getCustomConfig().getInt("Hub.Y"));
+					loc.setZ(getCustomConfig().getInt("Hub.Z"));
+					loc.setYaw(getCustomConfig().getInt("Hub.Yaw"));
+					loc.setPitch(getCustomConfig().getInt("Hub.Pitch"));
+					e.getPlayer().teleport(loc);
 				}
 			}
+		}
+		if(plugin.getConfig().getBoolean("BossAnnouncer.Enabled") == true && plugin.getConfig().getBoolean("JoinEvents.BossBarOnJoin") == true) {
+			List<String> Announces = new ArrayList<String>();
+			Announces = plugin.getConfig().getStringList("BossAnnouncer.Msgs");
+			BarAPI.setMessage(e.getPlayer(), Announces.get(BossAnnouncer.Stamp));
 		}
 	}
 	 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	 
+	 public static void reloadCustomConfig() {
+	        if (Main.Storage == null) {
+	        Main.Storage = new File(plugin.getDataFolder(), "Storage.yml");
+	        }
+	        Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
+	    }
+		
+	  public static FileConfiguration getCustomConfig() {
+	      if (Main.StorageConfig == null) {
+	            reloadCustomConfig();
+	      }
+	      return Main.StorageConfig;
+	  }
+		
+	  public static void saveCustomConfig() {
+	      if (Main.StorageConfig == null || Main.Storage == null) {
+	          return;
+	      }
+	      try {
+	          getCustomConfig().save(Main.Storage);
+	      } catch (IOException ex) {
+	       plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage, ex);
+	      }
+	  }
+	 
 }

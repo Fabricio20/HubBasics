@@ -4,12 +4,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,10 +22,10 @@ public class Commands implements CommandExecutor {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	private final JavaPlugin plugin;
+	private static JavaPlugin plugin;
 
 	public Commands(JavaPlugin plugin) {
-		this.plugin = plugin;
+		Commands.plugin = plugin;
 	}
 
 	public int id;
@@ -49,21 +51,31 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-
-	File f = new File("/plugins/HubBasics/Location.yml");
-	YamlConfiguration yamlFile = YamlConfiguration.loadConfiguration(f);
-	
 	if(commandLabel.equalsIgnoreCase("hub") || commandLabel.equalsIgnoreCase("lobby")) {
 		if(!(sender instanceof Player)) {
 			sender.sendMessage("This command can only be ran by a player.");
 		} else {
 			if(sender.hasPermission(new Permissions().Hub)) {
-				if(plugin.getConfig().getBoolean("BungeeCord") == false) {
-					Player player = (Player) sender;
-					int x = yamlFile.getInt("Hub.x"), y = yamlFile.getInt("Hub.y"), z = yamlFile.getInt("Hub.z");
-					player.teleport(new Location(plugin.getServer().getWorlds().get(0),x,y,z));
+				if(plugin.getConfig().getBoolean("BungeeCord.Enabled") == false) {
+					if(getCustomConfig().contains("Hub.World")) {
+						Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
+						if(Bukkit.getWorld(getCustomConfig().getString("Hub.World")) != null) {
+							loc.setWorld(Bukkit.getWorld(getCustomConfig().getString("Hub.World")));
+							loc.setX(getCustomConfig().getInt("Hub.X"));
+							loc.setY(getCustomConfig().getInt("Hub.Y"));
+							loc.setZ(getCustomConfig().getInt("Hub.Z"));
+							loc.setYaw(getCustomConfig().getInt("Hub.Yaw"));
+							loc.setPitch(getCustomConfig().getInt("Hub.Pitch"));
+							Player player = (Player) sender;
+							player.teleport(loc);
+						} else {
+							sender.sendMessage("§cHub world does not exist!");
+						}
+					} else {
+						sender.sendMessage("§cHub was not found!");
+					}
 				} else {
-					sendToServer(((Player)sender), plugin.getConfig().getString("BungeeCordConfig.LobbyServer"));
+					sendToServer(((Player)sender), plugin.getConfig().getString("BungeeCord.LobbyServer"));
 				}
 			} else {
 				sender.sendMessage(Strings.PermissionError);
@@ -76,15 +88,14 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			} else {
 				Player player = (Player) sender;
 				if(player.hasPermission(new Permissions().SetHub)) {
-					if(plugin.getConfig().getBoolean("BungeeCord") == false) {
-						yamlFile.set("Hub.x", player.getLocation().getBlockX());
-						yamlFile.set("Hub.y", player.getLocation().getBlockY());
-						yamlFile.set("Hub.z", player.getLocation().getBlockZ());
-						try {
-							  yamlFile.save(f);
-							} catch(IOException e) {
-							  e.printStackTrace();
-							}
+					if(plugin.getConfig().getBoolean("BungeeCord.Enabled") == false) {
+						getCustomConfig().set("Hub.World", player.getWorld().getName());
+						getCustomConfig().set("Hub.X", player.getLocation().getX());
+						getCustomConfig().set("Hub.Y", player.getLocation().getY());
+						getCustomConfig().set("Hub.Z", player.getLocation().getZ());
+						getCustomConfig().set("Hub.Yaw", player.getLocation().getYaw());
+						getCustomConfig().set("Hub.Pitch", player.getLocation().getPitch());
+						saveCustomConfig();
 						player.sendMessage("§8[§cHubBasics§8] §eHub set!");
 					} else {
 						sender.sendMessage("§8[§cHubBasics§8] §cBungeeCord Support Is Enabled!");
@@ -106,7 +117,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 								Player player = (Player) sender;
 								id = Integer.parseInt(args[0]);
 								player.getInventory().setHelmet(new ItemStack(id));
-								player.sendMessage(Strings.Prefix + plugin.getConfig().getString("HatSet").replace("&", "§"));
+								player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§"));
 						} else {
 							sender.sendMessage("§cID must be a number!");
 						}
@@ -118,7 +129,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 									id = Integer.parseInt(args[0]);
 									meta = Integer.parseInt(args[1]);
 									player.getInventory().setHelmet(new ItemStack(id, 1, (short) meta));
-									player.sendMessage(Strings.Prefix + plugin.getConfig().getString("HatSet").replace("&", "§"));
+									player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§"));
 							} else {
 								sender.sendMessage("§cID must be a number!");
 							}
@@ -174,4 +185,30 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	return false;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public static void reloadCustomConfig() {
+    if (Main.Storage == null) {
+    Main.Storage = new File(plugin.getDataFolder(), "Storage.yml");
+    }
+    Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
+}
+
+public static FileConfiguration getCustomConfig() {
+  if (Main.StorageConfig == null) {
+        reloadCustomConfig();
+  }
+  return Main.StorageConfig;
+}
+
+public static void saveCustomConfig() {
+  if (Main.StorageConfig == null || Main.Storage == null) {
+      return;
+  }
+  try {
+      getCustomConfig().save(Main.Storage);
+  } catch (IOException ex) {
+   plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage, ex);
+  }
+}
+
 }

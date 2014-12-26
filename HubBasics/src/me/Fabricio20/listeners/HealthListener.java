@@ -1,5 +1,7 @@
 package me.Fabricio20.listeners;
 
+import java.util.List;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,10 +21,13 @@ public class HealthListener implements Listener {
 	
 	@EventHandler
 	public void Health(EntityDamageEvent e) {
-		if (plugin.getConfig().getBoolean("KeepHealth") == true) {
+		List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		if (plugin.getConfig().getBoolean("Others.KeepHealth") == true) {
 			if(e.getEntityType() == EntityType.PLAYER) {
-				e.setDamage(0.0);
-				e.setCancelled(true);
+				if(worlds.contains(e.getEntity().getWorld().getName())) {
+					e.setDamage(0.0);
+					e.setCancelled(true);
+				}
 			}
 		}
 	}

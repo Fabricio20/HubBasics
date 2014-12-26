@@ -31,7 +31,7 @@ public class JoinListenerForItems implements Listener {
 	
 	@EventHandler
 	public void PlayerJoinGetItem(PlayerJoinEvent e) {
-		 if(plugin.getConfig().getBoolean("JoinItems") == true) {
+		 if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
 ////////////////////////////////////////////////////////////////////////////////////////- Start Of 1
 			if(items.getBoolean("Item1.Enabled") == true) {
 				ItemStack is1 = new ItemStack(Material.getMaterial(items.getString("Item1.Material")));

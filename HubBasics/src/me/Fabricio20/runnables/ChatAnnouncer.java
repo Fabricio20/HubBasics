@@ -1,6 +1,7 @@
 package me.Fabricio20.runnables;
 
-import me.Fabricio20.Strings;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,45 +18,23 @@ public class ChatAnnouncer extends BukkitRunnable {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	List<String> Announces = new ArrayList<String>();
+	int Stamp = 0;
+	int Max = 0;
+	
 	public void run() {
-		if(plugin.getConfig().getBoolean("UseAnnouncer") == true) {
-			if(Strings.ChatAnnIndex == 0) {
-				if(!(plugin.getConfig().getString("ChatAnnouncerMsg1").equalsIgnoreCase("null"))) {
-				Bukkit.broadcastMessage(plugin.getConfig().getString("ChatAnnouncerMsg1").replace("&", "§"));
-				}
-				Strings.ChatAnnIndex = 1;
-			} else {
-				if(Strings.ChatAnnIndex == 1) {
-					if(!(plugin.getConfig().getString("ChatAnnouncerMsg2").equalsIgnoreCase("null"))) {
-					Bukkit.broadcastMessage(plugin.getConfig().getString("ChatAnnouncerMsg2").replace("&", "§"));
-					}
-					Strings.ChatAnnIndex = 2;
-				} else {
-					if(Strings.ChatAnnIndex == 2) {
-						if(!(plugin.getConfig().getString("ChatAnnouncerMsg3").equalsIgnoreCase("null"))) {
-						Bukkit.broadcastMessage(plugin.getConfig().getString("ChatAnnouncerMsg3").replace("&", "§"));
-						}
-						Strings.ChatAnnIndex = 3;
-					} else {
-						if(Strings.ChatAnnIndex == 3) {
-							if(!(plugin.getConfig().getString("ChatAnnouncerMsg4").equalsIgnoreCase("null"))) {
-							Bukkit.broadcastMessage(plugin.getConfig().getString("ChatAnnouncerMsg4").replace("&", "§"));
-							}
-							Strings.ChatAnnIndex = 4;
-						} else {
-							if(Strings.ChatAnnIndex == 4) {
-								if(!(plugin.getConfig().getString("ChatAnnouncerMsg5").equalsIgnoreCase("null"))) {
-								Bukkit.broadcastMessage(plugin.getConfig().getString("ChatAnnouncerMsg5").replace("&", "§"));
-								}
-								Strings.ChatAnnIndex = 0;
-							} else {
-								if(Strings.ChatAnnIndex > 4) {
-									Strings.ChatAnnIndex = 0;
-								}
-							}
-						}
-					}
-				}
+		if(plugin.getConfig().getBoolean("ChatAnnouncer.Enabled") == true) {
+			Announces = plugin.getConfig().getStringList("ChatAnnouncer.Msgs");
+			int Max = Announces.size() - 1;
+			if(Stamp == 0) {
+				Bukkit.broadcastMessage(Announces.get(0).replace("&", "§"));
+				Stamp = Stamp + 1;
+			} else if(Stamp != 0 && Stamp != Max) {
+				Bukkit.broadcastMessage(Announces.get(Stamp).replace("&", "§"));
+				Stamp = Stamp + 1;
+			} else if(Stamp == Max) {
+				Bukkit.broadcastMessage(Announces.get(Max).replace("&", "§"));
+				Stamp = 0;
 			}
 		}
 	}

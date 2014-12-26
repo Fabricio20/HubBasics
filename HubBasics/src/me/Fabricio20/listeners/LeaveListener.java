@@ -19,15 +19,15 @@ public class LeaveListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGH)
 	public void Leave(PlayerQuitEvent e) {
-		if (plugin.getConfig().getBoolean("DisableLeaveMessage") == true) {
+		if(plugin.getConfig().getBoolean("LeaveEvents.DisableLeaveMessage") == true) {
 			e.setQuitMessage(null);
 		} else {
-			if (plugin.getConfig().getBoolean("SilentOpLeave") == true) {
-				if (e.getPlayer().isOp()) {
-					e.setQuitMessage(null);
-				}
+			e.setQuitMessage(plugin.getConfig().getString("LeaveEvents.Message").replace("&", "§").replace("%p", e.getPlayer().getName()));
+		}
+		if(plugin.getConfig().getBoolean("LeaveEvents.SilentOpLeave") == true) {
+			if(e.getPlayer().isOp()) {
+				e.setQuitMessage(null);
 			}
-			e.setQuitMessage(plugin.getConfig().getString("LeaveMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 		}
 	}
 

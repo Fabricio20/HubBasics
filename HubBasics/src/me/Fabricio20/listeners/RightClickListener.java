@@ -1,6 +1,7 @@
 package me.Fabricio20.listeners;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.Fabricio20.Permissions;
 import me.Fabricio20.methods.VEK;
@@ -50,17 +51,20 @@ public class RightClickListener implements Listener {
 	
 	@EventHandler
 	public void onEntityInteract(PlayerInteractEntityEvent e) {
-		if(plugin.getConfig().getBoolean("Stacker") == true) {
+		List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		if(plugin.getConfig().getBoolean("Others.Stacker") == true) {
 			Player player = e.getPlayer();
-			if ((e.getRightClicked() instanceof Player)) {
-				Player target = (Player) e.getRightClicked();
-				if(target.isInsideVehicle() == false) {
-					players.remove(e.getRightClicked());
-				}
-				if (!target.hasPermission(new Permissions().NonStackable)) {
-					if (!players.contains(target)) {
-						player.setPassenger(target);
-						players.add(target);
+			if(worlds.contains(player.getWorld().getName())) {
+				if ((e.getRightClicked() instanceof Player)) {
+					Player target = (Player) e.getRightClicked();
+					if(target.isInsideVehicle() == false) {
+						players.remove(e.getRightClicked());
+					}
+					if (!target.hasPermission(new Permissions().NonStackable)) {
+						if (!players.contains(target)) {
+							player.setPassenger(target);
+							players.add(target);
+						}
 					}
 				}
 			}
@@ -71,16 +75,19 @@ public class RightClickListener implements Listener {
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
-		if(plugin.getConfig().getBoolean("Stacker") == true) {
+		List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		if(plugin.getConfig().getBoolean("Others.Stacker") == true) {
 			Player player = e.getPlayer();
-			if (e.getAction() == Action.LEFT_CLICK_AIR) {
-				if ((player.getPassenger() instanceof Player)) {
-					Player passenger = (Player)player.getPassenger();
-					if(players.contains(passenger)) {
-						passenger.leaveVehicle();
-			            Location loc = player.getLocation();
-			            passenger.setVelocity(this.gv.VEC(loc).multiply(2));
-			            players.remove(passenger);
+			if(worlds.contains(player.getWorld().getName())) {
+				if (e.getAction() == Action.LEFT_CLICK_AIR) {
+					if ((player.getPassenger() instanceof Player)) {
+						Player passenger = (Player)player.getPassenger();
+						if(players.contains(passenger)) {
+							passenger.leaveVehicle();
+				            Location loc = player.getLocation();
+				            passenger.setVelocity(this.gv.VEC(loc).multiply(2));
+				            players.remove(passenger);
+						}
 					}
 				}
 			}

@@ -1,5 +1,7 @@
 package me.Fabricio20.listeners;
 
+import java.util.List;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -18,8 +20,11 @@ public class DropItemListener implements Listener {
 
 	@EventHandler
 	public void Drop(PlayerDropItemEvent e) {
-		if (plugin.getConfig().getBoolean("NoDrops") == true) {
-			e.setCancelled(true);
+		List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		if (plugin.getConfig().getBoolean("Others.NoDrops") == true) {
+			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+				e.setCancelled(true);
+			}
 		}
 	}
 

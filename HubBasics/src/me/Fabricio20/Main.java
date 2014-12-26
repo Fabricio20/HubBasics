@@ -21,6 +21,7 @@ import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.listeners.ServerPingListener;
 import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
+import me.Fabricio20.listeners.PlayerChangeWorld;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
@@ -83,6 +84,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new DeathListener(this), this);
 		getServer().getPluginManager().registerEvents(new DropItemListener(this), this);
 		getServer().getPluginManager().registerEvents(new ItemMoveListener(this), this);
+		getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
 		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
 		Strings.RunnablesEnabled = 1;
 		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(this, 1200, 1200);
@@ -236,6 +238,22 @@ public class Main extends JavaPlugin {
 			ArrayList<String> Lore = new ArrayList<String>();
 			Lore.add("&7- &a&oMagicClock Lore");
 			getConfig().set("MagicClock.Lore", Lore);
+			saveConfig();
+		}
+		if(!getConfig().contains("MagicClock.Slot")) {
+			getConfig().set("MagicClock.Slot", 5);
+			saveConfig();
+		}
+		if(!getConfig().contains("MagicClock.Material")) {
+			getConfig().set("MagicClock.Material", "WATCH");
+			saveConfig();
+		}
+		if(!getConfig().contains("MagicClock.EnabledMessage")) {
+			getConfig().set("MagicClock.EnabledMessage", "&cMagic Clock Is Now Enabled!");
+			saveConfig();
+		}
+		if(!getConfig().contains("MagicClock.DisabledMessage")) {
+			getConfig().set("MagicClock.DisabledMessage", "&cMagic Clock Is Now Disabled!");
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.DoubleJump")) {

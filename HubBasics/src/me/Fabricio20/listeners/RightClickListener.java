@@ -8,8 +8,10 @@ import java.util.logging.Level;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.Permissions;
+import me.Fabricio20.Strings;
 import me.Fabricio20.methods.VEK;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
@@ -162,6 +164,34 @@ public class RightClickListener implements Listener {
 			if(getCustomConfig().getBoolean("Item9.Enabled") == true) {
 				if(getCustomConfig().getString("Item9.Command") != null) {
 					e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
+				}
+			}
+		}
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void onRightClickAgaing(PlayerInteractEvent e) {
+		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+			if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", e.getPlayer().getName()))) {
+				if(Strings.MagicClockActive.contains(e.getPlayer())) {
+					for(Player user : Bukkit.getOnlinePlayers()) {
+						if(e.getPlayer().canSee(user) == false) {
+							e.getPlayer().showPlayer(user);
+						}
+					}
+					Strings.MagicClockActive.remove(e.getPlayer());
+					e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				} else {
+					for(Player user : Bukkit.getOnlinePlayers()) {
+						if(e.getPlayer().canSee(user) == true) {
+							e.getPlayer().hidePlayer(user);
+						}
+					}
+					Strings.MagicClockActive.add(e.getPlayer());
+					e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 				}
 			}
 		}

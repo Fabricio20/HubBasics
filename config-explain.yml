@@ -46,6 +46,16 @@ BungeeCord: # BungeeCord configuration area.
   Enabled: false # If BungeeCord support will be enabled.
   LobbyServer: lobby # The default "lobby" server.
 #
+MagicClock: # Magic Clock Configuration
+  Enabled: true # If true the Magic Clock will be enabled.
+  Name: '&cMagic Clock' # The Name Of the Magic Clock.
+  Lore: # The lore of the Magic Clock.
+  - '&7- &a&oMagicClock Lore'
+  Slot: 5 # The Slot Of the Magic Clock
+  Material: WATCH # The Material of the Magic Clock. WARNING MUST  BE A BUKKIT MATERIAL NAME.
+  EnabledMessage: '&cMagic Clock Is Now Enabled!' # The "Magic Clock Enabled" message.
+  DisabledMessage: '&cMagic Clock Is Now Disabled!' # The "Magic Clock Disabled" message.
+#
 Others: # Uncategorized features here.
   DisableRain: false # If true, the weather changing will be disabled on your server.
   DoubleJump: true # If true, your players will be able to double jump!

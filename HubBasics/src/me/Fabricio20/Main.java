@@ -96,9 +96,9 @@ public class Main extends JavaPlugin {
 		getCommand("hb").setExecutor(new Commands(this));
 		getCommand("uuid").setExecutor(new Commands(this));
 		plugin = this;
-		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		Strings.Prefix = plugin.getConfig().getString("Others.Prefix").replace("&", "§");
 		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
+		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		try {
 			MetricsLite metrics = new MetricsLite(this);
 		    metrics.start();
@@ -238,6 +238,10 @@ public class Main extends JavaPlugin {
 		}
 		if(!getConfig().contains("Others.HatSet")) {
 			getConfig().set("Others.HatSet", "&cEnjoy your new hat!");
+			saveConfig();
+		}
+		if(!getConfig().contains("Others.HatRemoved")) {
+			getConfig().set("Others.HatRemoved", "&cYour Hat Was Removed!");
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.JumpPadBlock")) {

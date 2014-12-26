@@ -8,6 +8,7 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -117,7 +118,11 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 								Player player = (Player) sender;
 								id = Integer.parseInt(args[0]);
 								player.getInventory().setHelmet(new ItemStack(id));
-								player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§"));
+								player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§").replace("%p", player.getName()));
+						} else if(args[0].equalsIgnoreCase("remove")) {
+							Player player = (Player) sender;
+							player.getInventory().setHelmet(new ItemStack(Material.AIR));
+							player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatRemoved").replace("&", "§").replace("%p", player.getName()));
 						} else {
 							sender.sendMessage("§cID must be a number!");
 						}
@@ -129,7 +134,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 									id = Integer.parseInt(args[0]);
 									meta = Integer.parseInt(args[1]);
 									player.getInventory().setHelmet(new ItemStack(id, 1, (short) meta));
-									player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§"));
+									player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§").replace("%p", player.getName()));
 							} else {
 								sender.sendMessage("§cID must be a number!");
 							}
@@ -150,12 +155,16 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 						} else if(args.length >= 1) {
 							if(args[0].equalsIgnoreCase("reload")) {
 								plugin.reloadConfig();
+								Strings.Prefix = plugin.getConfig().getString("Others.Prefix").replace("&", "§");
+								Strings.LaunchPadBlock = plugin.getConfig().getString("Others.JumpPadBlock");
 								sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
 							} else {
 								sender.sendMessage("§c<!--HubBasics Commands --!>");
 								sender.sendMessage("§c/hb reload");
 							}
 						}
+					} else {
+						sender.sendMessage(Strings.PermissionError);
 					}
 				} else {
 					if(commandLabel.equalsIgnoreCase("uuid")) {
@@ -171,7 +180,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 								}
 							}
 						} else {
-							sender.sendMessage("§cNo Permission!");
+							sender.sendMessage(Strings.PermissionError);
 						}
 					} else {
 						//TODO More Commands;

@@ -26,6 +26,7 @@ import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
 import me.Fabricio20.methods.MakeItemsConfig;
+import me.Fabricio20.methods.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -103,6 +104,7 @@ public class Main extends JavaPlugin {
 		getCommand("hb").setExecutor(new Commands(this));
 		getCommand("uuid").setExecutor(new Commands(this));
 		plugin = this;
+		Items.plugin = this;
 		Strings.Prefix = plugin.getConfig().getString("Others.Prefix").replace("&", "§");
 		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
@@ -297,6 +299,18 @@ public class Main extends JavaPlugin {
 			getConfig().set("MagicClock.NoDrop", false);
 			saveConfig();
 		}
+		if(!getConfig().contains("TitleSystem.Enabled")) {
+			getConfig().set("TitleSystem.Enabled", false);
+			saveConfig();
+		}
+		if(!getConfig().contains("TitleSystem.Title")) {
+			getConfig().set("TitleSystem.Title", "&cThis Is A Title!");
+			saveConfig();
+		}
+		if(!getConfig().contains("TitleSystem.Subtitle")) {
+			getConfig().set("TitleSystem.Subtitle", "&9This is a Sub-Title!");
+			saveConfig();
+		}
 		if(!getConfig().contains("Others.DoubleJump")) {
 			getConfig().set("Others.DoubleJump", true);
 			saveConfig();
@@ -322,7 +336,7 @@ public class Main extends JavaPlugin {
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.NoPermissionForHat")) {
-			getConfig().set("Others.NoPermissionForHat", "§cYou do not have permission for this hat!");
+			getConfig().set("Others.NoPermissionForHat", "&cYou do not have permission for this hat!");
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.JumpPadBlock")) {

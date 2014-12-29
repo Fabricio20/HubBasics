@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.API.ActionAPI;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.confuser.barapi.BarAPI;
@@ -68,6 +69,16 @@ public class JoinListener implements Listener {
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				e.getPlayer().getInventory().setItem(plugin.getConfig().getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
 			}
+		}
+		if(plugin.getConfig().getBoolean("TitleSystem.Enabled") == true) {
+			String title = " ";
+			String subtitle = " ";
+			if(plugin.getConfig().getString("TitleSystem.Title") != "") {
+				title = plugin.getConfig().getString("TitleSystem.Title").replace("&", "§").replace("%p", e.getPlayer().getName());
+			}
+			subtitle = plugin.getConfig().getString("TitleSystem.Subtitle").replace("&", "§").replace("%p", e.getPlayer().getName());
+			ActionAPI.sendTitle(e.getPlayer(), title);
+			ActionAPI.sendSubtitle(e.getPlayer(), subtitle);
 		}
 	}
 	 

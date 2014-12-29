@@ -18,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Items {
 	
-	private static JavaPlugin plugin;
+	public static JavaPlugin plugin;
 
 	public Items(JavaPlugin plugin) {
 		Items.plugin = plugin;
@@ -350,7 +350,7 @@ public class Items {
 		if(getCustomConfig().contains("Item9.Name") && getCustomConfig().getString("Item9.Name") != null && getCustomConfig().getString("Item9.Name") != "") {
 			Item9Name = getCustomConfig().getString("Item9.Name").replace("&", "§").replace("%p", playername);
 		}
-		if(plugin.getConfig().contains("MagicClock.Name") && plugin.getConfig().getString("MagicClock.Name") != null && getCustomConfig().getString("MagicClock.Name") != "") {
+		if(plugin.getConfig().contains("MagicClock.Name")) {
 			MagicClockName = plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", playername);
 		}
 	}

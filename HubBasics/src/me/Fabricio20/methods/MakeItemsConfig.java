@@ -24,6 +24,7 @@ public class MakeItemsConfig {
 	
 	public static void make1() {
 		getCustomConfig().set("Item1.Enabled", true);
+		getCustomConfig().set("Item1.Skull", false);
 		getCustomConfig().set("Item1.Material", "PAPER");
 		getCustomConfig().set("Item1.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -35,6 +36,7 @@ public class MakeItemsConfig {
 	
 	public static void make2() {
 		getCustomConfig().set("Item2.Enabled", false);
+		getCustomConfig().set("Item2.Skull", false);
 		getCustomConfig().set("Item2.Material", "PAPER");
 		getCustomConfig().set("Item2.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -46,6 +48,7 @@ public class MakeItemsConfig {
 	
 	public static void make3() {
 		getCustomConfig().set("Item3.Enabled", false);
+		getCustomConfig().set("Item3.Skull", false);
 		getCustomConfig().set("Item3.Material", "PAPER");
 		getCustomConfig().set("Item3.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -57,6 +60,7 @@ public class MakeItemsConfig {
 	
 	public static void make4() {
 		getCustomConfig().set("Item4.Enabled", false);
+		getCustomConfig().set("Item4.Skull", false);
 		getCustomConfig().set("Item4.Material", "PAPER");
 		getCustomConfig().set("Item4.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -68,6 +72,7 @@ public class MakeItemsConfig {
 	
 	public static void make5() {
 		getCustomConfig().set("Item5.Enabled", false);
+		getCustomConfig().set("Item5.Skull", false);
 		getCustomConfig().set("Item5.Material", "PAPER");
 		getCustomConfig().set("Item5.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -79,6 +84,7 @@ public class MakeItemsConfig {
 	
 	public static void make6() {
 		getCustomConfig().set("Item6.Enabled", false);
+		getCustomConfig().set("Item6.Skull", false);
 		getCustomConfig().set("Item6.Material", "PAPER");
 		getCustomConfig().set("Item6.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -90,6 +96,7 @@ public class MakeItemsConfig {
 	
 	public static void make7() {
 		getCustomConfig().set("Item7.Enabled", false);
+		getCustomConfig().set("Item7.Skull", false);
 		getCustomConfig().set("Item7.Material", "PAPER");
 		getCustomConfig().set("Item7.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -101,6 +108,7 @@ public class MakeItemsConfig {
 	
 	public static void make8() {
 		getCustomConfig().set("Item8.Enabled", false);
+		getCustomConfig().set("Item8.Skull", false);
 		getCustomConfig().set("Item8.Material", "PAPER");
 		getCustomConfig().set("Item8.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();
@@ -112,6 +120,7 @@ public class MakeItemsConfig {
 	
 	public static void make9() {
 		getCustomConfig().set("Item9.Enabled", false);
+		getCustomConfig().set("Item9.Skull", false);
 		getCustomConfig().set("Item9.Material", "PAPER");
 		getCustomConfig().set("Item9.Name", "&bThis is a paper!");
 		List<String> NewLore = new ArrayList<String>();

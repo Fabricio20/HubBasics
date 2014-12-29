@@ -26,6 +26,16 @@ public class DropItemListener implements Listener {
 				e.setCancelled(true);
 			}
 		}
+		if(plugin.getConfig().getBoolean("MagicClock.NoDrop") == true) {
+			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+				e.setCancelled(true);
+			}
+		}
+		if(plugin.getConfig().getBoolean("Others.HatAllowMove") == false) {
+			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+				e.setCancelled(true);
+			}
+		}
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -106,7 +106,7 @@ public class RightClickListener implements Listener {
 	
 	@EventHandler
 	public void Interact(PlayerInteractEvent e) {
-		if(e.getPlayer().getItemInHand() != null  && e.getPlayer().getItemInHand().getType() != Material.AIR) {
+		if(e.getPlayer().getItemInHand() != null  || e.getPlayer().getItemInHand().getType() != Material.AIR) {
 			if(e.getPlayer().getItemInHand().hasItemMeta()) {
 				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item1.Name").replace("&", "§"))) {
 					if(getCustomConfig().getBoolean("Item1.Enabled") == true) {

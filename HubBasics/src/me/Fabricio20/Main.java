@@ -293,6 +293,10 @@ public class Main extends JavaPlugin {
 			getConfig().set("MagicClock.AllowMove", false);
 			saveConfig();
 		}
+		if(!getConfig().contains("MagicClock.NoDrop")) {
+			getConfig().set("MagicClock.NoDrop", false);
+			saveConfig();
+		}
 		if(!getConfig().contains("Others.DoubleJump")) {
 			getConfig().set("Others.DoubleJump", true);
 			saveConfig();
@@ -313,6 +317,10 @@ public class Main extends JavaPlugin {
 			getConfig().set("Others.HatAllowMove", false);
 			saveConfig();
 		}
+		if(!getConfig().contains("Others.HatDrop")) {
+			getConfig().set("Others.HatAllowMove", true);
+			saveConfig();
+		}
 		if(!getConfig().contains("Others.JumpPadBlock")) {
 			getConfig().set("Others.JumpPadBlock", "REDSTONE_BLOCK");
 			saveConfig();
@@ -331,6 +339,10 @@ public class Main extends JavaPlugin {
 		}
 		if(!getConfig().contains("Others.JoinItems")) {
 			getConfig().set("Others.JoinItems", false);
+			saveConfig();
+		}
+		if(!getConfig().contains("Others.ClearInventory")) {
+			getConfig().set("Others.ClearInventory", false);
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.NoDrops")) {
@@ -400,31 +412,31 @@ public class Main extends JavaPlugin {
         	Storage2 = new File(getDataFolder(), "Items.yml");
         }
         StorageConfig2 = YamlConfiguration.loadConfiguration(Storage2);
-        if(!StorageConfig2.contains("Item1.Enabled")) {
+        if(!StorageConfig2.contains("Item1.Skull")) {
         	MakeItemsConfig.make1();
         }
-        if(!StorageConfig2.contains("Item2.Enabled")) {
+        if(!StorageConfig2.contains("Item2.Skull")) {
         	MakeItemsConfig.make2();
         }
-        if(!StorageConfig2.contains("Item3.Enabled")) {
+        if(!StorageConfig2.contains("Item3.Skull")) {
         	MakeItemsConfig.make3();
         }
-        if(!StorageConfig2.contains("Item4.Enabled")) {
+        if(!StorageConfig2.contains("Item4.Skull")) {
         	MakeItemsConfig.make4();
         }
-        if(!StorageConfig2.contains("Item5.Enabled")) {
+        if(!StorageConfig2.contains("Item5.Skull")) {
         	MakeItemsConfig.make5();
         }
-        if(!StorageConfig2.contains("Item6.Enabled")) {
+        if(!StorageConfig2.contains("Item6.Skull")) {
         	MakeItemsConfig.make6();
         }
-        if(!StorageConfig2.contains("Item7.Enabled")) {
+        if(!StorageConfig2.contains("Item7.Skull")) {
         	MakeItemsConfig.make7();
         }
-        if(!StorageConfig2.contains("Item8.Enabled")) {
+        if(!StorageConfig2.contains("Item8.Skull")) {
         	MakeItemsConfig.make8();
         }
-        if(!StorageConfig2.contains("Item9.Enabled")) {
+        if(!StorageConfig2.contains("Item9.Skull")) {
         	MakeItemsConfig.make9();
         }
         saveCustomConfig2();

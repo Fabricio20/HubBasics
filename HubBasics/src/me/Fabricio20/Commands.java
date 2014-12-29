@@ -117,8 +117,12 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 						if(args[0].matches("[0-999]+")) {
 								Player player = (Player) sender;
 								id = Integer.parseInt(args[0]);
-								player.getInventory().setHelmet(new ItemStack(id));
-								player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§").replace("%p", player.getName()));
+								if(player.hasPermission("HubBasics.Hat." + id)) {
+									player.getInventory().setHelmet(new ItemStack(id));
+									player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§").replace("%p", player.getName()));
+								} else {
+									player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.NoPermissionForHat").replace("&", "§").replace("%p", player.getName()));
+								}
 						} else if(args[0].equalsIgnoreCase("remove")) {
 							Player player = (Player) sender;
 							player.getInventory().setHelmet(new ItemStack(Material.AIR));
@@ -133,10 +137,14 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 									Player player = (Player) sender;
 									id = Integer.parseInt(args[0]);
 									meta = Integer.parseInt(args[1]);
-									player.getInventory().setHelmet(new ItemStack(id, 1, (short) meta));
-									player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§").replace("%p", player.getName()));
+									if(player.hasPermission("HubBasics.Hat." + id)) {
+										player.getInventory().setHelmet(new ItemStack(id, 1, (short) meta));
+										player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.HatSet").replace("&", "§").replace("%p", player.getName()));
+									} else {
+										player.sendMessage(Strings.Prefix + plugin.getConfig().getString("Others.NoPermissionForHat").replace("&", "§").replace("%p", player.getName()));
+									}
 							} else {
-								sender.sendMessage("§cID must be a number!");
+								sender.sendMessage("§cMETA must be a number!");
 							}
 						} else {
 							sender.sendMessage("§cID must be a number!");

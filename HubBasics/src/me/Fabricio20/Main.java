@@ -321,6 +321,10 @@ public class Main extends JavaPlugin {
 			getConfig().set("Others.HatAllowMove", true);
 			saveConfig();
 		}
+		if(!getConfig().contains("Others.NoPermissionForHat")) {
+			getConfig().set("Others.NoPermissionForHat", "§cYou do not have permission for this hat!");
+			saveConfig();
+		}
 		if(!getConfig().contains("Others.JumpPadBlock")) {
 			getConfig().set("Others.JumpPadBlock", "REDSTONE_BLOCK");
 			saveConfig();

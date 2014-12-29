@@ -66,17 +66,20 @@ public class JoinListener implements Listener {
 			BarAPI.setMessage(e.getPlayer(), Announces.get(BossAnnouncer.Stamp));
 		}
 		if(plugin.getConfig().getBoolean("MagicClock.Enabled") == true) {
-			ItemStack MagicClock = new ItemStack(Material.getMaterial(plugin.getConfig().getString("MagicClock.Material")));
-			ItemMeta Meta = MagicClock.getItemMeta();
-			Meta.setDisplayName(plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
-			List<String> Lore = plugin.getConfig().getStringList("MagicClock.Lore");
-			ArrayList<String> LoreNew = new ArrayList<String>();
-			for(String string : Lore) {
-				LoreNew.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
+			List<String> worlds = plugin.getConfig().getStringList("Worlds");
+			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+				ItemStack MagicClock = new ItemStack(Material.getMaterial(plugin.getConfig().getString("MagicClock.Material")));
+				ItemMeta Meta = MagicClock.getItemMeta();
+				Meta.setDisplayName(plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
+				List<String> Lore = plugin.getConfig().getStringList("MagicClock.Lore");
+				ArrayList<String> LoreNew = new ArrayList<String>();
+				for(String string : Lore) {
+					LoreNew.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
+				}
+				Meta.setLore(LoreNew);
+				MagicClock.setItemMeta(Meta);
+				e.getPlayer().getInventory().setItem(plugin.getConfig().getInt("MagicClock.Slot"), MagicClock);
 			}
-			Meta.setLore(LoreNew);
-			MagicClock.setItemMeta(Meta);
-			e.getPlayer().getInventory().setItem(plugin.getConfig().getInt("MagicClock.Slot"), MagicClock);
 		}
 	}
 	 

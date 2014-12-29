@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import me.Fabricio20.Main;
 import me.Fabricio20.Permissions;
 import me.Fabricio20.Strings;
+import me.Fabricio20.methods.Items;
 import me.Fabricio20.methods.VEK;
 
 import org.bukkit.Bukkit;
@@ -107,66 +108,50 @@ public class RightClickListener implements Listener {
 	@EventHandler
 	public void Interact(PlayerInteractEvent e) {
 		if(e.getPlayer().getItemInHand() != null  || e.getPlayer().getItemInHand().getType() != Material.AIR) {
-			if(e.getPlayer().getItemInHand().hasItemMeta()) {
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item1.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item1.Enabled") == true) {
-						if(getCustomConfig().getString("Item1.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
-						}
+			if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
+				if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item1.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
 					}
 				}
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item2.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item2.Enabled") == true) {
-						if(getCustomConfig().getString("Item2.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
-						}
+				if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item2.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
 					}
 				}
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item3.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item3.Enabled") == true) {
-						if(getCustomConfig().getString("Item3.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
-						}
+				if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item3.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
 					}
 				}
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item4.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item4.Enabled") == true) {
-						if(getCustomConfig().getString("Item4.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
-						}
+				if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item4.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
 					}
 				}
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item5.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item5.Enabled") == true) {
-						if(getCustomConfig().getString("Item5.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
-						}
+				if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item5.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
 					}
 				}
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item6.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item6.Enabled") == true) {
-						if(getCustomConfig().getString("Item6.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
-						}
+				if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item6.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
 					}
 				}
-				if(getCustomConfig().getBoolean("Item7.Enabled") == true) {
+				if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
 					if(getCustomConfig().getString("Item7.Command") != null) {
 						e.getPlayer().chat(getCustomConfig().getString("Item7.Command"));
 					}
 				}
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item8.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item8.Enabled") == true) {
-						if(getCustomConfig().getString("Item8.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
-						}
+				if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item8.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
 					}
 				}
-				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(getCustomConfig().getString("Item9.Name").replace("&", "§"))) {
-					if(getCustomConfig().getBoolean("Item9.Enabled") == true) {
-						if(getCustomConfig().getString("Item9.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
-						}
+				if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
+					if(getCustomConfig().getString("Item9.Command") != null) {
+						e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
 					}
 				}
 			}
@@ -181,23 +166,25 @@ public class RightClickListener implements Listener {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 			if(e.getPlayer().getItemInHand() != null  && e.getPlayer().getItemInHand().getType() != Material.AIR) {
 				if(e.getPlayer().getItemInHand().hasItemMeta()) {
-					if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", e.getPlayer().getName()))) {
-						if(Strings.MagicClockActive.contains(e.getPlayer())) {
-							for(Player user : Bukkit.getOnlinePlayers()) {
-								if(e.getPlayer().canSee(user) == false) {
-									e.getPlayer().showPlayer(user);
+					if(e.getPlayer().getItemInHand().getItemMeta().hasDisplayName()) {
+						if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", e.getPlayer().getName()))) {
+							if(Strings.MagicClockActive.contains(e.getPlayer())) {
+								for(Player user : Bukkit.getOnlinePlayers()) {
+									if(e.getPlayer().canSee(user) == false) {
+										e.getPlayer().showPlayer(user);
+									}
 								}
-							}
-							Strings.MagicClockActive.remove(e.getPlayer());
-							e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
-						} else {
-							for(Player user : Bukkit.getOnlinePlayers()) {
-								if(e.getPlayer().canSee(user) == true) {
-									e.getPlayer().hidePlayer(user);
+								Strings.MagicClockActive.remove(e.getPlayer());
+								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
+							} else {
+								for(Player user : Bukkit.getOnlinePlayers()) {
+									if(e.getPlayer().canSee(user) == true) {
+										e.getPlayer().hidePlayer(user);
+									}
 								}
+								Strings.MagicClockActive.add(e.getPlayer());
+								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							}
-							Strings.MagicClockActive.add(e.getPlayer());
-							e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 						}
 					}
 				}

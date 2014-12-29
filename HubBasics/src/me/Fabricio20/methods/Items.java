@@ -33,6 +33,7 @@ public class Items {
 	private static String Item7Name = "";
 	private static String Item8Name = "";
 	private static String Item9Name = "";
+	private static String MagicClockName = "";
 	
 	public static ItemStack Item1(String player) {
 		fixItemName(player);
@@ -304,6 +305,21 @@ public class Items {
 		}
 	}
 	
+	public static ItemStack MagicClock(String player) {
+		fixItemName(player);
+		ItemStack Clock = new ItemStack(Material.getMaterial(plugin.getConfig().getString("MagicClock.Material")));
+		ItemMeta Meta = Clock.getItemMeta();
+		Meta.setDisplayName(MagicClockName);
+		List<String> LoreFromConfig = plugin.getConfig().getStringList("MagicClock.Lore");
+		List<String> NewLore = new ArrayList<String>();
+		for(String string : LoreFromConfig) {
+			NewLore.add(string.replace("&", "§").replace("%p", player));
+		}
+		Meta.setLore(NewLore);
+		Clock.setItemMeta(Meta);
+		return Clock;
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	
 	private static void fixItemName(String playername) {
@@ -333,6 +349,9 @@ public class Items {
 		}
 		if(getCustomConfig().contains("Item9.Name") && getCustomConfig().getString("Item9.Name") != null && getCustomConfig().getString("Item9.Name") != "") {
 			Item9Name = getCustomConfig().getString("Item9.Name").replace("&", "§").replace("%p", playername);
+		}
+		if(plugin.getConfig().contains("MagicClock.Name") && plugin.getConfig().getString("MagicClock.Name") != null && getCustomConfig().getString("MagicClock.Name") != "") {
+			MagicClockName = plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", playername);
 		}
 	}
 	

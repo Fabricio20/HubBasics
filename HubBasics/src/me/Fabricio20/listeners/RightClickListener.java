@@ -64,13 +64,13 @@ public class RightClickListener implements Listener {
 		if(plugin.getConfig().getBoolean("Others.Stacker") == true) {
 			Player player = e.getPlayer();
 			if(worlds.contains(player.getWorld().getName())) {
-				if ((e.getRightClicked() instanceof Player)) {
+				if((e.getRightClicked() instanceof Player)) {
 					Player target = (Player) e.getRightClicked();
 					if(target.isInsideVehicle() == false) {
 						players.remove(e.getRightClicked());
 					}
-					if (!target.hasPermission(new Permissions().NonStackable)) {
-						if (!players.contains(target)) {
+					if(!target.hasPermission(new Permissions().NonStackable)) {
+						if(!players.contains(target)) {
 							player.setPassenger(target);
 							players.add(target);
 						}
@@ -88,8 +88,8 @@ public class RightClickListener implements Listener {
 		if(plugin.getConfig().getBoolean("Others.Stacker") == true) {
 			Player player = e.getPlayer();
 			if(worlds.contains(player.getWorld().getName())) {
-				if (e.getAction() == Action.LEFT_CLICK_AIR) {
-					if ((player.getPassenger() instanceof Player)) {
+				if(e.getAction() == Action.LEFT_CLICK_AIR) {
+					if((player.getPassenger() instanceof Player)) {
 						Player passenger = (Player)player.getPassenger();
 						if(players.contains(passenger)) {
 							passenger.leaveVehicle();
@@ -109,49 +109,52 @@ public class RightClickListener implements Listener {
 	public void Interact(PlayerInteractEvent e) {
 		if(e.getPlayer().getItemInHand() != null  || e.getPlayer().getItemInHand().getType() != Material.AIR) {
 			if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
-				if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item1.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
+				List<String> worlds = plugin.getConfig().getStringList("Worlds");
+				if(worlds.contains(e.getPlayer().getWorld().getName())) {
+					if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item1.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item2.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item2.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item3.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item3.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item4.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item4.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item5.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item5.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item6.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item6.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item7.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item7.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item7.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item7.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item8.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item8.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
+						}
 					}
-				}
-				if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
-					if(getCustomConfig().getString("Item9.Command") != null) {
-						e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
+					if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
+						if(getCustomConfig().getString("Item9.Command") != null) {
+							e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
+						}
 					}
 				}
 			}
@@ -164,27 +167,26 @@ public class RightClickListener implements Listener {
 	@EventHandler
 	public void onRightClickAgaing(PlayerInteractEvent e) {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-			if(e.getPlayer().getItemInHand() != null  && e.getPlayer().getItemInHand().getType() != Material.AIR) {
-				if(e.getPlayer().getItemInHand().hasItemMeta()) {
-					if(e.getPlayer().getItemInHand().getItemMeta().hasDisplayName()) {
-						if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", e.getPlayer().getName()))) {
-							if(Strings.MagicClockActive.contains(e.getPlayer())) {
-								for(Player user : Bukkit.getOnlinePlayers()) {
-									if(e.getPlayer().canSee(user) == false) {
-										e.getPlayer().showPlayer(user);
-									}
+			if(e.getPlayer().getItemInHand() != null && e.getPlayer().getItemInHand().getType() != Material.AIR) {
+				List<String> worlds = plugin.getConfig().getStringList("Worlds");
+				if(worlds.contains(e.getPlayer().getWorld().getName())) {
+					if(e.getPlayer().getItemInHand().equals(Items.MagicClock(e.getPlayer().getName()))) {
+						if(Strings.MagicClockActive.contains(e.getPlayer())) {
+							for (Player user : Bukkit.getOnlinePlayers()) {
+								if(e.getPlayer().canSee(user) == false) {
+									e.getPlayer().showPlayer(user);
 								}
-								Strings.MagicClockActive.remove(e.getPlayer());
-								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
-							} else {
-								for(Player user : Bukkit.getOnlinePlayers()) {
-									if(e.getPlayer().canSee(user) == true) {
-										e.getPlayer().hidePlayer(user);
-									}
-								}
-								Strings.MagicClockActive.add(e.getPlayer());
-								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							}
+							Strings.MagicClockActive.remove(e.getPlayer());
+							e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
+						} else {
+							for (Player user : Bukkit.getOnlinePlayers()) {
+								if(e.getPlayer().canSee(user) == true) {
+									e.getPlayer().hidePlayer(user);
+								}
+							}
+							Strings.MagicClockActive.add(e.getPlayer());
+							e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 						}
 					}
 				}
@@ -195,21 +197,21 @@ public class RightClickListener implements Listener {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static void reloadCustomConfig() {
-	    if (Main.Storage2 == null) {
+	    if(Main.Storage2 == null) {
 	    Main.Storage2 = new File(plugin.getDataFolder(), "Items.yml");
 	    }
 	    Main.StorageConfig2 = YamlConfiguration.loadConfiguration(Main.Storage2);
 	}
 
 	public static FileConfiguration getCustomConfig() {
-	  if (Main.StorageConfig2 == null) {
+	  if(Main.StorageConfig2 == null) {
 	        reloadCustomConfig();
 	  }
 	  return Main.StorageConfig2;
 	}
 
 	public static void saveCustomConfig() {
-	  if (Main.StorageConfig2 == null || Main.Storage2 == null) {
+	  if(Main.StorageConfig2 == null || Main.Storage2 == null) {
 	      return;
 	  }
 	  try {

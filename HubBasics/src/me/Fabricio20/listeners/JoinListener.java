@@ -7,20 +7,18 @@ import java.util.List;
 import java.util.logging.Level;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.confuser.barapi.BarAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class JoinListener implements Listener {
@@ -68,17 +66,7 @@ public class JoinListener implements Listener {
 		if(plugin.getConfig().getBoolean("MagicClock.Enabled") == true) {
 			List<String> worlds = plugin.getConfig().getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				ItemStack MagicClock = new ItemStack(Material.getMaterial(plugin.getConfig().getString("MagicClock.Material")));
-				ItemMeta Meta = MagicClock.getItemMeta();
-				Meta.setDisplayName(plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", e.getPlayer().getName()));
-				List<String> Lore = plugin.getConfig().getStringList("MagicClock.Lore");
-				ArrayList<String> LoreNew = new ArrayList<String>();
-				for(String string : Lore) {
-					LoreNew.add(string.replace("&", "§").replace("%p", e.getPlayer().getName()));
-				}
-				Meta.setLore(LoreNew);
-				MagicClock.setItemMeta(Meta);
-				e.getPlayer().getInventory().setItem(plugin.getConfig().getInt("MagicClock.Slot"), MagicClock);
+				e.getPlayer().getInventory().setItem(plugin.getConfig().getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
 			}
 		}
 	}

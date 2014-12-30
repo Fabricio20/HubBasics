@@ -111,49 +111,67 @@ public class RightClickListener implements Listener {
 			if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
 				List<String> worlds = plugin.getConfig().getStringList("Worlds");
 				if(worlds.contains(e.getPlayer().getWorld().getName())) {
-					if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item1.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
+					if(getCustomConfig().getBoolean("Item1.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item1.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item2.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
+					if(getCustomConfig().getBoolean("Item2.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item2.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item3.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
+					if(getCustomConfig().getBoolean("Item3.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item3.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item4.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
+					if(getCustomConfig().getBoolean("Item4.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item4.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item5.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
+					if(getCustomConfig().getBoolean("Item5.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item5.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item6.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
+					if(getCustomConfig().getBoolean("Item6.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item6.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item7.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item7.Command"));
+					if(getCustomConfig().getBoolean("Item7.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item7.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item7.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item8.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
+					if(getCustomConfig().getBoolean("Item8.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item8.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
+							}
 						}
 					}
-					if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
-						if(getCustomConfig().getString("Item9.Command") != null) {
-							e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
+					if(getCustomConfig().getBoolean("Item9.Enabled") == true) {
+						if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
+							if(getCustomConfig().getString("Item9.Command") != null) {
+								e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
+							}
 						}
 					}
 				}

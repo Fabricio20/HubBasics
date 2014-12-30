@@ -105,6 +105,7 @@ public class Main extends JavaPlugin {
 		getCommand("uuid").setExecutor(new Commands(this));
 		plugin = this;
 		Items.plugin = this;
+		Book.plugin = this;
 		Strings.Prefix = plugin.getConfig().getString("Others.Prefix").replace("&", "§");
 		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
@@ -309,6 +310,34 @@ public class Main extends JavaPlugin {
 		}
 		if(!getConfig().contains("TitleSystem.Subtitle")) {
 			getConfig().set("TitleSystem.Subtitle", "&9This is a Sub-Title!");
+			saveConfig();
+		}
+		if(!getConfig().contains("BookSystem.Enabled")) {
+			getConfig().set("BookSystem.Enabled", false);
+			saveConfig();
+		}
+		if(!getConfig().contains("BookSystem.Author")) {
+			getConfig().set("BookSystem.Author", "HubBasics");
+			saveConfig();
+		}
+		if(!getConfig().contains("BookSystem.Name")) {
+			getConfig().set("BookSystem.Name", "&cTha Book");
+			saveConfig();
+		}
+		if(!getConfig().contains("BookSystem.Slot")) {
+			getConfig().set("BookSystem.Slot", 5);
+			saveConfig();
+		}
+		if(!getConfig().contains("BookSystem.Lore")) {
+			ArrayList<String> Lore = new ArrayList<String>();
+			Lore.add("&bTha lore&c.");
+			getConfig().set("BookSystem.Lore", Lore);
+			saveConfig();
+		}
+		if(!getConfig().contains("BookSystem.Pages")) {
+			ArrayList<String> Pages = new ArrayList<String>();
+			Pages.add("&cThis is a page.");
+			getConfig().set("BookSystem.Pages", Pages);
 			saveConfig();
 		}
 		if(!getConfig().contains("Others.DoubleJump")) {

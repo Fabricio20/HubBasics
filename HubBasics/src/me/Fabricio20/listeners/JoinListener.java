@@ -8,6 +8,7 @@ import java.util.logging.Level;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.API.ActionAPI;
+import me.Fabricio20.methods.Book;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.confuser.barapi.BarAPI;
@@ -33,6 +34,8 @@ public class JoinListener implements Listener {
 	 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	
+	 
 	 @EventHandler(priority = EventPriority.HIGH)
 	 public void Join(PlayerJoinEvent e) {
 		 if(plugin.getConfig().getBoolean("JoinEvents.DisableMessage") == true) {
@@ -57,6 +60,12 @@ public class JoinListener implements Listener {
 					loc.setPitch(getCustomConfig().getInt("Hub.Pitch"));
 					e.getPlayer().teleport(loc);
 				}
+			}
+		}
+		if(plugin.getConfig().getBoolean("BookSystem.Enabled") == true) {
+			List<String> worlds = plugin.getConfig().getStringList("Worlds");
+			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+				e.getPlayer().getInventory().setItem(plugin.getConfig().getInt("BookSystem.Slot"), Book.build());
 			}
 		}
 		if(plugin.getConfig().getBoolean("BossAnnouncer.Enabled") == true && plugin.getConfig().getBoolean("JoinEvents.BossBarOnJoin") == true) {

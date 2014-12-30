@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="HubBasics/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Eclipse/Default_JRE/ActionAnnouncer.jar"/>
 	<classpathentry kind="lib" path="D:/Eclipse/Default_JRE/BarAPI.jar"/>
 	<classpathentry kind="lib" path="D:/Eclipse/Default_JRE/BungeeCord.jar"/>
 	<classpathentry kind="lib" path="D:/Eclipse/Default_JRE/Factions.jar"/>
@@ -20,6 +19,5 @@
 	<classpathentry kind="lib" path="D:/Eclipse/Default_JRE/Vault-1.4.1.jar"/>
 	<classpathentry kind="lib" path="D:/Eclipse/Default_JRE/WorldEdit.jar"/>
 	<classpathentry kind="lib" path="D:/Eclipse/Default_JRE/WorldGuard.jar"/>
-	<classpathentry kind="lib" path="D:/Spigot &amp; Bukkit/Spigot 1.8 - Latest/RELEASES/spigot-1.8-R0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -22,9 +22,7 @@ import me.Fabricio20.listeners.ServerPingListener;
 import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
 import me.Fabricio20.listeners.PlayerChangeWorld;
-import me.Fabricio20.runnables.AntiOp;
-import me.Fabricio20.runnables.BossAnnouncer;
-import me.Fabricio20.runnables.ChatAnnouncer;
+import me.Fabricio20.runnables.*;
 import me.Fabricio20.methods.MakeItemsConfig;
 import me.Fabricio20.methods.*;
 
@@ -49,6 +47,7 @@ public class Main extends JavaPlugin {
 	
     int ChatTime = 0;
     int BossTime = 0;
+    int ActionTime = 0;
     
 	// Console Coloring Made Easy
 	public static final String ANSI_RESET = "\u001B[0m";
@@ -96,6 +95,9 @@ public class Main extends JavaPlugin {
 		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
 		ChatTime = getConfig().getInt("ChatAnnouncer.Time");
 		BukkitTask ChatAnnouncer = new ChatAnnouncer(this).runTaskTimer(this, 20, ChatTime * 20);
+		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
+		ActionTime = getConfig().getInt("ActionAnnouncer.Time");
+		BukkitTask ActionAnnouncer = new ActionAnnouncer(this).runTaskTimer(this, 20, ActionTime * 20);
 		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
 		getCommand("hub").setExecutor(new Commands(this));
 		getCommand("lobby").setExecutor(new Commands(this));
@@ -244,6 +246,31 @@ public class Main extends JavaPlugin {
 		}
 		if(!getConfig().contains("BossAnnouncer.Time")) {
 			getConfig().set("BossAnnouncer.Time", 60);
+			saveConfig();
+		}
+		if(!getConfig().contains("ActionAnnouncer.Enabled")) {
+			getConfig().set("ActionAnnouncer.Enabled", false);
+			saveConfig();
+		}
+		if(!getConfig().contains("ActionAnnouncer.Msgs")) {
+			ArrayList<String> chatann = new ArrayList<String>();
+			chatann.add("Announce 1");
+			chatann.add("Announce 2");
+			getConfig().set("ActionAnnouncer.Msgs", chatann);
+			saveConfig();
+		}
+		if(!getConfig().contains("ActionAnnouncer.Perworld")) {
+			getConfig().set("ActionAnnouncer.Perworld", false);
+			saveConfig();
+		}
+		if(!getConfig().contains("ActionAnnouncer.Worlds")) {
+			ArrayList<String> Worlds = new ArrayList<String>();
+			Worlds.add("Example");
+			getConfig().set("ActionAnnouncer.Worlds", Worlds);
+			saveConfig();
+		}
+		if(!getConfig().contains("ActionAnnouncer.Time")) {
+			getConfig().set("ActionAnnouncer.Time", 3);
 			saveConfig();
 		}
 		if(!getConfig().contains("FakePlugins.Enabled")) {

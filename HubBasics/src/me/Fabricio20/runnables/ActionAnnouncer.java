@@ -36,12 +36,12 @@ public class ActionAnnouncer extends BukkitRunnable {
 					for(Player player : Bukkit.getOnlinePlayers()) {
 						ActionAPI.sendAction(player, Announces.get(0).replace("&", "§"));
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if (Stamp != 0 && Stamp != Max) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
 						ActionAPI.sendAction(player, Announces.get(Stamp).replace("&", "§"));
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if (Stamp == Max) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
 						ActionAPI.sendAction(player, Announces.get(Max).replace("&", "§"));
@@ -58,14 +58,14 @@ public class ActionAnnouncer extends BukkitRunnable {
 							ActionAPI.sendAction(player, Announces.get(0).replace("&", "§"));
 						}
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if (Stamp != 0 && Stamp != Max) {
 					for (Player player : Bukkit.getOnlinePlayers()) {
 						if (Worlds.contains(player.getWorld().getName())) {
 							ActionAPI.sendAction(player, Announces.get(Stamp).replace("&", "§"));
 						}
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if (Stamp == Max) {
 					for (Player player : Bukkit.getOnlinePlayers()) {
 						if (Worlds.contains(player.getWorld().getName())) {

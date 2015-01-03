@@ -10,6 +10,7 @@ import me.Fabricio20.methods.Items;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -30,6 +31,7 @@ public class JoinListenerForItems implements Listener {
 	@EventHandler
 	public void PlayerJoinGetItem(PlayerJoinEvent e) {
 		 List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		 Player player = e.getPlayer();
 		 if(worlds.contains(e.getPlayer().getWorld().getName())) {
 			 if(plugin.getConfig().getBoolean("Others.ClearInventory") == true) {
 				 e.getPlayer().getInventory().clear();
@@ -37,39 +39,57 @@ public class JoinListenerForItems implements Listener {
 			 if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
     ////////////////////////////////////////////////////////////////////////////////////////- Start Of 1
 				if(getCustomConfig().getBoolean("Item1.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item1.Slot"), Items.Item1(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item1(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item1.Slot"), Items.Item1(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 1 & Start Of 2
 				if(getCustomConfig().getBoolean("Item2.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item2.Slot"), Items.Item2(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item2(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item2.Slot"), Items.Item2(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 2 & Start Of 3
 				if(getCustomConfig().getBoolean("Item3.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item3.Slot"), Items.Item3(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item3(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item3.Slot"), Items.Item3(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 3 & Start Of 4
 				if(getCustomConfig().getBoolean("Item4.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item4.Slot"), Items.Item4(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item4(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item4.Slot"), Items.Item4(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 4 & Start Of 5
 				if(getCustomConfig().getBoolean("Item5.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item5.Slot"), Items.Item5(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item5(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item5.Slot"), Items.Item5(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 5 & Start Of 6
 				if(getCustomConfig().getBoolean("Item6.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item6.Slot"), Items.Item6(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item6(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item6.Slot"), Items.Item6(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 6 & Start Of 7
 				if(getCustomConfig().getBoolean("Item7.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item7.Slot"), Items.Item7(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item7(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item7.Slot"), Items.Item7(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 7 & Start Of 8
 				if(getCustomConfig().getBoolean("Item8.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item8.Slot"), Items.Item8(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item8(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item8.Slot"), Items.Item8(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 8 & Start Of 9
 				if(getCustomConfig().getBoolean("Item9.Enabled") == true) {
-					e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item9.Slot"), Items.Item9(e.getPlayer().getName()));
+					if(!player.getInventory().contains(Items.Item9(e.getPlayer().getName()))) {
+						e.getPlayer().getInventory().setItem(getCustomConfig().getInt("Item9.Slot"), Items.Item9(e.getPlayer().getName()));
+					}
 				}
 	////////////////////////////////////////////////////////////////////////////////////////- End Of 9
 			}

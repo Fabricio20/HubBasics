@@ -3,6 +3,7 @@ package me.Fabricio20;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 import me.Fabricio20.listeners.CommandListener;
@@ -16,15 +17,19 @@ import me.Fabricio20.listeners.JoinListenerForItems;
 import me.Fabricio20.listeners.JumpListener;
 import me.Fabricio20.listeners.LeaveListener;
 import me.Fabricio20.listeners.MoveListener;
+import me.Fabricio20.listeners.PlayerChangeWorld;
 import me.Fabricio20.listeners.RainListener;
 import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.listeners.ServerPingListener;
 import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
-import me.Fabricio20.listeners.PlayerChangeWorld;
-import me.Fabricio20.runnables.*;
+import me.Fabricio20.methods.Book;
+import me.Fabricio20.methods.Items;
 import me.Fabricio20.methods.MakeItemsConfig;
-import me.Fabricio20.methods.*;
+import me.Fabricio20.runnables.ActionAnnouncer;
+import me.Fabricio20.runnables.AntiOp;
+import me.Fabricio20.runnables.BossAnnouncer;
+import me.Fabricio20.runnables.ChatAnnouncer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -105,6 +110,7 @@ public class Main extends JavaPlugin {
 		getCommand("hat").setExecutor(new Commands(this));
 		getCommand("hb").setExecutor(new Commands(this));
 		getCommand("uuid").setExecutor(new Commands(this));
+		getCommand("hubitems").setExecutor(new Commands(this));
 		plugin = this;
 		Items.plugin = this;
 		Book.plugin = this;
@@ -435,10 +441,23 @@ public class Main extends JavaPlugin {
 			getConfig().set("Others.AntiOP", false);
 			saveConfig();
 		}
+		if(!getConfig().contains("Others.HubItems")) {
+			getConfig().set("Others.HubItems", true);
+			saveConfig();
+		}
 		if(!getConfig().contains("Worlds")) {
 			ArrayList<String> worlds = new ArrayList<String>();
 			worlds.add("Example");
 			getConfig().set("Worlds", worlds);
+			saveConfig();
+		}
+		if(getConfig().options().header() == "" || getConfig().options().header() == null ) {
+			List<String> Header = new ArrayList<String>();
+			Header.add("##########################################");
+			Header.add("# HubBasics Configuration File #");
+			Header.add("# Documentation at: http://tinyurl.com/qgnx3ke ");
+			Header.add("##########################################");
+			getConfig().options().header(Header.toString());
 			saveConfig();
 		}
 	}

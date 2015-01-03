@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
+import me.Fabricio20.listeners.JoinListenerForItems;
+import me.Fabricio20.methods.Items;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -191,7 +194,71 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 							sender.sendMessage(Strings.PermissionError);
 						}
 					} else {
-						//TODO More Commands;
+						if(commandLabel.equalsIgnoreCase("hubitems")) {
+							if(!(sender instanceof Player)) {
+								sender.sendMessage("Only Players Can Use This Command Sir!");
+							} else {
+								if(plugin.getConfig().getBoolean("Others.HubItems") == true) {
+									Player player = (Player) sender;
+									// ITEM 1
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item1.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item1(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item1.Slot"), Items.Item1(player.getName()));
+										}
+									}
+									// Item 2
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item2.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item2(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item2.Slot"), Items.Item2(player.getName()));
+										}
+									}
+									// Item 3
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item3.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item3(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item3.Slot"), Items.Item3(player.getName()));
+										}
+									}
+									// Item 4
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item4.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item4(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item4.Slot"), Items.Item4(player.getName()));
+										}
+									}
+									// Item 5
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item5.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item5(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item5.Slot"), Items.Item5(player.getName()));
+										}
+									}
+									// Item 6
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item6.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item6(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item6.Slot"), Items.Item6(player.getName()));
+										}
+									}
+									//Item 7
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item7.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item7(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item7.Slot"), Items.Item7(player.getName()));
+										}
+									}
+									// Item 8
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item8.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item8(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item8.Slot"), Items.Item8(player.getName()));
+										}
+									}
+									// Item 9
+									if(JoinListenerForItems.getCustomConfig().getBoolean("Item9.Enabled") == true) {
+										if(!player.getInventory().contains(Items.Item9(player.getName()))) {
+											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item9.Slot"), Items.Item9(player.getName()));
+										}
+									}
+								} else {
+									sender.sendMessage("§cThis command is disabled!");
+								}
+							}
+						}
 					}
 				}
 			}

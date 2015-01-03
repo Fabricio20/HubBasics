@@ -24,6 +24,7 @@ import me.Fabricio20.listeners.ServerPingListener;
 import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
 import me.Fabricio20.methods.Book;
+import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.methods.MakeItemsConfig;
 import me.Fabricio20.runnables.ActionAnnouncer;
@@ -47,8 +48,8 @@ public class Main extends JavaPlugin {
 	public static Main plugin;
 	public static FileConfiguration StorageConfig = null;
     public static File Storage = null;
-	public static FileConfiguration StorageConfig2 = null;
-    public static File Storage2 = null;
+	public static FileConfiguration ItemConfig = null;
+    public static File Item = null;
 	
     int ChatTime = 0;
     int BossTime = 0;
@@ -509,56 +510,38 @@ public class Main extends JavaPlugin {
     //////
     
     public void reloadCustomConfig2() {
-        if (Storage2 == null) {
-        	Storage2 = new File(getDataFolder(), "Items.yml");
+        if (Item == null) {
+        	Item = new File(getDataFolder(), "Items.yml");
         }
-        StorageConfig2 = YamlConfiguration.loadConfiguration(Storage2);
-        if(!StorageConfig2.contains("Item1.Skull")) {
+        ItemConfig = YamlConfiguration.loadConfiguration(Item);
+        if(!ItemConfig.contains("Item1.Skull")) {
         	MakeItemsConfig.make1();
         }
-        if(!StorageConfig2.contains("Item2.Skull")) {
+        if(!ItemConfig.contains("Item2.Skull")) {
         	MakeItemsConfig.make2();
         }
-        if(!StorageConfig2.contains("Item3.Skull")) {
+        if(!ItemConfig.contains("Item3.Skull")) {
         	MakeItemsConfig.make3();
         }
-        if(!StorageConfig2.contains("Item4.Skull")) {
+        if(!ItemConfig.contains("Item4.Skull")) {
         	MakeItemsConfig.make4();
         }
-        if(!StorageConfig2.contains("Item5.Skull")) {
+        if(!ItemConfig.contains("Item5.Skull")) {
         	MakeItemsConfig.make5();
         }
-        if(!StorageConfig2.contains("Item6.Skull")) {
+        if(!ItemConfig.contains("Item6.Skull")) {
         	MakeItemsConfig.make6();
         }
-        if(!StorageConfig2.contains("Item7.Skull")) {
+        if(!ItemConfig.contains("Item7.Skull")) {
         	MakeItemsConfig.make7();
         }
-        if(!StorageConfig2.contains("Item8.Skull")) {
+        if(!ItemConfig.contains("Item8.Skull")) {
         	MakeItemsConfig.make8();
         }
-        if(!StorageConfig2.contains("Item9.Skull")) {
+        if(!ItemConfig.contains("Item9.Skull")) {
         	MakeItemsConfig.make9();
         }
-        saveCustomConfig2();
-    }
-	
-    public FileConfiguration getCustomConfig2() {
-        if (StorageConfig2 == null) {
-            reloadCustomConfig2();
-        }
-        return StorageConfig2;
-    }
-	
-    public void saveCustomConfig2() {
-        if (StorageConfig2 == null || Storage2 == null) {
-            return;
-        }
-        try {
-            getCustomConfig2().save(Storage2);
-        } catch (IOException ex) {
-            getLogger().log(Level.SEVERE, "Could not save config to " + Storage2, ex);
-        }
+        CustomConfigs.saveStorageConfig();
     }
 	
 }

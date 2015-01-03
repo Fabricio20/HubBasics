@@ -1,14 +1,10 @@
 package me.Fabricio20.listeners;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
-import me.Fabricio20.Main;
 import me.Fabricio20.Permissions;
 import me.Fabricio20.Strings;
+import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.methods.VEK;
 
@@ -16,8 +12,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -113,66 +107,66 @@ public class RightClickListener implements Listener {
 			if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
 				List<String> worlds = plugin.getConfig().getStringList("Worlds");
 				if(worlds.contains(e.getPlayer().getWorld().getName())) {
-					if(getCustomConfig().getBoolean("Item1.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item1.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item1.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item1.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item1.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item2.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item2.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item2.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item2.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item2.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item2.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item3.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item3.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item3.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item3.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item3.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item3.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item4.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item4.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item4.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item4.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item4.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item4.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item5.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item5.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item5.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item5.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item5.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item5.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item6.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item6.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item6.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item6.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item6.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item6.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item7.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item7.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item7.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item7.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item7.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item7.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item8.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item8.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item8.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item8.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item8.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item8.Command"));
 							}
 						}
 					}
-					if(getCustomConfig().getBoolean("Item9.Enabled") == true) {
+					if(CustomConfigs.getItemConfig().getBoolean("Item9.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
-							if(getCustomConfig().getString("Item9.Command") != null) {
-								e.getPlayer().chat(getCustomConfig().getString("Item9.Command"));
+							if(CustomConfigs.getItemConfig().getString("Item9.Command") != null) {
+								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item9.Command"));
 							}
 						}
 					}
@@ -238,33 +232,5 @@ public class RightClickListener implements Listener {
 				}
 			}
 		}
-	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	public static void reloadCustomConfig() {
-	    if(Main.Storage2 == null) {
-	    Main.Storage2 = new File(plugin.getDataFolder(), "Items.yml");
-	    }
-	    Main.StorageConfig2 = YamlConfiguration.loadConfiguration(Main.Storage2);
-	}
-
-	public static FileConfiguration getCustomConfig() {
-	  if(Main.StorageConfig2 == null) {
-	        reloadCustomConfig();
-	  }
-	  return Main.StorageConfig2;
-	}
-
-	public static void saveCustomConfig() {
-	  if(Main.StorageConfig2 == null || Main.Storage2 == null) {
-	      return;
-	  }
-	  try {
-	      getCustomConfig().save(Main.Storage2);
-	  } catch (IOException ex) {
-	   plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage2, ex);
-	  }
-	}
-	
+	}	
 }

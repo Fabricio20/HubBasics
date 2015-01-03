@@ -2,11 +2,7 @@ package me.Fabricio20;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-
-import me.Fabricio20.listeners.JoinListenerForItems;
+import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 
 import org.bukkit.Bukkit;
@@ -15,8 +11,6 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -61,15 +55,15 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 		} else {
 			if(sender.hasPermission(new Permissions().Hub)) {
 				if(plugin.getConfig().getBoolean("BungeeCord.Enabled") == false) {
-					if(getCustomConfig().contains("Hub.World")) {
+					if(CustomConfigs.getStorageConfig().contains("Hub.World")) {
 						Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
-						if(Bukkit.getWorld(getCustomConfig().getString("Hub.World")) != null) {
-							loc.setWorld(Bukkit.getWorld(getCustomConfig().getString("Hub.World")));
-							loc.setX(getCustomConfig().getInt("Hub.X"));
-							loc.setY(getCustomConfig().getInt("Hub.Y"));
-							loc.setZ(getCustomConfig().getInt("Hub.Z"));
-							loc.setYaw(getCustomConfig().getInt("Hub.Yaw"));
-							loc.setPitch(getCustomConfig().getInt("Hub.Pitch"));
+						if(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")) != null) {
+							loc.setWorld(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")));
+							loc.setX(CustomConfigs.getStorageConfig().getInt("Hub.X"));
+							loc.setY(CustomConfigs.getStorageConfig().getInt("Hub.Y"));
+							loc.setZ(CustomConfigs.getStorageConfig().getInt("Hub.Z"));
+							loc.setYaw(CustomConfigs.getStorageConfig().getInt("Hub.Yaw"));
+							loc.setPitch(CustomConfigs.getStorageConfig().getInt("Hub.Pitch"));
 							Player player = (Player) sender;
 							player.teleport(loc);
 						} else {
@@ -93,13 +87,13 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 				Player player = (Player) sender;
 				if(player.hasPermission(new Permissions().SetHub)) {
 					if(plugin.getConfig().getBoolean("BungeeCord.Enabled") == false) {
-						getCustomConfig().set("Hub.World", player.getWorld().getName());
-						getCustomConfig().set("Hub.X", player.getLocation().getX());
-						getCustomConfig().set("Hub.Y", player.getLocation().getY());
-						getCustomConfig().set("Hub.Z", player.getLocation().getZ());
-						getCustomConfig().set("Hub.Yaw", player.getLocation().getYaw());
-						getCustomConfig().set("Hub.Pitch", player.getLocation().getPitch());
-						saveCustomConfig();
+						CustomConfigs.getStorageConfig().set("Hub.World", player.getWorld().getName());
+						CustomConfigs.getStorageConfig().set("Hub.X", player.getLocation().getX());
+						CustomConfigs.getStorageConfig().set("Hub.Y", player.getLocation().getY());
+						CustomConfigs.getStorageConfig().set("Hub.Z", player.getLocation().getZ());
+						CustomConfigs.getStorageConfig().set("Hub.Yaw", player.getLocation().getYaw());
+						CustomConfigs.getStorageConfig().set("Hub.Pitch", player.getLocation().getPitch());
+						CustomConfigs.saveStorageConfig();
 						player.sendMessage("§8[§cHubBasics§8] §eHub set!");
 					} else {
 						sender.sendMessage("§8[§cHubBasics§8] §cBungeeCord Support Is Enabled!");
@@ -201,57 +195,57 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 								if(plugin.getConfig().getBoolean("Others.HubItems") == true) {
 									Player player = (Player) sender;
 									// ITEM 1
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item1.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item1(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item1.Slot"), Items.Item1(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item1.Slot"), Items.Item1(player.getName()));
 										}
 									}
 									// Item 2
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item2.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item2.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item2(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item2.Slot"), Items.Item2(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item2.Slot"), Items.Item2(player.getName()));
 										}
 									}
 									// Item 3
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item3.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item3.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item3(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item3.Slot"), Items.Item3(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item3.Slot"), Items.Item3(player.getName()));
 										}
 									}
 									// Item 4
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item4.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item4.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item4(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item4.Slot"), Items.Item4(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item4.Slot"), Items.Item4(player.getName()));
 										}
 									}
 									// Item 5
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item5.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item5.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item5(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item5.Slot"), Items.Item5(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item5.Slot"), Items.Item5(player.getName()));
 										}
 									}
 									// Item 6
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item6.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item6.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item6(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item6.Slot"), Items.Item6(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item6.Slot"), Items.Item6(player.getName()));
 										}
 									}
 									//Item 7
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item7.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item7.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item7(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item7.Slot"), Items.Item7(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item7.Slot"), Items.Item7(player.getName()));
 										}
 									}
 									// Item 8
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item8.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item8.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item8(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item8.Slot"), Items.Item8(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item8.Slot"), Items.Item8(player.getName()));
 										}
 									}
 									// Item 9
-									if(JoinListenerForItems.getCustomConfig().getBoolean("Item9.Enabled") == true) {
+									if(CustomConfigs.getItemConfig().getBoolean("Item9.Enabled") == true) {
 										if(!player.getInventory().contains(Items.Item9(player.getName()))) {
-											player.getInventory().setItem(JoinListenerForItems.getCustomConfig().getInt("Item9.Slot"), Items.Item9(player.getName()));
+											player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item9.Slot"), Items.Item9(player.getName()));
 										}
 									}
 								} else {
@@ -264,36 +258,6 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 			}
 		}
 	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	return false;
-	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	public static void reloadCustomConfig() {
-		if (Main.Storage == null) {
-			Main.Storage = new File(plugin.getDataFolder(), "Storage.yml");
-		}
-		Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
-	}
-
-	public static FileConfiguration getCustomConfig() {
-		if (Main.StorageConfig == null) {
-			reloadCustomConfig();
-		}
-		return Main.StorageConfig;
-	}
-
-	public static void saveCustomConfig() {
-		if (Main.StorageConfig == null || Main.Storage == null) {
-			return;
-		}
-		try {
-			getCustomConfig().save(Main.Storage);
-		} catch (IOException ex) {
-			plugin.getLogger().log(Level.SEVERE,
-					"Could not save config to " + Main.Storage, ex);
-		}
-	}
-
+  }
 }

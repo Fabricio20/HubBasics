@@ -333,6 +333,14 @@ public class Main extends JavaPlugin {
 			getConfig().set("MagicClock.NoDrop", false);
 			saveConfig();
 		}
+		if(!getConfig().contains("MagicClock.Cooldown")) {
+			getConfig().set("MagicClock.Cooldown", 12);
+			saveConfig();
+		}
+		if(!getConfig().contains("MagicClock.CooldownMSG")) {
+			getConfig().set("MagicClock.CooldownMSG", "&cCooldown! You Must Wait 12 Seconds!");
+			saveConfig();
+		}
 		if(!getConfig().contains("TitleSystem.Enabled")) {
 			getConfig().set("TitleSystem.Enabled", false);
 			saveConfig();

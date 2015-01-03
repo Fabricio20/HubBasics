@@ -35,8 +35,10 @@ public class RightClickListener implements Listener {
 		RightClickListener.plugin = plugin;
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	static ArrayList<Player> players = new ArrayList();
+	ArrayList<Player> cooldown = new ArrayList<Player>();
+	
+	ArrayList<Player> players = new ArrayList<Player>();
+	
 	 VEK gv = new VEK();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,25 +188,51 @@ public class RightClickListener implements Listener {
 	public void onRightClickAgaing(PlayerInteractEvent e) {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 			if(e.getPlayer().getItemInHand() != null && e.getPlayer().getItemInHand().getType() != Material.AIR) {
+				final Player player = e.getPlayer();
 				List<String> worlds = plugin.getConfig().getStringList("Worlds");
+				int time = plugin.getConfig().getInt("MagicClock.Cooldown");
 				if(worlds.contains(e.getPlayer().getWorld().getName())) {
 					if(e.getPlayer().getItemInHand().equals(Items.MagicClock(e.getPlayer().getName()))) {
 						if(Strings.MagicClockActive.contains(e.getPlayer())) {
-							for (Player user : Bukkit.getOnlinePlayers()) {
-								if(e.getPlayer().canSee(user) == false) {
-									e.getPlayer().showPlayer(user);
+							if(cooldown.contains(e.getPlayer())) {
+								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
+							} else {
+								for (Player user : Bukkit.getOnlinePlayers()) {
+									if(e.getPlayer().canSee(user) == false) {
+										e.getPlayer().showPlayer(user);
+									}
 								}
+								Strings.MagicClockActive.remove(e.getPlayer());
+								cooldown.add(e.getPlayer());
+								Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+									public void run() {
+										if(cooldown.contains(player)) {
+											cooldown.remove(player);
+										}
+									}
+								}, time * 20);
+								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							}
-							Strings.MagicClockActive.remove(e.getPlayer());
-							e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 						} else {
-							for (Player user : Bukkit.getOnlinePlayers()) {
-								if(e.getPlayer().canSee(user) == true) {
-									e.getPlayer().hidePlayer(user);
+							if(cooldown.contains(e.getPlayer())) {
+								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
+							} else {
+								for (Player user : Bukkit.getOnlinePlayers()) {
+									if(e.getPlayer().canSee(user) == true) {
+										e.getPlayer().hidePlayer(user);
+									}
 								}
+								Strings.MagicClockActive.add(e.getPlayer());
+								cooldown.add(e.getPlayer());
+								Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+									public void run() {
+										if(cooldown.contains(player)) {
+											cooldown.remove(player);
+										}
+									}
+								}, time * 20);
+								e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							}
-							Strings.MagicClockActive.add(e.getPlayer());
-							e.getPlayer().sendMessage(plugin.getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 						}
 					}
 				}

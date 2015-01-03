@@ -41,31 +41,33 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class Main extends JavaPlugin {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public static Plugin getPlugin() {
-		return plugin;
+	
+	public Plugin getPlugin() {
+		return this.plugin;
 	}
 	
-	public static Main plugin;
-	public static FileConfiguration StorageConfig = null;
-    public static File Storage = null;
-	public static FileConfiguration ItemConfig = null;
-    public static File Item = null;
+	public static final Main theClass = new Main();
+	public Main plugin;
+	public FileConfiguration StorageConfig = null;
+    public File Storage = null;
+	public FileConfiguration ItemConfig = null;
+    public File Item = null;
 	
     int ChatTime = 0;
     int BossTime = 0;
     int ActionTime = 0;
     
 	// Console Coloring Made Easy
-	public static final String ANSI_RESET = "\u001B[0m";
-	public static final String ANSI_BLACK = "\u001B[30m";
-	public static final String ANSI_RED = "\u001B[31m";
-	public static final String ANSI_GREEN = "\u001B[32m";
-	public static final String ANSI_YELLOW = "\u001B[33m";
-	public static final String ANSI_BLUE = "\u001B[34m";
-	public static final String ANSI_PURPLE = "\u001B[35m";
-	public static final String ANSI_CYAN = "\u001B[36m";
-	public static final String ANSI_WHITE = "\u001B[37m";
-	public static final String ANSI_BOLD = "\u001B[1m";
+	public final String ANSI_RESET = "\u001B[0m";
+	public final String ANSI_BLACK = "\u001B[30m";
+	public final String ANSI_RED = "\u001B[31m";
+	public final String ANSI_GREEN = "\u001B[32m";
+	public final String ANSI_YELLOW = "\u001B[33m";
+	public final String ANSI_BLUE = "\u001B[34m";
+	public final String ANSI_PURPLE = "\u001B[35m";
+	public final String ANSI_CYAN = "\u001B[36m";
+	public final String ANSI_WHITE = "\u001B[37m";
+	public final String ANSI_BOLD = "\u001B[1m";
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -76,7 +78,7 @@ public class Main extends JavaPlugin {
 		saveDefaultConfig();
 		setupConfig();
 		reloadCustomConfig();
-		reloadCustomConfig2();
+		fixItemConfig();
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 		getServer().getPluginManager().registerEvents(new LeaveListener(this), this);
 		getServer().getPluginManager().registerEvents(new RainListener(this), this);
@@ -105,13 +107,13 @@ public class Main extends JavaPlugin {
 		ActionTime = getConfig().getInt("ActionAnnouncer.Time");
 		BukkitTask ActionAnnouncer = new ActionAnnouncer(this).runTaskTimer(this, 20, ActionTime * 20);
 		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
-		getCommand("hub").setExecutor(new Commands(this));
-		getCommand("lobby").setExecutor(new Commands(this));
-		getCommand("sethub").setExecutor(new Commands(this));
-		getCommand("hat").setExecutor(new Commands(this));
-		getCommand("hb").setExecutor(new Commands(this));
-		getCommand("uuid").setExecutor(new Commands(this));
-		getCommand("hubitems").setExecutor(new Commands(this));
+		getCommand("hub").setExecutor(new Commands());
+		getCommand("lobby").setExecutor(new Commands());
+		getCommand("sethub").setExecutor(new Commands());
+		getCommand("hat").setExecutor(new Commands());
+		getCommand("hb").setExecutor(new Commands());
+		getCommand("uuid").setExecutor(new Commands());
+		getCommand("hubitems").setExecutor(new Commands());
 		plugin = this;
 		Items.plugin = this;
 		Book.plugin = this;
@@ -474,7 +476,7 @@ public class Main extends JavaPlugin {
 	/////////
 	
 	public void reloadCustomConfig() {
-        if (Storage == null) {
+        if(Storage == null) {
         	Storage = new File(getDataFolder(), "Storage.yml");
         }
         StorageConfig = YamlConfiguration.loadConfiguration(Storage);
@@ -490,14 +492,14 @@ public class Main extends JavaPlugin {
     }
 	
     public FileConfiguration getCustomConfig() {
-        if (StorageConfig == null) {
+        if(StorageConfig == null) {
             reloadCustomConfig();
         }
         return StorageConfig;
     }
 	
     public void saveCustomConfig() {
-        if (StorageConfig == null || Storage == null) {
+        if(StorageConfig == null || Storage == null) {
             return;
         }
         try {
@@ -509,8 +511,8 @@ public class Main extends JavaPlugin {
     
     //////
     
-    public void reloadCustomConfig2() {
-        if (Item == null) {
+    public void fixItemConfig() {
+        if(Item == null) {
         	Item = new File(getDataFolder(), "Items.yml");
         }
         ItemConfig = YamlConfiguration.loadConfiguration(Item);

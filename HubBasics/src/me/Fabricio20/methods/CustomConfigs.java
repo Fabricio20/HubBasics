@@ -23,54 +23,54 @@ public class CustomConfigs {
 	/* ------------- ACESS TO ITEM CONFIG ------------- */
 	
 	public static void reloadItemConfig() {
-	    if(Main.Item == null) {
-	    	Main.Item = new File(Main.plugin.getDataFolder(), "Items.yml");
+	    if(Main.theClass.Item == null) {
+	    	Main.theClass.Item = new File(Main.theClass.getPlugin().getDataFolder(), "Items.yml");
 	    }
-	    Main.ItemConfig = YamlConfiguration.loadConfiguration(Main.Item);
+	    Main.theClass.ItemConfig = YamlConfiguration.loadConfiguration(Main.theClass.Item);
 	}
 
 	public static FileConfiguration getItemConfig() {
-		if(Main.ItemConfig == null) {
+		if(Main.theClass.ItemConfig == null) {
 			reloadItemConfig();
 		}
-	  return Main.ItemConfig;
+	  return Main.theClass.ItemConfig;
 	}
 
 	public static void saveItemConfig() {
-		if(Main.ItemConfig == null || Main.Item == null) {
+		if(Main.theClass.ItemConfig == null || Main.theClass.Item == null) {
 			return;
 		}
 		try {
-			getItemConfig().save(Main.Item);
+			getItemConfig().save(Main.theClass.Item);
 		} catch (IOException ex) {
-			Main.plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Item, ex);
+			Main.theClass.getPlugin().getLogger().log(Level.SEVERE, "Could not save config to " + Main.theClass.Item, ex);
 		}
 	}
 	
 	/* ------------- ACESS TO STORAGE CONFIG ------------- */
 	
 	public static void reloadStorageConfig() {
-		if(Main.Storage == null) {
-			Main.Storage = new File(Main.plugin.getDataFolder(), "Storage.yml");
+		if(Main.theClass.Storage == null) {
+			Main.theClass.Storage = new File(Main.theClass.getPlugin().getDataFolder(), "Storage.yml");
 		}
-		Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
+		Main.theClass.StorageConfig = YamlConfiguration.loadConfiguration(Main.theClass.Storage);
 	}
 
 	public static FileConfiguration getStorageConfig() {
-		if(Main.StorageConfig == null) {
+		if(Main.theClass.StorageConfig == null) {
 			reloadStorageConfig();
 		}
-	  return Main.StorageConfig;
+	  return Main.theClass.StorageConfig;
 	}
 
 	public static void saveStorageConfig() {
-		if(Main.StorageConfig == null || Main.Storage == null) {
+		if(Main.theClass.StorageConfig == null || Main.theClass.Storage == null) {
 			return;
 		}
 		try {
-			getStorageConfig().save(Main.Storage);
+			getStorageConfig().save(Main.theClass.Storage);
 		} catch (IOException ex) {
-			Main.plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage, ex);
+			Main.theClass.getPlugin().getLogger().log(Level.SEVERE, "Could not save config to " + Main.theClass.Storage, ex);
 		}
 	}
 	

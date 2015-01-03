@@ -1,22 +1,17 @@
 package me.Fabricio20.listeners;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
-import me.Fabricio20.Main;
 import me.Fabricio20.API.ActionAPI;
 import me.Fabricio20.methods.Book;
+import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.confuser.barapi.BarAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -49,15 +44,15 @@ public class JoinListener implements Listener {
 			 }
 		 }
 		if(plugin.getConfig().getBoolean("JoinEvents.HubAtLogin") == true) {
-			if(getCustomConfig().contains("Hub.World")) {
+			if(CustomConfigs.getStorageConfig().contains("Hub.World")) {
 				Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
-				if(Bukkit.getWorld(getCustomConfig().getString("Hub.World")) != null) {
-					loc.setWorld(Bukkit.getWorld(getCustomConfig().getString("Hub.World")));
-					loc.setX(getCustomConfig().getInt("Hub.X"));
-					loc.setY(getCustomConfig().getInt("Hub.Y"));
-					loc.setZ(getCustomConfig().getInt("Hub.Z"));
-					loc.setYaw(getCustomConfig().getInt("Hub.Yaw"));
-					loc.setPitch(getCustomConfig().getInt("Hub.Pitch"));
+				if(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")) != null) {
+					loc.setWorld(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")));
+					loc.setX(CustomConfigs.getStorageConfig().getInt("Hub.X"));
+					loc.setY(CustomConfigs.getStorageConfig().getInt("Hub.Y"));
+					loc.setZ(CustomConfigs.getStorageConfig().getInt("Hub.Z"));
+					loc.setYaw(CustomConfigs.getStorageConfig().getInt("Hub.Yaw"));
+					loc.setPitch(CustomConfigs.getStorageConfig().getInt("Hub.Pitch"));
 					e.getPlayer().teleport(loc);
 				}
 			}
@@ -92,30 +87,5 @@ public class JoinListener implements Listener {
 	}
 	 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	 
-	 public static void reloadCustomConfig() {
-	        if (Main.Storage == null) {
-	        Main.Storage = new File(plugin.getDataFolder(), "Storage.yml");
-	        }
-	        Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
-	    }
-		
-	  public static FileConfiguration getCustomConfig() {
-	      if (Main.StorageConfig == null) {
-	            reloadCustomConfig();
-	      }
-	      return Main.StorageConfig;
-	  }
-		
-	  public static void saveCustomConfig() {
-	      if (Main.StorageConfig == null || Main.Storage == null) {
-	          return;
-	      }
-	      try {
-	          getCustomConfig().save(Main.Storage);
-	      } catch (IOException ex) {
-	       plugin.getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage, ex);
-	      }
-	  }
 	 
 }

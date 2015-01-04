@@ -2,6 +2,8 @@ package me.Fabricio20.listeners;
 
 import java.util.List;
 
+import me.Fabricio20.Main;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -10,22 +12,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class JumpListener implements Listener {
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	private final JavaPlugin plugin;
-
-	public JumpListener(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@EventHandler
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
-		if (plugin.getConfig().getBoolean("Others.DoubleJump") == true) {
+		if (Main.getPlugin().getConfig().getBoolean("Others.DoubleJump") == true) {
 				Player player = event.getPlayer();
 				if (player.getGameMode() == GameMode.CREATIVE)
 					return;
@@ -43,8 +35,8 @@ public class JumpListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
-		if (plugin.getConfig().getBoolean("Others.DoubleJump") == true) {
-			List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		if(Main.getPlugin().getConfig().getBoolean("Others.DoubleJump") == true) {
+			List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
 			Player player = event.getPlayer();
 			if(worlds.contains(player.getWorld().getName())) {
 				if ((player.getGameMode() != GameMode.CREATIVE)

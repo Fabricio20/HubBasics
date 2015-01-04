@@ -3,23 +3,14 @@ package me.Fabricio20.runnables;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.Fabricio20.Main;
 import me.Fabricio20.API.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class ActionAnnouncer extends BukkitRunnable {
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	private final JavaPlugin plugin;
-
-	public ActionAnnouncer(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	List<String> Announces = new ArrayList<String>();
 	List<String> Worlds = new ArrayList<String>();
@@ -28,9 +19,9 @@ public class ActionAnnouncer extends BukkitRunnable {
 
 	@SuppressWarnings("deprecation")
 	public void run() {
-		if (plugin.getConfig().getBoolean("ActionAnnouncer.Enabled") == true) {
-			if (plugin.getConfig().getBoolean("ActionAnnouncer.Perworld") == false) {
-				Announces = plugin.getConfig().getStringList("ActionAnnouncer.Msgs");
+		if (Main.getPlugin().getConfig().getBoolean("ActionAnnouncer.Enabled") == true) {
+			if (Main.getPlugin().getConfig().getBoolean("ActionAnnouncer.Perworld") == false) {
+				Announces = Main.getPlugin().getConfig().getStringList("ActionAnnouncer.Msgs");
 				int Max = Announces.size() - 1;
 				if (Stamp == 0) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
@@ -49,8 +40,8 @@ public class ActionAnnouncer extends BukkitRunnable {
 					Stamp = 0;
 				}
 			} else {
-				Announces = plugin.getConfig().getStringList("ActionAnnouncer.Msgs");
-				Worlds = plugin.getConfig().getStringList("ActionAnnouncer.Worlds");
+				Announces = Main.getPlugin().getConfig().getStringList("ActionAnnouncer.Msgs");
+				Worlds = Main.getPlugin().getConfig().getStringList("ActionAnnouncer.Worlds");
 				int Max = Announces.size() - 1;
 				if (Stamp == 0) {
 					for (Player player : Bukkit.getOnlinePlayers()) {

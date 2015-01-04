@@ -2,19 +2,15 @@ package me.Fabricio20.methods;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.Fabricio20.Main;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class Items {
-	
-	public static JavaPlugin plugin;
-
-	public Items(JavaPlugin plugin) {
-		Items.plugin = plugin;
-	}
 	
 	private static String Item1Name = "";
 	private static String Item2Name = "";
@@ -299,10 +295,10 @@ public class Items {
 	
 	public static ItemStack MagicClock(String player) {
 		fixItemName(player);
-		ItemStack Clock = new ItemStack(Material.getMaterial(plugin.getConfig().getString("MagicClock.Material")));
+		ItemStack Clock = new ItemStack(Material.getMaterial(Main.getPlugin().getConfig().getString("MagicClock.Material")));
 		ItemMeta Meta = Clock.getItemMeta();
 		Meta.setDisplayName(MagicClockName);
-		List<String> LoreFromConfig = plugin.getConfig().getStringList("MagicClock.Lore");
+		List<String> LoreFromConfig = Main.getPlugin().getConfig().getStringList("MagicClock.Lore");
 		List<String> NewLore = new ArrayList<String>();
 		for(String string : LoreFromConfig) {
 			NewLore.add(string.replace("&", "§").replace("%p", player));
@@ -342,8 +338,8 @@ public class Items {
 		if(CustomConfigs.getItemConfig().contains("Item9.Name") && CustomConfigs.getItemConfig().getString("Item9.Name") != null && CustomConfigs.getItemConfig().getString("Item9.Name") != "") {
 			Item9Name = CustomConfigs.getItemConfig().getString("Item9.Name").replace("&", "§").replace("%p", playername);
 		}
-		if(plugin.getConfig().contains("MagicClock.Name")) {
-			MagicClockName = plugin.getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", playername);
+		if(Main.getPlugin().getConfig().contains("MagicClock.Name")) {
+			MagicClockName = Main.getPlugin().getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", playername);
 		}
 	}
 	

@@ -3,22 +3,14 @@ package me.Fabricio20.listeners;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.Fabricio20.Main;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class ServerPingListener implements Listener {
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	private final JavaPlugin plugin;
-
-	public ServerPingListener(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	List<String> Motds = new ArrayList<String>();
 
@@ -26,9 +18,9 @@ public class ServerPingListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void List(ServerListPingEvent e) {
-		Motds = plugin.getConfig().getStringList("MotdSystem.Motds");
-		if(plugin.getConfig().getBoolean("MotdSystem.CustomMotd") == true) {
-			if(plugin.getConfig().getBoolean("MotdSystem.MoreMotds") == true) {
+		Motds = Main.getPlugin().getConfig().getStringList("MotdSystem.Motds");
+		if(Main.getPlugin().getConfig().getBoolean("MotdSystem.CustomMotd") == true) {
+			if(Main.getPlugin().getConfig().getBoolean("MotdSystem.MoreMotds") == true) {
 				if(Stamp == 0) {
 					e.setMotd(Motds.get(0).replace("&", "§"));
 					Stamp = Stamp + 1;

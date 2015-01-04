@@ -2,25 +2,20 @@ package me.Fabricio20.listeners;
 
 import java.util.List;
 
+import me.Fabricio20.Main;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType.SlotType;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class ItemMoveListener implements Listener {
 	
-	private final JavaPlugin plugin;
-
-	public ItemMoveListener(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-	
 	@EventHandler
 	public void onItemMove(InventoryClickEvent e) {
-		List<String> worlds = plugin.getConfig().getStringList("Worlds");
-		if(plugin.getConfig().getBoolean("Others.AllowItemMove") == false) {
+		List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
+		if(Main.getPlugin().getConfig().getBoolean("Others.AllowItemMove") == false) {
 			if (e.getClickedInventory() != null) {
 				if(worlds.contains(e.getWhoClicked().getWorld().getName())) {
 					e.setCancelled(true);
@@ -29,12 +24,12 @@ public class ItemMoveListener implements Listener {
 		}
 		if(e.getClickedInventory() != null) {
 			if(worlds.contains(e.getWhoClicked().getWorld().getName())) {
-				if (plugin.getConfig().getBoolean("MagicClock.AllowMove") == false) {
-					if (e.getSlot() == plugin.getConfig().getInt("MagicClock.Slot")) {
+				if (Main.getPlugin().getConfig().getBoolean("MagicClock.AllowMove") == false) {
+					if (e.getSlot() == Main.getPlugin().getConfig().getInt("MagicClock.Slot")) {
 						e.setCancelled(true);
 					}
 				}
-				if(plugin.getConfig().getBoolean("Others.HatAllowMove") == false) {
+				if(Main.getPlugin().getConfig().getBoolean("Others.HatAllowMove") == false) {
 					if(e.getSlotType().equals(SlotType.ARMOR) && e.getRawSlot() == 5) {
 						e.setCancelled(true);
 						Player player = (Player) e.getWhoClicked();

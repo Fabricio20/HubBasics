@@ -1,6 +1,8 @@
 package me.Fabricio20.listeners;
 
 import java.util.List;
+
+import me.Fabricio20.Main;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 
@@ -8,29 +10,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class JoinListenerForItems implements Listener {
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	private static JavaPlugin plugin;
-
-	public JoinListenerForItems(JavaPlugin plugin) {
-		JoinListenerForItems.plugin = plugin;
-	}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@EventHandler
 	public void PlayerJoinGetItem(PlayerJoinEvent e) {
-		 List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		 List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
 		 Player player = e.getPlayer();
 		 if(worlds.contains(e.getPlayer().getWorld().getName())) {
-			 if(plugin.getConfig().getBoolean("Others.ClearInventory") == true) {
+			 if(Main.getPlugin().getConfig().getBoolean("Others.ClearInventory") == true) {
 				 e.getPlayer().getInventory().clear();
 			 }
-			 if(plugin.getConfig().getBoolean("Others.JoinItems") == true) {
+			 if(Main.getPlugin().getConfig().getBoolean("Others.JoinItems") == true) {
     ////////////////////////////////////////////////////////////////////////////////////////- Start Of 1
 				if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item1(e.getPlayer().getName()))) {

@@ -3,6 +3,7 @@ package me.Fabricio20.listeners;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.Fabricio20.Main;
 import me.Fabricio20.Strings;
 
 import org.bukkit.GameMode;
@@ -14,20 +15,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 public class MoveListener implements Listener {
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	private final JavaPlugin plugin;
-
-	public MoveListener(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	private ArrayList<Player> jumpers = new ArrayList<Player>();
 	
@@ -35,7 +25,7 @@ public class MoveListener implements Listener {
 	
 	@EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-		List<String> worlds = plugin.getConfig().getStringList("Worlds");
+		List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
 		if(worlds.contains(e.getPlayer().getWorld().getName())) {
 			if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.getMaterial(Strings.LaunchPadBlock)) {
 				if (e.getPlayer().getGameMode().equals(GameMode.SURVIVAL) || e.getPlayer().getGameMode().equals(GameMode.ADVENTURE)) {

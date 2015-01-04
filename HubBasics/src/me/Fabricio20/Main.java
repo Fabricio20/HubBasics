@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
 import me.Fabricio20.listeners.CommandListener;
 import me.Fabricio20.listeners.DeathListener;
 import me.Fabricio20.listeners.DropItemListener;
@@ -26,7 +24,6 @@ import me.Fabricio20.listeners.VoidFallListener;
 import me.Fabricio20.methods.Book;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
-import me.Fabricio20.methods.MakeItemsConfig;
 import me.Fabricio20.runnables.ActionAnnouncer;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
@@ -34,7 +31,6 @@ import me.Fabricio20.runnables.ChatAnnouncer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -77,8 +73,8 @@ public class Main extends JavaPlugin {
 		getConfig();
 		saveDefaultConfig();
 		setupConfig();
-		reloadCustomConfig();
-		fixItemConfig();
+		CustomConfigs.reloadStorageConfig();
+		CustomConfigs.reloadItemConfig();
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 		getServer().getPluginManager().registerEvents(new LeaveListener(this), this);
 		getServer().getPluginManager().registerEvents(new RainListener(this), this);
@@ -472,78 +468,4 @@ public class Main extends JavaPlugin {
 			saveConfig();
 		}
 	}
-	
-	/////////
-	
-	public void reloadCustomConfig() {
-        if(Storage == null) {
-        	Storage = new File(getDataFolder(), "Storage.yml");
-        }
-        StorageConfig = YamlConfiguration.loadConfiguration(Storage);
-        if(!StorageConfig.contains("Hub.World")) {
-            StorageConfig.set("Hub.World", Bukkit.getWorlds().get(0).getSpawnLocation().getWorld().getName());
-            StorageConfig.set("Hub.X", Bukkit.getWorlds().get(0).getSpawnLocation().getX());
-            StorageConfig.set("Hub.Y", Bukkit.getWorlds().get(0).getSpawnLocation().getY());
-            StorageConfig.set("Hub.Z", Bukkit.getWorlds().get(0).getSpawnLocation().getZ());
-            StorageConfig.set("Hub.Yaw", Bukkit.getWorlds().get(0).getSpawnLocation().getYaw());
-            StorageConfig.set("Hub.Pitch", Bukkit.getWorlds().get(0).getSpawnLocation().getPitch());
-        }
-        saveCustomConfig();
-    }
-	
-    public FileConfiguration getCustomConfig() {
-        if(StorageConfig == null) {
-            reloadCustomConfig();
-        }
-        return StorageConfig;
-    }
-	
-    public void saveCustomConfig() {
-        if(StorageConfig == null || Storage == null) {
-            return;
-        }
-        try {
-            getCustomConfig().save(Storage);
-        } catch (IOException ex) {
-            getLogger().log(Level.SEVERE, "Could not save config to " + Storage, ex);
-        }
-    }
-    
-    //////
-    
-    public void fixItemConfig() {
-        if(Item == null) {
-        	Item = new File(getDataFolder(), "Items.yml");
-        }
-        ItemConfig = YamlConfiguration.loadConfiguration(Item);
-        if(!ItemConfig.contains("Item1.Skull")) {
-        	MakeItemsConfig.make1();
-        }
-        if(!ItemConfig.contains("Item2.Skull")) {
-        	MakeItemsConfig.make2();
-        }
-        if(!ItemConfig.contains("Item3.Skull")) {
-        	MakeItemsConfig.make3();
-        }
-        if(!ItemConfig.contains("Item4.Skull")) {
-        	MakeItemsConfig.make4();
-        }
-        if(!ItemConfig.contains("Item5.Skull")) {
-        	MakeItemsConfig.make5();
-        }
-        if(!ItemConfig.contains("Item6.Skull")) {
-        	MakeItemsConfig.make6();
-        }
-        if(!ItemConfig.contains("Item7.Skull")) {
-        	MakeItemsConfig.make7();
-        }
-        if(!ItemConfig.contains("Item8.Skull")) {
-        	MakeItemsConfig.make8();
-        }
-        if(!ItemConfig.contains("Item9.Skull")) {
-        	MakeItemsConfig.make9();
-        }
-        CustomConfigs.saveStorageConfig();
-    }
-	
 }

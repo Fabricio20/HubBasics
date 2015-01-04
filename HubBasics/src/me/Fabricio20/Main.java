@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import me.Fabricio20.listeners.CommandListener;
 import me.Fabricio20.listeners.DeathListener;
 import me.Fabricio20.listeners.DropItemListener;
@@ -21,9 +22,7 @@ import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.listeners.ServerPingListener;
 import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
-import me.Fabricio20.methods.Book;
 import me.Fabricio20.methods.CustomConfigs;
-import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.ActionAnnouncer;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
@@ -38,99 +37,48 @@ import org.bukkit.scheduler.BukkitTask;
 public class Main extends JavaPlugin {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public Plugin getPlugin() {
-		return this.plugin;
+	public static Plugin getPlugin() {
+		return plugin;
 	}
 	
-	public static final Main theClass = new Main();
-	public Main plugin;
-	public FileConfiguration StorageConfig = null;
-    public File Storage = null;
-	public FileConfiguration ItemConfig = null;
-    public File Item = null;
+	public static Main plugin;
+	public static FileConfiguration StorageConfig = null;
+    public static File Storage = null;
+	public static FileConfiguration ItemConfig = null;
+    public static File Item = null;
 	
-    int ChatTime = 0;
-    int BossTime = 0;
-    int ActionTime = 0;
+    public static int ChatTime = 0;
+    public static int BossTime = 0;
+    public static int ActionTime = 0;
     
 	// Console Coloring Made Easy
-	public final String ANSI_RESET = "\u001B[0m";
-	public final String ANSI_BLACK = "\u001B[30m";
-	public final String ANSI_RED = "\u001B[31m";
-	public final String ANSI_GREEN = "\u001B[32m";
-	public final String ANSI_YELLOW = "\u001B[33m";
-	public final String ANSI_BLUE = "\u001B[34m";
-	public final String ANSI_PURPLE = "\u001B[35m";
-	public final String ANSI_CYAN = "\u001B[36m";
-	public final String ANSI_WHITE = "\u001B[37m";
-	public final String ANSI_BOLD = "\u001B[1m";
+	@SuppressWarnings("unused")
+	private final String ANSI_RESET = "\u001B[0m";
+	@SuppressWarnings("unused")
+	private final String ANSI_BLACK = "\u001B[30m";
+	@SuppressWarnings("unused")
+	private final String ANSI_RED = "\u001B[31m";
+	@SuppressWarnings("unused")
+	private final String ANSI_GREEN = "\u001B[32m";
+	@SuppressWarnings("unused")
+	private final String ANSI_YELLOW = "\u001B[33m";
+	@SuppressWarnings("unused")
+	private final String ANSI_BLUE = "\u001B[34m";
+	@SuppressWarnings("unused")
+	private final String ANSI_PURPLE = "\u001B[35m";
+	@SuppressWarnings("unused")
+	private final String ANSI_CYAN = "\u001B[36m";
+	@SuppressWarnings("unused")
+	private final String ANSI_WHITE = "\u001B[37m";
+	@SuppressWarnings("unused")
+	private final String ANSI_BOLD = "\u001B[1m";
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@SuppressWarnings("unused")
 	@Override
 	public void onEnable() {
-		getConfig();
-		saveDefaultConfig();
-		setupConfig();
-		CustomConfigs.reloadStorageConfig();
-		CustomConfigs.reloadItemConfig();
-		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
-		getServer().getPluginManager().registerEvents(new LeaveListener(this), this);
-		getServer().getPluginManager().registerEvents(new RainListener(this), this);
-		getServer().getPluginManager().registerEvents(new VoidFallListener(this), this);
-		getServer().getPluginManager().registerEvents(new ServerPingListener(this), this);
-		getServer().getPluginManager().registerEvents(new CommandListener(this), this);
-		getServer().getPluginManager().registerEvents(new JumpListener(this), this);
-		getServer().getPluginManager().registerEvents(new MoveListener(this), this);
-		getServer().getPluginManager().registerEvents(new RightClickListener(this), this);
-		getServer().getPluginManager().registerEvents(new SignChangeListener(this), this);
-		getServer().getPluginManager().registerEvents(new HungerListener(this), this);
-		getServer().getPluginManager().registerEvents(new HealthListener(this), this);
-		getServer().getPluginManager().registerEvents(new JoinListenerForItems(this), this);
-		getServer().getPluginManager().registerEvents(new DeathListener(this), this);
-		getServer().getPluginManager().registerEvents(new DropItemListener(this), this);
-		getServer().getPluginManager().registerEvents(new ItemMoveListener(this), this);
-		getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
-		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(this, 300, 300);
-		Strings.RunnablesEnabled = 1;
-		BossTime = getConfig().getInt("BossAnnouncer.Time");
-		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(this, 20, BossTime * 20);
-		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
-		ChatTime = getConfig().getInt("ChatAnnouncer.Time");
-		BukkitTask ChatAnnouncer = new ChatAnnouncer(this).runTaskTimer(this, 20, ChatTime * 20);
-		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
-		ActionTime = getConfig().getInt("ActionAnnouncer.Time");
-		BukkitTask ActionAnnouncer = new ActionAnnouncer(this).runTaskTimer(this, 20, ActionTime * 20);
-		Strings.RunnablesEnabled = Strings.RunnablesEnabled + 1;
-		getCommand("hub").setExecutor(new Commands());
-		getCommand("lobby").setExecutor(new Commands());
-		getCommand("sethub").setExecutor(new Commands());
-		getCommand("hat").setExecutor(new Commands());
-		getCommand("hb").setExecutor(new Commands());
-		getCommand("uuid").setExecutor(new Commands());
-		getCommand("hubitems").setExecutor(new Commands());
 		plugin = this;
-		Items.plugin = this;
-		Book.plugin = this;
-		Strings.Prefix = plugin.getConfig().getString("Others.Prefix").replace("&", "§");
-		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
-		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
-		try {
-			MetricsLite metrics = new MetricsLite(this);
-		    metrics.start();
-		    System.out.println("[HubBasics] Metrics Started!");
-		} catch (IOException e) {
-		   System.out.println("[HubBasics] Error while trying to submit metrics!");
-		}
-		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
-		System.out.println("= Config: \u001B[32mReady\u001B[0m");
-		System.out.println("= Runnables: \u001B[32m" + Strings.RunnablesEnabled + "\u001B[0m");
-		System.out.println("= Version : \u001B[32m" + getDescription().getVersion() + "\u001B[0m");
-		System.out.println("= BarAPI: \u001B[32mFound\u001B[0m");
-		System.out.println("= Author  : \u001B[33mFabricio20\u001B[0m");
-		System.out.println("= Status  : \u001B[32mActive\u001B[0m");
-		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		initPlugin();
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -467,5 +415,67 @@ public class Main extends JavaPlugin {
 			getConfig().options().header(Header.toString());
 			saveConfig();
 		}
+	}
+	
+	@SuppressWarnings("unused")
+	public void initPlugin() {
+		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new LeaveListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new RainListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new VoidFallListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new ServerPingListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new CommandListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new JumpListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new MoveListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new RightClickListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new SignChangeListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new HungerListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new HealthListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new JoinListenerForItems(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new DropItemListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new ItemMoveListener(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
+		BukkitTask AntiOP = new AntiOp(this).runTaskTimer(Main.getPlugin(), 300, 300);
+		Main.BossTime = Main.getPlugin().getConfig().getInt("BossAnnouncer.Time");
+		BukkitTask BossAnnouncer = new BossAnnouncer(this).runTaskTimer(Main.getPlugin(), 20, Main.BossTime * 20);
+		Main.ChatTime = Main.getPlugin().getConfig().getInt("ChatAnnouncer.Time");
+		BukkitTask ChatAnnouncer = new ChatAnnouncer(this).runTaskTimer(Main.getPlugin(), 20, Main.ChatTime * 20);
+		Main.ActionTime = Main.getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+		BukkitTask ActionAnnouncer = new ActionAnnouncer(this).runTaskTimer(Main.getPlugin(), 20, Main.ActionTime * 20);
+		getCommand("hub").setExecutor(new Commands());
+		getCommand("lobby").setExecutor(new Commands());
+		getCommand("sethub").setExecutor(new Commands());
+		getCommand("hat").setExecutor(new Commands());
+		getCommand("hb").setExecutor(new Commands());
+		getCommand("uuid").setExecutor(new Commands());
+		getCommand("hubitems").setExecutor(new Commands());
+		try {
+			MetricsLite metrics = new MetricsLite(this);
+		    metrics.start();
+		    System.out.println("[HubBasics] Metrics Started!");
+		} catch (IOException e) {
+		   System.out.println("[HubBasics] Error while trying to submit metrics!");
+		}
+		Strings.Prefix = getConfig().getString("Others.Prefix").replace("&", "§");
+		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
+		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
+		getConfig();
+		saveDefaultConfig();
+		setupConfig();
+		CustomConfigs.reloadStorageConfig();
+		CustomConfigs.reloadItemConfig();
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
+		System.out.println("= Config: \u001B[32mReady\u001B[0m");
+		System.out.println("= Runnables: \u001B[32m" + "4" + "\u001B[0m");
+		System.out.println("= Version : \u001B[32m" + getDescription().getVersion() + "\u001B[0m");
+		if(Bukkit.getPluginManager().getPlugin("BarAPI") != null) {
+			System.out.println("= BarAPI: \u001B[32mFound\u001B[0m");
+		} else {
+			System.out.println("= BarAPI: \u001B[34mNot Found\u001B[0m");
+		}
+		System.out.println("= Author  : \u001B[33mFabricio20\u001B[0m");
+		System.out.println("= Status  : \u001B[32mActive\u001B[0m");
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 	}
 }

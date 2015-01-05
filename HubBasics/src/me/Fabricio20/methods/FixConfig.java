@@ -199,6 +199,10 @@ public class FixConfig {
 			Main.getPlugin().getConfig().set("MagicClock.CooldownMSG", "&cCooldown! You Must Wait 12 Seconds!");
 			Main.getPlugin().saveConfig();
 		}
+		if(!Main.getPlugin().getConfig().contains("MagicClock.GiveOnWorldChange")) {
+			Main.getPlugin().getConfig().set("MagicClock.GiveOnWorldChange", false);
+			Main.getPlugin().saveConfig();
+		}
 		if(!Main.getPlugin().getConfig().contains("TitleSystem.Enabled")) {
 			Main.getPlugin().getConfig().set("TitleSystem.Enabled", false);
 			Main.getPlugin().saveConfig();

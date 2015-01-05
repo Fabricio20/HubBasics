@@ -60,7 +60,9 @@ public class JoinListener implements Listener {
 		if(Main.getPlugin().getConfig().getBoolean("MagicClock.Enabled") == true) {
 			List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				e.getPlayer().getInventory().setItem(Main.getPlugin().getConfig().getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
+				if(!e.getPlayer().getInventory().contains(Items.MagicClock(e.getPlayer().getName()))) {
+					e.getPlayer().getInventory().setItem(Main.getPlugin().getConfig().getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
+				}
 			}
 		}
 		if(Main.getPlugin().getConfig().getBoolean("TitleSystem.Enabled") == true) {

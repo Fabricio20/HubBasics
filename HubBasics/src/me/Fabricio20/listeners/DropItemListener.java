@@ -3,6 +3,7 @@ package me.Fabricio20.listeners;
 import java.util.List;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.methods.Items;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,10 +21,12 @@ public class DropItemListener implements Listener {
 		}
 		if(Main.getPlugin().getConfig().getBoolean("MagicClock.NoDrop") == true) {
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				e.setCancelled(true);
+				if(e.getItemDrop().getItemStack().equals(Items.MagicClock(e.getPlayer().getName()))) {
+					e.setCancelled(true);
+				}
 			}
 		}
-		if(Main.getPlugin().getConfig().getBoolean("Others.HatAllowMove") == false) {
+		if(Main.getPlugin().getConfig().getBoolean("Others.HatDrop") == false) {
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				e.setCancelled(true);
 			}

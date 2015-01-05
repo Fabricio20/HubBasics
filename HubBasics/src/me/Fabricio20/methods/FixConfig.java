@@ -260,7 +260,7 @@ public class FixConfig {
 			Main.getPlugin().saveConfig();
 		}
 		if(!Main.getPlugin().getConfig().contains("Others.HatDrop")) {
-			Main.getPlugin().getConfig().set("Others.HatAllowMove", true);
+			Main.getPlugin().getConfig().set("Others.HatDrop", true);
 			Main.getPlugin().saveConfig();
 		}
 		if(!Main.getPlugin().getConfig().contains("Others.NoPermissionForHat")) {

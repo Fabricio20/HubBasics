@@ -86,6 +86,11 @@ public class Main extends JavaPlugin {
 	
 	@SuppressWarnings("unused")
 	public void initPlugin() {
+		getConfig();
+		saveDefaultConfig();
+		FixConfig.fix();
+		CustomConfigs.reloadStorageConfig();
+		CustomConfigs.reloadItemConfig();
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new LeaveListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new RainListener(), this);
@@ -127,11 +132,6 @@ public class Main extends JavaPlugin {
 		Strings.Prefix = getConfig().getString("Others.Prefix").replace("&", "§");
 		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
-		getConfig();
-		saveDefaultConfig();
-		FixConfig.fix();
-		CustomConfigs.reloadStorageConfig();
-		CustomConfigs.reloadItemConfig();
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
 		System.out.println("= Runnables: \u001B[32m" + "4" + "\u001B[0m");

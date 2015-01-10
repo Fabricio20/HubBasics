@@ -25,7 +25,7 @@ public class RightClickListener implements Listener {
 	
 	ArrayList<Player> cooldown = new ArrayList<Player>();
 	
-	ArrayList<Player> players = new ArrayList<Player>();
+	public static ArrayList<Player> players = new ArrayList<Player>();
 	
 	 VEK gv = new VEK();
 
@@ -57,12 +57,12 @@ public class RightClickListener implements Listener {
 				if(e.getRightClicked() instanceof Player) {
 					Player target = (Player) e.getRightClicked();
 					if(target.isInsideVehicle() == false) {
-						players.remove(e.getRightClicked());
+						players.add(target);
 					}
 					if(!target.hasPermission(new Permissions().NonStackable)) {
-						if(!players.contains(target)) {
+						if(players.contains(target)) {
 							player.setPassenger(target);
-							players.add(target);
+							players.remove(target);
 						}
 					}
 				}
@@ -81,11 +81,11 @@ public class RightClickListener implements Listener {
 				if(e.getAction() == Action.LEFT_CLICK_AIR) {
 					if((player.getPassenger() instanceof Player)) {
 						Player passenger = (Player)player.getPassenger();
-						if(players.contains(passenger)) {
+						if(!players.contains(passenger)) {
 							passenger.leaveVehicle();
 				            Location loc = player.getLocation();
 				            passenger.setVelocity(this.gv.VEC(loc).multiply(2));
-				            players.remove(passenger);
+				            players.add(passenger);
 						}
 					}
 				}

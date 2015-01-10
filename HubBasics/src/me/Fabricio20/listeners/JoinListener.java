@@ -5,7 +5,6 @@ import java.util.List;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.API.ActionAPI;
-import me.Fabricio20.methods.Book;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
@@ -49,7 +48,7 @@ public class JoinListener implements Listener {
 		if(Main.theClass.getPlugin().getConfig().getBoolean("BookSystem.Enabled") == true) {
 			List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				e.getPlayer().getInventory().setItem(Main.theClass.getPlugin().getConfig().getInt("BookSystem.Slot"), Book.build());
+				e.getPlayer().getInventory().setItem(Main.theClass.getPlugin().getConfig().getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
 			}
 		}
 		if(Main.theClass.getPlugin().getConfig().getBoolean("BossAnnouncer.Enabled") == true && Main.theClass.getPlugin().getConfig().getBoolean("JoinEvents.BossBarOnJoin") == true) {

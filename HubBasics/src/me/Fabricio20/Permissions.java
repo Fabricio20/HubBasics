@@ -9,5 +9,6 @@ public class Permissions {
 	public Permission NonStackable = new Permission("HubBasics.NonStackable");
 	public Permission UUID = new Permission("HubBasics.UUID");
 	public Permission Plugins = new Permission("HubBasics.Plugins");
+	public Permission Stacker = new Permission("HubBasics.Stacker");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -3,6 +3,7 @@ package me.Fabricio20;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
+import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 
@@ -259,7 +260,21 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage("§cThis command is disabled!");
 				}
 			}
-		} // More Commands Here
+		} else if(commandLabel.equalsIgnoreCase("stacker")) {
+			if(sender.hasPermission(new Permissions().Stacker)) {
+				if(!(sender instanceof Player)) {
+					sender.sendMessage("Only Players Can Use This Command!");
+				} else {
+					if(RightClickListener.players.contains((Player)sender)) {
+						RightClickListener.players.remove((Player)sender);
+					} else {
+						RightClickListener.players.add((Player)sender);
+					}
+				}
+			} else {
+				sender.sendMessage(Strings.PermissionError);
+			}
+		}
 		return false;
 	}
 }

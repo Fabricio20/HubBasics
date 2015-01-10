@@ -8,7 +8,6 @@ import me.Fabricio20.Permissions;
 import me.Fabricio20.Strings;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
-import me.Fabricio20.methods.VEK;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -20,14 +19,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.util.Vector;
 
 public class RightClickListener implements Listener {
 	
 	ArrayList<Player> cooldown = new ArrayList<Player>();
 	
 	public static ArrayList<Player> players = new ArrayList<Player>();
-	
-	 VEK gv = new VEK();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -84,7 +82,7 @@ public class RightClickListener implements Listener {
 						if(!players.contains(passenger)) {
 							passenger.leaveVehicle();
 				            Location loc = player.getLocation();
-				            passenger.setVelocity(this.gv.VEC(loc).multiply(2));
+				            passenger.setVelocity(VEC(loc).multiply(2));
 				            players.add(passenger);
 						}
 					}
@@ -227,4 +225,18 @@ public class RightClickListener implements Listener {
 			}
 		}
 	}	
+	
+	public Vector VEC(Location loc) {
+	    double pitch = (loc.getPitch() + 90.0F) * 3.141592653589793D / 180.0D;
+	    double yaw = (loc.getYaw() + 90.0F) * 3.141592653589793D / 180.0D;
+	    
+	    double x = Math.sin(pitch) * Math.cos(yaw);
+	    double y = Math.sin(pitch) * Math.sin(yaw);
+	    double z = Math.cos(pitch);
+	    
+	    Vector vec = new Vector(x, z, y);
+	    
+	    return vec;
+	  }
+	
 }

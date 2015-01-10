@@ -17,6 +17,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item1.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item1.Slot", 0);
 		CustomConfigs.getItemConfig().set("Item1.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make2() {
@@ -29,6 +30,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item2.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item2.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item2.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make3() {
@@ -41,6 +43,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item3.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item3.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item3.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make4() {
@@ -53,6 +56,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item4.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item4.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item4.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make5() {
@@ -65,6 +69,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item5.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item5.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item5.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make6() {
@@ -77,6 +82,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item6.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item6.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item6.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make7() {
@@ -89,6 +95,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item7.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item7.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item7.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make8() {
@@ -101,6 +108,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item8.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item8.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item8.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	public static void make9() {
@@ -113,6 +121,7 @@ public class MakeItemsConfig {
 		CustomConfigs.getItemConfig().set("Item9.Lore", NewLore);
 		CustomConfigs.getItemConfig().set("Item9.Slot", 1);
 		CustomConfigs.getItemConfig().set("Item9.Command", "/me I just installed HubBasics!");
+		CustomConfigs.saveItemConfig();
 	}
 	
 	/* ----------------------------------------------------------------------------------------- */

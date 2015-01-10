@@ -1,4 +1,4 @@
-package me.Fabricio20.runnables;
+package me.Fabricio20.runnables.V1_7;
 
 import java.util.ArrayList;
 import java.util.List;

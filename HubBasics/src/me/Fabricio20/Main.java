@@ -23,7 +23,6 @@ import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.FixConfig;
-import me.Fabricio20.runnables.ActionAnnouncer;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
@@ -42,13 +41,13 @@ public class Main extends JavaPlugin {
 	}
 	
 	public static Main theClass = null;
-	public String version = Bukkit.getVersion();
+	public String version;
 	
 	public Main plugin;
-	public FileConfiguration StorageConfig = null;
-    public File Storage = null;
-	public FileConfiguration ItemConfig = null;
-    public File Item = null;
+	public static FileConfiguration StorageConfig = null;
+    public static File Storage = null;
+	public static FileConfiguration ItemConfig = null;
+    public static File Item = null;
 	
     private int ChatTime = 0;
     private int BossTime = 0;
@@ -92,6 +91,7 @@ public class Main extends JavaPlugin {
 	
 	@SuppressWarnings("unused")
 	public void initPlugin() {
+		version = Bukkit.getVersion();
 		getConfig();
 		saveDefaultConfig();
 		FixConfig.fix();
@@ -99,8 +99,12 @@ public class Main extends JavaPlugin {
 		CustomConfigs.reloadItemConfig();
 		if(version.contains("1.7")) {
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
+			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_7.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else if(version.contains("1.8")) {
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TabListJoin(), this);
+			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else {
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Unsuported Server Version Detected!");
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Some Options Where Disabled!");
@@ -127,8 +131,6 @@ public class Main extends JavaPlugin {
 		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(getPlugin(), 20, BossTime * 20);
 		ChatTime = getPlugin().getConfig().getInt("ChatAnnouncer.Time");
 		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(getPlugin(), 20, ChatTime * 20);
-		ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
-		BukkitTask ActionAnnouncer = new ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		getCommand("hub").setExecutor(new Commands());
 		getCommand("lobby").setExecutor(new Commands());
 		getCommand("sethub").setExecutor(new Commands());

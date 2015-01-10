@@ -99,10 +99,12 @@ public class Main extends JavaPlugin {
 		CustomConfigs.reloadItemConfig();
 		if(version.contains("1.7")) {
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_7.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else if(version.contains("1.8")) {
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TitleJoin(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else {

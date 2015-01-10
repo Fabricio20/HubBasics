@@ -63,21 +63,6 @@ public class JoinListener implements Listener {
 				}
 			}
 		}
-		if(Main.theClass.getPlugin().getConfig().getBoolean("TitleSystem.Enabled") == true) {
-			String title = " ";
-			String subtitle = " ";
-			if(Main.theClass.getPlugin().getConfig().getString("TitleSystem.Title") != "") {
-				title = Main.theClass.getPlugin().getConfig().getString("TitleSystem.Title").replace("&", "§").replace("%p", e.getPlayer().getName());
-			}
-			subtitle = Main.theClass.getPlugin().getConfig().getString("TitleSystem.Subtitle").replace("&", "§").replace("%p", e.getPlayer().getName());
-			if(Bukkit.getVersion().contains("1.8")) {
-				me.Fabricio20.API.V1_8.ActionAPI.sendTitle(e.getPlayer(), title);
-				me.Fabricio20.API.V1_8.ActionAPI.sendSubtitle(e.getPlayer(), subtitle);
-			} else {
-				me.Fabricio20.API.V1_7.ActionAPI.sendTitle(e.getPlayer(), title);
-				me.Fabricio20.API.V1_7.ActionAPI.sendSubtitle(e.getPlayer(), subtitle);
-			}
-		}
 	}
 	 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

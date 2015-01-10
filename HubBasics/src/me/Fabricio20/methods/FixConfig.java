@@ -295,6 +295,10 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("Others.JoinItemsChangeWorld", false);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		if(!Main.theClass.getPlugin().getConfig().contains("Others.GiveItems")) {
+			Main.theClass.getPlugin().getConfig().set("Others.GiveItems", true);
+			Main.theClass.getPlugin().saveConfig();
+		}
 		if(!Main.theClass.getPlugin().getConfig().contains("Others.ClearInventory")) {
 			Main.theClass.getPlugin().getConfig().set("Others.ClearInventory", false);
 			Main.theClass.getPlugin().saveConfig();

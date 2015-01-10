@@ -26,9 +26,13 @@ public class DropItemListener implements Listener {
 				}
 			}
 		}
-		if(Main.theClass.getPlugin().getConfig().getBoolean("Others.HatDrop") == false) {
+		if(Main.theClass.getPlugin().getConfig().getBoolean("HatSystem.AllowDrops") == false) {
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				e.setCancelled(true);
+				if(e.getItemDrop().getItemStack().hasItemMeta()) {
+					if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().contains(Main.theClass.getPlugin().getConfig().getString("HatSystem.Name").substring(3))) {
+						e.setCancelled(true);
+					}
+				}
 			}
 		}
 	}

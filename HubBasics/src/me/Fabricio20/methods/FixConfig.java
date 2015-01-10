@@ -295,6 +295,43 @@ public class FixConfig {
 			Main.theClass.getPlugin().saveConfig();
 		}
 		/**
+		 * ------------- TODO: Hat System   ------------- * 
+		 */
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Enabled")) {
+			Main.theClass.getPlugin().getConfig().set("HatSystem.Enabled", true);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Name")) {
+			Main.theClass.getPlugin().getConfig().set("HatSystem.Name", "&aJust A Hat!");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Lore")) {
+			ArrayList<String> Lore = new ArrayList<String>();
+			Lore.add("&bTha lore&c.");
+			Main.theClass.getPlugin().getConfig().set("HatSystem.Lore", Lore);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Set")) {
+			Main.theClass.getPlugin().getConfig().set("HatSystem.Set", "&cEnjoy your new hat!");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Removed")) {
+			Main.theClass.getPlugin().getConfig().set("HatSystem.Removed", "&cYour Hat Was Removed!");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.HatAllowMove")) {
+			Main.theClass.getPlugin().getConfig().set("HatSystem.HatAllowMove", false);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.AllowDrops")) {
+			Main.theClass.getPlugin().getConfig().set("HatSystem.AllowDrops", true);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.NoPerm")) {
+			Main.theClass.getPlugin().getConfig().set("HatSystem.NoPerm", "&cYou do not have permission for this hat!");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		/**
 		 * ------------- TODO: Others System   ------------- *
 		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("Others.DisableRain")) {
@@ -307,26 +344,6 @@ public class FixConfig {
 		}
 		if(!Main.theClass.getPlugin().getConfig().contains("Others.Prefix")) {
 			Main.theClass.getPlugin().getConfig().set("Others.Prefix", "&8[&cHubBasics&8] ");
-			Main.theClass.getPlugin().saveConfig();
-		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.HatSet")) {
-			Main.theClass.getPlugin().getConfig().set("Others.HatSet", "&cEnjoy your new hat!");
-			Main.theClass.getPlugin().saveConfig();
-		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.HatRemoved")) {
-			Main.theClass.getPlugin().getConfig().set("Others.HatRemoved", "&cYour Hat Was Removed!");
-			Main.theClass.getPlugin().saveConfig();
-		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.HatAllowMove")) {
-			Main.theClass.getPlugin().getConfig().set("Others.HatAllowMove", false);
-			Main.theClass.getPlugin().saveConfig();
-		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.HatDrop")) {
-			Main.theClass.getPlugin().getConfig().set("Others.HatDrop", true);
-			Main.theClass.getPlugin().saveConfig();
-		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.NoPermissionForHat")) {
-			Main.theClass.getPlugin().getConfig().set("Others.NoPermissionForHat", "&cYou do not have permission for this hat!");
 			Main.theClass.getPlugin().saveConfig();
 		}
 		if(!Main.theClass.getPlugin().getConfig().contains("Others.JumpPadBlock")) {

@@ -89,7 +89,6 @@ public class Main extends JavaPlugin {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@SuppressWarnings("unused")
 	public void initPlugin() {
 		version = Bukkit.getVersion();
 		getConfig();
@@ -97,6 +96,40 @@ public class Main extends JavaPlugin {
 		FixConfig.fix();
 		CustomConfigs.reloadStorageConfig();
 		CustomConfigs.reloadItemConfig();
+		registerListeners();
+		registerTasks();
+		registerCommands();
+		initMetrics();
+		Strings.Prefix = getConfig().getString("Others.Prefix").replace("&", "§");
+		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
+		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
+		System.out.println("= Config: \u001B[32mReady\u001B[0m");
+		System.out.println("= Runnables: \u001B[32m" + "4" + "\u001B[0m");
+		System.out.println("= Version : \u001B[32m" + Strings.Version + "\u001B[0m");
+		if(Bukkit.getPluginManager().getPlugin("BarAPI") != null) {
+			System.out.println("= BarAPI: \u001B[32mFound\u001B[0m");
+		} else {
+			System.out.println("= BarAPI: \u001B[34mNot Found\u001B[0m");
+		}
+		System.out.println("= Author  : \u001B[33mFabricio20\u001B[0m");
+		System.out.println("= Status  : \u001B[32mActive\u001B[0m");
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	}
+	
+	private void registerCommands() {
+		getCommand("hub").setExecutor(new Commands());
+		getCommand("lobby").setExecutor(new Commands());
+		getCommand("sethub").setExecutor(new Commands());
+		getCommand("hat").setExecutor(new Commands());
+		getCommand("hb").setExecutor(new Commands());
+		getCommand("uuid").setExecutor(new Commands());
+		getCommand("hubitems").setExecutor(new Commands());
+		getCommand("stacker").setExecutor(new Commands());
+	}
+	
+	@SuppressWarnings("unused")
+	private void registerListeners() {
 		if(version.contains("1.7")) {
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);
@@ -128,19 +161,18 @@ public class Main extends JavaPlugin {
 		Bukkit.getServer().getPluginManager().registerEvents(new DropItemListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ItemMoveListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
+	}
+	
+	@SuppressWarnings("unused")
+	private void registerTasks() {
 		BukkitTask AntiOP = new AntiOp().runTaskTimer(getPlugin(), 300, 300);
 		BossTime = getPlugin().getConfig().getInt("BossAnnouncer.Time");
 		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(getPlugin(), 20, BossTime * 20);
 		ChatTime = getPlugin().getConfig().getInt("ChatAnnouncer.Time");
 		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(getPlugin(), 20, ChatTime * 20);
-		getCommand("hub").setExecutor(new Commands());
-		getCommand("lobby").setExecutor(new Commands());
-		getCommand("sethub").setExecutor(new Commands());
-		getCommand("hat").setExecutor(new Commands());
-		getCommand("hb").setExecutor(new Commands());
-		getCommand("uuid").setExecutor(new Commands());
-		getCommand("hubitems").setExecutor(new Commands());
-		getCommand("stacker").setExecutor(new Commands());
+	}
+	
+	private void initMetrics() {
 		try {
 			MetricsLite metrics = new MetricsLite(this);
 		    metrics.start();
@@ -148,20 +180,6 @@ public class Main extends JavaPlugin {
 		} catch (IOException e) {
 		   System.out.println("[HubBasics] Error while trying to submit metrics!");
 		}
-		Strings.Prefix = getConfig().getString("Others.Prefix").replace("&", "§");
-		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
-		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
-		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
-		System.out.println("= Config: \u001B[32mReady\u001B[0m");
-		System.out.println("= Runnables: \u001B[32m" + "4" + "\u001B[0m");
-		System.out.println("= Version : \u001B[32m" + Strings.Version + "\u001B[0m");
-		if(Bukkit.getPluginManager().getPlugin("BarAPI") != null) {
-			System.out.println("= BarAPI: \u001B[32mFound\u001B[0m");
-		} else {
-			System.out.println("= BarAPI: \u001B[34mNot Found\u001B[0m");
-		}
-		System.out.println("= Author  : \u001B[33mFabricio20\u001B[0m");
-		System.out.println("= Status  : \u001B[32mActive\u001B[0m");
-		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 	}
+	
 }

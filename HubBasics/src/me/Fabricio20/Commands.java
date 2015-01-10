@@ -112,17 +112,17 @@ public class Commands implements CommandExecutor {
 						Player player = (Player) sender;
 						id = Integer.parseInt(args[0]);
 						if(player.hasPermission("HubBasics.Hat." + id)) {
-							player.getInventory().setHelmet(new ItemStack(id));
-							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.HatSet").replace("&", "§")
+							player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), 0));
+							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Set").replace("&", "§")
 											.replace("%p", player.getName()));
 						} else {
-							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.NoPermissionForHat")
+							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.NoPerm")
 									.replace("&", "§").replace("%p", player.getName()));
 						}
 					} else if(args[0].equalsIgnoreCase("remove")) {
 						Player player = (Player) sender;
 						player.getInventory().setHelmet(new ItemStack(Material.AIR));
-						player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.HatRemoved").replace("&", "§")
+						player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Removed").replace("&", "§")
 										.replace("%p", player.getName()));
 					} else {
 						sender.sendMessage("§cID must be a number!");
@@ -135,11 +135,11 @@ public class Commands implements CommandExecutor {
 							id = Integer.parseInt(args[0]);
 							meta = Integer.parseInt(args[1]);
 							if(player.hasPermission("HubBasics.Hat." + id)) {
-								player.getInventory().setHelmet(new ItemStack(id, 1, (short) meta));
-								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.HatSet").replace("&", "§")
+								player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), meta));
+								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Set").replace("&", "§")
 												.replace("%p", player.getName()));
 							} else {
-								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.NoPermissionForHat")
+								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.NoPerm")
 												.replace("&", "§").replace("%p", player.getName()));
 							}
 						} else {

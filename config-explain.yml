@@ -84,15 +84,26 @@ BookSystem: # Book System Configuration
   Pages: # The Book Pages
   - '&cThis is a page.'
 #
+TabList: # Tab List Customization System Configuration
+  Enabled: false # If true, customizable tab list will be used.
+  Header: '&cWelcome %p!' # Tab List Header.
+  Footer: '&aBuy &bViP &aOn Our Website!' # Tab List Footer.
+#
+HatSystem: # Hat System Configuration
+  Enabled: true # If true the /hat command will be enabled
+  Name: '&aJust A Hat!' # The hat name
+  Lore: # The Hat Lore
+  - '&bTha lore&c.'
+  Set: '&cEnjoy your new hat!' # The Hat Set Message
+  Removed: '&cYour Hat Was Removed!' # The Hat Removed Message
+  HatAllowMove: false # If true the hat will be allowed to move
+  AllowDrops: true # If true the hat can be dropped
+  NoPerm: '&cYou do not have permission for this hat!' # No Permission For Hat Message
+#
 Others: # Uncategorized features here.
   DisableRain: false # If true, the weather changing will be disabled on your server.
   DoubleJump: true # If true, your players will be able to double jump!
   Prefix: '&8[&cHubBasics&8] ' # Prefix for Hat system messages.
-  HatSet: '&cEnjoy your new hat!' # Hat Sucefully changed message.
-  HatRemoved: '&cYour Hat Was Removed!' # Hat removed message.
-  HatAllowMove: false # If true the player can move the hat.
-  HatDrop: true # If true the player can drop the hat.
-  NoPermissionForHat: '&cYou do not have permission for this hat!' # No permission message for the hat.
   JumpPadBlock: REDSTONE_BLOCK # Jump Pad block. !!WARNING!! MUST BE A MATERIAL NAME.
   KeepFood: true # If true, players will not starv.
   KeepHealth: true # If true, players will not take damage.

@@ -323,6 +323,14 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("Others.HubItems", true);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		if(!Main.theClass.getPlugin().getConfig().contains("Others.StackerEnabledMessage")) {
+			Main.theClass.getPlugin().getConfig().set("Others.StackerEnabledMessage", "&aStacker Enabled!");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("Others.StackerDisabledMessage")) {
+			Main.theClass.getPlugin().getConfig().set("Others.StackerDisabledMessage", "&cStacker Disabled!");
+			Main.theClass.getPlugin().saveConfig();
+		}
 		if(!Main.theClass.getPlugin().getConfig().contains("Worlds")) {
 			ArrayList<String> worlds = new ArrayList<String>();
 			worlds.add("Example");

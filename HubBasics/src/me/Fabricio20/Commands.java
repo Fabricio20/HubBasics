@@ -267,8 +267,10 @@ public class Commands implements CommandExecutor {
 				} else {
 					if(RightClickListener.players.contains((Player)sender)) {
 						RightClickListener.players.remove((Player)sender);
+						sender.sendMessage(Strings.StackerDisabled);
 					} else {
 						RightClickListener.players.add((Player)sender);
+						sender.sendMessage(Strings.StackerEnabled);
 					}
 				}
 			} else {

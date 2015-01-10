@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.API.ActionAPI;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
@@ -71,8 +70,13 @@ public class JoinListener implements Listener {
 				title = Main.theClass.getPlugin().getConfig().getString("TitleSystem.Title").replace("&", "§").replace("%p", e.getPlayer().getName());
 			}
 			subtitle = Main.theClass.getPlugin().getConfig().getString("TitleSystem.Subtitle").replace("&", "§").replace("%p", e.getPlayer().getName());
-			ActionAPI.sendTitle(e.getPlayer(), title);
-			ActionAPI.sendSubtitle(e.getPlayer(), subtitle);
+			if(Bukkit.getVersion().contains("1.8")) {
+				me.Fabricio20.API.V1_8.ActionAPI.sendTitle(e.getPlayer(), title);
+				me.Fabricio20.API.V1_8.ActionAPI.sendSubtitle(e.getPlayer(), subtitle);
+			} else {
+				me.Fabricio20.API.V1_7.ActionAPI.sendTitle(e.getPlayer(), title);
+				me.Fabricio20.API.V1_7.ActionAPI.sendSubtitle(e.getPlayer(), subtitle);
+			}
 		}
 	}
 	 

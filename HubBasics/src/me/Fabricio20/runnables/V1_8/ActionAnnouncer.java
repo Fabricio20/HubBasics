@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.API.*;
+import me.Fabricio20.API.V1_8.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

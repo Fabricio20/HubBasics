@@ -35,10 +35,10 @@ public class Book {
 	}
 	
 	private static void fixStrings() {
-		Author = Main.getPlugin().getConfig().getString("BookSystem.Author");
-		Name = Main.getPlugin().getConfig().getString("BookSystem.Name").replace("&", "§");
-		Lore = Main.getPlugin().getConfig().getStringList("BookSystem.Lore");
-		Pages = Main.getPlugin().getConfig().getStringList("BookSystem.Pages");
+		Author = Main.theClass.getPlugin().getConfig().getString("BookSystem.Author");
+		Name = Main.theClass.getPlugin().getConfig().getString("BookSystem.Name").replace("&", "§");
+		Lore = Main.theClass.getPlugin().getConfig().getStringList("BookSystem.Lore");
+		Pages = Main.theClass.getPlugin().getConfig().getStringList("BookSystem.Pages");
 		for(String string : Lore) {
 			newLore.add(string.replace("&", "§"));
 		}

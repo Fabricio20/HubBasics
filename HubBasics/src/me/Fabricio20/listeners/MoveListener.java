@@ -25,7 +25,7 @@ public class MoveListener implements Listener {
 	
 	@EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-		List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
+		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
 		if(worlds.contains(e.getPlayer().getWorld().getName())) {
 			if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.getMaterial(Strings.LaunchPadBlock)) {
 				if (e.getPlayer().getGameMode().equals(GameMode.SURVIVAL) || e.getPlayer().getGameMode().equals(GameMode.ADVENTURE)) {

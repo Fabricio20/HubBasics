@@ -13,17 +13,17 @@ public class CommandListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onCommandPreProcess(PlayerCommandPreprocessEvent event){
 		if(event.getMessage().toLowerCase().startsWith("/plugins")) {
-			if(Main.getPlugin().getConfig().getBoolean("FakePlugins.Enabled") == true) {
+			if(Main.theClass.getPlugin().getConfig().getBoolean("FakePlugins.Enabled") == true) {
 				if(!event.getPlayer().hasPermission(new Permissions().Plugins)) {
-					event.getPlayer().sendMessage(Main.getPlugin().getConfig().getString("FakePlugins.Msg").replace("&", "§").replace("%p", event.getPlayer().getName()));
+					event.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("FakePlugins.Msg").replace("&", "§").replace("%p", event.getPlayer().getName()));
 					event.setCancelled(true);
 				}
 			}
 		} else {
 			if(event.getMessage().toLowerCase().startsWith("/pl")) {
-				if(Main.getPlugin().getConfig().getBoolean("FakePlugins.Enabled") == true) {
+				if(Main.theClass.getPlugin().getConfig().getBoolean("FakePlugins.Enabled") == true) {
 					if(!event.getPlayer().hasPermission(new Permissions().Plugins)) {
-						event.getPlayer().sendMessage(Main.getPlugin().getConfig().getString("FakePlugins.Msg").replace("&", "§").replace("%p", event.getPlayer().getName()));
+						event.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("FakePlugins.Msg").replace("&", "§").replace("%p", event.getPlayer().getName()));
 						event.setCancelled(true);
 					}
 				}

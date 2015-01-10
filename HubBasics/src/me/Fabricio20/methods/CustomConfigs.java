@@ -24,90 +24,90 @@ public class CustomConfigs {
 	/* ------------- ACESS TO ITEM CONFIG ------------- */
 	
 	public static void reloadItemConfig() {
-	    if(Main.Item == null) {
-	    	Main.Item = new File(Main.getPlugin().getDataFolder(), "Items.yml");
+	    if(Main.theClass.Item == null) {
+	    	Main.theClass.Item = new File(Main.theClass.getPlugin().getDataFolder(), "Items.yml");
 	    }
-	    Main.ItemConfig = YamlConfiguration.loadConfiguration(Main.Item);
-	    if(!Main.ItemConfig.contains("Item1.Skull")) {
+	    Main.theClass.ItemConfig = YamlConfiguration.loadConfiguration(Main.theClass.Item);
+	    if(!Main.theClass.ItemConfig.contains("Item1.Skull")) {
         	MakeItemsConfig.make1();
         }
-        if(!Main.ItemConfig.contains("Item2.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item2.Skull")) {
         	MakeItemsConfig.make2();
         }
-        if(!Main.ItemConfig.contains("Item3.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item3.Skull")) {
         	MakeItemsConfig.make3();
         }
-        if(!Main.ItemConfig.contains("Item4.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item4.Skull")) {
         	MakeItemsConfig.make4();
         }
-        if(!Main.ItemConfig.contains("Item5.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item5.Skull")) {
         	MakeItemsConfig.make5();
         }
-        if(!Main.ItemConfig.contains("Item6.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item6.Skull")) {
         	MakeItemsConfig.make6();
         }
-        if(!Main.ItemConfig.contains("Item7.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item7.Skull")) {
         	MakeItemsConfig.make7();
         }
-        if(!Main.ItemConfig.contains("Item8.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item8.Skull")) {
         	MakeItemsConfig.make8();
         }
-        if(!Main.ItemConfig.contains("Item9.Skull")) {
+        if(!Main.theClass.ItemConfig.contains("Item9.Skull")) {
         	MakeItemsConfig.make9();
         }
 	}
 
 	public static FileConfiguration getItemConfig() {
-		if(Main.ItemConfig == null) {
+		if(Main.theClass.ItemConfig == null) {
 			reloadItemConfig();
 		}
-	  return Main.ItemConfig;
+	  return Main.theClass.ItemConfig;
 	}
 
 	public static void saveItemConfig() {
-		if(Main.ItemConfig == null || Main.Item == null) {
+		if(Main.theClass.ItemConfig == null || Main.theClass.Item == null) {
 			return;
 		}
 		try {
-			getItemConfig().save(Main.Item);
+			getItemConfig().save(Main.theClass.Item);
 		} catch (IOException ex) {
-			Main.getPlugin().getLogger().log(Level.SEVERE, "Could not save config to " + Main.Item, ex);
+			Main.theClass.getPlugin().getLogger().log(Level.SEVERE, "Could not save config to " + Main.theClass.Item, ex);
 		}
 	}
 	
 	/* ------------- ACESS TO STORAGE CONFIG ------------- */
 	
 	public static void reloadStorageConfig() {
-		if(Main.Storage == null) {
-			Main.Storage = new File(Main.getPlugin().getDataFolder(), "Storage.yml");
+		if(Main.theClass.Storage == null) {
+			Main.theClass.Storage = new File(Main.theClass.getPlugin().getDataFolder(), "Storage.yml");
 		}
-		Main.StorageConfig = YamlConfiguration.loadConfiguration(Main.Storage);
-		if(Main.StorageConfig.contains("Hub.World")) {
-			Main.StorageConfig.set("Hub.World", Bukkit.getWorlds().get(0).getSpawnLocation().getWorld().getName());
-			Main.StorageConfig.set("Hub.X", Bukkit.getWorlds().get(0).getSpawnLocation().getX());
-			Main.StorageConfig.set("Hub.Y", Bukkit.getWorlds().get(0).getSpawnLocation().getY());
-			Main.StorageConfig.set("Hub.Z", Bukkit.getWorlds().get(0).getSpawnLocation().getZ());
-			Main.StorageConfig.set("Hub.Yaw", Bukkit.getWorlds().get(0).getSpawnLocation().getYaw());
-			Main.StorageConfig.set("Hub.Pitch", Bukkit.getWorlds().get(0).getSpawnLocation().getPitch());
+		Main.theClass.StorageConfig = YamlConfiguration.loadConfiguration(Main.theClass.Storage);
+		if(Main.theClass.StorageConfig.contains("Hub.World")) {
+			Main.theClass.StorageConfig.set("Hub.World", Bukkit.getWorlds().get(0).getSpawnLocation().getWorld().getName());
+			Main.theClass.StorageConfig.set("Hub.X", Bukkit.getWorlds().get(0).getSpawnLocation().getX());
+			Main.theClass.StorageConfig.set("Hub.Y", Bukkit.getWorlds().get(0).getSpawnLocation().getY());
+			Main.theClass.StorageConfig.set("Hub.Z", Bukkit.getWorlds().get(0).getSpawnLocation().getZ());
+			Main.theClass.StorageConfig.set("Hub.Yaw", Bukkit.getWorlds().get(0).getSpawnLocation().getYaw());
+			Main.theClass.StorageConfig.set("Hub.Pitch", Bukkit.getWorlds().get(0).getSpawnLocation().getPitch());
 			saveStorageConfig();
 		}
 	}
 
 	public static FileConfiguration getStorageConfig() {
-		if(Main.StorageConfig == null) {
+		if(Main.theClass.StorageConfig == null) {
 			reloadStorageConfig();
 		}
-	  return Main.StorageConfig;
+	  return Main.theClass.StorageConfig;
 	}
 
 	public static void saveStorageConfig() {
-		if(Main.StorageConfig == null || Main.Storage == null) {
+		if(Main.theClass.StorageConfig == null || Main.theClass.Storage == null) {
 			return;
 		}
 		try {
-			getStorageConfig().save(Main.Storage);
+			getStorageConfig().save(Main.theClass.Storage);
 		} catch (IOException ex) {
-			Main.getPlugin().getLogger().log(Level.SEVERE, "Could not save config to " + Main.Storage, ex);
+			Main.theClass.getPlugin().getLogger().log(Level.SEVERE, "Could not save config to " + Main.theClass.Storage, ex);
 		}
 	}
 	

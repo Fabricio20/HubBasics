@@ -2,6 +2,7 @@ package me.Fabricio20;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 
@@ -29,7 +30,7 @@ public class Commands implements CommandExecutor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		player.sendPluginMessage(Main.getPlugin(), "BungeeCord", b.toByteArray());
+		player.sendPluginMessage(Main.theClass.getPlugin(), "BungeeCord", b.toByteArray());
 	}
 	
 /* --------------------------------------------------------------------------------------------------------------------------- */
@@ -51,7 +52,7 @@ public class Commands implements CommandExecutor {
 				sender.sendMessage("This command can only be ran by a player.");
 			} else {
 				if(sender.hasPermission(new Permissions().Hub)) {
-					if(Main.getPlugin().getConfig().getBoolean("BungeeCord.Enabled") == false) {
+					if(Main.theClass.getPlugin().getConfig().getBoolean("BungeeCord.Enabled") == false) {
 						if(CustomConfigs.getStorageConfig().contains("Hub.World")) {
 							Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
 							if(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")) != null) {
@@ -70,7 +71,7 @@ public class Commands implements CommandExecutor {
 							sender.sendMessage("§cHub was not found!");
 						}
 					} else {
-						sendToServer(((Player) sender), Main.getPlugin().getConfig().getString("BungeeCord.LobbyServer"));
+						sendToServer(((Player) sender), Main.theClass.getPlugin().getConfig().getString("BungeeCord.LobbyServer"));
 					}
 				} else {
 					sender.sendMessage(Strings.PermissionError);
@@ -82,7 +83,7 @@ public class Commands implements CommandExecutor {
 			} else {
 				Player player = (Player) sender;
 				if(player.hasPermission(new Permissions().SetHub)) {
-					if(Main.getPlugin().getConfig().getBoolean("BungeeCord.Enabled") == false) {
+					if(Main.theClass.getPlugin().getConfig().getBoolean("BungeeCord.Enabled") == false) {
 						CustomConfigs.getStorageConfig().set("Hub.World", player.getWorld().getName());
 						CustomConfigs.getStorageConfig().set("Hub.X", player.getLocation().getX());
 						CustomConfigs.getStorageConfig().set("Hub.Y", player.getLocation().getY());
@@ -111,16 +112,16 @@ public class Commands implements CommandExecutor {
 						id = Integer.parseInt(args[0]);
 						if(player.hasPermission("HubBasics.Hat." + id)) {
 							player.getInventory().setHelmet(new ItemStack(id));
-							player.sendMessage(Strings.Prefix + Main.getPlugin().getConfig().getString("Others.HatSet").replace("&", "§")
+							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.HatSet").replace("&", "§")
 											.replace("%p", player.getName()));
 						} else {
-							player.sendMessage(Strings.Prefix + Main.getPlugin().getConfig().getString("Others.NoPermissionForHat")
+							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.NoPermissionForHat")
 									.replace("&", "§").replace("%p", player.getName()));
 						}
 					} else if(args[0].equalsIgnoreCase("remove")) {
 						Player player = (Player) sender;
 						player.getInventory().setHelmet(new ItemStack(Material.AIR));
-						player.sendMessage(Strings.Prefix + Main.getPlugin().getConfig().getString("Others.HatRemoved").replace("&", "§")
+						player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.HatRemoved").replace("&", "§")
 										.replace("%p", player.getName()));
 					} else {
 						sender.sendMessage("§cID must be a number!");
@@ -134,10 +135,10 @@ public class Commands implements CommandExecutor {
 							meta = Integer.parseInt(args[1]);
 							if(player.hasPermission("HubBasics.Hat." + id)) {
 								player.getInventory().setHelmet(new ItemStack(id, 1, (short) meta));
-								player.sendMessage(Strings.Prefix + Main.getPlugin().getConfig().getString("Others.HatSet").replace("&", "§")
+								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.HatSet").replace("&", "§")
 												.replace("%p", player.getName()));
 							} else {
-								player.sendMessage(Strings.Prefix + Main.getPlugin().getConfig().getString("Others.NoPermissionForHat")
+								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("Others.NoPermissionForHat")
 												.replace("&", "§").replace("%p", player.getName()));
 							}
 						} else {
@@ -158,9 +159,9 @@ public class Commands implements CommandExecutor {
 					sender.sendMessage("§c/hb reload");
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
-						Main.getPlugin().reloadConfig();
-						Strings.Prefix = Main.getPlugin().getConfig().getString("Others.Prefix").replace("&", "§");
-						Strings.LaunchPadBlock = Main.getPlugin().getConfig().getString("Others.JumpPadBlock");
+						Main.theClass.getPlugin().reloadConfig();
+						Strings.Prefix = Main.theClass.getPlugin().getConfig().getString("Others.Prefix").replace("&", "§");
+						Strings.LaunchPadBlock = Main.theClass.getPlugin().getConfig().getString("Others.JumpPadBlock");
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
 					} else {
 						sender.sendMessage("§c<!--HubBasics Commands --!>");
@@ -189,7 +190,7 @@ public class Commands implements CommandExecutor {
 			if(!(sender instanceof Player)) {
 				sender.sendMessage("Only Players Can Use This Command Sir!");
 			} else {
-				if(Main.getPlugin().getConfig().getBoolean("Others.HubItems") == true) {
+				if(Main.theClass.getPlugin().getConfig().getBoolean("Others.HubItems") == true) {
 					Player player = (Player) sender;
 					// ITEM 1
 					if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {

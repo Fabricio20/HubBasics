@@ -13,20 +13,20 @@ public class DropItemListener implements Listener {
 	
 	@EventHandler
 	public void Drop(PlayerDropItemEvent e) {
-		List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
-		if (Main.getPlugin().getConfig().getBoolean("Others.NoDrops") == true) {
+		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
+		if (Main.theClass.getPlugin().getConfig().getBoolean("Others.NoDrops") == true) {
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				e.setCancelled(true);
 			}
 		}
-		if(Main.getPlugin().getConfig().getBoolean("MagicClock.NoDrop") == true) {
+		if(Main.theClass.getPlugin().getConfig().getBoolean("MagicClock.NoDrop") == true) {
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				if(e.getItemDrop().getItemStack().equals(Items.MagicClock(e.getPlayer().getName()))) {
 					e.setCancelled(true);
 				}
 			}
 		}
-		if(Main.getPlugin().getConfig().getBoolean("Others.HatDrop") == false) {
+		if(Main.theClass.getPlugin().getConfig().getBoolean("Others.HatDrop") == false) {
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				e.setCancelled(true);
 			}

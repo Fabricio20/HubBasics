@@ -15,12 +15,12 @@ public class LeaveListener implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGH)
 	public void Leave(PlayerQuitEvent e) {
-		if(Main.getPlugin().getConfig().getBoolean("LeaveEvents.DisableLeaveMessage") == true) {
+		if(Main.theClass.getPlugin().getConfig().getBoolean("LeaveEvents.DisableLeaveMessage") == true) {
 			e.setQuitMessage(null);
 		} else {
-			e.setQuitMessage(Main.getPlugin().getConfig().getString("LeaveEvents.Message").replace("&", "§").replace("%p", e.getPlayer().getName()));
+			e.setQuitMessage(Main.theClass.getPlugin().getConfig().getString("LeaveEvents.Message").replace("&", "§").replace("%p", e.getPlayer().getName()));
 		}
-		if(Main.getPlugin().getConfig().getBoolean("LeaveEvents.SilentOpLeave") == true) {
+		if(Main.theClass.getPlugin().getConfig().getBoolean("LeaveEvents.SilentOpLeave") == true) {
 			if(e.getPlayer().isOp()) {
 				e.setQuitMessage(null);
 			}

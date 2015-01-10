@@ -15,13 +15,13 @@ public class JoinListenerForItems implements Listener {
 	
 	@EventHandler
 	public void PlayerJoinGetItem(PlayerJoinEvent e) {
-		 List<String> worlds = Main.getPlugin().getConfig().getStringList("Worlds");
+		 List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
 		 Player player = e.getPlayer();
 		 if(worlds.contains(e.getPlayer().getWorld().getName())) {
-			 if(Main.getPlugin().getConfig().getBoolean("Others.ClearInventory") == true) {
+			 if(Main.theClass.getPlugin().getConfig().getBoolean("Others.ClearInventory") == true) {
 				 e.getPlayer().getInventory().clear();
 			 }
-			 if(Main.getPlugin().getConfig().getBoolean("Others.JoinItems") == true) {
+			 if(Main.theClass.getPlugin().getConfig().getBoolean("Others.JoinItems") == true) {
     ////////////////////////////////////////////////////////////////////////////////////////- Start Of 1
 				if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item1(e.getPlayer().getName()))) {

@@ -19,9 +19,9 @@ public class BossAnnouncer extends BukkitRunnable {
 	
 	@SuppressWarnings("deprecation")
 	public void run() {
-		if(Main.getPlugin().getConfig().getBoolean("BossAnnouncer.Enabled") == true) {
-			if(Main.getPlugin().getConfig().getBoolean("BossAnnouncer.Perworld") == false) {
-				Announces = Main.getPlugin().getConfig().getStringList("BossAnnouncer.Msgs");
+		if(Main.theClass.getPlugin().getConfig().getBoolean("BossAnnouncer.Enabled") == true) {
+			if(Main.theClass.getPlugin().getConfig().getBoolean("BossAnnouncer.Perworld") == false) {
+				Announces = Main.theClass.getPlugin().getConfig().getStringList("BossAnnouncer.Msgs");
 				int Max = Announces.size() - 1;
 				if(Stamp == 0) {
 					BarAPI.setMessage(Announces.get(0).replace("&", "§"));
@@ -34,8 +34,8 @@ public class BossAnnouncer extends BukkitRunnable {
 					Stamp = 0;
 				}
 			} else {
-				Announces = Main.getPlugin().getConfig().getStringList("BossAnnouncer.Msgs");
-				Worlds = Main.getPlugin().getConfig().getStringList("BossAnnouncer.Worlds");
+				Announces = Main.theClass.getPlugin().getConfig().getStringList("BossAnnouncer.Msgs");
+				Worlds = Main.theClass.getPlugin().getConfig().getStringList("BossAnnouncer.Worlds");
 				int Max = Announces.size() - 1;
 				if(Stamp == 0) {
 					for(Player player : Bukkit.getOnlinePlayers()) {

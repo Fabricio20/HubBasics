@@ -35,19 +35,21 @@ import org.bukkit.scheduler.BukkitTask;
 public class Main extends JavaPlugin {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static Plugin getPlugin() {
+	public Plugin getPlugin() {
 		return plugin;
 	}
 	
-	public static Main plugin;
-	public static FileConfiguration StorageConfig = null;
-    public static File Storage = null;
-	public static FileConfiguration ItemConfig = null;
-    public static File Item = null;
+	public static Main theClass = null;
 	
-    public static int ChatTime = 0;
-    public static int BossTime = 0;
-    public static int ActionTime = 0;
+	public Main plugin;
+	public FileConfiguration StorageConfig = null;
+    public File Storage = null;
+	public FileConfiguration ItemConfig = null;
+    public File Item = null;
+	
+    public int ChatTime = 0;
+    public int BossTime = 0;
+    public int ActionTime = 0;
     
 	// Console Coloring Made Easy
 	public final String ANSI_RESET = "\u001B[0m";
@@ -65,6 +67,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		theClass = this;
 		plugin = this;
 		initPlugin();
 	}
@@ -108,13 +111,13 @@ public class Main extends JavaPlugin {
 		Bukkit.getServer().getPluginManager().registerEvents(new DropItemListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ItemMoveListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
-		BukkitTask AntiOP = new AntiOp().runTaskTimer(Main.getPlugin(), 300, 300);
-		Main.BossTime = Main.getPlugin().getConfig().getInt("BossAnnouncer.Time");
-		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(Main.getPlugin(), 20, Main.BossTime * 20);
-		Main.ChatTime = Main.getPlugin().getConfig().getInt("ChatAnnouncer.Time");
-		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(Main.getPlugin(), 20, Main.ChatTime * 20);
-		Main.ActionTime = Main.getPlugin().getConfig().getInt("ActionAnnouncer.Time");
-		BukkitTask ActionAnnouncer = new ActionAnnouncer().runTaskTimer(Main.getPlugin(), 20, Main.ActionTime * 20);
+		BukkitTask AntiOP = new AntiOp().runTaskTimer(getPlugin(), 300, 300);
+		BossTime = getPlugin().getConfig().getInt("BossAnnouncer.Time");
+		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(getPlugin(), 20, BossTime * 20);
+		ChatTime = getPlugin().getConfig().getInt("ChatAnnouncer.Time");
+		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(getPlugin(), 20, ChatTime * 20);
+		ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+		BukkitTask ActionAnnouncer = new ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		getCommand("hub").setExecutor(new Commands());
 		getCommand("lobby").setExecutor(new Commands());
 		getCommand("sethub").setExecutor(new Commands());

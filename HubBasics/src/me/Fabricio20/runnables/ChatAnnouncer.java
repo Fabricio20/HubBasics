@@ -18,9 +18,9 @@ public class ChatAnnouncer extends BukkitRunnable {
 	
 	@SuppressWarnings("deprecation")
 	public void run() {
-		if(Main.getPlugin().getConfig().getBoolean("ChatAnnouncer.Enabled") == true) {
-			if(Main.getPlugin().getConfig().getBoolean("ChatAnnouncer.Perworld") == false) {
-				Announces = Main.getPlugin().getConfig().getStringList("ChatAnnouncer.Msgs");
+		if(Main.theClass.getPlugin().getConfig().getBoolean("ChatAnnouncer.Enabled") == true) {
+			if(Main.theClass.getPlugin().getConfig().getBoolean("ChatAnnouncer.Perworld") == false) {
+				Announces = Main.theClass.getPlugin().getConfig().getStringList("ChatAnnouncer.Msgs");
 				int Max = Announces.size() - 1;
 				if(Stamp == 0) {
 					Bukkit.broadcastMessage(Announces.get(0).replace("&", "§"));
@@ -33,8 +33,8 @@ public class ChatAnnouncer extends BukkitRunnable {
 					Stamp = 0;
 				}
 			} else {
-				Announces = Main.getPlugin().getConfig().getStringList("ChatAnnouncer.Msgs");
-				Worlds = Main.getPlugin().getConfig().getStringList("ChatAnnouncer.Worlds");
+				Announces = Main.theClass.getPlugin().getConfig().getStringList("ChatAnnouncer.Msgs");
+				Worlds = Main.theClass.getPlugin().getConfig().getStringList("ChatAnnouncer.Worlds");
 				int Max = Announces.size() - 1;
 				if(Stamp == 0) {
 					for(Player player : Bukkit.getOnlinePlayers()) {

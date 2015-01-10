@@ -47,9 +47,9 @@ public class Main extends JavaPlugin {
 	public FileConfiguration ItemConfig = null;
     public File Item = null;
 	
-    public int ChatTime = 0;
-    public int BossTime = 0;
-    public int ActionTime = 0;
+    private int ChatTime = 0;
+    private int BossTime = 0;
+    private int ActionTime = 0;
     
 	// Console Coloring Made Easy
 	public final String ANSI_RESET = "\u001B[0m";
@@ -139,7 +139,7 @@ public class Main extends JavaPlugin {
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
 		System.out.println("= Runnables: \u001B[32m" + "4" + "\u001B[0m");
-		System.out.println("= Version : \u001B[32m" + getDescription().getVersion() + "\u001B[0m");
+		System.out.println("= Version : \u001B[32m" + Strings.Version + "\u001B[0m");
 		if(Bukkit.getPluginManager().getPlugin("BarAPI") != null) {
 			System.out.println("= BarAPI: \u001B[32mFound\u001B[0m");
 		} else {

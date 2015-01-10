@@ -243,6 +243,10 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("BookSystem.Pages", Pages);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		if(!Main.theClass.getPlugin().getConfig().contains("Others.DisableRain")) {
+			Main.theClass.getPlugin().getConfig().set("Others.DisableRain", false);
+			Main.theClass.getPlugin().saveConfig();
+		}
 		if(!Main.theClass.getPlugin().getConfig().contains("Others.DoubleJump")) {
 			Main.theClass.getPlugin().getConfig().set("Others.DoubleJump", true);
 			Main.theClass.getPlugin().saveConfig();

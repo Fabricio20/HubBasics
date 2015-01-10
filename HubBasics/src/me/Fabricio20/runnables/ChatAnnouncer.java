@@ -24,10 +24,10 @@ public class ChatAnnouncer extends BukkitRunnable {
 				int Max = Announces.size() - 1;
 				if(Stamp == 0) {
 					Bukkit.broadcastMessage(Announces.get(0).replace("&", "§"));
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp != 0 && Stamp != Max) {
 					Bukkit.broadcastMessage(Announces.get(Stamp).replace("&", "§"));
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp == Max) {
 					Bukkit.broadcastMessage(Announces.get(Max).replace("&", "§"));
 					Stamp = 0;
@@ -42,14 +42,14 @@ public class ChatAnnouncer extends BukkitRunnable {
 							player.sendMessage(Announces.get(0).replace("&", "§"));
 						}
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp != 0 && Stamp != Max) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
 						if(Worlds.contains(player.getWorld().getName())) {
 							player.sendMessage(Announces.get(Stamp).replace("&", "§"));
 						}
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp == Max) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
 						if(Worlds.contains(player.getWorld().getName())) {

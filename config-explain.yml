@@ -63,6 +63,26 @@ MagicClock: # Magic Clock Configuration
   Material: WATCH # The Material of the Magic Clock. WARNING MUST  BE A BUKKIT MATERIAL NAME.
   EnabledMessage: '&cMagic Clock Is Now Enabled!' # The "Magic Clock Enabled" message.
   DisabledMessage: '&cMagic Clock Is Now Disabled!' # The "Magic Clock Disabled" message.
+  AllowMove: false # If the item should be allowed to move.
+  NoDrop: false # If false the player cannot drop the item.
+  Cooldown: 12 # Cooldown for using the clock.
+  CooldownMSG: '&cCooldown! You Must Wait 12 Seconds!' # Cooldown message.
+  GiveOnWorldChange: false #If the Clock will be given on world change.
+#
+TitleSystem: # 1.8 Titles Configuration
+  Enabled: true # If the Join Title Will Be Enabled
+  Title: '&cThis Is A Title!' # The Title That Will Be Displayed On Join.
+  Subtitle: '&9This is a Sub-Title!' # The Subtitle That Will Be Displayed On Join.
+#
+BookSystem: # Book System Configuration
+  Enabled: false # If the book will be given on join.
+  Author: HubBasics # The Book Author.
+  Name: '&cTha Book' # The Book Name
+  Slot: 5 # The Slot That The Book Will Be Given.
+  Lore: # The Book Lore
+  - '&bTha lore&c.'
+  Pages: # The Book Pages
+  - '&cThis is a page.'
 #
 Others: # Uncategorized features here.
   DisableRain: false # If true, the weather changing will be disabled on your server.
@@ -70,15 +90,24 @@ Others: # Uncategorized features here.
   Prefix: '&8[&cHubBasics&8] ' # Prefix for Hat system messages.
   HatSet: '&cEnjoy your new hat!' # Hat Sucefully changed message.
   HatRemoved: '&cYour Hat Was Removed!' # Hat removed message.
+  HatAllowMove: false # If true the player can move the hat.
+  HatDrop: true # If true the player can drop the hat.
+  NoPermissionForHat: '&cYou do not have permission for this hat!' # No permission message for the hat.
   JumpPadBlock: REDSTONE_BLOCK # Jump Pad block. !!WARNING!! MUST BE A MATERIAL NAME.
   KeepFood: true # If true, players will not starv.
   KeepHealth: true # If true, players will not take damage.
   Stacker: true # If true, the minigame stacker will be enabled.
   JoinItems: false # If true, the Item-Giving system will be enabled.
+  JoinItemsChangeWorld: false # If the join items will be given on world change.
+  GiveItems: true # If the items should be given ( not replaced ).
+  ClearInventory: false # If true the player inventory will be cleared upon join.
   NoDrops: true # If true, the player will not be able to drop items.
   NoDeathDrops: true # If true, the player will not drop items on death.
   AllowItemMove: false # If false, the player will not be able to move items on the inventory.
   AntiOP: false # If true this will remove every OP on the server every 15 seconds. 
+  HubItems: true # If the command /hubitems will be enabled.
+  StackerEnabledMessage: '&aStacker Enabled!' # The stacker enabled message.
+  StackerDisabledMessage: '&cStacker Disabled!' # The stacker disabled message.
 #
-Worlds: # Here are listed the worlds that will have this funcions enabled.
+Worlds: # Here are listed the worlds that will have all the funcions enabled. ( Exclude the per-world ones )
 - Example

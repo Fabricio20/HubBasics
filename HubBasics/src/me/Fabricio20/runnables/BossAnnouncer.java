@@ -25,10 +25,10 @@ public class BossAnnouncer extends BukkitRunnable {
 				int Max = Announces.size() - 1;
 				if(Stamp == 0) {
 					BarAPI.setMessage(Announces.get(0).replace("&", "§"));
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp != 0 && Stamp != Max) {
 					BarAPI.setMessage(Announces.get(Stamp).replace("&", "§"));
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp == Max) {
 					BarAPI.setMessage(Announces.get(Max).replace("&", "§"));
 					Stamp = 0;
@@ -43,14 +43,14 @@ public class BossAnnouncer extends BukkitRunnable {
 							BarAPI.setMessage(player, Announces.get(0).replace("&", "§"));
 						}
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp != 0 && Stamp != Max) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
 						if(Worlds.contains(player.getWorld().getName())) {
 							BarAPI.setMessage(player, Announces.get(Stamp).replace("&", "§"));
 						}
 					}
-					Stamp = Stamp + 1;
+					Stamp++;
 				} else if(Stamp == Max) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
 						if(Worlds.contains(player.getWorld().getName()))  {

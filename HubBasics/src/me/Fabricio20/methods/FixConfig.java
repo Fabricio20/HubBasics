@@ -8,6 +8,9 @@ import me.Fabricio20.Main;
 public class FixConfig {
 	
 	public static void fix() {
+		/**
+		 * ------------- TODO: JoinEvents System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("JoinEvents.DisableMessage")) {
 			Main.theClass.getPlugin().getConfig().set("JoinEvents.DisableMessage", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -28,6 +31,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("JoinEvents.BossBarOnJoin", false);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: LeaveEvents System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("LeaveEvents.DisableLeaveMessage")) {
 			Main.theClass.getPlugin().getConfig().set("LeaveEvents.DisableLeaveMessage", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -40,6 +46,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("LeaveEvents.Message", "&8[&cHubBasics&8] &a%p &eLeft!");
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: VoidFall System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("VoidFall.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("VoidFall.Enabled", true);
 			Main.theClass.getPlugin().saveConfig();
@@ -48,6 +57,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("VoidFall.Message", "&8[&cHubBasics&8] &a%p &eYou were teleported back to spawn!");
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: Motd System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("MotdSystem.CustomMotd")) {
 			Main.theClass.getPlugin().getConfig().set("MotdSystem.CustomMotd", true);
 			Main.theClass.getPlugin().saveConfig();
@@ -62,6 +74,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("MotdSystem.Motds", motds);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: ChatAnnouncer System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("ChatAnnouncer.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("ChatAnnouncer.Enabled", true);
 			Main.theClass.getPlugin().saveConfig();
@@ -87,6 +102,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("ChatAnnouncer.Time", 60);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: BossAnnouncer System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("BossAnnouncer.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("BossAnnouncer.Enabled", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -112,6 +130,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("BossAnnouncer.Time", 60);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: ActionAnnouncer System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("ActionAnnouncer.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("ActionAnnouncer.Enabled", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -137,6 +158,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("ActionAnnouncer.Time", 3);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: FakePlugins System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("FakePlugins.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("FakePlugins.Enabled", true);
 			Main.theClass.getPlugin().saveConfig();
@@ -145,6 +169,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("FakePlugins.Msg", "&fPlugins (5): &aYou&f, &aCannot&f, &aSee&f, &aThe&f, &aPlugins");
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: BungeeCord System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("BungeeCord.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("BungeeCord.Enabled", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -153,6 +180,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("BungeeCord.LobbyServer", "lobby");
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: MagicClock System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("MagicClock.Enabled", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -203,6 +233,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("MagicClock.GiveOnWorldChange", false);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: Title System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("TitleSystem.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("TitleSystem.Enabled", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -215,6 +248,9 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("TitleSystem.Subtitle", "&9This is a Sub-Title!");
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: Book System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("BookSystem.Enabled")) {
 			Main.theClass.getPlugin().getConfig().set("BookSystem.Enabled", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -243,6 +279,24 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("BookSystem.Pages", Pages);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: Tab List System   ------------- *
+		 */
+		if(!Main.theClass.getPlugin().getConfig().contains("TabList.Enabled")) {
+			Main.theClass.getPlugin().getConfig().set("TabList.Enabled", false);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("TabList.Header")) {
+			Main.theClass.getPlugin().getConfig().set("TabList.Header", "&cWelcome %p!");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("TabList.Footer")) {
+			Main.theClass.getPlugin().getConfig().set("TabList.Footer", "&aBuy &bViP &aOn Our Website!");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		/**
+		 * ------------- TODO: Others System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("Others.DisableRain")) {
 			Main.theClass.getPlugin().getConfig().set("Others.DisableRain", false);
 			Main.theClass.getPlugin().saveConfig();
@@ -335,12 +389,18 @@ public class FixConfig {
 			Main.theClass.getPlugin().getConfig().set("Others.StackerDisabledMessage", "&cStacker Disabled!");
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: Worlds System   ------------- *
+		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("Worlds")) {
 			ArrayList<String> worlds = new ArrayList<String>();
 			worlds.add("Example");
 			Main.theClass.getPlugin().getConfig().set("Worlds", worlds);
 			Main.theClass.getPlugin().saveConfig();
 		}
+		/**
+		 * ------------- TODO: Header System   ------------- *
+		 */
 		if(Main.theClass.getPlugin().getConfig().options().header() == "" || Main.theClass.getPlugin().getConfig().options().header() == null ) {
 			List<String> Header = new ArrayList<String>();
 			Header.add("##########################################");

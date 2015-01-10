@@ -2,6 +2,8 @@ package me.Fabricio20;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+
 import me.Fabricio20.listeners.CommandListener;
 import me.Fabricio20.listeners.DeathListener;
 import me.Fabricio20.listeners.DropItemListener;
@@ -40,6 +42,7 @@ public class Main extends JavaPlugin {
 	}
 	
 	public static Main theClass = null;
+	public String version = Bukkit.getVersion();
 	
 	public Main plugin;
 	public FileConfiguration StorageConfig = null;
@@ -94,6 +97,14 @@ public class Main extends JavaPlugin {
 		FixConfig.fix();
 		CustomConfigs.reloadStorageConfig();
 		CustomConfigs.reloadItemConfig();
+		if(version.contains("1.7")) {
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
+		} else if(version.contains("1.8")) {
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TabListJoin(), this);
+		} else {
+			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Unsuported Server Version Detected!");
+			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Some Options Where Disabled!");
+		}
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new LeaveListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new RainListener(), this);

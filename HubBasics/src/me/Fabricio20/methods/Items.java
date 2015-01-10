@@ -333,29 +333,6 @@ public class Items {
 		return book;
 	}
 	
-	public static ItemStack Book18(String player) {
-		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
-		BookMeta Meta = (BookMeta) book.getItemMeta();
-		Meta.setAuthor(Main.theClass.getPlugin().getConfig().getString("BookSystem.Author"));
-		Meta.setDisplayName(Main.theClass.getPlugin().getConfig().getString("BookSystem.Name").replace("&", "§"));
-		List<String> LoreFromConfig = Main.theClass.getPlugin().getConfig().getStringList("BookSystem.Lore");
-		List<String> NewLore = new ArrayList<String>();
-		for(String string : LoreFromConfig) {
-			NewLore.add(string.replace("&", "§").replace("%p", player));
-		}
-		Meta.setLore(NewLore);
-		List<String> PagesFromConfig = Main.theClass.getPlugin().getConfig().getStringList("BookSystem.Lore");
-		List<String> newPages = new ArrayList<String>();
-		for(String string : PagesFromConfig) {
-			newPages.add("{\"text\": \"" + string.replace("&", "§") + "\"}");
-		}
-		for(String line : newPages) {
-			Meta.addPage(line);
-		}
-		book.setItemMeta(Meta);
-		return book;
-	}
-	
 	public static ItemStack Hat(String player, Material mat, int met) {
 		fixItemName(player);
 		ItemStack Hat = new ItemStack(mat, 1, (short)met);

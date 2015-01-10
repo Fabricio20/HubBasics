@@ -6,7 +6,6 @@ import java.io.DataOutputStream;
 import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -101,58 +100,62 @@ public class Commands implements CommandExecutor {
 				}
 			}
 		} else if(commandLabel.equalsIgnoreCase("hat")) {
-			if(!(sender instanceof Player)) {
-				sender.sendMessage("This command can only be ran by a player.");
-			} else {
-				if(args.length > 2) {
-					sender.sendMessage("§c/hat <id> or /hat <id> <meta>");
-				}
-				if(args.length == 1) {
-					if(args[0].matches("[0-999]+")) {
-						Player player = (Player) sender;
-						id = Integer.parseInt(args[0]);
-						if(player.hasPermission("HubBasics.Hat." + id)) {
-							player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), 0));
-							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Set").replace("&", "§")
-											.replace("%p", player.getName()));
-						} else {
-							player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.NoPerm")
-									.replace("&", "§").replace("%p", player.getName()));
+				if(!(sender instanceof Player)) {
+					sender.sendMessage("This command can only be ran by a player.");
+				} else {
+					if(Main.theClass.getPlugin().getConfig().getBoolean("HatSystem.Enabled")) {
+						if(args.length > 2) {
+							sender.sendMessage("§c/hat <id> or /hat <id> <meta>");
 						}
-					} else if(args[0].equalsIgnoreCase("remove")) {
-						Player player = (Player) sender;
-						player.getInventory().setHelmet(new ItemStack(Material.AIR));
-						player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Removed").replace("&", "§")
-										.replace("%p", player.getName()));
-					} else {
-						sender.sendMessage("§cID must be a number!");
-					}
-				}
-				if(args.length == 2) {
-					if(args[0].matches("[0-999]+")) {
-						if(args[1].matches("[0-999]+")) {
-							Player player = (Player) sender;
-							id = Integer.parseInt(args[0]);
-							meta = Integer.parseInt(args[1]);
-							if(player.hasPermission("HubBasics.Hat." + id)) {
-								player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), meta));
-								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Set").replace("&", "§")
+						if(args.length == 1) {
+							if(args[0].matches("[0-999]+")) {
+								Player player = (Player) sender;
+								id = Integer.parseInt(args[0]);
+								if(player.hasPermission("HubBasics.Hat." + id)) {
+									player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), 0));
+									player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Set").replace("&", "§")
+													.replace("%p", player.getName()));
+								} else {
+									player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.NoPerm")
+											.replace("&", "§").replace("%p", player.getName()));
+								}
+							} else if(args[0].equalsIgnoreCase("remove")) {
+								Player player = (Player) sender;
+								player.getInventory().setHelmet(new ItemStack(Material.AIR));
+								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Removed").replace("&", "§")
 												.replace("%p", player.getName()));
 							} else {
-								player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.NoPerm")
-												.replace("&", "§").replace("%p", player.getName()));
+								sender.sendMessage("§cID must be a number!");
 							}
-						} else {
-							sender.sendMessage("§cMETA must be a number!");
+						}
+						if(args.length == 2) {
+							if(args[0].matches("[0-999]+")) {
+								if(args[1].matches("[0-999]+")) {
+									Player player = (Player) sender;
+									id = Integer.parseInt(args[0]);
+									meta = Integer.parseInt(args[1]);
+									if(player.hasPermission("HubBasics.Hat." + id)) {
+										player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), meta));
+										player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.Set").replace("&", "§")
+														.replace("%p", player.getName()));
+									} else {
+										player.sendMessage(Strings.Prefix + Main.theClass.getPlugin().getConfig().getString("HatSystem.NoPerm")
+														.replace("&", "§").replace("%p", player.getName()));
+									}
+								} else {
+									sender.sendMessage("§cMETA must be a number!");
+								}
+							} else {
+								sender.sendMessage("§cID must be a number!");
+							}
+						}
+						if(args.length < 1) {
+							sender.sendMessage("§c/hat <id> or /hat <id> <meta>");
 						}
 					} else {
-						sender.sendMessage("§cID must be a number!");
+						sender.sendMessage("§cThis command is disabled!");
 					}
 				}
-				if(args.length < 1) {
-					sender.sendMessage("§c/hat <id> or /hat <id> <meta>");
-				}
-			}
 		} else if(commandLabel.equalsIgnoreCase("hb")) {
 			if(sender.hasPermission(new Permissions().Hub)) {
 				if(args.length == 0) {

@@ -11,20 +11,21 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 public class CommandListener implements Listener {	
 	
 	@EventHandler(priority = EventPriority.LOWEST)
-	public void onCommandPreProcess(PlayerCommandPreprocessEvent event){
-		if(event.getMessage().toLowerCase().startsWith("/plugins")) {
+	public void onCommandPreProcess(PlayerCommandPreprocessEvent e){
+		String[] args = e.getMessage().split(" ");
+		if(args[0].equalsIgnoreCase("/plugins")) {
 			if(Main.theClass.config.getBoolean("FakePlugins.Enabled") == true) {
-				if(!event.getPlayer().hasPermission(new Permissions().Plugins)) {
-					event.getPlayer().sendMessage(Main.theClass.config.getString("FakePlugins.Msg").replace("&", "§").replace("%p", event.getPlayer().getName()));
-					event.setCancelled(true);
+				if(!e.getPlayer().hasPermission(new Permissions().Plugins)) {
+					e.getPlayer().sendMessage(Main.theClass.config.getString("FakePlugins.Msg").replace("&", "§").replace("%p", e.getPlayer().getName()));
+					e.setCancelled(true);
 				}
 			}
 		} else {
-			if(event.getMessage().toLowerCase().startsWith("/pl")) {
+			if(args[0].equalsIgnoreCase("/pl")) {
 				if(Main.theClass.config.getBoolean("FakePlugins.Enabled") == true) {
-					if(!event.getPlayer().hasPermission(new Permissions().Plugins)) {
-						event.getPlayer().sendMessage(Main.theClass.config.getString("FakePlugins.Msg").replace("&", "§").replace("%p", event.getPlayer().getName()));
-						event.setCancelled(true);
+					if(!e.getPlayer().hasPermission(new Permissions().Plugins)) {
+						e.getPlayer().sendMessage(Main.theClass.config.getString("FakePlugins.Msg").replace("&", "§").replace("%p", e.getPlayer().getName()));
+						e.setCancelled(true);
 					}
 				}
 			}

@@ -297,10 +297,10 @@ public class Items {
 	
 	public static ItemStack MagicClock(String player) {
 		fixItemName(player);
-		ItemStack Clock = new ItemStack(Material.getMaterial(Main.theClass.getPlugin().getConfig().getString("MagicClock.Material")));
+		ItemStack Clock = new ItemStack(Material.getMaterial(Main.theClass.config.getString("MagicClock.Material")));
 		ItemMeta Meta = Clock.getItemMeta();
 		Meta.setDisplayName(MagicClockName);
-		List<String> LoreFromConfig = Main.theClass.getPlugin().getConfig().getStringList("MagicClock.Lore");
+		List<String> LoreFromConfig = Main.theClass.config.getStringList("MagicClock.Lore");
 		List<String> NewLore = new ArrayList<String>();
 		for(String string : LoreFromConfig) {
 			NewLore.add(string.replace("&", "§").replace("%p", player));
@@ -313,15 +313,15 @@ public class Items {
 	public static ItemStack Book17(String player) {
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 		BookMeta Meta = (BookMeta) book.getItemMeta();
-		Meta.setAuthor(Main.theClass.getPlugin().getConfig().getString("BookSystem.Author"));
-		Meta.setDisplayName(Main.theClass.getPlugin().getConfig().getString("BookSystem.Name").replace("&", "§"));
-		List<String> LoreFromConfig = Main.theClass.getPlugin().getConfig().getStringList("BookSystem.Lore");
+		Meta.setAuthor(Main.theClass.config.getString("BookSystem.Author"));
+		Meta.setDisplayName(Main.theClass.config.getString("BookSystem.Name").replace("&", "§"));
+		List<String> LoreFromConfig = Main.theClass.config.getStringList("BookSystem.Lore");
 		List<String> NewLore = new ArrayList<String>();
 		for(String string : LoreFromConfig) {
 			NewLore.add(string.replace("&", "§").replace("%p", player));
 		}
 		Meta.setLore(NewLore);
-		List<String> PagesFromConfig = Main.theClass.getPlugin().getConfig().getStringList("BookSystem.Lore");
+		List<String> PagesFromConfig = Main.theClass.config.getStringList("BookSystem.Lore");
 		List<String> newPages = new ArrayList<String>();
 		for(String string : PagesFromConfig) {
 			newPages.add(string.replace("&", "§"));
@@ -338,7 +338,7 @@ public class Items {
 		ItemStack Hat = new ItemStack(mat, 1, (short)met);
 		ItemMeta Meta = Hat.getItemMeta();
 		Meta.setDisplayName(HatName);
-		List<String> LoreFromConfig = Main.theClass.getPlugin().getConfig().getStringList("HatSystem.Lore");
+		List<String> LoreFromConfig = Main.theClass.config.getStringList("HatSystem.Lore");
 		List<String> NewLore = new ArrayList<String>();
 		for(String string : LoreFromConfig) {
 			NewLore.add(string.replace("&", "§").replace("%p", player));
@@ -378,11 +378,11 @@ public class Items {
 		if(CustomConfigs.getItemConfig().contains("Item9.Name") && CustomConfigs.getItemConfig().getString("Item9.Name") != null && CustomConfigs.getItemConfig().getString("Item9.Name") != "") {
 			Item9Name = CustomConfigs.getItemConfig().getString("Item9.Name").replace("&", "§").replace("%p", playername);
 		}
-		if(Main.theClass.getPlugin().getConfig().contains("MagicClock.Name")) {
-			MagicClockName = Main.theClass.getPlugin().getConfig().getString("MagicClock.Name").replace("&", "§").replace("%p", playername);
+		if(Main.theClass.config.contains("MagicClock.Name")) {
+			MagicClockName = Main.theClass.config.getString("MagicClock.Name").replace("&", "§").replace("%p", playername);
 		}
-		if(Main.theClass.getPlugin().getConfig().contains("HatSystem.Name")) {
-			HatName = Main.theClass.getPlugin().getConfig().getString("HatSystem.Name").replace("&", "§").replace("%p", playername);
+		if(Main.theClass.config.contains("HatSystem.Name")) {
+			HatName = Main.theClass.config.getString("HatSystem.Name").replace("&", "§").replace("%p", playername);
 		}
 	}
 	

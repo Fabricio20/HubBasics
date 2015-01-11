@@ -26,10 +26,10 @@ public class PlayerChangeWorld implements Listener {
 			}
 		}
 		
-		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
+		List<String> worlds = Main.theClass.config.getStringList("Worlds");
 		if(worlds.contains(e.getPlayer().getWorld())) {
 			Player player = e.getPlayer();
-			if(Main.theClass.getPlugin().getConfig().getBoolean("Others.JoinItemsChangeWorld") == true) {
+			if(Main.theClass.config.getBoolean("Others.JoinItemsChangeWorld") == true) {
 				if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item1(e.getPlayer().getName()))) {
 						e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item1.Slot"), Items.Item1(e.getPlayer().getName()));
@@ -85,9 +85,9 @@ public class PlayerChangeWorld implements Listener {
 				}
 	///////////////////////////////////////////////////////////////////////////////////////- End Of Stuff, Start Of MagicClock
 			}
-			if(Main.theClass.getPlugin().getConfig().getBoolean("MagicClock.GiveOnWorldChange") == true) {
+			if(Main.theClass.config.getBoolean("MagicClock.GiveOnWorldChange") == true) {
 				if(!e.getPlayer().getInventory().contains(Items.MagicClock(e.getPlayer().getName()))) {
-					e.getPlayer().getInventory().setItem(Main.theClass.getPlugin().getConfig().getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
+					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
 				}
 			}
 		}

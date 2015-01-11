@@ -25,12 +25,12 @@ public class PEXChatListener implements Listener {
 		String world = player.getWorld().getName();
 		if(!e.isCancelled()) {
 			if(ModuleManager.theClass.isEnabled("ChatSystem")) {
-				if(Main.theClass.getPlugin().getConfig().getBoolean("ChatSystem.PerWorld")) {
+				if(Main.theClass.config.getBoolean("ChatSystem.PerWorld")) {
 					e.setCancelled(true);
-					if(Main.theClass.getPlugin().getConfig().getBoolean("ChatSystem.AllowColors") && player.hasPermission(new Permissions().ChatColor)) {
+					if(Main.theClass.config.getBoolean("ChatSystem.AllowColors") && player.hasPermission(new Permissions().ChatColor)) {
 						msg = msg.replace("&", "§");
 					}
-					String cf = Main.theClass.getPlugin().getConfig().getString("ChatSystem.Format").replace("&", "§")
+					String cf = Main.theClass.config.getString("ChatSystem.Format").replace("&", "§")
 							.replace("%p", player.getName()).replace("%m", msg).replace("$group", prefix).replace("%w", world);
 					for(Player ps : Bukkit.getOnlinePlayers()) {
 						if(ps.getWorld().getName().equals(player.getWorld().getName())) {
@@ -39,10 +39,10 @@ public class PEXChatListener implements Listener {
 					}
 				} else {
 					e.setCancelled(true);
-					if(Main.theClass.getPlugin().getConfig().getBoolean("ChatSystem.AllowColors") && player.hasPermission(new Permissions().ChatColor)) {
+					if(Main.theClass.config.getBoolean("ChatSystem.AllowColors") && player.hasPermission(new Permissions().ChatColor)) {
 						msg = msg.replace("&", "§");
 					}
-					String cf = Main.theClass.getPlugin().getConfig().getString("ChatSystem.Format").replace("&", "§")
+					String cf = Main.theClass.config.getString("ChatSystem.Format").replace("&", "§")
 							.replace("%p", player.getName()).replace("%m", msg).replace("$group", prefix).replace("%w", world);
 					Bukkit.broadcastMessage(cf);
 				}

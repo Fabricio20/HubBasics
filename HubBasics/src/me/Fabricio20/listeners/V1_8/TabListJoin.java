@@ -28,7 +28,7 @@ public class TabListJoin implements Listener {
 	}
 	
 	private boolean isEnabled() {
-		return Main.theClass.getPlugin().getConfig().getBoolean("TabList.Enabled");
+		return Main.theClass.config.getBoolean("TabList.Enabled");
 	}
 	
 }

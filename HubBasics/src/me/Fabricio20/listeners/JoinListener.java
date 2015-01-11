@@ -20,17 +20,17 @@ public class JoinListener implements Listener {
 	 
 	 @EventHandler(priority = EventPriority.HIGH)
 	 public void Join(PlayerJoinEvent e) {
-		 if(Main.theClass.getPlugin().getConfig().getBoolean("JoinEvents.DisableMessage") == true) {
+		 if(Main.theClass.config.getBoolean("JoinEvents.DisableMessage") == true) {
 			 e.setJoinMessage(null);
 		 } else {
-			 e.setJoinMessage(Main.theClass.getPlugin().getConfig().getString("JoinEvents.Message").replace("&", "§").replace("%p", e.getPlayer().getName()));
+			 e.setJoinMessage(Main.theClass.config.getString("JoinEvents.Message").replace("&", "§").replace("%p", e.getPlayer().getName()));
 		 }
-		 if(Main.theClass.getPlugin().getConfig().getBoolean("JoinEvents.SilentOpJoin") == true) {
+		 if(Main.theClass.config.getBoolean("JoinEvents.SilentOpJoin") == true) {
 			 if(e.getPlayer().isOp()) {
 				 e.setJoinMessage(null);
 			 }
 		 }
-		if(Main.theClass.getPlugin().getConfig().getBoolean("JoinEvents.HubAtLogin") == true) {
+		if(Main.theClass.config.getBoolean("JoinEvents.HubAtLogin") == true) {
 			if(CustomConfigs.getStorageConfig().contains("Hub.World")) {
 				Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
 				if(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")) != null) {
@@ -44,22 +44,22 @@ public class JoinListener implements Listener {
 				}
 			}
 		}
-		if(Main.theClass.getPlugin().getConfig().getBoolean("BookSystem.Enabled") == true) {
-			List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
+		if(Main.theClass.config.getBoolean("BookSystem.Enabled") == true) {
+			List<String> worlds = Main.theClass.config.getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				e.getPlayer().getInventory().setItem(Main.theClass.getPlugin().getConfig().getInt("BookSystem.Slot"), Items.Book17(e.getPlayer().getName()));
+				e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book17(e.getPlayer().getName()));
 			}
 		}
-		if(Main.theClass.getPlugin().getConfig().getBoolean("BossAnnouncer.Enabled") == true && Main.theClass.getPlugin().getConfig().getBoolean("JoinEvents.BossBarOnJoin") == true) {
+		if(Main.theClass.config.getBoolean("BossAnnouncer.Enabled") == true && Main.theClass.config.getBoolean("JoinEvents.BossBarOnJoin") == true) {
 			List<String> Announces = new ArrayList<String>();
-			Announces = Main.theClass.getPlugin().getConfig().getStringList("BossAnnouncer.Msgs");
+			Announces = Main.theClass.config.getStringList("BossAnnouncer.Msgs");
 			BarAPI.setMessage(e.getPlayer(), Announces.get(BossAnnouncer.Stamp));
 		}
-		if(Main.theClass.getPlugin().getConfig().getBoolean("MagicClock.Enabled") == true) {
-			List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
+		if(Main.theClass.config.getBoolean("MagicClock.Enabled") == true) {
+			List<String> worlds = Main.theClass.config.getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				if(!e.getPlayer().getInventory().contains(Items.MagicClock(e.getPlayer().getName()))) {
-					e.getPlayer().getInventory().setItem(Main.theClass.getPlugin().getConfig().getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
+					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
 				}
 			}
 		}

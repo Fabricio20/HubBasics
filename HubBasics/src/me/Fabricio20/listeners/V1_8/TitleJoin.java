@@ -10,13 +10,13 @@ public class TitleJoin implements Listener {
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
-		if(Main.theClass.getPlugin().getConfig().getBoolean("TitleSystem.Enabled") == true) {
+		if(Main.theClass.config.getBoolean("TitleSystem.Enabled") == true) {
 			String title = " ";
 			String subtitle = " ";
-			if(Main.theClass.getPlugin().getConfig().getString("TitleSystem.Title") != "") {
-				title = Main.theClass.getPlugin().getConfig().getString("TitleSystem.Title").replace("&", "§").replace("%p", e.getPlayer().getName());
+			if(Main.theClass.config.getString("TitleSystem.Title") != "") {
+				title = Main.theClass.config.getString("TitleSystem.Title").replace("&", "§").replace("%p", e.getPlayer().getName());
 			}
-			subtitle = Main.theClass.getPlugin().getConfig().getString("TitleSystem.Subtitle").replace("&", "§").replace("%p", e.getPlayer().getName());
+			subtitle = Main.theClass.config.getString("TitleSystem.Subtitle").replace("&", "§").replace("%p", e.getPlayer().getName());
 			me.Fabricio20.API.V1_8.ActionAPI.sendTitle(e.getPlayer(), title);
 			me.Fabricio20.API.V1_8.ActionAPI.sendSubtitle(e.getPlayer(), subtitle);
 		}

@@ -36,10 +36,10 @@ public class RightClickListener implements Listener {
 			if(e.getClickedBlock().getType() == Material.SIGN || e.getClickedBlock().getType() == Material.SIGN_POST || e.getClickedBlock().getType() == Material.WALL_SIGN) {
 				 Sign sign = (Sign) e.getClickedBlock().getState();
 				 if(sign.getLine(0).equalsIgnoreCase("§1[WebSite]")){
-					 e.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("WebSiteMessage").replace("&", "§"));
+					 e.getPlayer().sendMessage(Main.theClass.config.getString("WebSiteMessage").replace("&", "§"));
 				 }
 				 if(sign.getLine(0).equalsIgnoreCase("§1[TS3]")) {
-					 e.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("TS3Message").replace("&", "§"));
+					 e.getPlayer().sendMessage(Main.theClass.config.getString("TS3Message").replace("&", "§"));
 				 }
 			}
 		}
@@ -49,8 +49,8 @@ public class RightClickListener implements Listener {
 	
 	@EventHandler
 	public void onEntityInteract(PlayerInteractEntityEvent e) {
-		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
-		if(Main.theClass.getPlugin().getConfig().getBoolean("Others.Stacker") == true) {
+		List<String> worlds = Main.theClass.config.getStringList("Worlds");
+		if(Main.theClass.config.getBoolean("Others.Stacker") == true) {
 			Player player = e.getPlayer();
 			if(worlds.contains(player.getWorld().getName())) {
 				if(e.getRightClicked() instanceof Player) {
@@ -77,8 +77,8 @@ public class RightClickListener implements Listener {
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
-		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
-		if(Main.theClass.getPlugin().getConfig().getBoolean("Others.Stacker") == true) {
+		List<String> worlds = Main.theClass.config.getStringList("Worlds");
+		if(Main.theClass.config.getBoolean("Others.Stacker") == true) {
 			Player player = e.getPlayer();
 			if(worlds.contains(player.getWorld().getName())) {
 				if(e.getAction() == Action.LEFT_CLICK_AIR) {
@@ -101,8 +101,8 @@ public class RightClickListener implements Listener {
 	@EventHandler
 	public void Interact(PlayerInteractEvent e) {
 		if(e.getPlayer().getItemInHand() != null  || e.getPlayer().getItemInHand().getType() != Material.AIR) {
-			if(Main.theClass.getPlugin().getConfig().getBoolean("Others.JoinItems") == true) {
-				List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
+			if(Main.theClass.config.getBoolean("Others.JoinItems") == true) {
+				List<String> worlds = Main.theClass.config.getStringList("Worlds");
 				if(worlds.contains(e.getPlayer().getWorld().getName())) {
 					if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
@@ -180,13 +180,13 @@ public class RightClickListener implements Listener {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 			if(e.getPlayer().getItemInHand() != null && e.getPlayer().getItemInHand().getType() != Material.AIR) {
 				final Player player = e.getPlayer();
-				List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
-				int time = Main.theClass.getPlugin().getConfig().getInt("MagicClock.Cooldown");
+				List<String> worlds = Main.theClass.config.getStringList("Worlds");
+				int time = Main.theClass.config.getInt("MagicClock.Cooldown");
 				if(worlds.contains(e.getPlayer().getWorld().getName())) {
 					if(e.getPlayer().getItemInHand().equals(Items.MagicClock(e.getPlayer().getName()))) {
 						if(Strings.MagicClockActive.contains(e.getPlayer())) {
 							if(cooldown.contains(e.getPlayer())) {
-								e.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
+								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							} else {
 								for (Player user : Bukkit.getOnlinePlayers()) {
 									if(e.getPlayer().canSee(user) == false) {
@@ -202,11 +202,11 @@ public class RightClickListener implements Listener {
 										}
 									}
 								}, time * 20);
-								e.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
+								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							}
 						} else {
 							if(cooldown.contains(e.getPlayer())) {
-								e.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
+								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							} else {
 								for (Player user : Bukkit.getOnlinePlayers()) {
 									if(e.getPlayer().canSee(user) == true) {
@@ -222,7 +222,7 @@ public class RightClickListener implements Listener {
 										}
 									}
 								}, time * 20);
-								e.getPlayer().sendMessage(Main.theClass.getPlugin().getConfig().getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
+								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
 							}
 						}
 					}

@@ -18,9 +18,9 @@ public class ServerPingListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void List(ServerListPingEvent e) {
-		Motds = Main.theClass.getPlugin().getConfig().getStringList("MotdSystem.Motds");
-		if(Main.theClass.getPlugin().getConfig().getBoolean("MotdSystem.CustomMotd") == true) {
-			if(Main.theClass.getPlugin().getConfig().getBoolean("MotdSystem.MoreMotds") == true) {
+		Motds = Main.theClass.config.getStringList("MotdSystem.Motds");
+		if(Main.theClass.config.getBoolean("MotdSystem.CustomMotd") == true) {
+			if(Main.theClass.config.getBoolean("MotdSystem.MoreMotds") == true) {
 				if(Stamp == 0) {
 					e.setMotd(Motds.get(0).replace("&", "§"));
 					Stamp = Stamp + 1;

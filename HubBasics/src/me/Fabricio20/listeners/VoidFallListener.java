@@ -16,7 +16,7 @@ public class VoidFallListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void Void(EntityDamageEvent event) {
-		if(Main.theClass.getPlugin().getConfig().getBoolean("VoidFall.Enabled") == true) {
+		if(Main.theClass.config.getBoolean("VoidFall.Enabled") == true) {
 		if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
 			Entity ent = event.getEntity();
 			if (ent == null) {
@@ -35,7 +35,7 @@ public class VoidFallListener implements Listener {
 				loc.setPitch(CustomConfigs.getStorageConfig().getInt("Hub.Pitch"));
 				((Player) ent).teleport(loc);
 				((Player) ent).setFallDistance(0.0F);
-				((Player) ent).sendMessage(Main.theClass.getPlugin().getConfig().getString("VoidFall.Message").replace("&", "§").replace("%p", ((Player) ent).getName()));
+				((Player) ent).sendMessage(Main.theClass.config.getString("VoidFall.Message").replace("&", "§").replace("%p", ((Player) ent).getName()));
 				event.setCancelled(true);
 				}
 			}

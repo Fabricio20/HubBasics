@@ -12,11 +12,11 @@ public class AntiOp extends BukkitRunnable {
 
 	@SuppressWarnings("deprecation")
 	public void run() {
-		if(Main.theClass.getPlugin().getConfig().getBoolean("Others.AntiOP") == true) {
+		if(Main.theClass.config.getBoolean("Others.AntiOP") == true) {
 		for(Player user : Bukkit.getOnlinePlayers()) {
 			if(user.isOp()) {
 					user.setOp(false);
-					Main.theClass.getPlugin().getServer().getLogger().log(Level.WARNING, "The User " + user.getName() + " Has OP!! REMOVING!");
+					Bukkit.getLogger().log(Level.WARNING, "The User " + user.getName() + " Has OP!! REMOVING!");
 				}
 			}
 		}

@@ -12,8 +12,8 @@ public class DeathListener implements Listener {
 	
 	@EventHandler
 	public void Die(PlayerDeathEvent e) {
-		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
-		if(Main.theClass.getPlugin().getConfig().getBoolean("Others.NoDeathDrops") == true) {
+		List<String> worlds = Main.theClass.config.getStringList("Worlds");
+		if(Main.theClass.config.getBoolean("Others.NoDeathDrops") == true) {
 			if(worlds.contains(e.getEntity().getWorld().getName())) {
 				e.getDrops().clear();
 			}

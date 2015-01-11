@@ -19,9 +19,9 @@ public class ActionAnnouncer extends BukkitRunnable {
 
 	@SuppressWarnings("deprecation")
 	public void run() {
-		if (Main.theClass.getPlugin().getConfig().getBoolean("ActionAnnouncer.Enabled") == true) {
-			if (Main.theClass.getPlugin().getConfig().getBoolean("ActionAnnouncer.Perworld") == false) {
-				Announces = Main.theClass.getPlugin().getConfig().getStringList("ActionAnnouncer.Msgs");
+		if (Main.theClass.config.getBoolean("ActionAnnouncer.Enabled") == true) {
+			if (Main.theClass.config.getBoolean("ActionAnnouncer.Perworld") == false) {
+				Announces = Main.theClass.config.getStringList("ActionAnnouncer.Msgs");
 				int Max = Announces.size() - 1;
 				if (Stamp == 0) {
 					for(Player player : Bukkit.getOnlinePlayers()) {
@@ -40,8 +40,8 @@ public class ActionAnnouncer extends BukkitRunnable {
 					Stamp = 0;
 				}
 			} else {
-				Announces = Main.theClass.getPlugin().getConfig().getStringList("ActionAnnouncer.Msgs");
-				Worlds = Main.theClass.getPlugin().getConfig().getStringList("ActionAnnouncer.Worlds");
+				Announces = Main.theClass.config.getStringList("ActionAnnouncer.Msgs");
+				Worlds = Main.theClass.config.getStringList("ActionAnnouncer.Worlds");
 				int Max = Announces.size() - 1;
 				if (Stamp == 0) {
 					for (Player player : Bukkit.getOnlinePlayers()) {

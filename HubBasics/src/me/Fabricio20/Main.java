@@ -24,6 +24,8 @@ import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
 import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.FixConfig;
+import me.Fabricio20.methods.Configs.SimpleConfig;
+import me.Fabricio20.methods.Configs.SimpleConfigManager;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
@@ -49,6 +51,9 @@ public class Main extends JavaPlugin {
     public static File Storage = null;
 	public static FileConfiguration ItemConfig = null;
     public static File Item = null;
+    public SimpleConfigManager manager;
+    
+    public SimpleConfig config;
 	
     private int ChatTime = 0;
     private int BossTime = 0;
@@ -92,8 +97,10 @@ public class Main extends JavaPlugin {
 	
 	public void initPlugin() {
 		version = Bukkit.getVersion();
-		getConfig();
-		saveDefaultConfig();
+		this.manager = new SimpleConfigManager(this);
+		String[] header = {"HubBasics Main Configuratio File", "Documentation Can Be Found On GitHub Page", "Dont forget to add the world at the worlds section"};
+		this.config = manager.getNewConfig("config.yml", header);
+		this.config.saveConfig();
 		FixConfig.fix();
 		CustomConfigs.reloadStorageConfig();
 		CustomConfigs.reloadItemConfig();

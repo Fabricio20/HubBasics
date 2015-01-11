@@ -17,7 +17,7 @@ public class JumpListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
-		if (Main.theClass.getPlugin().getConfig().getBoolean("Others.DoubleJump") == true) {
+		if (Main.theClass.config.getBoolean("Others.DoubleJump") == true) {
 				Player player = event.getPlayer();
 				if (player.getGameMode() == GameMode.CREATIVE)
 					return;
@@ -35,8 +35,8 @@ public class JumpListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
-		if(Main.theClass.getPlugin().getConfig().getBoolean("Others.DoubleJump") == true) {
-			List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
+		if(Main.theClass.config.getBoolean("Others.DoubleJump") == true) {
+			List<String> worlds = Main.theClass.config.getStringList("Worlds");
 			Player player = event.getPlayer();
 			if(worlds.contains(player.getWorld().getName())) {
 				if ((player.getGameMode() != GameMode.CREATIVE)

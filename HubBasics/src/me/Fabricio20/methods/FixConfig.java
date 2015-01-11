@@ -1,8 +1,6 @@
 package me.Fabricio20.methods;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import me.Fabricio20.Main;
 
 public class FixConfig {
@@ -11,440 +9,428 @@ public class FixConfig {
 		/**
 		 * ------------- TODO: JoinEvents System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("JoinEvents.DisableMessage")) {
-			Main.theClass.getPlugin().getConfig().set("JoinEvents.DisableMessage", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("JoinEvents.DisableMessage")) {
+			Main.theClass.config.set("JoinEvents.DisableMessage", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("JoinEvents.SilentOpJoin")) {
-			Main.theClass.getPlugin().getConfig().set("JoinEvents.SilentOpJoin", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("JoinEvents.SilentOpJoin")) {
+			Main.theClass.config.set("JoinEvents.SilentOpJoin", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("JoinEvents.Message")) {
-			Main.theClass.getPlugin().getConfig().set("JoinEvents.Message", "&8[&cHubBasics&8] &eWelcome &a%p &eto the server!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("JoinEvents.Message")) {
+			Main.theClass.config.set("JoinEvents.Message", "&8[&cHubBasics&8] &eWelcome &a%p &eto the server!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("JoinEvents.HubAtLogin")) {
-			Main.theClass.getPlugin().getConfig().set("JoinEvents.HubAtLogin", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("JoinEvents.HubAtLogin")) {
+			Main.theClass.config.set("JoinEvents.HubAtLogin", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("JoinEvents.BossBarOnJoin")) {
-			Main.theClass.getPlugin().getConfig().set("JoinEvents.BossBarOnJoin", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("JoinEvents.BossBarOnJoin")) {
+			Main.theClass.config.set("JoinEvents.BossBarOnJoin", false);
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: LeaveEvents System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("LeaveEvents.DisableLeaveMessage")) {
-			Main.theClass.getPlugin().getConfig().set("LeaveEvents.DisableLeaveMessage", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("LeaveEvents.DisableLeaveMessage")) {
+			Main.theClass.config.set("LeaveEvents.DisableLeaveMessage", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("LeaveEvents.SilentOpLeave")) {
-			Main.theClass.getPlugin().getConfig().set("LeaveEvents.SilentOpLeave", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("LeaveEvents.SilentOpLeave")) {
+			Main.theClass.config.set("LeaveEvents.SilentOpLeave", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("LeaveEvents.Message")) {
-			Main.theClass.getPlugin().getConfig().set("LeaveEvents.Message", "&8[&cHubBasics&8] &a%p &eLeft!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("LeaveEvents.Message")) {
+			Main.theClass.config.set("LeaveEvents.Message", "&8[&cHubBasics&8] &a%p &eLeft!");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: VoidFall System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("VoidFall.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("VoidFall.Enabled", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("VoidFall.Enabled")) {
+			Main.theClass.config.set("VoidFall.Enabled", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("VoidFall.Message")) {
-			Main.theClass.getPlugin().getConfig().set("VoidFall.Message", "&8[&cHubBasics&8] &a%p &eYou were teleported back to spawn!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("VoidFall.Message")) {
+			Main.theClass.config.set("VoidFall.Message", "&8[&cHubBasics&8] &a%p &eYou were teleported back to spawn!");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Motd System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("MotdSystem.CustomMotd")) {
-			Main.theClass.getPlugin().getConfig().set("MotdSystem.CustomMotd", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MotdSystem.CustomMotd")) {
+			Main.theClass.config.set("MotdSystem.CustomMotd", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MotdSystem.MoreMotds")) {
-			Main.theClass.getPlugin().getConfig().set("MotdSystem.MoreMotds", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MotdSystem.MoreMotds")) {
+			Main.theClass.config.set("MotdSystem.MoreMotds", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MotdSystem.Motds")) {
+		if(!Main.theClass.config.contains("MotdSystem.Motds")) {
 			ArrayList<String> motds = new ArrayList<String>();
 			motds.add("&cThis is a default motd! Change it in the config.");
-			Main.theClass.getPlugin().getConfig().set("MotdSystem.Motds", motds);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("MotdSystem.Motds", motds);
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: ChatAnnouncer System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatAnnouncer.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("ChatAnnouncer.Enabled", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ChatAnnouncer.Enabled")) {
+			Main.theClass.config.set("ChatAnnouncer.Enabled", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatAnnouncer.Msgs")) {
+		if(!Main.theClass.config.contains("ChatAnnouncer.Msgs")) {
 			ArrayList<String> chatann = new ArrayList<String>();
 			chatann.add("Announce 1");
 			chatann.add("Announce 2");
-			Main.theClass.getPlugin().getConfig().set("ChatAnnouncer.Msgs", chatann);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("ChatAnnouncer.Msgs", chatann);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatAnnouncer.Perworld")) {
-			Main.theClass.getPlugin().getConfig().set("ChatAnnouncer.Perworld", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ChatAnnouncer.Perworld")) {
+			Main.theClass.config.set("ChatAnnouncer.Perworld", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatAnnouncer.Worlds")) {
+		if(!Main.theClass.config.contains("ChatAnnouncer.Worlds")) {
 			ArrayList<String> Worlds = new ArrayList<String>();
 			Worlds.add("Example");
-			Main.theClass.getPlugin().getConfig().set("ChatAnnouncer.Worlds", Worlds);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("ChatAnnouncer.Worlds", Worlds);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatAnnouncer.Time")) {
-			Main.theClass.getPlugin().getConfig().set("ChatAnnouncer.Time", 60);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ChatAnnouncer.Time")) {
+			Main.theClass.config.set("ChatAnnouncer.Time", 60);
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: BossAnnouncer System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("BossAnnouncer.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("BossAnnouncer.Enabled", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BossAnnouncer.Enabled")) {
+			Main.theClass.config.set("BossAnnouncer.Enabled", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BossAnnouncer.Msgs")) {
+		if(!Main.theClass.config.contains("BossAnnouncer.Msgs")) {
 			ArrayList<String> chatann = new ArrayList<String>();
 			chatann.add("Announce 1");
 			chatann.add("Announce 2");
-			Main.theClass.getPlugin().getConfig().set("BossAnnouncer.Msgs", chatann);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("BossAnnouncer.Msgs", chatann);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BossAnnouncer.Perworld")) {
-			Main.theClass.getPlugin().getConfig().set("BossAnnouncer.Perworld", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BossAnnouncer.Perworld")) {
+			Main.theClass.config.set("BossAnnouncer.Perworld", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BossAnnouncer.Worlds")) {
+		if(!Main.theClass.config.contains("BossAnnouncer.Worlds")) {
 			ArrayList<String> Worlds = new ArrayList<String>();
 			Worlds.add("Example");
-			Main.theClass.getPlugin().getConfig().set("BossAnnouncer.Worlds", Worlds);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("BossAnnouncer.Worlds", Worlds);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BossAnnouncer.Time")) {
-			Main.theClass.getPlugin().getConfig().set("BossAnnouncer.Time", 60);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BossAnnouncer.Time")) {
+			Main.theClass.config.set("BossAnnouncer.Time", 60);
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: ActionAnnouncer System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("ActionAnnouncer.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("ActionAnnouncer.Enabled", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ActionAnnouncer.Enabled")) {
+			Main.theClass.config.set("ActionAnnouncer.Enabled", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ActionAnnouncer.Msgs")) {
+		if(!Main.theClass.config.contains("ActionAnnouncer.Msgs")) {
 			ArrayList<String> chatann = new ArrayList<String>();
 			chatann.add("Announce 1");
 			chatann.add("Announce 2");
-			Main.theClass.getPlugin().getConfig().set("ActionAnnouncer.Msgs", chatann);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("ActionAnnouncer.Msgs", chatann);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ActionAnnouncer.Perworld")) {
-			Main.theClass.getPlugin().getConfig().set("ActionAnnouncer.Perworld", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ActionAnnouncer.Perworld")) {
+			Main.theClass.config.set("ActionAnnouncer.Perworld", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ActionAnnouncer.Worlds")) {
+		if(!Main.theClass.config.contains("ActionAnnouncer.Worlds")) {
 			ArrayList<String> Worlds = new ArrayList<String>();
 			Worlds.add("Example");
-			Main.theClass.getPlugin().getConfig().set("ActionAnnouncer.Worlds", Worlds);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("ActionAnnouncer.Worlds", Worlds);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ActionAnnouncer.Time")) {
-			Main.theClass.getPlugin().getConfig().set("ActionAnnouncer.Time", 3);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ActionAnnouncer.Time")) {
+			Main.theClass.config.set("ActionAnnouncer.Time", 3);
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: FakePlugins System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("FakePlugins.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("FakePlugins.Enabled", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("FakePlugins.Enabled")) {
+			Main.theClass.config.set("FakePlugins.Enabled", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("FakePlugins.Msg")) {
-			Main.theClass.getPlugin().getConfig().set("FakePlugins.Msg", "&fPlugins (5): &aYou&f, &aCannot&f, &aSee&f, &aThe&f, &aPlugins");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("FakePlugins.Msg")) {
+			Main.theClass.config.set("FakePlugins.Msg", "&fPlugins (5): &aYou&f, &aCannot&f, &aSee&f, &aThe&f, &aPlugins");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: BungeeCord System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("BungeeCord.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("BungeeCord.Enabled", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BungeeCord.Enabled")) {
+			Main.theClass.config.set("BungeeCord.Enabled", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BungeeCord.LobbyServer")) {
-			Main.theClass.getPlugin().getConfig().set("BungeeCord.LobbyServer", "lobby");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BungeeCord.LobbyServer")) {
+			Main.theClass.config.set("BungeeCord.LobbyServer", "lobby");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: MagicClock System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.Enabled", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.Enabled")) {
+			Main.theClass.config.set("MagicClock.Enabled", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.Name")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.Name", "&cMagic Clock");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.Name")) {
+			Main.theClass.config.set("MagicClock.Name", "&cMagic Clock");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.Lore")) {
+		if(!Main.theClass.config.contains("MagicClock.Lore")) {
 			ArrayList<String> Lore = new ArrayList<String>();
 			Lore.add("&7- &a&oMagicClock Lore");
-			Main.theClass.getPlugin().getConfig().set("MagicClock.Lore", Lore);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("MagicClock.Lore", Lore);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.Slot")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.Slot", 5);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.Slot")) {
+			Main.theClass.config.set("MagicClock.Slot", 5);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.Material")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.Material", "WATCH");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.Material")) {
+			Main.theClass.config.set("MagicClock.Material", "WATCH");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.EnabledMessage")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.EnabledMessage", "&cMagic Clock Is Now Enabled!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.EnabledMessage")) {
+			Main.theClass.config.set("MagicClock.EnabledMessage", "&cMagic Clock Is Now Enabled!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.DisabledMessage")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.DisabledMessage", "&cMagic Clock Is Now Disabled!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.DisabledMessage")) {
+			Main.theClass.config.set("MagicClock.DisabledMessage", "&cMagic Clock Is Now Disabled!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.AllowMove")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.AllowMove", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.AllowMove")) {
+			Main.theClass.config.set("MagicClock.AllowMove", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.NoDrop")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.NoDrop", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.NoDrop")) {
+			Main.theClass.config.set("MagicClock.NoDrop", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.Cooldown")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.Cooldown", 12);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.Cooldown")) {
+			Main.theClass.config.set("MagicClock.Cooldown", 12);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.CooldownMSG")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.CooldownMSG", "&cCooldown! You Must Wait 12 Seconds!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.CooldownMSG")) {
+			Main.theClass.config.set("MagicClock.CooldownMSG", "&cCooldown! You Must Wait 12 Seconds!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("MagicClock.GiveOnWorldChange")) {
-			Main.theClass.getPlugin().getConfig().set("MagicClock.GiveOnWorldChange", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("MagicClock.GiveOnWorldChange")) {
+			Main.theClass.config.set("MagicClock.GiveOnWorldChange", false);
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Title System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("TitleSystem.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("TitleSystem.Enabled", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("TitleSystem.Enabled")) {
+			Main.theClass.config.set("TitleSystem.Enabled", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("TitleSystem.Title")) {
-			Main.theClass.getPlugin().getConfig().set("TitleSystem.Title", "&cThis Is A Title!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("TitleSystem.Title")) {
+			Main.theClass.config.set("TitleSystem.Title", "&cThis Is A Title!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("TitleSystem.Subtitle")) {
-			Main.theClass.getPlugin().getConfig().set("TitleSystem.Subtitle", "&9This is a Sub-Title!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("TitleSystem.Subtitle")) {
+			Main.theClass.config.set("TitleSystem.Subtitle", "&9This is a Sub-Title!");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Book System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("BookSystem.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("BookSystem.Enabled", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BookSystem.Enabled")) {
+			Main.theClass.config.set("BookSystem.Enabled", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BookSystem.Author")) {
-			Main.theClass.getPlugin().getConfig().set("BookSystem.Author", "HubBasics");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BookSystem.Author")) {
+			Main.theClass.config.set("BookSystem.Author", "HubBasics");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BookSystem.Name")) {
-			Main.theClass.getPlugin().getConfig().set("BookSystem.Name", "&cTha Book");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BookSystem.Name")) {
+			Main.theClass.config.set("BookSystem.Name", "&cTha Book");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BookSystem.Slot")) {
-			Main.theClass.getPlugin().getConfig().set("BookSystem.Slot", 5);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("BookSystem.Slot")) {
+			Main.theClass.config.set("BookSystem.Slot", 5);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BookSystem.Lore")) {
+		if(!Main.theClass.config.contains("BookSystem.Lore")) {
 			ArrayList<String> Lore = new ArrayList<String>();
 			Lore.add("&bTha lore&c.");
-			Main.theClass.getPlugin().getConfig().set("BookSystem.Lore", Lore);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("BookSystem.Lore", Lore);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("BookSystem.Pages")) {
+		if(!Main.theClass.config.contains("BookSystem.Pages")) {
 			ArrayList<String> Pages = new ArrayList<String>();
 			Pages.add("&cThis is a page.");
-			Main.theClass.getPlugin().getConfig().set("BookSystem.Pages", Pages);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("BookSystem.Pages", Pages);
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Tab List System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("TabList.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("TabList.Enabled", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("TabList.Enabled")) {
+			Main.theClass.config.set("TabList.Enabled", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("TabList.Header")) {
-			Main.theClass.getPlugin().getConfig().set("TabList.Header", "&cWelcome %p!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("TabList.Header")) {
+			Main.theClass.config.set("TabList.Header", "&cWelcome %p!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("TabList.Footer")) {
-			Main.theClass.getPlugin().getConfig().set("TabList.Footer", "&aBuy &bViP &aOn Our Website!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("TabList.Footer")) {
+			Main.theClass.config.set("TabList.Footer", "&aBuy &bViP &aOn Our Website!");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Hat System   ------------- * 
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("HatSystem.Enabled", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("HatSystem.Enabled")) {
+			Main.theClass.config.set("HatSystem.Enabled", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Name")) {
-			Main.theClass.getPlugin().getConfig().set("HatSystem.Name", "&aJust A Hat!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("HatSystem.Name")) {
+			Main.theClass.config.set("HatSystem.Name", "&aJust A Hat!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Lore")) {
+		if(!Main.theClass.config.contains("HatSystem.Lore")) {
 			ArrayList<String> Lore = new ArrayList<String>();
 			Lore.add("&bTha lore&c.");
-			Main.theClass.getPlugin().getConfig().set("HatSystem.Lore", Lore);
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("HatSystem.Lore", Lore);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Set")) {
-			Main.theClass.getPlugin().getConfig().set("HatSystem.Set", "&cEnjoy your new hat!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("HatSystem.Set")) {
+			Main.theClass.config.set("HatSystem.Set", "&cEnjoy your new hat!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.Removed")) {
-			Main.theClass.getPlugin().getConfig().set("HatSystem.Removed", "&cYour Hat Was Removed!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("HatSystem.Removed")) {
+			Main.theClass.config.set("HatSystem.Removed", "&cYour Hat Was Removed!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.HatAllowMove")) {
-			Main.theClass.getPlugin().getConfig().set("HatSystem.HatAllowMove", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("HatSystem.HatAllowMove")) {
+			Main.theClass.config.set("HatSystem.HatAllowMove", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.AllowDrops")) {
-			Main.theClass.getPlugin().getConfig().set("HatSystem.AllowDrops", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("HatSystem.AllowDrops")) {
+			Main.theClass.config.set("HatSystem.AllowDrops", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("HatSystem.NoPerm")) {
-			Main.theClass.getPlugin().getConfig().set("HatSystem.NoPerm", "&cYou do not have permission for this hat!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("HatSystem.NoPerm")) {
+			Main.theClass.config.set("HatSystem.NoPerm", "&cYou do not have permission for this hat!");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Chat System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.Enabled")) {
-			Main.theClass.getPlugin().getConfig().set("ChatSystem.Enabled", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ChatSystem.Enabled")) {
+			Main.theClass.config.set("ChatSystem.Enabled", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.PerWorld")) {
-			Main.theClass.getPlugin().getConfig().set("ChatSystem.PerWorld", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ChatSystem.PerWorld")) {
+			Main.theClass.config.set("ChatSystem.PerWorld", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.AllowColors")) {
-			Main.theClass.getPlugin().getConfig().set("ChatSystem.AllowColors", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ChatSystem.AllowColors")) {
+			Main.theClass.config.set("ChatSystem.AllowColors", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.Format")) {
-			Main.theClass.getPlugin().getConfig().set("ChatSystem.Format", "&e[%w] &f[&2$group&f] &e%p&f: &c%m");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("ChatSystem.Format")) {
+			Main.theClass.config.set("ChatSystem.Format", "&e[%w] &f[&2$group&f] &e%p&f: &c%m");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Others System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.DisableRain")) {
-			Main.theClass.getPlugin().getConfig().set("Others.DisableRain", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.DisableRain")) {
+			Main.theClass.config.set("Others.DisableRain", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.DoubleJump")) {
-			Main.theClass.getPlugin().getConfig().set("Others.DoubleJump", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.DoubleJump")) {
+			Main.theClass.config.set("Others.DoubleJump", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.Prefix")) {
-			Main.theClass.getPlugin().getConfig().set("Others.Prefix", "&8[&cHubBasics&8] ");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.Prefix")) {
+			Main.theClass.config.set("Others.Prefix", "&8[&cHubBasics&8] ");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.JumpPadBlock")) {
-			Main.theClass.getPlugin().getConfig().set("Others.JumpPadBlock", "REDSTONE_BLOCK");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.JumpPadBlock")) {
+			Main.theClass.config.set("Others.JumpPadBlock", "REDSTONE_BLOCK");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.KeepFood")) {
-			Main.theClass.getPlugin().getConfig().set("Others.KeepFood", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.KeepFood")) {
+			Main.theClass.config.set("Others.KeepFood", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.KeepHealth")) {
-			Main.theClass.getPlugin().getConfig().set("Others.KeepHealth", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.KeepHealth")) {
+			Main.theClass.config.set("Others.KeepHealth", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.Stacker")) {
-			Main.theClass.getPlugin().getConfig().set("Others.Stacker", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.Stacker")) {
+			Main.theClass.config.set("Others.Stacker", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.JoinItems")) {
-			Main.theClass.getPlugin().getConfig().set("Others.JoinItems", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.JoinItems")) {
+			Main.theClass.config.set("Others.JoinItems", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.JoinItemsChangeWorld")) {
-			Main.theClass.getPlugin().getConfig().set("Others.JoinItemsChangeWorld", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.JoinItemsChangeWorld")) {
+			Main.theClass.config.set("Others.JoinItemsChangeWorld", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.GiveItems")) {
-			Main.theClass.getPlugin().getConfig().set("Others.GiveItems", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.GiveItems")) {
+			Main.theClass.config.set("Others.GiveItems", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.ClearInventory")) {
-			Main.theClass.getPlugin().getConfig().set("Others.ClearInventory", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.ClearInventory")) {
+			Main.theClass.config.set("Others.ClearInventory", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.NoDrops")) {
-			Main.theClass.getPlugin().getConfig().set("Others.NoDrops", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.NoDrops")) {
+			Main.theClass.config.set("Others.NoDrops", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.NoDeathDrops")) {
-			Main.theClass.getPlugin().getConfig().set("Others.NoDeathDrops", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.NoDeathDrops")) {
+			Main.theClass.config.set("Others.NoDeathDrops", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.AllowItemMove")) {
-			Main.theClass.getPlugin().getConfig().set("Others.AllowItemMove", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.AllowItemMove")) {
+			Main.theClass.config.set("Others.AllowItemMove", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.AntiOP")) {
-			Main.theClass.getPlugin().getConfig().set("Others.AntiOP", false);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.AntiOP")) {
+			Main.theClass.config.set("Others.AntiOP", false);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.HubItems")) {
-			Main.theClass.getPlugin().getConfig().set("Others.HubItems", true);
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.HubItems")) {
+			Main.theClass.config.set("Others.HubItems", true);
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.StackerEnabledMessage")) {
-			Main.theClass.getPlugin().getConfig().set("Others.StackerEnabledMessage", "&aStacker Enabled!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.StackerEnabledMessage")) {
+			Main.theClass.config.set("Others.StackerEnabledMessage", "&aStacker Enabled!");
+			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.getPlugin().getConfig().contains("Others.StackerDisabledMessage")) {
-			Main.theClass.getPlugin().getConfig().set("Others.StackerDisabledMessage", "&cStacker Disabled!");
-			Main.theClass.getPlugin().saveConfig();
+		if(!Main.theClass.config.contains("Others.StackerDisabledMessage")) {
+			Main.theClass.config.set("Others.StackerDisabledMessage", "&cStacker Disabled!");
+			Main.theClass.config.saveConfig();
 		}
 		/**
 		 * ------------- TODO: Worlds System   ------------- *
 		 */
-		if(!Main.theClass.getPlugin().getConfig().contains("Worlds")) {
+		if(!Main.theClass.config.contains("Worlds")) {
 			ArrayList<String> worlds = new ArrayList<String>();
 			worlds.add("Example");
-			Main.theClass.getPlugin().getConfig().set("Worlds", worlds);
-			Main.theClass.getPlugin().saveConfig();
-		}
-		/**
-		 * ------------- TODO: Header System   ------------- *
-		 */
-		if(Main.theClass.getPlugin().getConfig().options().header() == "" || Main.theClass.getPlugin().getConfig().options().header() == null ) {
-			List<String> Header = new ArrayList<String>();
-			Header.add("##########################################");
-			Header.add("# HubBasics Configuration File #");
-			Header.add("# Documentation at: http://tinyurl.com/qgnx3ke ");
-			Header.add("##########################################");
-			Main.theClass.getPlugin().getConfig().options().header(Header.toString());
-			Main.theClass.getPlugin().saveConfig();
+			Main.theClass.config.set("Worlds", worlds);
+			Main.theClass.config.saveConfig();
 		}
 	}
 	

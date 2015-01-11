@@ -9,7 +9,7 @@ public class ModuleManager {
 	public static ModuleManager theClass = new ModuleManager();
 	
 	public boolean isInWorld(String world) {
-		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
+		List<String> worlds = Main.theClass.config.getStringList("Worlds");
 		return worlds.contains(world);
 	}
 	

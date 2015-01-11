@@ -13,8 +13,8 @@ public class HealthListener implements Listener {
 	
 	@EventHandler
 	public void Health(EntityDamageEvent e) {
-		List<String> worlds = Main.theClass.getPlugin().getConfig().getStringList("Worlds");
-		if (Main.theClass.getPlugin().getConfig().getBoolean("Others.KeepHealth") == true) {
+		List<String> worlds = Main.theClass.config.getStringList("Worlds");
+		if (Main.theClass.config.getBoolean("Others.KeepHealth") == true) {
 			if(e.getEntityType() == EntityType.PLAYER) {
 				if(worlds.contains(e.getEntity().getWorld().getName())) {
 					e.setDamage(0.0);

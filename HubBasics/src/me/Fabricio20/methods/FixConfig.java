@@ -342,7 +342,7 @@ public class FixConfig {
 		 * ------------- TODO: Chat System   ------------- *
 		 */
 		if(!Main.theClass.config.contains("ChatSystem.Enabled")) {
-			Main.theClass.config.set("ChatSystem.Enabled", true);
+			Main.theClass.config.set("ChatSystem.Enabled", true, "FOR NOW THIS ONLY WORKS WITH PEX! SORRY!");
 			Main.theClass.config.saveConfig();
 		}
 		if(!Main.theClass.config.contains("ChatSystem.PerWorld")) {

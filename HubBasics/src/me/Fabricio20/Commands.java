@@ -281,12 +281,12 @@ public class Commands implements CommandExecutor {
 				if(!(sender instanceof Player)) {
 					sender.sendMessage("Only Players Can Use This Command!");
 				} else {
-					if(RightClickListener.stackeroff.contains((Player)sender)) {
-						RightClickListener.stackeroff.remove((Player)sender);
-						sender.sendMessage(Strings.StackerEnabled);
-					} else {
-						RightClickListener.stackeroff.add((Player)sender);
+					if(RightClickListener.stackeron.contains((Player)sender)) {
+						RightClickListener.stackeron.remove((Player)sender);
 						sender.sendMessage(Strings.StackerDisabled);
+					} else {
+						RightClickListener.stackeron.add((Player)sender);
+						sender.sendMessage(Strings.StackerEnabled);
 					}
 				}
 			} else {

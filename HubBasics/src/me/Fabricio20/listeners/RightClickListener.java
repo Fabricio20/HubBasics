@@ -25,7 +25,7 @@ public class RightClickListener implements Listener {
 	ArrayList<Player> cooldown = new ArrayList<Player>();
 	
 	public static ArrayList<Player> players = new ArrayList<Player>();
-	public static ArrayList<Player> stackeroff = new ArrayList<Player>();
+	public static ArrayList<Player> stackeron = new ArrayList<Player>();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -54,7 +54,7 @@ public class RightClickListener implements Listener {
 			if(worlds.contains(player.getWorld().getName())) {
 				if(e.getRightClicked() instanceof Player) {
 					Player target = (Player) e.getRightClicked();
-					if(!target.hasPermission(new Permissions().NonStackable) && target.hasPermission(new Permissions().Stacker) && !stackeroff.contains(target)) {
+					if(!target.hasPermission(new Permissions().NonStackable) && target.hasPermission(new Permissions().Stacker) && stackeron.contains(target)) {
 						if(!target.isInsideVehicle()) {
 							if(!player.isInsideVehicle()) {
 								if(!players.contains(target)) {

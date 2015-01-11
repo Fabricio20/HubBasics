@@ -54,7 +54,7 @@ public class RightClickListener implements Listener {
 			if(worlds.contains(player.getWorld().getName())) {
 				if(e.getRightClicked() instanceof Player) {
 					Player target = (Player) e.getRightClicked();
-					if(!target.hasPermission(new Permissions().NonStackable) && target.hasPermission(new Permissions().Stacker) && stackeron.contains(target)) {
+					if(!target.hasPermission(new Permissions().NonStackable) && target.hasPermission(new Permissions().Stacker) && stackeron.contains(target) && stackeron.contains(player) && player.hasPermission(new Permissions().Stacker)) {
 						if(!target.isInsideVehicle()) {
 							if(!player.isInsideVehicle()) {
 								if(!players.contains(target)) {

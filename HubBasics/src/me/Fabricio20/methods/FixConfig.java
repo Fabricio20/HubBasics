@@ -274,6 +274,10 @@ public class FixConfig {
 			Main.theClass.config.set("BookSystem.Slot", 5);
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("BookSystem.Give")) {
+			Main.theClass.config.set("BookSystem.Give", true);
+			Main.theClass.config.saveConfig();
+		}
 		if(!Main.theClass.config.contains("BookSystem.Lore")) {
 			ArrayList<String> Lore = new ArrayList<String>();
 			Lore.add("&bTha lore&c.");

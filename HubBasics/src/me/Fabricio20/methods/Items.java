@@ -310,7 +310,7 @@ public class Items {
 		return Clock;
 	}
 	
-	public static ItemStack Book17(String player) {
+	public static ItemStack Book(String player) {
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 		BookMeta Meta = (BookMeta) book.getItemMeta();
 		Meta.setAuthor(Main.theClass.config.getString("BookSystem.Author"));
@@ -321,7 +321,7 @@ public class Items {
 			NewLore.add(string.replace("&", "§").replace("%p", player));
 		}
 		Meta.setLore(NewLore);
-		List<String> PagesFromConfig = Main.theClass.config.getStringList("BookSystem.Lore");
+		List<String> PagesFromConfig = Main.theClass.config.getStringList("BookSystem.Pages");
 		List<String> newPages = new ArrayList<String>();
 		for(String string : PagesFromConfig) {
 			newPages.add(string.replace("&", "§"));

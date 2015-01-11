@@ -46,7 +46,13 @@ public class JoinListener implements Listener {
 		if(Main.theClass.config.getBoolean("BookSystem.Enabled") == true) {
 			List<String> worlds = Main.theClass.config.getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book17(e.getPlayer().getName()));
+				if(!e.getPlayer().getInventory().contains(Items.Book(e.getPlayer().getName()))) {
+					if(Main.theClass.config.getBoolean("BookSystem.Give") == false) {
+						e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
+					} else {
+						e.getPlayer().getInventory().addItem(Items.Book(e.getPlayer().getName()));
+					}
+				}
 			}
 		}
 		if(Main.theClass.config.getBoolean("BossAnnouncer.Enabled") == true && Main.theClass.config.getBoolean("JoinEvents.BossBarOnJoin") == true) {

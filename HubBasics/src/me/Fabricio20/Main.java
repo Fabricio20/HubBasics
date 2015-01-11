@@ -20,6 +20,7 @@ import me.Fabricio20.listeners.RainListener;
 import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.listeners.ServerPingListener;
 import me.Fabricio20.listeners.SignChangeListener;
+import me.Fabricio20.listeners.VeichleLeaveListener;
 import me.Fabricio20.listeners.VoidFallListener;
 import me.Fabricio20.methods.FixConfig;
 import me.Fabricio20.methods.Configs.SimpleConfig;
@@ -165,6 +166,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getServer().getPluginManager().registerEvents(new DropItemListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ItemMoveListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new VeichleLeaveListener(), this);
 	}
 	
 	@SuppressWarnings("unused")

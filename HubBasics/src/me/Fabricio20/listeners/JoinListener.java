@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.API.BookAPI;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.confuser.barapi.BarAPI;
@@ -47,10 +48,22 @@ public class JoinListener implements Listener {
 			List<String> worlds = Main.theClass.config.getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				if(!e.getPlayer().getInventory().contains(Items.Book(e.getPlayer().getName()))) {
-					if(Main.theClass.config.getBoolean("BookSystem.Give") == false) {
-						e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
+					if(Main.theClass.config.getBoolean("BookSystem.FirstJoinOnly")) {
+						if(BookAPI.shouldGive(e.getPlayer().getName())) {
+							if(Main.theClass.config.getBoolean("BookSystem.Give") == false) {
+								e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
+								BookAPI.give(e.getPlayer().getName());
+							} else {
+								e.getPlayer().getInventory().addItem(Items.Book(e.getPlayer().getName()));
+								BookAPI.give(e.getPlayer().getName());
+							}
+						}
 					} else {
-						e.getPlayer().getInventory().addItem(Items.Book(e.getPlayer().getName()));
+						if(Main.theClass.config.getBoolean("BookSystem.Give") == false) {
+							e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
+						} else {
+							e.getPlayer().getInventory().addItem(Items.Book(e.getPlayer().getName()));
+						}
 					}
 				}
 			}

@@ -15,6 +15,7 @@ import me.Fabricio20.listeners.JoinListenerForItems;
 import me.Fabricio20.listeners.JumpListener;
 import me.Fabricio20.listeners.LeaveListener;
 import me.Fabricio20.listeners.MoveListener;
+import me.Fabricio20.listeners.PEXChatListener;
 import me.Fabricio20.listeners.PlayerChangeWorld;
 import me.Fabricio20.listeners.RainListener;
 import me.Fabricio20.listeners.RightClickListener;
@@ -143,6 +144,9 @@ public class Main extends JavaPlugin {
 		} else {
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Unsuported Server Version Detected!");
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Some Options Where Disabled!");
+		}
+		if(Bukkit.getServer().getPluginManager().getPlugin("PermissionsEx") != null) {
+			Bukkit.getServer().getPluginManager().registerEvents(new PEXChatListener(), this);
 		}
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new LeaveListener(), this);

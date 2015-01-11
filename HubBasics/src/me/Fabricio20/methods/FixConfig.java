@@ -332,6 +332,25 @@ public class FixConfig {
 			Main.theClass.getPlugin().saveConfig();
 		}
 		/**
+		 * ------------- TODO: Chat System   ------------- *
+		 */
+		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.Enabled")) {
+			Main.theClass.getPlugin().getConfig().set("ChatSystem.Enabled", true);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.PerWorld")) {
+			Main.theClass.getPlugin().getConfig().set("ChatSystem.PerWorld", false);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.AllowColors")) {
+			Main.theClass.getPlugin().getConfig().set("ChatSystem.AllowColors", true);
+			Main.theClass.getPlugin().saveConfig();
+		}
+		if(!Main.theClass.getPlugin().getConfig().contains("ChatSystem.Format")) {
+			Main.theClass.getPlugin().getConfig().set("ChatSystem.Format", "&e[%w] &f[&2$group&f] &e%p&f: &c%m");
+			Main.theClass.getPlugin().saveConfig();
+		}
+		/**
 		 * ------------- TODO: Others System   ------------- *
 		 */
 		if(!Main.theClass.getPlugin().getConfig().contains("Others.DisableRain")) {

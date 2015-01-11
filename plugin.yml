@@ -1,7 +1,7 @@
 name: HubBasics
 version: 3.0.5
 main: me.Fabricio20.Main
-softdepend: [BarAPI]
+softdepend: [BarAPI, PermissionsEx]
 commands:
   plugins:
     description: List the server plugins.

@@ -10,5 +10,6 @@ public class Permissions {
 	public Permission UUID = new Permission("HubBasics.UUID");
 	public Permission Plugins = new Permission("HubBasics.Plugins");
 	public Permission Stacker = new Permission("HubBasics.Stacker");
+	public Permission ChatColor = new Permission("HubBasics.ChatColor");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

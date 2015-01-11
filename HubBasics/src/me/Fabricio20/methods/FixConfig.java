@@ -38,6 +38,12 @@ public class FixConfig {
 			Main.theClass.config.set("JoinEvents.BossBarOnJoin", false);
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("JoinEvents.Effects")) {
+			Main.theClass.config.set("JoinEvents.Effects.Enabled", false);
+			Main.theClass.config.set("JoinEvents.Effects.SPEED", false);
+			Main.theClass.config.set("JoinEvents.Effects.JUMP", false);
+			Main.theClass.config.saveConfig();
+		}
 		/**
 		 * ------------- TODO: LeaveEvents System   ------------- *
 		 */

@@ -28,6 +28,7 @@ import me.Fabricio20.methods.Configs.SimpleConfigManager;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
+import me.Fabricio20.runnables.EffectApplier;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -176,6 +177,7 @@ public class Main extends JavaPlugin {
 		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(getPlugin(), 20, BossTime * 20);
 		ChatTime = getPlugin().getConfig().getInt("ChatAnnouncer.Time");
 		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(getPlugin(), 20, ChatTime * 20);
+		BukkitTask Effect = new EffectApplier().runTaskTimer(getPlugin(), 20, 20);
 	}
 	
 	private void initMetrics() {

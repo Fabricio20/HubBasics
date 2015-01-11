@@ -9,6 +9,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/Spigot &amp; Bukkit/Spigot 1.8 - Latest/RELEASES/spigot-1.8-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Fabricio20/Downloads/spigot-api-1.8-R0.1-20141218.230504-55.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

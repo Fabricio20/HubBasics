@@ -3,7 +3,6 @@ package me.Fabricio20.listeners;
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 
 import org.bukkit.entity.Player;
@@ -24,90 +23,90 @@ public class JoinListenerForItems implements Listener {
 			 }
 			 if(Main.theClass.config.getBoolean("Others.JoinItems") == true) {
 				 
-				if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item1.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item1(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item1.Slot"), Items.Item1(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item1.Slot"), Items.Item1(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item1(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item2.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item2.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item2(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item2.Slot"), Items.Item2(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item2.Slot"), Items.Item2(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item2(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item3.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item3.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item3(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item3.Slot"), Items.Item3(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item3.Slot"), Items.Item3(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item3(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item4.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item4.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item4(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item4.Slot"), Items.Item4(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item4.Slot"), Items.Item4(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item4(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item5.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item5.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item5(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item5.Slot"), Items.Item5(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item5.Slot"), Items.Item5(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item5(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item6.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item6.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item6(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item6.Slot"), Items.Item6(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item6.Slot"), Items.Item6(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item6(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item7.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item7.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item7(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item7.Slot"), Items.Item7(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item7.Slot"), Items.Item7(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item7(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item8.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item8.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item8(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item8.Slot"), Items.Item8(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item8.Slot"), Items.Item8(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item8(name));
 						}
 					}
 				}
 				
-				if(CustomConfigs.getItemConfig().getBoolean("Item9.Enabled") == true) {
+				if(Main.theClass.ItemConfig.getBoolean("Item9.Enabled") == true) {
 					if(!player.getInventory().contains(Items.Item9(name))) {
 						if(Main.theClass.config.getBoolean("Others.GiveItems") == false) {
-							e.getPlayer().getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item9.Slot"), Items.Item9(name));
+							e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item9.Slot"), Items.Item9(name));
 						} else {
 							e.getPlayer().getInventory().addItem(Items.Item9(name));
 						}

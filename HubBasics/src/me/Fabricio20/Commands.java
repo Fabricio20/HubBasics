@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import me.Fabricio20.listeners.RightClickListener;
-import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.API.HoverAPI;
 import me.Fabricio20.methods.Items;
 
@@ -55,15 +54,15 @@ public class Commands implements CommandExecutor {
 			} else {
 				if(sender.hasPermission(new Permissions().Hub)) {
 					if(Main.theClass.config.getBoolean("BungeeCord.Enabled") == false) {
-						if(CustomConfigs.getStorageConfig().contains("Hub.World")) {
+						if(Main.theClass.Storage.contains("Hub.World")) {
 							Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
-							if(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")) != null) {
-								loc.setWorld(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")));
-								loc.setX(CustomConfigs.getStorageConfig().getInt("Hub.X"));
-								loc.setY(CustomConfigs.getStorageConfig().getInt("Hub.Y"));
-								loc.setZ(CustomConfigs.getStorageConfig().getInt("Hub.Z"));
-								loc.setYaw(CustomConfigs.getStorageConfig().getInt("Hub.Yaw"));
-								loc.setPitch(CustomConfigs.getStorageConfig().getInt("Hub.Pitch"));
+							if(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")) != null) {
+								loc.setWorld(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")));
+								loc.setX(Main.theClass.Storage.getInt("Hub.X"));
+								loc.setY(Main.theClass.Storage.getInt("Hub.Y"));
+								loc.setZ(Main.theClass.Storage.getInt("Hub.Z"));
+								loc.setYaw(Main.theClass.Storage.getInt("Hub.Yaw"));
+								loc.setPitch(Main.theClass.Storage.getInt("Hub.Pitch"));
 								Player player = (Player) sender;
 								player.teleport(loc);
 							} else {
@@ -86,13 +85,13 @@ public class Commands implements CommandExecutor {
 				Player player = (Player) sender;
 				if(player.hasPermission(new Permissions().SetHub)) {
 					if(Main.theClass.config.getBoolean("BungeeCord.Enabled") == false) {
-						CustomConfigs.getStorageConfig().set("Hub.World", player.getWorld().getName());
-						CustomConfigs.getStorageConfig().set("Hub.X", player.getLocation().getX());
-						CustomConfigs.getStorageConfig().set("Hub.Y", player.getLocation().getY());
-						CustomConfigs.getStorageConfig().set("Hub.Z", player.getLocation().getZ());
-						CustomConfigs.getStorageConfig().set("Hub.Yaw", player.getLocation().getYaw());
-						CustomConfigs.getStorageConfig().set("Hub.Pitch", player.getLocation().getPitch());
-						CustomConfigs.saveStorageConfig();
+						Main.theClass.Storage.set("Hub.World", player.getWorld().getName());
+						Main.theClass.Storage.set("Hub.X", player.getLocation().getX());
+						Main.theClass.Storage.set("Hub.Y", player.getLocation().getY());
+						Main.theClass.Storage.set("Hub.Z", player.getLocation().getZ());
+						Main.theClass.Storage.set("Hub.Yaw", player.getLocation().getYaw());
+						Main.theClass.Storage.set("Hub.Pitch", player.getLocation().getPitch());
+						Main.theClass.Storage.saveConfig();
 						player.sendMessage("§8[§cHubBasics§8] §eHub set!");
 					} else {
 						sender.sendMessage("§8[§cHubBasics§8] §cBungeeCord Support Is Enabled!");
@@ -211,65 +210,65 @@ public class Commands implements CommandExecutor {
 				if(Main.theClass.config.getBoolean("Others.HubItems") == true) {
 					Player player = (Player) sender;
 					// ITEM 1
-					if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item1.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item1(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item1.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item1.Slot"),
 									Items.Item1(player.getName()));
 						}
 					}
 					// Item 2
-					if(CustomConfigs.getItemConfig().getBoolean("Item2.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item2.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item2(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item2.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item2.Slot"),
 									Items.Item2(player.getName()));
 						}
 					}
 					// Item 3
-					if(CustomConfigs.getItemConfig().getBoolean("Item3.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item3.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item3(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item3.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item3.Slot"),
 									Items.Item3(player.getName()));
 						}
 					}
 					// Item 4
-					if(CustomConfigs.getItemConfig().getBoolean("Item4.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item4.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item4(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item4.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item4.Slot"),
 									Items.Item4(player.getName()));
 						}
 					}
 					// Item 5
-					if(CustomConfigs.getItemConfig().getBoolean("Item5.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item5.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item5(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item5.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item5.Slot"),
 									Items.Item5(player.getName()));
 						}
 					}
 					// Item 6
-					if(CustomConfigs.getItemConfig().getBoolean("Item6.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item6.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item6(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item6.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item6.Slot"),
 									Items.Item6(player.getName()));
 						}
 					}
 					// Item 7
-					if(CustomConfigs.getItemConfig().getBoolean("Item7.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item7.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item7(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item7.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item7.Slot"),
 									Items.Item7(player.getName()));
 						}
 					}
 					// Item 8
-					if(CustomConfigs.getItemConfig().getBoolean("Item8.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item8.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item8(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item8.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item8.Slot"),
 									Items.Item8(player.getName()));
 						}
 					}
 					// Item 9
-					if(CustomConfigs.getItemConfig().getBoolean("Item9.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item9.Enabled") == true) {
 						if(!player.getInventory().contains(Items.Item9(player.getName()))) {
-							player.getInventory().setItem(CustomConfigs.getItemConfig().getInt("Item9.Slot"),
+							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item9.Slot"),
 									Items.Item9(player.getName()));
 						}
 					}

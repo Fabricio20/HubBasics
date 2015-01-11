@@ -1,6 +1,5 @@
 package me.Fabricio20;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -22,7 +21,6 @@ import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.listeners.ServerPingListener;
 import me.Fabricio20.listeners.SignChangeListener;
 import me.Fabricio20.listeners.VoidFallListener;
-import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.FixConfig;
 import me.Fabricio20.methods.Configs.SimpleConfig;
 import me.Fabricio20.methods.Configs.SimpleConfigManager;
@@ -31,7 +29,6 @@ import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
 
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -47,13 +44,11 @@ public class Main extends JavaPlugin {
 	public String version;
 	
 	public Main plugin;
-	public static FileConfiguration StorageConfig = null;
-    public static File Storage = null;
-	public static FileConfiguration ItemConfig = null;
-    public static File Item = null;
     public SimpleConfigManager manager;
     
     public SimpleConfig config;
+    public SimpleConfig Storage;
+    public SimpleConfig ItemConfig;
 	
     private int ChatTime = 0;
     private int BossTime = 0;
@@ -97,13 +92,8 @@ public class Main extends JavaPlugin {
 	
 	public void initPlugin() {
 		version = Bukkit.getVersion();
-		this.manager = new SimpleConfigManager(this);
-		String[] header = {"HubBasics Main Configuratio File", "Documentation Can Be Found On GitHub Page", "Dont forget to add the world at the worlds section"};
-		this.config = manager.getNewConfig("config.yml", header);
-		this.config.saveConfig();
+		initConfigs();
 		FixConfig.fix();
-		CustomConfigs.reloadStorageConfig();
-		CustomConfigs.reloadItemConfig();
 		registerListeners();
 		registerTasks();
 		registerCommands();
@@ -191,6 +181,23 @@ public class Main extends JavaPlugin {
 		} catch (IOException e) {
 		   System.out.println("[HubBasics] Error while trying to submit metrics!");
 		}
+	}
+	
+	private void initConfigs() {
+		this.manager = new SimpleConfigManager(this);
+		String[] header = {"HubBasics Main Configuration File", "Documentation Can Be Found On GitHub Page", "Dont forget to add the world at the worlds section"};
+		this.config = manager.getNewConfig("config.yml", header);
+		this.config.saveConfig();
+		//
+		this.manager = new SimpleConfigManager(this);
+		String[] header2 = {"HubBasics Item Configuration File", "Documentation Can Be Found On GitHub Page", "Dont forget that you can use %p to get the player name"};
+		this.config = manager.getNewConfig("Items.yml", header2);
+		this.config.saveConfig();
+		//
+		this.manager = new SimpleConfigManager(this);
+		String[] header3 = {"HubBasics Storage File", "Documentation Can Be Found On GitHub Page", "Please do not change anything in this file"};
+		this.config = manager.getNewConfig("Storage.yml", header3);
+		this.config.saveConfig();
 	}
 	
 }

@@ -1,7 +1,6 @@
 package me.Fabricio20.listeners;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.methods.CustomConfigs;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -27,12 +26,12 @@ public class VoidFallListener implements Listener {
 			}
 			if ((ent instanceof Player)) {
 				Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
-				loc.setWorld(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")));
-				loc.setX(CustomConfigs.getStorageConfig().getInt("Hub.X"));
-				loc.setY(CustomConfigs.getStorageConfig().getInt("Hub.Y"));
-				loc.setZ(CustomConfigs.getStorageConfig().getInt("Hub.Z"));
-				loc.setYaw(CustomConfigs.getStorageConfig().getInt("Hub.Yaw"));
-				loc.setPitch(CustomConfigs.getStorageConfig().getInt("Hub.Pitch"));
+				loc.setWorld(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")));
+				loc.setX(Main.theClass.Storage.getInt("Hub.X"));
+				loc.setY(Main.theClass.Storage.getInt("Hub.Y"));
+				loc.setZ(Main.theClass.Storage.getInt("Hub.Z"));
+				loc.setYaw(Main.theClass.Storage.getInt("Hub.Yaw"));
+				loc.setPitch(Main.theClass.Storage.getInt("Hub.Pitch"));
 				((Player) ent).teleport(loc);
 				((Player) ent).setFallDistance(0.0F);
 				((Player) ent).sendMessage(Main.theClass.config.getString("VoidFall.Message").replace("&", "§").replace("%p", ((Player) ent).getName()));

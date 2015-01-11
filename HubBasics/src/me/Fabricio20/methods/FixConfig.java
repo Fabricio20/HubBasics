@@ -1,11 +1,20 @@
 package me.Fabricio20.methods;
 
 import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
+
 import me.Fabricio20.Main;
 
 public class FixConfig {
 	
 	public static void fix() {
+		fixConfig();
+		fixItems();
+		fixStorage();
+	}
+	
+	private static void fixConfig() {
 		/**
 		 * ------------- TODO: JoinEvents System   ------------- *
 		 */
@@ -431,6 +440,48 @@ public class FixConfig {
 			worlds.add("Example");
 			Main.theClass.config.set("Worlds", worlds);
 			Main.theClass.config.saveConfig();
+		}
+	}
+	
+	private static void fixItems() {
+		if(!Main.theClass.ItemConfig.contains("Item1.Skull")) {
+        	MakeItemsConfig.make1();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item2.Skull")) {
+        	MakeItemsConfig.make2();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item3.Skull")) {
+        	MakeItemsConfig.make3();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item4.Skull")) {
+        	MakeItemsConfig.make4();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item5.Skull")) {
+        	MakeItemsConfig.make5();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item6.Skull")) {
+        	MakeItemsConfig.make6();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item7.Skull")) {
+        	MakeItemsConfig.make7();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item8.Skull")) {
+        	MakeItemsConfig.make8();
+        }
+        if(!Main.theClass.ItemConfig.contains("Item9.Skull")) {
+        	MakeItemsConfig.make9();
+        }
+	}
+	
+	private static void fixStorage() {
+		if(!Main.theClass.Storage.contains("Hub.World")) {
+			Main.theClass.Storage.set("Hub.World", Bukkit.getWorlds().get(0).getSpawnLocation().getWorld().getName());
+			Main.theClass.Storage.set("Hub.X", Bukkit.getWorlds().get(0).getSpawnLocation().getX());
+			Main.theClass.Storage.set("Hub.Y", Bukkit.getWorlds().get(0).getSpawnLocation().getY());
+			Main.theClass.Storage.set("Hub.Z", Bukkit.getWorlds().get(0).getSpawnLocation().getZ());
+			Main.theClass.Storage.set("Hub.Yaw", Bukkit.getWorlds().get(0).getSpawnLocation().getYaw());
+			Main.theClass.Storage.set("Hub.Pitch", Bukkit.getWorlds().get(0).getSpawnLocation().getPitch());
+			Main.theClass.Storage.saveConfig();
 		}
 	}
 	

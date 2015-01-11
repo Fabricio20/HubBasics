@@ -6,7 +6,6 @@ import java.util.List;
 import me.Fabricio20.Main;
 import me.Fabricio20.Permissions;
 import me.Fabricio20.Strings;
-import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 
 import org.bukkit.Bukkit;
@@ -104,66 +103,66 @@ public class RightClickListener implements Listener {
 			if(Main.theClass.config.getBoolean("Others.JoinItems") == true) {
 				List<String> worlds = Main.theClass.config.getStringList("Worlds");
 				if(worlds.contains(e.getPlayer().getWorld().getName())) {
-					if(CustomConfigs.getItemConfig().getBoolean("Item1.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item1.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item1.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item1.Command"));
+							if(Main.theClass.ItemConfig.getString("Item1.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item1.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item2.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item2.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item2.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item2.Command"));
+							if(Main.theClass.ItemConfig.getString("Item2.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item2.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item3.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item3.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item3.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item3.Command"));
+							if(Main.theClass.ItemConfig.getString("Item3.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item3.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item4.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item4.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item4.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item4.Command"));
+							if(Main.theClass.ItemConfig.getString("Item4.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item4.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item5.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item5.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item5.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item5.Command"));
+							if(Main.theClass.ItemConfig.getString("Item5.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item5.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item6.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item6.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item6.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item6.Command"));
+							if(Main.theClass.ItemConfig.getString("Item6.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item6.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item7.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item7.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item7.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item7.Command"));
+							if(Main.theClass.ItemConfig.getString("Item7.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item7.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item8.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item8.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item8.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item8.Command"));
+							if(Main.theClass.ItemConfig.getString("Item8.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item8.Command"));
 							}
 						}
 					}
-					if(CustomConfigs.getItemConfig().getBoolean("Item9.Enabled") == true) {
+					if(Main.theClass.ItemConfig.getBoolean("Item9.Enabled") == true) {
 						if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
-							if(CustomConfigs.getItemConfig().getString("Item9.Command") != null) {
-								e.getPlayer().chat(CustomConfigs.getItemConfig().getString("Item9.Command"));
+							if(Main.theClass.ItemConfig.getString("Item9.Command") != null) {
+								e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item9.Command"));
 							}
 						}
 					}

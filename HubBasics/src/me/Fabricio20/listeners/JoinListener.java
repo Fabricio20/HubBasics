@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.methods.CustomConfigs;
 import me.Fabricio20.methods.Items;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.confuser.barapi.BarAPI;
@@ -31,15 +30,15 @@ public class JoinListener implements Listener {
 			 }
 		 }
 		if(Main.theClass.config.getBoolean("JoinEvents.HubAtLogin") == true) {
-			if(CustomConfigs.getStorageConfig().contains("Hub.World")) {
+			if(Main.theClass.Storage.contains("Hub.World")) {
 				Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
-				if(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")) != null) {
-					loc.setWorld(Bukkit.getWorld(CustomConfigs.getStorageConfig().getString("Hub.World")));
-					loc.setX(CustomConfigs.getStorageConfig().getInt("Hub.X"));
-					loc.setY(CustomConfigs.getStorageConfig().getInt("Hub.Y"));
-					loc.setZ(CustomConfigs.getStorageConfig().getInt("Hub.Z"));
-					loc.setYaw(CustomConfigs.getStorageConfig().getInt("Hub.Yaw"));
-					loc.setPitch(CustomConfigs.getStorageConfig().getInt("Hub.Pitch"));
+				if(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")) != null) {
+					loc.setWorld(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")));
+					loc.setX(Main.theClass.Storage.getInt("Hub.X"));
+					loc.setY(Main.theClass.Storage.getInt("Hub.Y"));
+					loc.setZ(Main.theClass.Storage.getInt("Hub.Z"));
+					loc.setYaw(Main.theClass.Storage.getInt("Hub.Yaw"));
+					loc.setPitch(Main.theClass.Storage.getInt("Hub.Pitch"));
 					e.getPlayer().teleport(loc);
 				}
 			}

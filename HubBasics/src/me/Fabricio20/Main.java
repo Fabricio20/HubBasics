@@ -103,7 +103,7 @@ public class Main extends JavaPlugin {
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
-		System.out.println("= Runnables: \u001B[32m" + "4" + "\u001B[0m");
+		System.out.println("= Runnables: \u001B[32m" + "5" + "\u001B[0m");
 		System.out.println("= Version : \u001B[32m" + Strings.Version + "\u001B[0m");
 		if(Bukkit.getPluginManager().getPlugin("BarAPI") != null) {
 			System.out.println("= BarAPI: \u001B[32mFound\u001B[0m");
@@ -177,7 +177,7 @@ public class Main extends JavaPlugin {
 		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(getPlugin(), 20, BossTime * 20);
 		ChatTime = getPlugin().getConfig().getInt("ChatAnnouncer.Time");
 		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(getPlugin(), 20, ChatTime * 20);
-		BukkitTask Effect = new EffectApplier().runTaskTimer(getPlugin(), 20, 20);
+		BukkitTask Effect = new EffectApplier().runTaskTimer(getPlugin(), 20, 1);
 	}
 	
 	private void initMetrics() {

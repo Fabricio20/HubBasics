@@ -188,12 +188,12 @@ public class Main extends JavaPlugin {
 		this.config.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);
-		String[] header2 = {"HubBasics Item Configuration File", "Documentation Can Be Found On GitHub Page", "Dont forget that you can use %p to get the player name"};
+		String[] header2 = {"HubBasics Item Configuration File", "Documentation Can Be Found On GitHub Page", "Edit with caution! Malformed YAML can break the plugin!"};
 		this.ItemConfig = manager.getNewConfig("Items.yml", header2);
 		this.ItemConfig.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);
-		String[] header3 = {"HubBasics Storage File", "Documentation Can Be Found On GitHub Page", "Please do not change anything in this file"};
+		String[] header3 = {"HubBasics Storage File", "Please do not change anything in this file"};
 		this.Storage = manager.getNewConfig("Storage.yml", header3);
 		this.Storage.saveConfig();
 	}

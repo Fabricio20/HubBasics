@@ -48,8 +48,8 @@ public class JoinListener implements Listener {
 			List<String> worlds = Main.theClass.config.getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
 				if(!e.getPlayer().getInventory().contains(Items.Book(e.getPlayer().getName()))) {
-					if(Main.theClass.config.getBoolean("BookSystem.FirstJoinOnly")) {
-						if(BookAPI.shouldGive(e.getPlayer().getName())) {
+					if(Main.theClass.config.getBoolean("BookSystem.FirstJoinOnly") == true) {
+						if(BookAPI.shouldGive(e.getPlayer().getName()) == true) {
 							if(Main.theClass.config.getBoolean("BookSystem.Give") == false) {
 								e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
 								BookAPI.give(e.getPlayer().getName());

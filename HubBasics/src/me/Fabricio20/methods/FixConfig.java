@@ -278,8 +278,8 @@ public class FixConfig {
 			Main.theClass.config.set("BookSystem.Give", true);
 			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.config.contains("BookSyste.FirstJoinOnly")) {
-			Main.theClass.config.set("FirstJoinOnly", true);
+		if(!Main.theClass.config.contains("BookSystem.FirstJoinOnly")) {
+			Main.theClass.config.set("BookSystem.FirstJoinOnly", true);
 			Main.theClass.config.saveConfig();
 		}
 		if(!Main.theClass.config.contains("BookSystem.Lore")) {

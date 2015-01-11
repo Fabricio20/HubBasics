@@ -113,7 +113,7 @@ public class FixConfig {
 		 * ------------- TODO: BossAnnouncer System   ------------- *
 		 */
 		if(!Main.theClass.config.contains("BossAnnouncer.Enabled")) {
-			Main.theClass.config.set("BossAnnouncer.Enabled", false, "WARNING: This can generate errors since BarAPI is broken.");
+			Main.theClass.config.set("BossAnnouncer.Enabled", false, "WARNING This can generate errors since BarAPI is broken.");
 			Main.theClass.config.saveConfig();
 		}
 		if(!Main.theClass.config.contains("BossAnnouncer.Msgs")) {

@@ -108,6 +108,11 @@ public class Main extends JavaPlugin {
 		} else {
 			System.out.println("= BarAPI: \u001B[34mNot Found\u001B[0m");
 		}
+		if(Bukkit.getPluginManager().getPlugin("PermissionsEx") != null) {
+			System.out.println("= PEX: \u001B[32mFound\u001B[0m");
+		} else {
+			System.out.println("= PEX: \u001B[34mNot Found\u001B[0m");
+		}
 		System.out.println("= Author  : \u001B[33mFabricio20\u001B[0m");
 		System.out.println("= Status  : \u001B[32mActive\u001B[0m");
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");

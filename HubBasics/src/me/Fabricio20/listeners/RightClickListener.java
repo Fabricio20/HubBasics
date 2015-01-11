@@ -25,7 +25,8 @@ public class RightClickListener implements Listener {
 	
 	ArrayList<Player> cooldown = new ArrayList<Player>();
 	
-	public static ArrayList<Player> players = new ArrayList<Player>();
+	ArrayList<Player> players = new ArrayList<Player>();
+	public static ArrayList<Player> stackeroff = new ArrayList<Player>();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -54,13 +55,17 @@ public class RightClickListener implements Listener {
 			if(worlds.contains(player.getWorld().getName())) {
 				if(e.getRightClicked() instanceof Player) {
 					Player target = (Player) e.getRightClicked();
-					if(target.isInsideVehicle() == false) {
-						players.add(target);
+					if(!target.isInsideVehicle() && players.contains(target)) {
+						players.remove(target);
 					}
-					if(!target.hasPermission(new Permissions().NonStackable)) {
-						if(players.contains(target)) {
-							player.setPassenger(target);
-							players.remove(target);
+					if(!target.hasPermission(new Permissions().NonStackable) && target.hasPermission(new Permissions().Stacker) && !stackeroff.contains(target)) {
+						if(!target.isInsideVehicle()) {
+							if(!player.isInsideVehicle()) {
+								if(!players.contains(target)) {
+									player.setPassenger(target);
+									players.add(target);
+								}
+							}
 						}
 					}
 				}
@@ -79,11 +84,11 @@ public class RightClickListener implements Listener {
 				if(e.getAction() == Action.LEFT_CLICK_AIR) {
 					if((player.getPassenger() instanceof Player)) {
 						Player passenger = (Player)player.getPassenger();
-						if(!players.contains(passenger)) {
+						if(players.contains(passenger)) {
 							passenger.leaveVehicle();
 				            Location loc = player.getLocation();
 				            passenger.setVelocity(VEC(loc).multiply(2));
-				            players.add(passenger);
+				            players.remove(passenger);
 						}
 					}
 				}

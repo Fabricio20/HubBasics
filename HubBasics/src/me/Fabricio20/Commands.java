@@ -5,7 +5,9 @@ import java.io.DataOutputStream;
 
 import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.methods.CustomConfigs;
+import me.Fabricio20.API.HoverAPI;
 import me.Fabricio20.methods.Items;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -159,8 +161,14 @@ public class Commands implements CommandExecutor {
 		} else if(commandLabel.equalsIgnoreCase("hb")) {
 			if(sender.hasPermission(new Permissions().Hub)) {
 				if(args.length == 0) {
-					sender.sendMessage("§c<!--HubBasics Commands --!>");
-					sender.sendMessage("§c/hb reload");
+					if(!(sender instanceof Player)) {
+						sender.sendMessage("[HubBasics] Avaliable Commands:");
+						sender.sendMessage("[HubBasics] /hb reload");
+					} else {
+						Player player = (Player) sender;
+						player.spigot().sendMessage(HoverAPI.buildTextLinkText(player, "§f-§a-§f-§a-§f-§a-  ", "§9HubBasics", "http://www.spigotmc.org/resources/hubbasics.2654/", "§eClick to open HubBasics website", "  §a-§f-§a-§f-§a-§f-"));
+						player.spigot().sendMessage(HoverAPI.buildTextCommandText(player, "", "§c/hb reload", "/hb reload", "§9Reloads The Plugin\n§e- Click to reload", ""));
+					}
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
 						Main.theClass.getPlugin().reloadConfig();
@@ -168,8 +176,14 @@ public class Commands implements CommandExecutor {
 						Strings.LaunchPadBlock = Main.theClass.getPlugin().getConfig().getString("Others.JumpPadBlock");
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
 					} else {
-						sender.sendMessage("§c<!--HubBasics Commands --!>");
-						sender.sendMessage("§c/hb reload");
+						if(!(sender instanceof Player)) {
+							sender.sendMessage("[HubBasics] Avaliable Commands:");
+							sender.sendMessage("[HubBasics] /hb reload");
+						} else {
+							Player player = (Player) sender;
+							player.spigot().sendMessage(HoverAPI.buildTextLinkText(player, "§f-§a-§f-§a-§f-§a-  ", "§9HubBasics", "http://www.spigotmc.org/resources/hubbasics.2654/", "§eClick to open HubBasics website", "  §a-§f-§a-§f-§a-§f-"));
+							player.spigot().sendMessage(HoverAPI.buildTextCommandText(player, "", "§c/hb reload", "/hb reload", "§9Reloads The Plugin\n§e- Click to reload", ""));
+						}
 					}
 				}
 			} else {
@@ -268,12 +282,12 @@ public class Commands implements CommandExecutor {
 				if(!(sender instanceof Player)) {
 					sender.sendMessage("Only Players Can Use This Command!");
 				} else {
-					if(RightClickListener.players.contains((Player)sender)) {
-						RightClickListener.players.remove((Player)sender);
-						sender.sendMessage(Strings.StackerDisabled);
-					} else {
-						RightClickListener.players.add((Player)sender);
+					if(RightClickListener.stackeroff.contains((Player)sender)) {
+						RightClickListener.stackeroff.remove((Player)sender);
 						sender.sendMessage(Strings.StackerEnabled);
+					} else {
+						RightClickListener.stackeroff.add((Player)sender);
+						sender.sendMessage(Strings.StackerDisabled);
 					}
 				}
 			} else {

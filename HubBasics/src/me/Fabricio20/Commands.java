@@ -171,8 +171,8 @@ public class Commands implements CommandExecutor {
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
 						Main.theClass.config.reloadConfig();
-						Strings.Prefix = Main.theClass.config.getString("Others.Prefix").replace("&", "§");
-						Strings.LaunchPadBlock = Main.theClass.config.getString("Others.JumpPadBlock");
+						Main.theClass.ItemConfig.reloadConfig();
+						Main.theClass.Storage.reloadConfig();
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
 					} else {
 						if(!(sender instanceof Player)) {

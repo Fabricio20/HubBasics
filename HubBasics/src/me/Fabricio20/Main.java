@@ -98,8 +98,6 @@ public class Main extends JavaPlugin {
 		registerTasks();
 		registerCommands();
 		initMetrics();
-		Strings.Prefix = getConfig().getString("Others.Prefix").replace("&", "§");
-		Strings.LaunchPadBlock = getConfig().getString("Others.JumpPadBlock");
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
@@ -191,13 +189,13 @@ public class Main extends JavaPlugin {
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header2 = {"HubBasics Item Configuration File", "Documentation Can Be Found On GitHub Page", "Dont forget that you can use %p to get the player name"};
-		this.config = manager.getNewConfig("Items.yml", header2);
-		this.config.saveConfig();
+		this.ItemConfig = manager.getNewConfig("Items.yml", header2);
+		this.ItemConfig.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header3 = {"HubBasics Storage File", "Documentation Can Be Found On GitHub Page", "Please do not change anything in this file"};
-		this.config = manager.getNewConfig("Storage.yml", header3);
-		this.config.saveConfig();
+		this.Storage = manager.getNewConfig("Storage.yml", header3);
+		this.Storage.saveConfig();
 	}
 	
 }

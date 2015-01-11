@@ -34,8 +34,8 @@ public class Strings {
 	 */
 	
 	public static ArrayList<Player> MagicClockActive = new ArrayList<Player>();
-	public static String Prefix;
-	public static String LaunchPadBlock;
+	public static String Prefix = Main.theClass.config.getString("Others.Prefix").replace("&", "§");
+	public static String LaunchPadBlock = Main.theClass.config.getString("Others.JumpPadBlock");
 	public static String StackerEnabled = Main.theClass.config.getString("Others.StackerEnabledMessage").replace("&", "§");
 	public static String StackerDisabled = Main.theClass.config.getString("Others.StackerDisabledMessage").replace("&", "§");
 	public static String TabHeader = Main.theClass.config.getString("TabList.Header").replace("&", "§");

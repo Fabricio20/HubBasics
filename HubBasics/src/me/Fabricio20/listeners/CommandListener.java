@@ -2,6 +2,7 @@ package me.Fabricio20.listeners;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.Permissions;
+import me.Fabricio20.methods.QuickWarpChest;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,16 +21,16 @@ public class CommandListener implements Listener {
 					e.setCancelled(true);
 				}
 			}
-		} else {
-			if(args[0].equalsIgnoreCase("/pl")) {
+		} else if(args[0].equalsIgnoreCase("/pl")) {
 				if(Main.theClass.config.getBoolean("FakePlugins.Enabled") == true) {
 					if(!e.getPlayer().hasPermission(new Permissions().Plugins)) {
 						e.getPlayer().sendMessage(Main.theClass.config.getString("FakePlugins.Msg").replace("&", "§").replace("%p", e.getPlayer().getName()));
 						e.setCancelled(true);
 					}
 				}
+			} else if(args[0].equalsIgnoreCase("/chest")) {
+				QuickWarpChest.open(e.getPlayer());
 			}
-		}
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

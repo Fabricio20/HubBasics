@@ -51,6 +51,9 @@ public class Main extends JavaPlugin {
     public SimpleConfig config;
     public SimpleConfig Storage;
     public SimpleConfig ItemConfig;
+    public SimpleConfig Warps;
+    public SimpleConfig Language;
+    public SimpleConfig QuickWarpChest;
 	
     private int ChatTime = 0;
     private int BossTime = 0;
@@ -129,6 +132,10 @@ public class Main extends JavaPlugin {
 		getCommand("uuid").setExecutor(new Commands());
 		getCommand("hubitems").setExecutor(new Commands());
 		getCommand("stacker").setExecutor(new Commands());
+		getCommand("setwarp").setExecutor(new Commands());
+		getCommand("warp").setExecutor(new Commands());
+		getCommand("delwarp").setExecutor(new Commands());
+		getCommand("warps").setExecutor(new Commands());
 	}
 	
 	@SuppressWarnings("unused")
@@ -205,6 +212,21 @@ public class Main extends JavaPlugin {
 		String[] header3 = {"HubBasics Storage File", "Please do not change anything in this file"};
 		this.Storage = manager.getNewConfig("Storage.yml", header3);
 		this.Storage.saveConfig();
+		//
+		this.manager = new SimpleConfigManager(this);
+		String[] header4 = {"HubBasics Warp Storage File", "Please do not change anything in this file"};
+		this.Warps = manager.getNewConfig("Warps.yml", header4);
+		this.Warps.saveConfig();
+		//
+		this.manager = new SimpleConfigManager(this);
+		String[] header5 = {"HubBasics Language File", "Change with caution / Color codes are supported!"};
+		this.Language = manager.getNewConfig("Language.yml", header5);
+		this.Language.saveConfig();
+		//
+		this.manager = new SimpleConfigManager(this);
+		String[] header6 = {"HubBasics Chest File", "Change with caution / Color codes are supported!"};
+		this.QuickWarpChest = manager.getNewConfig("Chests/QuickWarp.yml", header6);
+		this.QuickWarpChest.saveConfig();
 	}
 	
 }

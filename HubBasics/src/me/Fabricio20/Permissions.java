@@ -11,5 +11,8 @@ public class Permissions {
 	public Permission Plugins = new Permission("HubBasics.Plugins");
 	public Permission Stacker = new Permission("HubBasics.Stacker");
 	public Permission ChatColor = new Permission("HubBasics.ChatColor");
+	public Permission SetWarp = new Permission("HubBasics.SetWarp");
+	public Permission WarpAdmin = new Permission("HubBasics.WarpOthers");
+	public Permission DelWarp = new Permission("HubBasics.DelWarp");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -12,6 +12,8 @@ public class FixConfig {
 		fixConfig();
 		fixItems();
 		fixStorage();
+		fixLanguage();
+		fixQuickWarp();
 	}
 	
 	private static void fixConfig() {
@@ -372,6 +374,17 @@ public class FixConfig {
 			Main.theClass.config.saveConfig();
 		}
 		/**
+		 * ------------- TODO: Warp System   ------------- *
+		 */
+		if(!Main.theClass.config.contains("WarpSystem.Message")) {
+			Main.theClass.config.set("WarpSystem.Message", true);
+			Main.theClass.config.saveConfig();
+		}
+		if(!Main.theClass.config.contains("WarpSystem.Effect")) {
+			Main.theClass.config.set("WarpSystem.Effect", true);
+			Main.theClass.config.saveConfig();
+		}
+		/**
 		 * ------------- TODO: Others System   ------------- *
 		 */
 		if(!Main.theClass.config.contains("Others.DisableRain")) {
@@ -514,4 +527,37 @@ public class FixConfig {
 		}
 	}
 	
+	private static void fixLanguage() {
+		if(!Main.theClass.Language.contains("WarpUsage")) {
+			Main.theClass.Language.set("WarpUsage", "&cUsage: /warp <name>");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("WarpMessage")) {
+			Main.theClass.Language.set("WarpMessage", "&6Woosh!");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("WarpNoPermission")) {
+			Main.theClass.Language.set("WarpNoPermission", "&cYou do not have permission for this warp!");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("QuickWarpChestName")) {
+			Main.theClass.Language.set("QuickWarpChestName", "&cQuick-Warp");
+			Main.theClass.Language.saveConfig();
+		}
+	}
+	
+	private static void fixQuickWarp() {
+		if(!Main.theClass.QuickWarpChest.contains("Rows")) {
+			Main.theClass.QuickWarpChest.set("Rows", 4);
+			Main.theClass.QuickWarpChest.saveConfig();
+		}
+		if(!Main.theClass.QuickWarpChest.contains("Items")) {
+			Main.theClass.QuickWarpChest.set("Items.Example.Material", "DIAMOND_BLOCK");
+			Main.theClass.QuickWarpChest.set("Items.Example.Name", "&bDIAMOND BLOCK");
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&cBasic Lore");
+			Main.theClass.QuickWarpChest.set("Items.Example.Lore", lore);
+			Main.theClass.QuickWarpChest.saveConfig();
+		}
+	}
 }

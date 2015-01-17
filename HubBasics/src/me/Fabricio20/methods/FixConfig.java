@@ -459,6 +459,10 @@ public class FixConfig {
 			Main.theClass.config.set("Others.StackerDisabledMessage", "&cStacker Disabled!");
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("Others.FirstJoinItemsOnly")) {
+			Main.theClass.config.set("Others.FirstJoinItemsOnly", false);
+			Main.theClass.config.saveConfig();
+		}
 		/**
 		 * ------------- TODO: Worlds System   ------------- *
 		 */

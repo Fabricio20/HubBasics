@@ -1,6 +1,5 @@
 package me.Fabricio20.API;
 
-import me.Fabricio20.Language;
 import me.Fabricio20.Main;
 
 import org.bukkit.Bukkit;
@@ -56,7 +55,7 @@ public class WarpAPI {
 		Location loc = getLocation(warp);
 		player.teleport(loc);
 		if(Main.theClass.config.getBoolean("WarpSystem.Message") == true) {
-			player.sendMessage(Language.theClass.WarpedMessage(player.getName()));
+			player.sendMessage(LanguageAPI.theClass.WarpedMessage(player.getName(), player.getWorld().getName()));
 		}
 		if(Main.theClass.config.getBoolean("WarpSystem.Effect") == true) {
 			if(Bukkit.getVersion().contains("1.7")) {

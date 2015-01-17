@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import me.Fabricio20.Language;
 import me.Fabricio20.Main;
+import me.Fabricio20.API.LanguageAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -18,7 +18,7 @@ public class QuickWarpChest {
 	
 	public static void open(Player player) {
 		int slots = Main.theClass.QuickWarpChest.getInt("Rows") * 9;
-		Inventory inv = Bukkit.createInventory(null, slots, Language.theClass.QWarpChestName(player.getName()));
+		Inventory inv = Bukkit.createInventory(null, slots, LanguageAPI.theClass.QWarpChestName(player.getName(), player.getWorld().getName()));
 		Set<String> s = Main.theClass.QuickWarpChest.getConfigurationSection("Items").getKeys(false);
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 		for(String st : s) {

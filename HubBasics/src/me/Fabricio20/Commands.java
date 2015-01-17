@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.util.Set;
 
 import me.Fabricio20.API.HoverAPI;
+import me.Fabricio20.API.LanguageAPI;
 import me.Fabricio20.API.WarpAPI;
 import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.methods.Items;
@@ -350,7 +351,7 @@ public class Commands implements CommandExecutor {
 			} else {
 				Player player = (Player) sender;
 				if(args.length < 1) {
-					player.sendMessage(Language.theClass.WarpUsage(player.getName()));
+					player.sendMessage(LanguageAPI.theClass.WarpUsage(player.getName(), player.getWorld().getName()));
 				}
 				if(args.length == 1) {
 					String name = args[0];
@@ -358,7 +359,7 @@ public class Commands implements CommandExecutor {
 						if(player.hasPermission("HubBasics.Warps." + name.toLowerCase())) {
 							WarpAPI.sendToWarp(name, player);
 						} else {
-							player.sendMessage(Language.theClass.WarpNoPermission(player.getName()));
+							player.sendMessage(LanguageAPI.theClass.WarpNoPermission(player.getName(), player.getWorld().getName()));
 						}
 					} else {
 						player.sendMessage("§cWarp Not Found!");

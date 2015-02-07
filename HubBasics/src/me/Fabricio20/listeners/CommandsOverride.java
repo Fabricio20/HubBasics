@@ -25,7 +25,21 @@ public class CommandsOverride implements Listener {
 		String[] args = e.getMessage().split(" ");
 		Player sender = e.getPlayer();
 		if(!e.isCancelled()) {
-			if(e.getMessage().startsWith("/warp")) {
+			if(e.getMessage().startsWith("/warps")) {
+				if(!isDisabled("warps")) {
+					e.setCancelled(true);
+					String word = "§6Warps: §a";
+					Set<String> s = Main.theClass.Warps.getConfigurationSection("Warps").getKeys(false);
+					for (String st : s) {
+						if (sender.hasPermission("HubBasics.Warps." + st.toLowerCase())) {
+							word = word + "§a" + st + "§f, ";
+						} else {
+							word = word + "§c" + st + "§f, ";
+						}
+					}
+					sender.sendMessage(word);
+				}
+			} else if(e.getMessage().startsWith("/warp")) {
 				if(!isDisabled("warp")) {
 					e.setCancelled(true);
 					Player player = (Player) sender;
@@ -74,8 +88,7 @@ public class CommandsOverride implements Listener {
 						}
 					}
 				}
-			}
-			if(e.getMessage().startsWith("setwarp")) {
+			} else if(e.getMessage().startsWith("/setwarp")) {
 				if(!isDisabled("setwarp")) {
 					e.setCancelled(true);
 					Player player = (Player) sender;
@@ -100,25 +113,9 @@ public class CommandsOverride implements Listener {
 						player.sendMessage(Strings.PermissionError);
 					}
 				}
-			}
-			if(e.getMessage().startsWith("delwarp")) {
+			} else if(e.getMessage().startsWith("/delwarp")) {
 				if(!isDisabled("delwarp")) {
 					e.setCancelled(true);
-					if(args.length < 2) {
-						sender.sendMessage("Usage: /delwarp <name>");
-					}
-					if(args.length >= 2) {
-						if(WarpAPI.warpExist(args[1])) {
-							if(WarpAPI.removeWarp(args[1])) {
-								sender.sendMessage("Warp '" + args[1]
-										+ "' Removed!");
-							} else {
-								sender.sendMessage("Error While Removing Warp!");
-							}
-						} else {
-							sender.sendMessage("This warp does not exist!");
-						}
-					}
 					Player player = (Player) sender;
 					if(player.hasPermission(new Permissions().DelWarp)) {
 						if(args.length < 2) {
@@ -139,21 +136,6 @@ public class CommandsOverride implements Listener {
 					} else {
 						player.sendMessage(Strings.PermissionError);
 					}
-				}
-			}
-			if(e.getMessage().startsWith("/warps")) {
-				if(!isDisabled("warps")) {
-					e.setCancelled(true);
-					String word = "§6Warps: §a";
-					Set<String> s = Main.theClass.Warps.getConfigurationSection("Warps").getKeys(false);
-					for (String st : s) {
-						if (sender.hasPermission("HubBasics.Warps." + st.toLowerCase())) {
-							word = word + "§a" + st + "§f, ";
-						} else {
-							word = word + "§c" + st + "§f, ";
-						}
-					}
-					sender.sendMessage(word);
 				}
 			}
 		}

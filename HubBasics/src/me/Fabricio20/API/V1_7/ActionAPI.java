@@ -30,7 +30,7 @@ public class ActionAPI {
 	public static void sendAction(Player player, String message) {
 		if(isPlayerRightVersion(player)) {
 			IChatBaseComponent icbc = ChatSerializer.a("{\"text\": \"" + message + "\"}");
-			PacketPlayOutChat bar = new PacketPlayOutChat(icbc, (byte)2);
+			PacketPlayOutChat bar = new PacketPlayOutChat(icbc/*, (byte)2*/);
 		    ((CraftPlayer)player).getHandle().playerConnection.sendPacket(bar);
 		}
 	}

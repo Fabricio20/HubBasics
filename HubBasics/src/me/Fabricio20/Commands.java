@@ -2,18 +2,14 @@ package me.Fabricio20;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.util.Set;
 
 import me.Fabricio20.API.HoverAPI;
-import me.Fabricio20.API.LanguageAPI;
-import me.Fabricio20.API.WarpAPI;
 import me.Fabricio20.listeners.RightClickListener;
 import me.Fabricio20.methods.Items;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -298,144 +294,6 @@ public class Commands implements CommandExecutor {
 			} else {
 				sender.sendMessage(Strings.PermissionError);
 			}
-		} else if(commandLabel.equalsIgnoreCase("setwarp")) {
-			if(!(sender instanceof Player)) {
-				sender.sendMessage("Only Players Sir!");
-			} else {
-				Player player = (Player) sender;
-				World world = player.getWorld();
-				Location loc = player.getLocation();
-				if(player.hasPermission(new Permissions().SetWarp)) {
-					if(args.length >= 1) {
-						String name = args[0];
-						if(!WarpAPI.warpExist(name)) {
-							if(WarpAPI.createWarp(name, world.getName(), loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch())) {
-								player.sendMessage("§aWarp §b" + name + "§a Created!");
-							} else {
-								player.sendMessage("§cThere was an error creating this warp.");
-							}
-						} else {
-							player.sendMessage("§cThis Warp Already Exist!");
-						}
-					} else {
-						player.sendMessage("§cUsage: /setwarp <name>");
-					}
-				} else {
-					player.sendMessage(Strings.PermissionError);
-				}
-			}
-		} else if(commandLabel.equalsIgnoreCase("warp")) {
-			if(!(sender instanceof Player)) {
-				if(args.length >= 2) {
-					String name = args[1];
-					Player target = Bukkit.getPlayer(args[0]);
-					if(sender.hasPermission(new Permissions().WarpAdmin)) {
-						if(target != null) {
-							if(WarpAPI.warpExist(name)) {
-								if(target.hasPermission("HubBasics.Warps." + name.toLowerCase())) {
-									WarpAPI.sendToWarp(name, target);
-									sender.sendMessage("Teleported " + target.getName() + " to " + name);
-								} else {
-									sender.sendMessage(target.getName() + " §cDoesn't have Permission for this warp!");
-								}
-							} else {
-								sender.sendMessage("§cWarp Not Found!");
-							}
-						} else {
-							sender.sendMessage("§cPlayer Not Found!");
-						}
-					}
-				} else {
-					sender.sendMessage("Usage: /warp <Player> <name>");
-				}
-			} else {
-				Player player = (Player) sender;
-				if(args.length < 1) {
-					player.sendMessage(LanguageAPI.theClass.WarpUsage(player.getName(), player.getWorld().getName()));
-				}
-				if(args.length == 1) {
-					String name = args[0];
-					if(WarpAPI.warpExist(name)) {
-						if(player.hasPermission("HubBasics.Warps." + name.toLowerCase())) {
-							WarpAPI.sendToWarp(name, player);
-						} else {
-							player.sendMessage(LanguageAPI.theClass.WarpNoPermission(player.getName(), player.getWorld().getName()));
-						}
-					} else {
-						player.sendMessage("§cWarp Not Found!");
-					}
-				}
-				if(args.length >= 2) {
-					String name = args[1];
-					Player target = Bukkit.getPlayer(args[0]);
-					if(player.hasPermission(new Permissions().WarpAdmin)) {
-						if(target != null) {
-							if(WarpAPI.warpExist(name)) {
-								if(target.hasPermission("HubBasics.Warps." + name.toLowerCase())) {
-									WarpAPI.sendToWarp(name, player);
-									player.sendMessage("§eTeleported §9" + target.getName() + " §eto §9" + name);
-								} else {
-									player.sendMessage(target.getName() + " §cDoesn't have Permission for this warp!");
-								}
-							} else {
-								player.sendMessage("§cWarp Not Found!");
-							}
-						} else {
-							player.sendMessage("§cPlayer Not Found!");
-						}
-					} else {
-						player.sendMessage(Strings.PermissionError);
-					}
-				}
-			}
-		} else if(commandLabel.equalsIgnoreCase("delwarp")) {
-			if(!(sender instanceof Player)) {
-				if(args.length < 1) {
-					sender.sendMessage("Usage: /delwarp <name>");
-				}
-				if(args.length >= 1) {
-					if(WarpAPI.warpExist(args[0])) {
-						if(WarpAPI.removeWarp(args[0])) {
-							sender.sendMessage("Warp '" + args[0] + "' Removed!");
-						} else {
-							sender.sendMessage("Error While Removing Warp!");
-						}
-					} else {
-						sender.sendMessage("This warp does not exist!");
-					}
-				}
-			} else {
-				Player player = (Player) sender;
-				if(player.hasPermission(new Permissions().DelWarp)) {
-					if(args.length < 1) {
-						player.sendMessage("§cUsage: /delwarp <name>");
-					}
-					if(args.length >= 1) {
-						if(WarpAPI.warpExist(args[0])) {
-							if(WarpAPI.removeWarp(args[0])) {
-								player.sendMessage("§aWarp '§b" + args[0] + "§a' Removed!");
-							} else {
-								player.sendMessage("§cError While Removing Warp!");
-							}
-						} else {
-							player.sendMessage("§cThis warp does not exist!");
-						}
-					}
-				} else {
-					player.sendMessage(Strings.PermissionError);
-				}
-			}
-		} else if(commandLabel.equalsIgnoreCase("warps")) {
-			String word = "§6Warps: §a";
-			Set<String> s = Main.theClass.Warps.getConfigurationSection("Warps").getKeys(false);
-			for(String st : s) {
-				if(sender.hasPermission("HubBasics.Warps." + st.toLowerCase())) {
-					word = word + "§a" + st + "§f, ";
-				} else {
-					word =  word + "§c" + st + "§f, ";
-				}
-			}
-			sender.sendMessage(word);
 		}
 		return false;
 	}

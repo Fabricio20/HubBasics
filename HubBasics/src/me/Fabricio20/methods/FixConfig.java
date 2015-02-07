@@ -463,6 +463,15 @@ public class FixConfig {
 			Main.theClass.config.set("Others.FirstJoinItemsOnly", false);
 			Main.theClass.config.saveConfig();
 		}
+		/** 
+		 * ------------ TODO: Disabled Commands    ------------- *
+		 */
+		if(!Main.theClass.config.contains("DisabledCommands")) {
+			ArrayList<String> commands = new ArrayList<String>();
+			commands.add("example");
+			Main.theClass.config.set("DisabledCommands", commands);
+			Main.theClass.config.saveConfig();
+		}
 		/**
 		 * ------------- TODO: Worlds System   ------------- *
 		 */

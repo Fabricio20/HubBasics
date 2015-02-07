@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 import me.Fabricio20.listeners.CommandListener;
+import me.Fabricio20.listeners.CommandsOverride;
 import me.Fabricio20.listeners.DeathListener;
 import me.Fabricio20.listeners.DropItemListener;
 import me.Fabricio20.listeners.HealthListener;
@@ -132,10 +133,6 @@ public class Main extends JavaPlugin {
 		getCommand("uuid").setExecutor(new Commands());
 		getCommand("hubitems").setExecutor(new Commands());
 		getCommand("stacker").setExecutor(new Commands());
-		getCommand("setwarp").setExecutor(new Commands());
-		getCommand("warp").setExecutor(new Commands());
-		getCommand("delwarp").setExecutor(new Commands());
-		getCommand("warps").setExecutor(new Commands());
 	}
 	
 	@SuppressWarnings("unused")
@@ -157,6 +154,7 @@ public class Main extends JavaPlugin {
 		if(Bukkit.getServer().getPluginManager().getPlugin("PermissionsEx") != null) {
 			Bukkit.getServer().getPluginManager().registerEvents(new PEXChatListener(), this);
 		}
+		Bukkit.getServer().getPluginManager().registerEvents(new CommandsOverride(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new LeaveListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new RainListener(), this);

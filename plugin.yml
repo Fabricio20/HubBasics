@@ -22,11 +22,3 @@ commands:
     description: Give you the hub items.
   stacker:
     description: Enable/Disable stacker.
-  setwarp:
-    description: Create a warp.
-  warp:
-    description: Warp.
-  delwarp:
-    description: Removes a warp.
-  warps:
-    description: List Warps.

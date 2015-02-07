@@ -28,16 +28,20 @@ public class CommandsOverride implements Listener {
 			if(e.getMessage().startsWith("/warps")) {
 				if(!isDisabled("warps")) {
 					e.setCancelled(true);
-					String word = "§6Warps: §a";
-					Set<String> s = Main.theClass.Warps.getConfigurationSection("Warps").getKeys(false);
-					for (String st : s) {
-						if (sender.hasPermission("HubBasics.Warps." + st.toLowerCase())) {
-							word = word + "§a" + st + "§f, ";
-						} else {
-							word = word + "§c" + st + "§f, ";
+					if(Main.theClass.Warps.contains("Warps")) {
+						String word = "§6Warps: §a";
+						Set<String> s = Main.theClass.Warps.getConfigurationSection("Warps").getKeys(false);
+						for (String st : s) {
+							if (sender.hasPermission("HubBasics.Warps." + st.toLowerCase())) {
+								word = word + "§a" + st + "§f, ";
+							} else {
+								word = word + "§c" + st + "§f, ";
+							}
 						}
+						sender.sendMessage(word);
+					} else {
+						sender.sendMessage("§6Warps: §cNo warps found.");
 					}
-					sender.sendMessage(word);
 				}
 			} else if(e.getMessage().startsWith("/warp")) {
 				if(!isDisabled("warp")) {

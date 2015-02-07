@@ -12,6 +12,7 @@ import me.Fabricio20.listeners.HungerListener;
 import me.Fabricio20.listeners.ItemMoveListener;
 import me.Fabricio20.listeners.JoinListener;
 import me.Fabricio20.listeners.JoinListenerForItems;
+import me.Fabricio20.listeners.JoinListenerForTags;
 import me.Fabricio20.listeners.JumpListener;
 import me.Fabricio20.listeners.LeaveListener;
 import me.Fabricio20.listeners.MoveListener;
@@ -54,6 +55,7 @@ public class Main extends JavaPlugin {
     public SimpleConfig ItemConfig;
     public SimpleConfig Warps;
     public SimpleConfig Language;
+    public SimpleConfig Tags;
     public SimpleConfig QuickWarpChest;
 	
     private int ChatTime = 0;
@@ -145,6 +147,7 @@ public class Main extends JavaPlugin {
 		} else if(version.contains("1.8")) {
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TitleJoin(), this);
+			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else {
@@ -225,6 +228,11 @@ public class Main extends JavaPlugin {
 		String[] header6 = {"HubBasics Chest File", "Change with caution / Color codes are supported!"};
 		this.QuickWarpChest = manager.getNewConfig("Chests/QuickWarp.yml", header6);
 		this.QuickWarpChest.saveConfig();
+		//
+		this.manager = new SimpleConfigManager(this);
+		String[] header7 = {"HubBasics Tags System", "Only Works On 1.8 Servers!", "Change with caution / Color codes are supported!"};
+		this.Tags = manager.getNewConfig("Tags.yml", header7);
+		this.Tags.saveConfig();
 	}
 	
 }

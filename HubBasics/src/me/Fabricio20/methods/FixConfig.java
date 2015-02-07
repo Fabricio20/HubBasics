@@ -14,6 +14,7 @@ public class FixConfig {
 		fixStorage();
 		fixLanguage();
 		fixQuickWarp();
+		fixTags();
 	}
 	
 	private static void fixConfig() {
@@ -571,6 +572,17 @@ public class FixConfig {
 			lore.add("&cBasic Lore");
 			Main.theClass.QuickWarpChest.set("Items.Example.Lore", lore);
 			Main.theClass.QuickWarpChest.saveConfig();
+		}
+	}
+	
+	private static void fixTags() {
+		if(!Main.theClass.Tags.contains("Enabled")) {
+			Main.theClass.Tags.set("Enabled", true);
+			Main.theClass.Tags.saveConfig();
+		}
+		if(!Main.theClass.Tags.contains("TabList")) {
+			Main.theClass.Tags.set("TabList.Fabricio20.Prefix", "&8[&bDev&8]&7 ");
+			Main.theClass.Tags.saveConfig();
 		}
 	}
 }

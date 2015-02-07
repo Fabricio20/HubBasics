@@ -15,9 +15,9 @@ public class ModuleManager {
 	
 	public boolean isEnabled(String module) {
 		if(module.equalsIgnoreCase("ChatSystem")) {
-			return Main.theClass.plugin.getConfig().getBoolean("ChatSystem.Enabled");
-		} else if(module.equalsIgnoreCase("")) {
-			return false;
+			return Main.theClass.config.getBoolean("ChatSystem.Enabled");
+		} else if(module.equalsIgnoreCase("Tags")) {
+			return Main.theClass.Tags.getBoolean("Enabled");
 		} else {
 			return false;
 		}

@@ -3,10 +3,12 @@ package me.Fabricio20;
 import java.io.IOException;
 import java.util.logging.Level;
 
+import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.listeners.Chat.CommandListener;
 import me.Fabricio20.listeners.Chat.CommandsOverride;
 import me.Fabricio20.listeners.Chat.PEXChatListener;
 import me.Fabricio20.listeners.Item.DropItemListener;
+import me.Fabricio20.listeners.Item.ItemClickChest;
 import me.Fabricio20.listeners.Item.ItemMoveListener;
 import me.Fabricio20.listeners.Others.JumpListener;
 import me.Fabricio20.listeners.Others.RainListener;
@@ -24,7 +26,6 @@ import me.Fabricio20.listeners.Player.PlayerChangeWorld;
 import me.Fabricio20.listeners.Player.RightClickListener;
 import me.Fabricio20.listeners.Player.VoidFallListener;
 import me.Fabricio20.listeners.Veichle.VeichleLeaveListener;
-import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.FixConfig;
 import me.Fabricio20.methods.Configs.SimpleConfig;
 import me.Fabricio20.methods.Configs.SimpleConfigManager;
@@ -177,6 +178,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getServer().getPluginManager().registerEvents(new ItemMoveListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new VeichleLeaveListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new ItemClickChest(), this);
 	}
 	
 	@SuppressWarnings("unused")

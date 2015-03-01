@@ -20,23 +20,30 @@ public class QuickWarpChest {
 		int slots = Main.theClass.QuickWarpChest.getInt("Rows") * 9;
 		Inventory inv = Bukkit.createInventory(null, slots, LanguageAPI.theClass.QWarpChestName(player.getName(), player.getWorld().getName()));
 		Set<String> s = Main.theClass.QuickWarpChest.getConfigurationSection("Items").getKeys(false);
-		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		int slot = 0;
 		for(String st : s) {
-			String mat = Main.theClass.QuickWarpChest.getString(st + ".Material");
+			String mat = Main.theClass.QuickWarpChest.getString("Items." + st + ".Material");
 			ItemStack stack = new ItemStack(Material.getMaterial(mat));
 			ItemMeta meta = stack.getItemMeta();
-			meta.setDisplayName(Main.theClass.QuickWarpChest.getString(st + ".Name"));
-			List<String> loreFromConfig = Main.theClass.QuickWarpChest.getStringList(st + ".Lore");
+			meta.setDisplayName(Main.theClass.QuickWarpChest.getString("Items." + st + ".Name").replace("&", "§"));
+			List<String> loreFromConfig = Main.theClass.QuickWarpChest.getStringList("Items." + st + ".Lore");
 			List<String> newLore = new ArrayList<String>();
 			for(String str : loreFromConfig) {
 				newLore.add(str.replace("&", "§"));
 			}
 			meta.setLore(newLore);
 			stack.setItemMeta(meta);
-			items.add(stack);
-		}
-		for(ItemStack stack: items) {
-			inv.addItem(stack);
+			if(slot < slots) {
+				if(Main.theClass.QuickWarpChest.getBoolean("Items." + st + ".ViewPermEnabled")) {
+					if(player.hasPermission("Items." + st + ".ViewPerm")) {
+						inv.setItem(Main.theClass.QuickWarpChest.getInt("Items." + st + ".Slot"), stack);
+						slot++;
+					}
+				} else {
+					inv.setItem(Main.theClass.QuickWarpChest.getInt("Items." + st + ".Slot"), stack);
+					slot++;
+				}
+			}
 		}
 		player.openInventory(inv);
 	}

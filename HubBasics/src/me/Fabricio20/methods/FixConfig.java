@@ -562,11 +562,15 @@ public class FixConfig {
 			Main.theClass.Language.set("QuickWarpChestName", "&cQuick-Warp");
 			Main.theClass.Language.saveConfig();
 		}
+		if(!Main.theClass.Language.contains("ServerSelectorNoPerm")) {
+			Main.theClass.Language.set("ServerSelectorNoPerm", "&cError: &7&oYou Do Not Have Permission To Use This!");
+			Main.theClass.Language.saveConfig();
+		}
 	}
 	
 	private static void fixQuickWarp() {
 		if(!Main.theClass.QuickWarpChest.contains("Rows")) {
-			Main.theClass.QuickWarpChest.set("Rows", 4);
+			Main.theClass.QuickWarpChest.set("Rows", 3, "The Chest Hows / Maximum is 6");
 			Main.theClass.QuickWarpChest.saveConfig();
 		}
 		if(!Main.theClass.QuickWarpChest.contains("Items")) {
@@ -575,6 +579,13 @@ public class FixConfig {
 			ArrayList<String> lore = new ArrayList<String>();
 			lore.add("&cBasic Lore");
 			Main.theClass.QuickWarpChest.set("Items.Example.Lore", lore);
+			Main.theClass.QuickWarpChest.set("Items.Example.Command", "/me This Is a Command!");
+			Main.theClass.QuickWarpChest.set("Items.Example.Console", false);
+			Main.theClass.QuickWarpChest.set("Items.Example.Permission", "ExampleItem.use");
+			Main.theClass.QuickWarpChest.set("Items.Example.UsePerm", false);
+			Main.theClass.QuickWarpChest.set("Items.Example.Slot", 0);
+			Main.theClass.QuickWarpChest.set("Items.Example.ViewPermEnabled", true);
+			Main.theClass.QuickWarpChest.set("Items.Example.ViewPerm", "ExampleItem.see");
 			Main.theClass.QuickWarpChest.saveConfig();
 		}
 	}

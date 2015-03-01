@@ -1,0 +1,19 @@
+# +----------------------------------------------------+
+# <                HubBasics Chest File                >
+# <  Change with caution / Color codes are supported!  >
+# +----------------------------------------------------+
+
+Rows: 3 # The chest rows, maximum is 6
+Items: # Here are the items that are showed on the chest
+  Example: # A internal item name, WARNING: Do not duplicate this / Different for every item
+    Material: DIAMOND_BLOCK # The Item Material, From Bukkit Material List ( ITEM NAME )
+    Name: '&bDIAMOND BLOCK' # The Item Name
+    Lore: # The Item Lore
+    - '&cBasic Lore'
+    Command: /me This Is a Command! # The Command that will run when the item is clicked. For bungeecord use SERVER:server_name
+    Console: false # If the command should be run by the server console.
+    Permission: ExampleItem.use # The Permission to use the item
+    UsePerm: false # If the above permission is used
+    Slot: 0 # The Item Slot, Starting from 0
+    ViewPermEnabled: true # If the view permission is enabled
+    ViewPerm: ExampleItem.see # The Permission to view the item

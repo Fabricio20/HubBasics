@@ -6,8 +6,6 @@ public class LanguageAPI {
 	
 	public static LanguageAPI theClass = new LanguageAPI();
 	
-
-	
 	public String WarpUsage(String playerName, String worldName) {
 		return Main.theClass.Language.getString("WarpUsage").replace("&", "§").replace("%player%", playerName).replace("%world%", worldName);
 	}
@@ -24,8 +22,8 @@ public class LanguageAPI {
 		return Main.theClass.Language.getString("QuickWarpChestName").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
 	}
 	
-	public String someThing() {
-		return "";
+	public String ServerSelectorNoPerm(String playerName, String worldName) {
+		return Main.theClass.Language.getString("ServerSelectorNoPerm").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
 	}
 	
 }

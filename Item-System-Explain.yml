@@ -1,0 +1,14 @@
+# +----------------------------------------------------+
+# <         HubBasics Item Configuration File          >
+# <     Documentation Can Be Found On GitHub Page      >
+# +----------------------------------------------------+
+
+Item1: # Item Number, The Limit Is 9, Sorry! I'll be fixing this soon
+  Enabled: true # If true, the item will be added to inventory
+  Skull: false # If it's a sjull
+  Material: PAPER # The Item Material ( Not Used If Skull = true )
+  Name: '&bThis is a paper!' # The Item Name
+  Lore: # The Item Lore
+  - '&cThis is the &bPAPER''s &cLore!'
+  Slot: 0 # The Slot It Should Be Placed, Starting at 0
+  Command: /me I just installed HubBasics! # The Command that will be run when a player right clicks w/ the item

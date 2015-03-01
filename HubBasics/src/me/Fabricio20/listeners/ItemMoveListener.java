@@ -20,9 +20,11 @@ public class ItemMoveListener implements Listener {
 				if(Main.theClass.config.getBoolean("Others.AllowItemMove") == false) {
 					e.setCancelled(true);
 				}
-				if (Main.theClass.config.getBoolean("MagicClock.AllowMove") == false) {
-					if (e.getSlot() == Main.theClass.config.getInt("MagicClock.Slot")) {
-						e.setCancelled(true);
+				if(Main.theClass.config.getBoolean("MagicClock.Enabled") == true) {
+					if(Main.theClass.config.getBoolean("MagicClock.AllowMove") == false) {
+						if(e.getSlot() == Main.theClass.config.getInt("MagicClock.Slot")) {
+							e.setCancelled(true);
+						}
 					}
 				}
 				if(Main.theClass.config.getBoolean("HatSystem.HatAllowMove") == false) {

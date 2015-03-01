@@ -424,6 +424,10 @@ public class FixConfig {
 			Main.theClass.config.set("Others.JoinItemsChangeWorld", false);
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("Others.ClearInventoryOnEveryWorld")) {
+			Main.theClass.config.set("Others.ClearInventoryOnEveryWorld", false);
+			Main.theClass.config.saveConfig();
+		}
 		if(!Main.theClass.config.contains("Others.GiveItems")) {
 			Main.theClass.config.set("Others.GiveItems", true);
 			Main.theClass.config.saveConfig();

@@ -35,9 +35,9 @@ public class JoinListener implements Listener {
 				Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
 				if(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")) != null) {
 					loc.setWorld(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")));
-					loc.setX(Main.theClass.Storage.getInt("Hub.X"));
-					loc.setY(Main.theClass.Storage.getInt("Hub.Y"));
-					loc.setZ(Main.theClass.Storage.getInt("Hub.Z"));
+					loc.setX(Main.theClass.Storage.getDouble("Hub.X"));
+					loc.setY(Main.theClass.Storage.getDouble("Hub.Y"));
+					loc.setZ(Main.theClass.Storage.getDouble("Hub.Z"));
 					loc.setYaw(Main.theClass.Storage.getInt("Hub.Yaw"));
 					loc.setPitch(Main.theClass.Storage.getInt("Hub.Pitch"));
 					e.getPlayer().teleport(loc);

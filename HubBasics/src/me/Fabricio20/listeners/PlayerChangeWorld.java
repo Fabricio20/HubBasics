@@ -17,14 +17,16 @@ public class PlayerChangeWorld implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerChangeWorld(PlayerChangedWorldEvent e) {
-		if (Strings.MagicClockActive.contains(e.getPlayer())) {
+		if(Strings.MagicClockActive.contains(e.getPlayer())) {
 			for (Player user : Bukkit.getOnlinePlayers()) {
 				if (e.getPlayer().canSee(user) == false) {
 					e.getPlayer().showPlayer(user);
 				}
 			}
 		}
-		
+		if(Main.theClass.config.getBoolean("Others.ClearInventoryOnEveryWorld")) {
+			e.getPlayer().getInventory().clear();
+		}
 		List<String> worlds = Main.theClass.config.getStringList("Worlds");
 		if(worlds.contains(e.getPlayer().getWorld())) {
 			Player player = e.getPlayer();

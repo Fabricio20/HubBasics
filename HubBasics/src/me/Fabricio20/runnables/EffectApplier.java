@@ -17,7 +17,7 @@ public class EffectApplier extends BukkitRunnable {
 		if(Main.theClass.config.getBoolean("JoinEvents.Effects.Enabled") == true) {
 			if(Main.theClass.config.getBoolean("JoinEvents.Effects.SPEED") == true) {
 				for(Player players : Bukkit.getOnlinePlayers()) {
-					if(ModuleManager.theClass.isInWorld(players.getWorld().getName())) {
+					if(ModuleManager.theClass.isInWorld(players)) {
 						PotionEffect potion = new PotionEffect(PotionEffectType.SPEED, 20, 2);
 						players.addPotionEffect(potion);
 					}
@@ -25,7 +25,7 @@ public class EffectApplier extends BukkitRunnable {
 			}
 			if(Main.theClass.config.getBoolean("JoinEvents.Effects.JUMP") == true) {
 				for(Player players : Bukkit.getOnlinePlayers()) {
-					if(ModuleManager.theClass.isInWorld(players.getWorld().getName())) {
+					if(ModuleManager.theClass.isInWorld(players)) {
 						PotionEffect potion = new PotionEffect(PotionEffectType.JUMP, 20, 2);
 						players.addPotionEffect(potion);
 					}

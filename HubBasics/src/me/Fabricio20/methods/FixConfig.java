@@ -573,6 +573,10 @@ public class FixConfig {
 			Main.theClass.QuickWarpChest.set("Rows", 3, "The Chest Hows / Maximum is 6");
 			Main.theClass.QuickWarpChest.saveConfig();
 		}
+		if(!Main.theClass.QuickWarpChest.contains("PerWorld")) {
+			Main.theClass.QuickWarpChest.set("PerWorld", false);
+			Main.theClass.QuickWarpChest.saveConfig();
+		}
 		if(!Main.theClass.QuickWarpChest.contains("Items")) {
 			Main.theClass.QuickWarpChest.set("Items.Example.Material", "DIAMOND_BLOCK");
 			Main.theClass.QuickWarpChest.set("Items.Example.Name", "&bDIAMOND BLOCK");

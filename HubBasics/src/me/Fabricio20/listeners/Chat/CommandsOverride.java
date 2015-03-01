@@ -9,6 +9,8 @@ import me.Fabricio20.Permissions;
 import me.Fabricio20.API.LanguageAPI;
 import me.Fabricio20.API.WarpAPI;
 import me.Fabricio20.Storage.Strings;
+import me.Fabricio20.methods.ModuleManager;
+import me.Fabricio20.methods.QuickWarpChest;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -23,9 +25,10 @@ public class CommandsOverride implements Listener {
 	@EventHandler
 	public void onCommand(PlayerCommandPreprocessEvent e) {
 		String[] args = e.getMessage().split(" ");
+		String[] cmd = e.getMessage().split(" ");
 		Player sender = e.getPlayer();
 		if(!e.isCancelled()) {
-			if(e.getMessage().startsWith("/warps")) {
+			if(cmd[0].equalsIgnoreCase("/warps")) {
 				if(!isDisabled("warps")) {
 					e.setCancelled(true);
 					if(Main.theClass.Warps.contains("Warps")) {
@@ -43,7 +46,7 @@ public class CommandsOverride implements Listener {
 						sender.sendMessage("§6Warps: §cNo warps found.");
 					}
 				}
-			} else if(e.getMessage().startsWith("/warp")) {
+			} else if(cmd[0].equalsIgnoreCase("/warp")) {
 				if(!isDisabled("warp")) {
 					e.setCancelled(true);
 					Player player = (Player) sender;
@@ -92,7 +95,7 @@ public class CommandsOverride implements Listener {
 						}
 					}
 				}
-			} else if(e.getMessage().startsWith("/setwarp")) {
+			} else if(cmd[0].equalsIgnoreCase("/setwarp")) {
 				if(!isDisabled("setwarp")) {
 					e.setCancelled(true);
 					Player player = (Player) sender;
@@ -117,7 +120,7 @@ public class CommandsOverride implements Listener {
 						player.sendMessage(Strings.PermissionError);
 					}
 				}
-			} else if(e.getMessage().startsWith("/delwarp")) {
+			} else if(cmd[0].equalsIgnoreCase("/delwarp")) {
 				if(!isDisabled("delwarp")) {
 					e.setCancelled(true);
 					Player player = (Player) sender;
@@ -140,6 +143,19 @@ public class CommandsOverride implements Listener {
 					} else {
 						player.sendMessage(Strings.PermissionError);
 					}
+				}
+			} else if(cmd[0].equalsIgnoreCase("/quickwarp")) {
+				if(!isDisabled("quickwarp")) {
+					e.setCancelled(true);
+					Player player = (Player) sender;
+					if(Main.theClass.QuickWarpChest.getBoolean("PerWorld")) {
+						if(ModuleManager.theClass.isInWorld(player)) {
+							QuickWarpChest.open(player);
+						}
+					} else {
+						QuickWarpChest.open(player);
+					}
+					
 				}
 			}
 		}

@@ -4,13 +4,15 @@ import java.util.List;
 
 import me.Fabricio20.Main;
 
+import org.bukkit.entity.Player;
+
 public class ModuleManager {
 	
 	public static ModuleManager theClass = new ModuleManager();
 	
-	public boolean isInWorld(String world) {
+	public boolean isInWorld(Player player) {
 		List<String> worlds = Main.theClass.config.getStringList("Worlds");
-		return worlds.contains(world);
+		return worlds.contains(player.getWorld().getName());
 	}
 	
 	public boolean isEnabled(String module) {

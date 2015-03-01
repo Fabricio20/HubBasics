@@ -4,6 +4,7 @@
 # +----------------------------------------------------+
 
 Rows: 3 # The chest rows, maximum is 6
+PerWorld: false # If true the /quickwarp command will only work on hub worlds
 Items: # Here are the items that are showed on the chest
   Example: # A internal item name, WARNING: Do not duplicate this / Different for every item
     Material: DIAMOND_BLOCK # The Item Material, From Bukkit Material List ( ITEM NAME )

@@ -1,6 +1,8 @@
-package me.Fabricio20;
+package me.Fabricio20.Storage;
 
 import java.util.ArrayList;
+
+import me.Fabricio20.Main;
 
 import org.bukkit.entity.Player;
 
@@ -41,7 +43,7 @@ public class Strings {
 	public static String TabHeader = Main.theClass.config.getString("TabList.Header").replace("&", "§");
 	public static String TabFooter = Main.theClass.config.getString("TabList.Footer").replace("&", "§");
 	public final static String PermissionError = "§cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.";
-	public final static String Version = "3.2.3.0";
+	public final static String Version = "3.2.3.2";
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

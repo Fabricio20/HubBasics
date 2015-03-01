@@ -1,7 +1,7 @@
 package me.Fabricio20.listeners.V1_7;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.Strings;
+import me.Fabricio20.Storage.Strings;
 import net.minecraft.server.v1_7_R4.ChatSerializer;
 import net.minecraft.server.v1_7_R4.IChatBaseComponent;
 import net.minecraft.server.v1_7_R4.PlayerConnection;

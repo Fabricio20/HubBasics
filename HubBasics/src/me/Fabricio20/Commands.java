@@ -4,7 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import me.Fabricio20.API.HoverAPI;
-import me.Fabricio20.listeners.RightClickListener;
+import me.Fabricio20.listeners.Player.RightClickListener;
+import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.Items;
 
 import org.bukkit.Bukkit;

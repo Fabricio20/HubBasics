@@ -1,9 +1,9 @@
-package me.Fabricio20.listeners;
+package me.Fabricio20.listeners.Player;
 
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.Strings;
+import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.Items;
 
 import org.bukkit.Bukkit;

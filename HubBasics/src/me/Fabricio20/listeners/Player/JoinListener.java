@@ -1,4 +1,4 @@
-package me.Fabricio20.listeners;
+package me.Fabricio20.listeners.Player;
 
 import java.util.ArrayList;
 import java.util.List;

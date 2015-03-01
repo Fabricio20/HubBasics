@@ -3,27 +3,28 @@ package me.Fabricio20;
 import java.io.IOException;
 import java.util.logging.Level;
 
-import me.Fabricio20.listeners.CommandListener;
-import me.Fabricio20.listeners.CommandsOverride;
-import me.Fabricio20.listeners.DeathListener;
-import me.Fabricio20.listeners.DropItemListener;
-import me.Fabricio20.listeners.HealthListener;
-import me.Fabricio20.listeners.HungerListener;
-import me.Fabricio20.listeners.ItemMoveListener;
-import me.Fabricio20.listeners.JoinListener;
-import me.Fabricio20.listeners.JoinListenerForItems;
-import me.Fabricio20.listeners.JoinListenerForTags;
-import me.Fabricio20.listeners.JumpListener;
-import me.Fabricio20.listeners.LeaveListener;
-import me.Fabricio20.listeners.MoveListener;
-import me.Fabricio20.listeners.PEXChatListener;
-import me.Fabricio20.listeners.PlayerChangeWorld;
-import me.Fabricio20.listeners.RainListener;
-import me.Fabricio20.listeners.RightClickListener;
-import me.Fabricio20.listeners.ServerPingListener;
-import me.Fabricio20.listeners.SignChangeListener;
-import me.Fabricio20.listeners.VeichleLeaveListener;
-import me.Fabricio20.listeners.VoidFallListener;
+import me.Fabricio20.listeners.Chat.CommandListener;
+import me.Fabricio20.listeners.Chat.CommandsOverride;
+import me.Fabricio20.listeners.Chat.PEXChatListener;
+import me.Fabricio20.listeners.Item.DropItemListener;
+import me.Fabricio20.listeners.Item.ItemMoveListener;
+import me.Fabricio20.listeners.Others.JumpListener;
+import me.Fabricio20.listeners.Others.RainListener;
+import me.Fabricio20.listeners.Others.ServerPingListener;
+import me.Fabricio20.listeners.Others.SignChangeListener;
+import me.Fabricio20.listeners.Player.DeathListener;
+import me.Fabricio20.listeners.Player.HealthListener;
+import me.Fabricio20.listeners.Player.HungerListener;
+import me.Fabricio20.listeners.Player.JoinListener;
+import me.Fabricio20.listeners.Player.JoinListenerForItems;
+import me.Fabricio20.listeners.Player.JoinListenerForTags;
+import me.Fabricio20.listeners.Player.LeaveListener;
+import me.Fabricio20.listeners.Player.MoveListener;
+import me.Fabricio20.listeners.Player.PlayerChangeWorld;
+import me.Fabricio20.listeners.Player.RightClickListener;
+import me.Fabricio20.listeners.Player.VoidFallListener;
+import me.Fabricio20.listeners.Veichle.VeichleLeaveListener;
+import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.FixConfig;
 import me.Fabricio20.methods.Configs.SimpleConfig;
 import me.Fabricio20.methods.Configs.SimpleConfigManager;
@@ -102,7 +103,7 @@ public class Main extends JavaPlugin {
 		version = Bukkit.getVersion();
 		initConfigs();
 		FixConfig.fix();
-		registerListeners();
+		registerlisteners();
 		registerTasks();
 		registerCommands();
 		initMetrics();
@@ -138,7 +139,7 @@ public class Main extends JavaPlugin {
 	}
 	
 	@SuppressWarnings("unused")
-	private void registerListeners() {
+	private void registerlisteners() {
 		if(version.contains("1.7")) {
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);

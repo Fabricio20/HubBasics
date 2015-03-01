@@ -10,6 +10,10 @@ JoinEvents: # Here are listed the events that happen when a player joins the ser
   Message: '&8[&cHubBasics&8] &eWelcome &a%p &eto the server!' # Here you can configure your custom join message if enabled.
   HubAtLogin: false # Here you can configure if the player will be teleported to the hub on join.
   BossBarOnJoin: false # Here you can configure if the BossBarAnnouncer system will display the boss bar on join.
+  Effects:
+    Enabled: true # If true then potion effects on hub will be enabled
+    SPEED: true # If true Speed will be applied on hub
+    JUMP: true # If true Jump will be applied on hub
 #
 LeaveEvents: # Here are listed the events that happen when a player leaves the server.
   DisableLeaveMessage: false # Here you can set if the Leave Message will appear or not.
@@ -45,6 +49,16 @@ BossAnnouncer: # Here you can configure the boss announcer system.
   Worlds:  # Here the words you want to enable the Boss Announcer if Perworld = true;
   - Example
   Time: 60 # Here you can se the time for the message to appear ( In Seconds );
+#
+ActionAnnouncer: # Here you can configure the Action announcer system.
+  Enabled: false # If true the Action announcing system will bee enabled
+  Msgs: # The messages you want are listed here. Remember: You can use COLOR CODES.
+  - Announce 1
+  - Announce 2
+  Perworld: false # Here you can configure if you want to limit the Action Announcer per world.
+  Worlds: # Here the words you want to enable the Action Announcer if Perworld = true;
+  - Example
+  Time: 3 # Here you can se the time for the message to appear ( In Seconds );
 #
 FakePlugins: # Here you can configure the Fake Plugin message.
   Enabled: true # If true the /plugins and /pl will display a fake message to players that doesn't have the right permission.
@@ -100,6 +114,16 @@ HatSystem: # Hat System Configuration
   AllowDrops: true # If true the hat can be dropped
   NoPerm: '&cYou do not have permission for this hat!' # No Permission For Hat Message
 #
+ChatSystem: # Here you can configure your chat, this option only works with pex for now
+  Enabled: true # If true the custom chat will be enabled
+  PerWorld: false # If true the chat will be separated per world.
+  AllowColors: true # If true people with permission will be able to use chat colors. (HubBasics.ChatColor)
+  Format: '&f[&2$group&f] &e%p&f: &c%m' # The chat format
+#
+WarpSystem: # The warp system config, to disable see DisableCommands
+  Message: true # If true, a message will appear when the user warps
+  Effect: true # If true a particle effect will appear when the user warps
+#
 Others: # Uncategorized features here.
   DisableRain: false # If true, the weather changing will be disabled on your server.
   DoubleJump: true # If true, your players will be able to double jump!
@@ -112,6 +136,7 @@ Others: # Uncategorized features here.
   JoinItemsChangeWorld: false # If the join items will be given on world change.
   GiveItems: true # If the items should be given ( not replaced ).
   ClearInventory: false # If true the player inventory will be cleared upon join.
+  ClearInventoryOnEveryWorld: false # If true, when a player change worlds their inventory will be cleared ( Active on all worlds )
   NoDrops: true # If true, the player will not be able to drop items.
   NoDeathDrops: true # If true, the player will not drop items on death.
   AllowItemMove: false # If false, the player will not be able to move items on the inventory.
@@ -119,6 +144,10 @@ Others: # Uncategorized features here.
   HubItems: true # If the command /hubitems will be enabled.
   StackerEnabledMessage: '&aStacker Enabled!' # The stacker enabled message.
   StackerDisabledMessage: '&cStacker Disabled!' # The stacker disabled message.
+  FirstJoinItemsOnly: false # If true, the first join items will be only given on first join
+#
+DisabledCommands: # Here you add the commands you want to fully disable, 
+- warp # This example will totally disable my /warp command
 #
 Worlds: # Here are listed the worlds that will have all the funcions enabled. ( Exclude the per-world ones )
 - Example

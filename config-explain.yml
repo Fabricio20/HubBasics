@@ -145,6 +145,7 @@ Others: # Uncategorized features here.
   StackerEnabledMessage: '&aStacker Enabled!' # The stacker enabled message.
   StackerDisabledMessage: '&cStacker Disabled!' # The stacker disabled message.
   FirstJoinItemsOnly: false # If true, the first join items will be only given on first join
+  AllowBuilding: true # If false, players without permission will not be able to build on hub worlds.
 #
 DisabledCommands: # Here you add the commands you want to fully disable, 
 - warp # This example will totally disable my /warp command

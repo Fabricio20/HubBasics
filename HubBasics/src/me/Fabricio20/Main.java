@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 import me.Fabricio20.Storage.Strings;
+import me.Fabricio20.listeners.Block.BlockBreak;
+import me.Fabricio20.listeners.Block.BlockPlace;
 import me.Fabricio20.listeners.Chat.CommandListener;
 import me.Fabricio20.listeners.Chat.CommandsOverride;
 import me.Fabricio20.listeners.Chat.PEXChatListener;
@@ -156,29 +158,31 @@ public class Main extends JavaPlugin {
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Unsuported Server Version Detected!");
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Some Options Where Disabled!");
 		}
-		if(Bukkit.getServer().getPluginManager().getPlugin("PermissionsEx") != null) {
-			Bukkit.getServer().getPluginManager().registerEvents(new PEXChatListener(), this);
+		if(getServer().getPluginManager().getPlugin("PermissionsEx") != null) {
+			getServer().getPluginManager().registerEvents(new PEXChatListener(), this);
 		}
-		Bukkit.getServer().getPluginManager().registerEvents(new CommandsOverride(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new LeaveListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new RainListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new VoidFallListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new ServerPingListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new CommandListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new JumpListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new MoveListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new RightClickListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new SignChangeListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new HungerListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new HealthListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new JoinListenerForItems(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new DeathListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new DropItemListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new ItemMoveListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new VeichleLeaveListener(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new ItemClickChest(), this);
+		getServer().getPluginManager().registerEvents(new CommandsOverride(), this);
+		getServer().getPluginManager().registerEvents(new JoinListener(), this);
+		getServer().getPluginManager().registerEvents(new LeaveListener(), this);
+		getServer().getPluginManager().registerEvents(new RainListener(), this);
+		getServer().getPluginManager().registerEvents(new VoidFallListener(), this);
+		getServer().getPluginManager().registerEvents(new ServerPingListener(), this);
+		getServer().getPluginManager().registerEvents(new CommandListener(), this);
+		getServer().getPluginManager().registerEvents(new JumpListener(), this);
+		getServer().getPluginManager().registerEvents(new MoveListener(), this);
+		getServer().getPluginManager().registerEvents(new RightClickListener(), this);
+		getServer().getPluginManager().registerEvents(new SignChangeListener(), this);
+		getServer().getPluginManager().registerEvents(new HungerListener(), this);
+		getServer().getPluginManager().registerEvents(new HealthListener(), this);
+		getServer().getPluginManager().registerEvents(new JoinListenerForItems(), this);
+		getServer().getPluginManager().registerEvents(new DeathListener(), this);
+		getServer().getPluginManager().registerEvents(new DropItemListener(), this);
+		getServer().getPluginManager().registerEvents(new ItemMoveListener(), this);
+		getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
+		getServer().getPluginManager().registerEvents(new VeichleLeaveListener(), this);
+		getServer().getPluginManager().registerEvents(new ItemClickChest(), this);
+		getServer().getPluginManager().registerEvents(new BlockBreak(), this);
+		getServer().getPluginManager().registerEvents(new BlockPlace(), this);
 	}
 	
 	@SuppressWarnings("unused")

@@ -16,11 +16,14 @@ public class ModuleManager {
 	}
 	
 	public boolean isEnabled(String module) {
-		if(module.equalsIgnoreCase("ChatSystem")) {
+		switch(module) {
+		case "ChatSystem":
 			return Main.theClass.config.getBoolean("ChatSystem.Enabled");
-		} else if(module.equalsIgnoreCase("Tags")) {
+		case "Tags":
 			return Main.theClass.Tags.getBoolean("Enabled");
-		} else {
+		case "Building":
+			return Main.theClass.config.getBoolean("Others.AllowBuilding");
+		default:
 			return false;
 		}
 	}

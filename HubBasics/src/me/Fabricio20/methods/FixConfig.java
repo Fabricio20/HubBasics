@@ -468,6 +468,10 @@ public class FixConfig {
 			Main.theClass.config.set("Others.FirstJoinItemsOnly", false);
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("Others.AllowBuilding")) {
+			Main.theClass.config.set("Others.AllowBuilding", true);
+			Main.theClass.config.saveConfig();
+		}
 		/** 
 		 * ------------ TODO: Disabled Commands    ------------- *
 		 */

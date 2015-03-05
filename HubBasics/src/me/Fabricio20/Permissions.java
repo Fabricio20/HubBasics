@@ -14,5 +14,7 @@ public class Permissions {
 	public Permission SetWarp = new Permission("HubBasics.SetWarp");
 	public Permission WarpAdmin = new Permission("HubBasics.WarpOthers");
 	public Permission DelWarp = new Permission("HubBasics.DelWarp");
+	public Permission MoveItems = new Permission("HubBasics.MoveItems");
+	public Permission EditWorld = new Permission("HubBasics.EditWorld");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -3,6 +3,7 @@ package me.Fabricio20.listeners.Item;
 import java.util.List;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.Permissions;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +19,9 @@ public class ItemMoveListener implements Listener {
 		if(e.getClickedInventory() != null) {
 			if(worlds.contains(e.getWhoClicked().getWorld().getName())) {
 				if(Main.theClass.config.getBoolean("Others.AllowItemMove") == false) {
-					e.setCancelled(true);
+					if(!e.getWhoClicked().hasPermission(new Permissions().MoveItems)) {
+						e.setCancelled(true);
+					}
 				}
 				if(Main.theClass.config.getBoolean("MagicClock.Enabled") == true) {
 					if(Main.theClass.config.getBoolean("MagicClock.AllowMove") == false) {

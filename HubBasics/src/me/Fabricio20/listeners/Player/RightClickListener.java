@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.Permissions;
+import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.Items;
 

@@ -1,7 +1,7 @@
 package me.Fabricio20.listeners.Chat;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.Permissions;
+import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.methods.QuickWarpChest;
 
 import org.bukkit.event.EventHandler;

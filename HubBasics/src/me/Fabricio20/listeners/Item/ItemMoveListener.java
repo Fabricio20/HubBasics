@@ -3,7 +3,7 @@ package me.Fabricio20.listeners.Item;
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.Permissions;
+import me.Fabricio20.Storage.Permissions;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

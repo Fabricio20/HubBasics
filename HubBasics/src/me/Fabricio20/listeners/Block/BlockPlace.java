@@ -1,6 +1,6 @@
 package me.Fabricio20.listeners.Block;
 
-import me.Fabricio20.Permissions;
+import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.methods.ModuleManager;
 
 import org.bukkit.entity.Player;

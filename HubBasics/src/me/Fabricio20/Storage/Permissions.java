@@ -1,4 +1,4 @@
-package me.Fabricio20;
+package me.Fabricio20.Storage;
 
 import org.bukkit.permissions.Permission;
 

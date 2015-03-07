@@ -16,12 +16,14 @@ import me.Fabricio20.listeners.Others.JumpListener;
 import me.Fabricio20.listeners.Others.RainListener;
 import me.Fabricio20.listeners.Others.ServerPingListener;
 import me.Fabricio20.listeners.Others.SignChangeListener;
+import me.Fabricio20.listeners.Player.ChangeWorldSettings;
 import me.Fabricio20.listeners.Player.DeathListener;
 import me.Fabricio20.listeners.Player.HealthListener;
 import me.Fabricio20.listeners.Player.HungerListener;
 import me.Fabricio20.listeners.Player.JoinListener;
 import me.Fabricio20.listeners.Player.JoinListenerForItems;
 import me.Fabricio20.listeners.Player.JoinListenerForTags;
+import me.Fabricio20.listeners.Player.JoinSettings;
 import me.Fabricio20.listeners.Player.LeaveListener;
 import me.Fabricio20.listeners.Player.MoveListener;
 import me.Fabricio20.listeners.Player.PlayerChangeWorld;
@@ -34,7 +36,6 @@ import me.Fabricio20.methods.Configs.SimpleConfigManager;
 import me.Fabricio20.runnables.AntiOp;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
-import me.Fabricio20.runnables.EffectApplier;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -183,6 +184,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ItemClickChest(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreak(), this);
 		getServer().getPluginManager().registerEvents(new BlockPlace(), this);
+		getServer().getPluginManager().registerEvents(new JoinSettings(), this);
+		getServer().getPluginManager().registerEvents(new ChangeWorldSettings(), this);
 	}
 	
 	@SuppressWarnings("unused")
@@ -192,7 +195,6 @@ public class Main extends JavaPlugin {
 		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(getPlugin(), 20, BossTime * 20);
 		ChatTime = getPlugin().getConfig().getInt("ChatAnnouncer.Time");
 		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(getPlugin(), 20, ChatTime * 20);
-		BukkitTask Effect = new EffectApplier().runTaskTimer(getPlugin(), 20, 1);
 	}
 	
 	private void initMetrics() {

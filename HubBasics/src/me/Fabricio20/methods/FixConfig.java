@@ -2,9 +2,10 @@ package me.Fabricio20.methods;
 
 import java.util.ArrayList;
 
-import org.bukkit.Bukkit;
-
 import me.Fabricio20.Main;
+import me.Fabricio20.methods.Configs.SimpleConfig;
+
+import org.bukkit.Bukkit;
 
 public class FixConfig {
 	
@@ -15,6 +16,30 @@ public class FixConfig {
 		fixLanguage();
 		fixQuickWarp();
 		fixTags();
+	}
+	
+	public static SimpleConfig fixPlayer(SimpleConfig config) {
+		if(!config.contains("IsPlayersEnabled")) {
+			config.set("IsPlayersEnabled", true);
+			config.saveConfig();
+		}
+		if(!config.contains("SpeedBoost.Enabled")) {
+			config.set("SpeedBoost.Enabled", false);
+			config.saveConfig();
+		}
+		if(!config.contains("SpeedBoost.Force")) {
+			config.set("SpeedBoost.Force", 1);
+			config.saveConfig();
+		}
+		if(!config.contains("JumpBoost.Enabled")) {
+			config.set("JumpBoost.Enabled", false);
+			config.saveConfig();
+		}
+		if(!config.contains("JumpBoost.Force")) {
+			config.set("JumpBoost.Force", 1);
+			config.saveConfig();
+		}
+		return config;
 	}
 	
 	private static void fixConfig() {

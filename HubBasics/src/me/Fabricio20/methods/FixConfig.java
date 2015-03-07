@@ -242,14 +242,6 @@ public class FixConfig {
 			Main.theClass.config.set("MagicClock.Material", "WATCH");
 			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.config.contains("MagicClock.EnabledMessage")) {
-			Main.theClass.config.set("MagicClock.EnabledMessage", "&cMagic Clock Is Now Enabled!");
-			Main.theClass.config.saveConfig();
-		}
-		if(!Main.theClass.config.contains("MagicClock.DisabledMessage")) {
-			Main.theClass.config.set("MagicClock.DisabledMessage", "&cMagic Clock Is Now Disabled!");
-			Main.theClass.config.saveConfig();
-		}
 		if(!Main.theClass.config.contains("MagicClock.AllowMove")) {
 			Main.theClass.config.set("MagicClock.AllowMove", false);
 			Main.theClass.config.saveConfig();
@@ -260,10 +252,6 @@ public class FixConfig {
 		}
 		if(!Main.theClass.config.contains("MagicClock.Cooldown")) {
 			Main.theClass.config.set("MagicClock.Cooldown", 12);
-			Main.theClass.config.saveConfig();
-		}
-		if(!Main.theClass.config.contains("MagicClock.CooldownMSG")) {
-			Main.theClass.config.set("MagicClock.CooldownMSG", "&cCooldown! You Must Wait 12 Seconds!");
 			Main.theClass.config.saveConfig();
 		}
 		if(!Main.theClass.config.contains("MagicClock.GiveOnWorldChange")) {
@@ -625,6 +613,18 @@ public class FixConfig {
 		}
 		if(!Main.theClass.Language.contains("General.NotNumber")) {
 			Main.theClass.Language.set("General.NotNumber", "&cError: &7&oThe value you specified is not a number!");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("MagicClock.Enabled")) {
+			Main.theClass.Language.set("MagicClock.Enabled", "&eInfo: &7&oPlayers Are Now &aEnabled");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("MagicClock.Disabled")) {
+			Main.theClass.Language.set("MagicClock.Disabled", "&eInfo: &7&oPlayers Are Now &cDisabled");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("MagicClock.Cooldown")) {
+			Main.theClass.Language.set("MagicClock.Cooldown", "&cYou Must Wait 12 Seconds! ");
 			Main.theClass.Language.saveConfig();
 		}
 	}

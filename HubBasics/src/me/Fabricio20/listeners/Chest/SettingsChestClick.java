@@ -2,6 +2,7 @@ package me.Fabricio20.listeners.Chest;
 
 import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.API.LanguageAPI;
+import me.Fabricio20.API.MagicClockAPI;
 import me.Fabricio20.methods.Chests.SettingsChest;
 import me.Fabricio20.methods.Managers.EffectsManager;
 import me.Fabricio20.methods.Managers.SettingsManager;
@@ -20,7 +21,12 @@ public class SettingsChestClick implements Listener {
 			if(e.getClickedInventory().getName().equals(LanguageAPI.theClass.Chests_SettingsName(player))) {
 				e.setCancelled(true);
 				if(e.getCurrentItem().equals(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(player.getName())))) {
-					//TODO: Toggle MagicClock
+					if(SettingsManager.theClass.toggleClock(player.getName())) {
+						player.sendMessage(LanguageAPI.theClass.MagicClock_Enabled(player));
+					} else {
+						player.sendMessage(LanguageAPI.theClass.MagicClock_Disabled(player));
+					}
+					MagicClockAPI.theClass.toggleClock(player);
 					SettingsChest.theClass.open(player);
 				}
 				if(e.getCurrentItem().equals(ItemsAPI.get("SpeedBoost", SettingsManager.theClass.isSpeedEnabled(player.getName())))) {

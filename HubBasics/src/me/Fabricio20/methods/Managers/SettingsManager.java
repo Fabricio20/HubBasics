@@ -40,6 +40,19 @@ public class SettingsManager {
 		return getSettings(playerName).getBoolean("IsPlayersEnabled");
 	}
 	
+	/**
+	 * 
+	 * @param playerName
+	 * @return true if magic clock is enabled after toggle
+	 */
+	public boolean toggleClock(String playerName) {
+		boolean value = isPlayersEnabled(playerName);
+		value = !value;
+		getSettings(playerName).set("IsPlayersEnabled", value);
+		getSettings(playerName).saveConfig();
+		return isPlayersEnabled(playerName);
+	}
+	
 	//--------------------------------------------------------------------------------------//
 	
 	/**

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.API.LanguageAPI;
+import me.Fabricio20.API.MagicClockAPI;
 import me.Fabricio20.Storage.Permissions;
-import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.Items;
+import me.Fabricio20.methods.ModuleManager;
+import me.Fabricio20.methods.Managers.SettingsManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -172,56 +175,31 @@ public class RightClickListener implements Listener {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onRightClickAgaing(PlayerInteractEvent e) {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 			if(e.getPlayer().getItemInHand() != null && e.getPlayer().getItemInHand().getType() != Material.AIR) {
 				final Player player = e.getPlayer();
-				List<String> worlds = Main.theClass.config.getStringList("Worlds");
 				int time = Main.theClass.config.getInt("MagicClock.Cooldown");
-				if(worlds.contains(e.getPlayer().getWorld().getName())) {
+				if(ModuleManager.theClass.isInWorld(player)) {
 					if(e.getPlayer().getItemInHand().equals(Items.MagicClock(e.getPlayer().getName()))) {
-						if(Strings.MagicClockActive.contains(e.getPlayer())) {
-							if(cooldown.contains(e.getPlayer())) {
-								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
-							} else {
-								for (Player user : Bukkit.getOnlinePlayers()) {
-									if(e.getPlayer().canSee(user) == false) {
-										e.getPlayer().showPlayer(user);
-									}
-								}
-								Strings.MagicClockActive.remove(e.getPlayer());
-								cooldown.add(e.getPlayer());
-								Bukkit.getScheduler().runTaskLater(Main.theClass.getPlugin(), new Runnable() {
-									public void run() {
-										if(cooldown.contains(player)) {
-											cooldown.remove(player);
-										}
-									}
-								}, time * 20);
-								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.DisabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
-							}
+						if(cooldown.contains(e.getPlayer())) {
+							player.sendMessage(LanguageAPI.theClass.MagicClock_Cooldown(player));
 						} else {
-							if(cooldown.contains(e.getPlayer())) {
-								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.CooldownMSG").replace("&", "§").replace("%p", e.getPlayer().getName()));
+							if(SettingsManager.theClass.toggleClock(player.getName())) {
+								player.sendMessage(LanguageAPI.theClass.MagicClock_Enabled(player));
 							} else {
-								for (Player user : Bukkit.getOnlinePlayers()) {
-									if(e.getPlayer().canSee(user) == true) {
-										e.getPlayer().hidePlayer(user);
+								player.sendMessage(LanguageAPI.theClass.MagicClock_Disabled(player));
+							}
+							MagicClockAPI.theClass.toggleClock(player);
+							cooldown.add(player);
+							Bukkit.getScheduler().runTaskLater(Main.theClass.getPlugin(), new Runnable() {
+								public void run() {
+									if(cooldown.contains(player)) {
+										cooldown.remove(player);
 									}
 								}
-								Strings.MagicClockActive.add(e.getPlayer());
-								cooldown.add(e.getPlayer());
-								Bukkit.getScheduler().runTaskLater(Main.theClass.getPlugin(), new Runnable() {
-									public void run() {
-										if(cooldown.contains(player)) {
-											cooldown.remove(player);
-										}
-									}
-								}, time * 20);
-								e.getPlayer().sendMessage(Main.theClass.config.getString("MagicClock.EnabledMessage").replace("&", "§").replace("%p", e.getPlayer().getName()));
-							}
+							}, time * 20);
 						}
 					}
 				}

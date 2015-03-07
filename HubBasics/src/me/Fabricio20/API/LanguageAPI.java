@@ -32,6 +32,19 @@ public class LanguageAPI {
 		return Language.getString("Chests.SettingsName").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
 	}
 	
+	// MagicClock Messages
+	public String MagicClock_Enabled(Player player) {
+		return Language.getString("MagicClock.Enabled").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	public String MagicClock_Disabled(Player player) {
+		return Language.getString("MagicClock.Disabled").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	public String MagicClock_Cooldown(Player player) {
+		return Language.getString("MagicClock.Cooldown").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
 	// General Messages
 	public String General_NoArgs(Player player) {
 		return Language.getString("General.NoArgs").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());

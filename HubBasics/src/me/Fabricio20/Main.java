@@ -1,14 +1,17 @@
 package me.Fabricio20;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.logging.Level;
 
+import me.Fabricio20.Storage.CustomEnchantment;
 import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.listeners.Block.BlockBreak;
 import me.Fabricio20.listeners.Block.BlockPlace;
 import me.Fabricio20.listeners.Chat.CommandListener;
 import me.Fabricio20.listeners.Chat.CommandsOverride;
 import me.Fabricio20.listeners.Chat.PEXChatListener;
+import me.Fabricio20.listeners.Chest.SettingsChestClick;
 import me.Fabricio20.listeners.Item.DropItemListener;
 import me.Fabricio20.listeners.Item.ItemClickChest;
 import me.Fabricio20.listeners.Item.ItemMoveListener;
@@ -25,6 +28,7 @@ import me.Fabricio20.listeners.Player.JoinListenerForItems;
 import me.Fabricio20.listeners.Player.JoinListenerForTags;
 import me.Fabricio20.listeners.Player.JoinSettings;
 import me.Fabricio20.listeners.Player.LeaveListener;
+import me.Fabricio20.listeners.Player.LeaveSettings;
 import me.Fabricio20.listeners.Player.MoveListener;
 import me.Fabricio20.listeners.Player.PlayerChangeWorld;
 import me.Fabricio20.listeners.Player.RightClickListener;
@@ -38,6 +42,7 @@ import me.Fabricio20.runnables.BossAnnouncer;
 import me.Fabricio20.runnables.ChatAnnouncer;
 
 import org.bukkit.Bukkit;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -62,6 +67,7 @@ public class Main extends JavaPlugin {
     public SimpleConfig Language;
     public SimpleConfig Tags;
     public SimpleConfig QuickWarpChest;
+    public SimpleConfig Items;
 	
     private int ChatTime = 0;
     private int BossTime = 0;
@@ -111,6 +117,7 @@ public class Main extends JavaPlugin {
 		registerTasks();
 		registerCommands();
 		initMetrics();
+		fixEnchant();
 		getServer().getMessenger().registerOutgoingPluginChannel(this,"BungeeCord");
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
@@ -186,6 +193,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new BlockPlace(), this);
 		getServer().getPluginManager().registerEvents(new JoinSettings(), this);
 		getServer().getPluginManager().registerEvents(new ChangeWorldSettings(), this);
+		getServer().getPluginManager().registerEvents(new SettingsChestClick(), this);
+		getServer().getPluginManager().registerEvents(new LeaveSettings(), this);
 	}
 	
 	@SuppressWarnings("unused")
@@ -242,6 +251,33 @@ public class Main extends JavaPlugin {
 		String[] header7 = {"HubBasics Tags System", "Only Works On 1.8 Servers!", "Change with caution / Color codes are supported!"};
 		this.Tags = manager.getNewConfig("Tags.yml", header7);
 		this.Tags.saveConfig();
+		//
+		this.manager = new SimpleConfigManager(this);
+		String[] header8 = {"HubBasics Custom Items File", "These Items Are Displayed On Chests Like Settings Chest"};
+		this.Items = manager.getNewConfig("ChestItems.yml", header8);
+		this.Items.saveConfig();
+	}
+	
+	public CustomEnchantment ench = new CustomEnchantment(69);
+	
+	private void fixEnchant() {
+		try {
+			try {
+				Field f = Enchantment.class.getDeclaredField("acceptingNew");
+				f.setAccessible(true);
+				f.set(null, true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				Enchantment.registerEnchantment(ench);
+			} catch (IllegalArgumentException e) {
+				System.out.println("[HubBasics] Failed To Register Enchantment ID, Is this a reload?");
+				// if this is thrown it means the id is already taken.
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -1,29 +1,73 @@
 package me.Fabricio20.API;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.methods.Configs.SimpleConfig;
+
+import org.bukkit.entity.Player;
 
 public class LanguageAPI {
 	
 	public static LanguageAPI theClass = new LanguageAPI();
 	
+	public SimpleConfig Language = Main.theClass.Language;
+	
 	public String WarpUsage(String playerName, String worldName) {
-		return Main.theClass.Language.getString("WarpUsage").replace("&", "§").replace("%player%", playerName).replace("%world%", worldName);
+		return Language.getString("WarpUsage").replace("&", "§").replace("%player%", playerName).replace("%world%", worldName);
 	}
 	
 	public String WarpedMessage(String playerName, String worldName) {
-		return Main.theClass.Language.getString("WarpMessage").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
+		return Language.getString("WarpMessage").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
 	}
 	
 	public String WarpNoPermission(String playerName, String worldName) {
-		return Main.theClass.Language.getString("WarpNoPermission").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
+		return Language.getString("WarpNoPermission").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
 	}
 	
 	public String QWarpChestName(String playerName, String worldName) {
-		return Main.theClass.Language.getString("QuickWarpChestName").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
+		return Language.getString("QuickWarpChestName").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
 	}
 	
+	// Chest Names
+	public String Chests_SettingsName(Player player) {
+		return Language.getString("Chests.SettingsName").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	// General Messages
+	public String General_NoArgs(Player player) {
+		return Language.getString("General.NoArgs").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	public String General_NotNumber(Player player) {
+		return Language.getString("General.NotNumber").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	// Messages
+	
 	public String ServerSelectorNoPerm(String playerName, String worldName) {
-		return Main.theClass.Language.getString("ServerSelectorNoPerm").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
+		return Language.getString("ServerSelectorNoPerm").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
+	}
+	
+	public String Effects_SpeedEnabled(Player player) {
+		return Language.getString("Effects.SpeedEnabled").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	public String Effects_SpeedDisabled(Player player) {
+		return Language.getString("Effects.SpeedDisabled").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	public String Effects_JumpEnabled(Player player) {
+		return Language.getString("Effects.JumpEnabled").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	public String Effects_JumpDisabled(Player player) {
+		return Language.getString("Effects.JumpDisabled").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	public String Effects_SpeedSet(Player player) {
+		return Language.getString("Effects.SpeedSet").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
+	}
+	
+	public String Effects_JumpSet(Player player) {
+		return Language.getString("Effects.JumpSet").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
 	}
 	
 }

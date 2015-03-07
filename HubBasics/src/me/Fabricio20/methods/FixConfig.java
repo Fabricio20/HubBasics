@@ -9,6 +9,8 @@ import org.bukkit.Bukkit;
 
 public class FixConfig {
 	
+	public static SimpleConfig Items = Main.theClass.Items;
+	
 	public static void fix() {
 		fixConfig();
 		fixItems();
@@ -16,9 +18,10 @@ public class FixConfig {
 		fixLanguage();
 		fixQuickWarp();
 		fixTags();
+		fixChestItems();
 	}
 	
-	public static SimpleConfig fixPlayer(SimpleConfig config) {
+	public static void fixPlayer(SimpleConfig config) {
 		if(!config.contains("IsPlayersEnabled")) {
 			config.set("IsPlayersEnabled", true);
 			config.saveConfig();
@@ -39,7 +42,6 @@ public class FixConfig {
 			config.set("JumpBoost.Force", 1);
 			config.saveConfig();
 		}
-		return config;
 	}
 	
 	private static void fixConfig() {
@@ -64,12 +66,6 @@ public class FixConfig {
 		}
 		if(!Main.theClass.config.contains("JoinEvents.BossBarOnJoin")) {
 			Main.theClass.config.set("JoinEvents.BossBarOnJoin", false);
-			Main.theClass.config.saveConfig();
-		}
-		if(!Main.theClass.config.contains("JoinEvents.Effects")) {
-			Main.theClass.config.set("JoinEvents.Effects.Enabled", false);
-			Main.theClass.config.set("JoinEvents.Effects.SPEED", false);
-			Main.theClass.config.set("JoinEvents.Effects.JUMP", false);
 			Main.theClass.config.saveConfig();
 		}
 		/**
@@ -595,6 +591,42 @@ public class FixConfig {
 			Main.theClass.Language.set("ServerSelectorNoPerm", "&cError: &7&oYou Do Not Have Permission To Use This!");
 			Main.theClass.Language.saveConfig();
 		}
+		if(!Main.theClass.Language.contains("Effects.SpeedEnabled")) {
+			Main.theClass.Language.set("Effects.SpeedEnabled", "&eInfo: &7&oSpeed Boost Is Now &a&oEnabled");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("Effects.SpeedDisabled")) {
+			Main.theClass.Language.set("Effects.SpeedDisabled", "&eInfo: &7&oSpeed Boost Is Now &c&oDisabled");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("Effects.JumpEnabled")) {
+			Main.theClass.Language.set("Effects.JumpEnabled", "&eInfo: &7&oJump Boost Is Now &a&oEnabled");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("Effects.JumpDisabled")) {
+			Main.theClass.Language.set("Effects.JumpDisabled", "&eInfo: &7&oJump Boost Is Now &c&oDisabled");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("Effects.SpeedSet")) {
+			Main.theClass.Language.set("Effects.SpeedSet", "&eInfo: &7&oSpeed Boost Set To &e&o");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("Effects.JumpSet")) {
+			Main.theClass.Language.set("Effects.JumpSet", "&eInfo: &7&oJump Boost Set To &e&o");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("Chests.SettingsName")) {
+			Main.theClass.Language.set("Chests.SettingsName", "&8Settings");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("General.NoArgs")) {
+			Main.theClass.Language.set("General.NoArgs", "&cError: &7&oYou Must Specify A Value!");
+			Main.theClass.Language.saveConfig();
+		}
+		if(!Main.theClass.Language.contains("General.NotNumber")) {
+			Main.theClass.Language.set("General.NotNumber", "&cError: &7&oThe value you specified is not a number!");
+			Main.theClass.Language.saveConfig();
+		}
 	}
 	
 	private static void fixQuickWarp() {
@@ -631,6 +663,123 @@ public class FixConfig {
 		if(!Main.theClass.Tags.contains("TabList")) {
 			Main.theClass.Tags.set("TabList.Fabricio20.Prefix", "&8[&bDev&8]&7 ");
 			Main.theClass.Tags.saveConfig();
+		}
+	}
+	
+	private static void fixChestItems() {
+		// Magic Clock Enabled
+		if(!Items.contains("MagicClockEnabled.Name")) {
+			Items.set("MagicClockEnabled.Name", "&aPlayers");
+			Items.saveConfig();
+		}
+		if(!Items.contains("MagicClockEnabled.Lore")) {
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&7- &8A Basic Lore");
+			Items.set("MagicClockEnabled.Lore", lore);
+			Items.saveConfig();
+		}
+		if(!Items.contains("MagicClockEnabled.Material")) {
+			Items.set("MagicClockEnabled.Material", "WATCH");
+			Items.saveConfig();
+		}
+		if(!Items.contains("MagicClockEnabled.Glow")) {
+			Items.set("MagicClockEnabled.Glow", true);
+			Items.saveConfig();
+		}
+		// Magic Clock Disabled
+		if(!Items.contains("MagicClockDisabled.Name")) {
+			Items.set("MagicClockDisabled.Name", "&cPlayers");
+			Items.saveConfig();
+		}
+		if(!Items.contains("MagicClockDisabled.Lore")) {
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&7- &8A Basic Lore");
+			Items.set("MagicClockDisabled.Lore", lore);
+			Items.saveConfig();
+		}
+		if(!Items.contains("MagicClockDisabled.Material")) {
+			Items.set("MagicClockDisabled.Material", "WATCH");
+			Items.saveConfig();
+		}
+		if(!Items.contains("MagicClockDisabled.Glow")) {
+			Items.set("MagicClockDisabled.Glow", false);
+			Items.saveConfig();
+		}
+		// Speed Boost Enabled
+		if(!Items.contains("SpeedBoostEnabled.Name")) {
+			Items.set("SpeedBoostEnabled.Name", "&aDisable Speed Boost");
+			Items.saveConfig();
+		}
+		if(!Items.contains("SpeedBoostEnabled.Lore")) {
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&7- &8A Basic Lore");
+			Items.set("SpeedBoostEnabled.Lore", lore);
+			Items.saveConfig();
+		}
+		if(!Items.contains("SpeedBoostEnabled.Material")) {
+			Items.set("SpeedBoostEnabled.Material", "POTION");
+			Items.saveConfig();
+		}
+		if(!Items.contains("SpeedBoostEnabled.Glow")) {
+			Items.set("SpeedBoostEnabled.Glow", true);
+			Items.saveConfig();
+		}
+		// Speed Boost Disabled
+		if(!Items.contains("SpeedBoostDisabled.Name")) {
+			Items.set("SpeedBoostDisabled.Name", "&cEnable Speed Boost");
+			Items.saveConfig();
+		}
+		if(!Items.contains("SpeedBoostDisabled.Lore")) {
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&7- &8A Basic Lore");
+			Items.set("SpeedBoostDisabled.Lore", lore);
+			Items.saveConfig();
+		}
+		if(!Items.contains("SpeedBoostDisabled.Material")) {
+			Items.set("SpeedBoostDisabled.Material", "POTION");
+			Items.saveConfig();
+		}
+		if(!Items.contains("SpeedBoostDisabled.Glow")) {
+			Items.set("SpeedBoostDisabled.Glow", false);
+			Items.saveConfig();
+		}
+		// Jump Boost Enabled
+		if(!Items.contains("JumpBoostEnabled.Name")) {
+			Items.set("JumpBoostEnabled.Name", "&aDisable Jump Boost");
+			Items.saveConfig();
+		}
+		if(!Items.contains("JumpBoostEnabled.Lore")) {
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&7- &8A Basic Lore");
+			Items.set("JumpBoostEnabled.Lore", lore);
+			Items.saveConfig();
+		}
+		if(!Items.contains("JumpBoostEnabled.Material")) {
+			Items.set("JumpBoostEnabled.Material", "POTION");
+			Items.saveConfig();
+		}
+		if(!Items.contains("JumpBoostEnabled.Glow")) {
+			Items.set("JumpBoostEnabled.Glow", true);
+			Items.saveConfig();
+		}
+		// Jump Boost Disabled
+		if(!Items.contains("JumpBoostDisabled.Name")) {
+			Items.set("JumpBoostDisabled.Name", "&cEnable Jump Boost");
+			Items.saveConfig();
+		}
+		if(!Items.contains("JumpBoostDisabled.Lore")) {
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&7- &8A Basic Lore");
+			Items.set("JumpBoostDisabled.Lore", lore);
+			Items.saveConfig();
+		}
+		if(!Items.contains("JumpBoostDisabled.Material")) {
+			Items.set("JumpBoostDisabled.Material", "POTION");
+			Items.saveConfig();
+		}
+		if(!Items.contains("JumpBoostDisabled.Glow")) {
+			Items.set("JumpBoostDisabled.Glow", false);
+			Items.saveConfig();
 		}
 	}
 }

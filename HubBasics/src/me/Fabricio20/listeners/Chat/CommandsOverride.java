@@ -11,6 +11,9 @@ import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.ModuleManager;
 import me.Fabricio20.methods.QuickWarpChest;
+import me.Fabricio20.methods.Chests.SettingsChest;
+import me.Fabricio20.methods.Managers.EffectsManager;
+import me.Fabricio20.methods.Managers.SettingsManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -156,6 +159,62 @@ public class CommandsOverride implements Listener {
 						QuickWarpChest.open(player);
 					}
 					
+				}
+			} else if(cmd[0].equalsIgnoreCase("/settings")) {
+				if(!isDisabled("settings")) {
+					Player player = (Player) sender;
+					if(ModuleManager.theClass.isInWorld(player)) {
+						e.setCancelled(true);
+						SettingsChest.theClass.open(player);
+					}
+				}
+			} else if(cmd[0].equalsIgnoreCase("/speed")) {
+				if(!isDisabled("speed")) {
+					Player player = (Player) sender;
+					if(ModuleManager.theClass.isInWorld(player)) {
+						e.setCancelled(true);
+						if(args.length >= 2) {
+							try {
+								int value = Integer.parseInt(args[1]);
+								if(!(value >= 1)) {
+									value = 2;
+								}
+								if(!(value <= 5)) {
+									value = 2;
+								}
+								player.sendMessage(LanguageAPI.theClass.Effects_SpeedSet(player) + SettingsManager.theClass.setSpeed(player.getName(), value));
+								EffectsManager.theClass.fixEffects(player);
+							} catch (Exception ex) {
+								player.sendMessage(LanguageAPI.theClass.General_NotNumber(player));
+							}
+						} else {
+							player.sendMessage(LanguageAPI.theClass.General_NoArgs(player));
+						}
+					}
+				}
+			} else if(cmd[0].equalsIgnoreCase("/jump")) {
+				if(!isDisabled("jump")) {
+					Player player = (Player) sender;
+					if(ModuleManager.theClass.isInWorld(player)) {
+						e.setCancelled(true);
+						if(args.length >= 2) {
+							try {
+								int value = Integer.parseInt(args[1]);
+								if(!(value >= 1)) {
+									value = 2;
+								}
+								if(!(value <= 5)) {
+									value = 2;
+								}
+								player.sendMessage(LanguageAPI.theClass.Effects_JumpSet(player) + SettingsManager.theClass.setJump(player.getName(), value));
+								EffectsManager.theClass.fixEffects(player);
+							} catch (Exception ex) {
+								player.sendMessage(LanguageAPI.theClass.General_NotNumber(player));
+							}
+						} else {
+							player.sendMessage(LanguageAPI.theClass.General_NoArgs(player));
+						}
+					}
 				}
 			}
 		}

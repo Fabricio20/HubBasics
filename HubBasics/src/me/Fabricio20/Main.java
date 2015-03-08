@@ -61,7 +61,7 @@ public class Main extends JavaPlugin {
     public SimpleConfigManager manager;
     
     public SimpleConfig config;
-    public SimpleConfig Storage;
+    public SimpleConfig Hub;
     public SimpleConfig JoinItems;
     public SimpleConfig Warps;
     public SimpleConfig Language;
@@ -229,8 +229,8 @@ public class Main extends JavaPlugin {
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header3 = {"HubBasics Storage File", "Please do not change anything in this file"};
-		this.Storage = manager.getNewConfig("Storage/Hub.yml", header3);
-		this.Storage.saveConfig();
+		this.Hub = manager.getNewConfig("Storage/Hub.yml", header3);
+		this.Hub.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header4 = {"HubBasics Warp Storage File", "Please do not change anything in this file"};

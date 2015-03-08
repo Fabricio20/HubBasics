@@ -34,15 +34,15 @@ public class JoinListener implements Listener {
 			 }
 		 }
 		if(Main.theClass.config.getBoolean("JoinEvents.HubAtLogin") == true) {
-			if(Main.theClass.Storage.contains("Hub.World")) {
+			if(Main.theClass.Hub.contains("Hub.World")) {
 				Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
-				if(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")) != null) {
-					loc.setWorld(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")));
-					loc.setX(Main.theClass.Storage.getDouble("Hub.X"));
-					loc.setY(Main.theClass.Storage.getDouble("Hub.Y"));
-					loc.setZ(Main.theClass.Storage.getDouble("Hub.Z"));
-					loc.setYaw(Main.theClass.Storage.getInt("Hub.Yaw"));
-					loc.setPitch(Main.theClass.Storage.getInt("Hub.Pitch"));
+				if(Bukkit.getWorld(Main.theClass.Hub.getString("Hub.World")) != null) {
+					loc.setWorld(Bukkit.getWorld(Main.theClass.Hub.getString("Hub.World")));
+					loc.setX(Main.theClass.Hub.getDouble("Hub.X"));
+					loc.setY(Main.theClass.Hub.getDouble("Hub.Y"));
+					loc.setZ(Main.theClass.Hub.getDouble("Hub.Z"));
+					loc.setYaw(Main.theClass.Hub.getInt("Hub.Yaw"));
+					loc.setPitch(Main.theClass.Hub.getInt("Hub.Pitch"));
 					e.getPlayer().teleport(loc);
 				}
 			}

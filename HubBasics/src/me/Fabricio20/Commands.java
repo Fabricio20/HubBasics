@@ -56,15 +56,15 @@ public class Commands implements CommandExecutor {
 			} else {
 				if(sender.hasPermission(new Permissions().Hub)) {
 					if(Main.theClass.config.getBoolean("BungeeCord.Enabled") == false) {
-						if(Main.theClass.Storage.contains("Hub.World")) {
+						if(Main.theClass.Hub.contains("Hub.World")) {
 							Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
-							if(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")) != null) {
-								loc.setWorld(Bukkit.getWorld(Main.theClass.Storage.getString("Hub.World")));
-								loc.setX(Main.theClass.Storage.getDouble("Hub.X"));
-								loc.setY(Main.theClass.Storage.getDouble("Hub.Y"));
-								loc.setZ(Main.theClass.Storage.getDouble("Hub.Z"));
-								loc.setYaw(Main.theClass.Storage.getInt("Hub.Yaw"));
-								loc.setPitch(Main.theClass.Storage.getInt("Hub.Pitch"));
+							if(Bukkit.getWorld(Main.theClass.Hub.getString("Hub.World")) != null) {
+								loc.setWorld(Bukkit.getWorld(Main.theClass.Hub.getString("Hub.World")));
+								loc.setX(Main.theClass.Hub.getDouble("Hub.X"));
+								loc.setY(Main.theClass.Hub.getDouble("Hub.Y"));
+								loc.setZ(Main.theClass.Hub.getDouble("Hub.Z"));
+								loc.setYaw(Main.theClass.Hub.getInt("Hub.Yaw"));
+								loc.setPitch(Main.theClass.Hub.getInt("Hub.Pitch"));
 								Player player = (Player) sender;
 								player.teleport(loc);
 							} else {
@@ -87,13 +87,13 @@ public class Commands implements CommandExecutor {
 				Player player = (Player) sender;
 				if(player.hasPermission(new Permissions().SetHub)) {
 					if(Main.theClass.config.getBoolean("BungeeCord.Enabled") == false) {
-						Main.theClass.Storage.set("Hub.World", player.getWorld().getName());
-						Main.theClass.Storage.set("Hub.X", player.getLocation().getX());
-						Main.theClass.Storage.set("Hub.Y", player.getLocation().getY());
-						Main.theClass.Storage.set("Hub.Z", player.getLocation().getZ());
-						Main.theClass.Storage.set("Hub.Yaw", player.getLocation().getYaw());
-						Main.theClass.Storage.set("Hub.Pitch", player.getLocation().getPitch());
-						Main.theClass.Storage.saveConfig();
+						Main.theClass.Hub.set("Hub.World", player.getWorld().getName());
+						Main.theClass.Hub.set("Hub.X", player.getLocation().getX());
+						Main.theClass.Hub.set("Hub.Y", player.getLocation().getY());
+						Main.theClass.Hub.set("Hub.Z", player.getLocation().getZ());
+						Main.theClass.Hub.set("Hub.Yaw", player.getLocation().getYaw());
+						Main.theClass.Hub.set("Hub.Pitch", player.getLocation().getPitch());
+						Main.theClass.Hub.saveConfig();
 						player.sendMessage("§8[§cHubBasics§8] §eHub set!");
 					} else {
 						sender.sendMessage("§8[§cHubBasics§8] §cBungeeCord Support Is Enabled!");
@@ -174,7 +174,7 @@ public class Commands implements CommandExecutor {
 					if(args[0].equalsIgnoreCase("reload")) {
 						Main.theClass.config.reloadConfig();
 						Main.theClass.JoinItems.reloadConfig();
-						Main.theClass.Storage.reloadConfig();
+						Main.theClass.Hub.reloadConfig();
 						Main.theClass.Warps.reloadConfig();
 						Main.theClass.Language.reloadConfig();
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");

@@ -505,29 +505,29 @@ public class FixConfig {
 	}
 	
 	private static void fixStorage() {
-		if(!Main.theClass.Storage.contains("Hub.World")) {
-			Main.theClass.Storage.set("Hub.World", Bukkit.getWorlds().get(0).getSpawnLocation().getWorld().getName());
-			Main.theClass.Storage.saveConfig();
+		if(!Main.theClass.Hub.contains("Hub.World")) {
+			Main.theClass.Hub.set("Hub.World", Bukkit.getWorlds().get(0).getSpawnLocation().getWorld().getName());
+			Main.theClass.Hub.saveConfig();
 		}
-		if(!Main.theClass.Storage.contains("Hub.X")) {
-			Main.theClass.Storage.set("Hub.X", Bukkit.getWorlds().get(0).getSpawnLocation().getX());
-			Main.theClass.Storage.saveConfig();
+		if(!Main.theClass.Hub.contains("Hub.X")) {
+			Main.theClass.Hub.set("Hub.X", Bukkit.getWorlds().get(0).getSpawnLocation().getX());
+			Main.theClass.Hub.saveConfig();
 		}
-		if(!Main.theClass.Storage.contains("Hub.Y")) {
-			Main.theClass.Storage.set("Hub.Y", Bukkit.getWorlds().get(0).getSpawnLocation().getY());
-			Main.theClass.Storage.saveConfig();
+		if(!Main.theClass.Hub.contains("Hub.Y")) {
+			Main.theClass.Hub.set("Hub.Y", Bukkit.getWorlds().get(0).getSpawnLocation().getY());
+			Main.theClass.Hub.saveConfig();
 		}
-		if(!Main.theClass.Storage.contains("Hub.Z")) {
-			Main.theClass.Storage.set("Hub.Z", Bukkit.getWorlds().get(0).getSpawnLocation().getZ());
-			Main.theClass.Storage.saveConfig();
+		if(!Main.theClass.Hub.contains("Hub.Z")) {
+			Main.theClass.Hub.set("Hub.Z", Bukkit.getWorlds().get(0).getSpawnLocation().getZ());
+			Main.theClass.Hub.saveConfig();
 		}
-		if(!Main.theClass.Storage.contains("Hub.Yaw")) {
-			Main.theClass.Storage.set("Hub.Yaw", Bukkit.getWorlds().get(0).getSpawnLocation().getYaw());
-			Main.theClass.Storage.saveConfig();
+		if(!Main.theClass.Hub.contains("Hub.Yaw")) {
+			Main.theClass.Hub.set("Hub.Yaw", Bukkit.getWorlds().get(0).getSpawnLocation().getYaw());
+			Main.theClass.Hub.saveConfig();
 		}
-		if(!Main.theClass.Storage.contains("Hub.Pitch")) {
-			Main.theClass.Storage.set("Hub.Pitch", Bukkit.getWorlds().get(0).getSpawnLocation().getPitch());
-			Main.theClass.Storage.saveConfig();
+		if(!Main.theClass.Hub.contains("Hub.Pitch")) {
+			Main.theClass.Hub.set("Hub.Pitch", Bukkit.getWorlds().get(0).getSpawnLocation().getPitch());
+			Main.theClass.Hub.saveConfig();
 		}
 	}
 	

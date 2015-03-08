@@ -5,6 +5,7 @@ import java.util.List;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.methods.Configs.SimpleConfig;
+import me.Fabricio20.methods.Managers.SettingsManager;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -14,11 +15,12 @@ public class ItemsAPI {
 	
 	public static SimpleConfig Items = Main.theClass.Items;
 	
-	public static boolean shouldGive(String playerName) {//Fix
-		if(!Main.theClass.Storage.contains("Players." + playerName + ".Items")) {
+	public static boolean shouldGive(String playerName) {
+		SimpleConfig pConfig = SettingsManager.theClass.getSettings(playerName);
+		if(!pConfig.contains("JoinItems")) {
 			return true;
 		} else {
-			if(Main.theClass.Storage.getBoolean("Players." + playerName + ".Items") == true) {
+			if(pConfig.getBoolean("JoinItems") == true) {
 				return false;
 			} else {
 				return true;
@@ -27,9 +29,10 @@ public class ItemsAPI {
 	}
 	
 	public static void give(String playerName) {
-		if(!Main.theClass.Storage.contains("Players." + playerName + ".Items")) {
-			Main.theClass.Storage.set("Players." + playerName + ".Items", true);
-			Main.theClass.Storage.saveConfig();
+		SimpleConfig pConfig = SettingsManager.theClass.getSettings(playerName);
+		if(!pConfig.contains("JoinItems")) {
+			pConfig.set("JoinItems", true);
+			pConfig.saveConfig();
 		} else {
 			return;
 		}

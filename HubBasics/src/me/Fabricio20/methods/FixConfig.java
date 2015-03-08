@@ -9,7 +9,7 @@ import org.bukkit.Bukkit;
 
 public class FixConfig {
 	
-	public static SimpleConfig Items = Main.theClass.Items;
+	public static SimpleConfig ChestItems = Main.theClass.ChestItems;
 	
 	public static void fix() {
 		fixConfig();
@@ -641,118 +641,118 @@ public class FixConfig {
 	
 	private static void fixChestItems() {
 		// Magic Clock Enabled
-		if(!Items.contains("MagicClockEnabled.Name")) {
-			Items.set("MagicClockEnabled.Name", "&aPlayers");
-			Items.saveConfig();
+		if(!ChestItems.contains("MagicClockEnabled.Name")) {
+			ChestItems.set("MagicClockEnabled.Name", "&aPlayers");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("MagicClockEnabled.Lore")) {
+		if(!ChestItems.contains("MagicClockEnabled.Lore")) {
 			ArrayList<String> lore = new ArrayList<String>();
 			lore.add("&7- &8A Basic Lore");
-			Items.set("MagicClockEnabled.Lore", lore);
-			Items.saveConfig();
+			ChestItems.set("MagicClockEnabled.Lore", lore);
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("MagicClockEnabled.Material")) {
-			Items.set("MagicClockEnabled.Material", "WATCH");
-			Items.saveConfig();
+		if(!ChestItems.contains("MagicClockEnabled.Material")) {
+			ChestItems.set("MagicClockEnabled.Material", "WATCH");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("MagicClockEnabled.Glow")) {
-			Items.set("MagicClockEnabled.Glow", true);
-			Items.saveConfig();
+		if(!ChestItems.contains("MagicClockEnabled.Glow")) {
+			ChestItems.set("MagicClockEnabled.Glow", true);
+			ChestItems.saveConfig();
 		}
 		// Magic Clock Disabled
-		if(!Items.contains("MagicClockDisabled.Name")) {
-			Items.set("MagicClockDisabled.Name", "&cPlayers");
-			Items.saveConfig();
+		if(!ChestItems.contains("MagicClockDisabled.Name")) {
+			ChestItems.set("MagicClockDisabled.Name", "&cPlayers");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("MagicClockDisabled.Lore")) {
+		if(!ChestItems.contains("MagicClockDisabled.Lore")) {
 			ArrayList<String> lore = new ArrayList<String>();
 			lore.add("&7- &8A Basic Lore");
-			Items.set("MagicClockDisabled.Lore", lore);
-			Items.saveConfig();
+			ChestItems.set("MagicClockDisabled.Lore", lore);
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("MagicClockDisabled.Material")) {
-			Items.set("MagicClockDisabled.Material", "WATCH");
-			Items.saveConfig();
+		if(!ChestItems.contains("MagicClockDisabled.Material")) {
+			ChestItems.set("MagicClockDisabled.Material", "WATCH");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("MagicClockDisabled.Glow")) {
-			Items.set("MagicClockDisabled.Glow", false);
-			Items.saveConfig();
+		if(!ChestItems.contains("MagicClockDisabled.Glow")) {
+			ChestItems.set("MagicClockDisabled.Glow", false);
+			ChestItems.saveConfig();
 		}
 		// Speed Boost Enabled
-		if(!Items.contains("SpeedBoostEnabled.Name")) {
-			Items.set("SpeedBoostEnabled.Name", "&aDisable Speed Boost");
-			Items.saveConfig();
+		if(!ChestItems.contains("SpeedBoostEnabled.Name")) {
+			ChestItems.set("SpeedBoostEnabled.Name", "&aDisable Speed Boost");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("SpeedBoostEnabled.Lore")) {
+		if(!ChestItems.contains("SpeedBoostEnabled.Lore")) {
 			ArrayList<String> lore = new ArrayList<String>();
 			lore.add("&7- &8A Basic Lore");
-			Items.set("SpeedBoostEnabled.Lore", lore);
-			Items.saveConfig();
+			ChestItems.set("SpeedBoostEnabled.Lore", lore);
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("SpeedBoostEnabled.Material")) {
-			Items.set("SpeedBoostEnabled.Material", "POTION");
-			Items.saveConfig();
+		if(!ChestItems.contains("SpeedBoostEnabled.Material")) {
+			ChestItems.set("SpeedBoostEnabled.Material", "POTION");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("SpeedBoostEnabled.Glow")) {
-			Items.set("SpeedBoostEnabled.Glow", true);
-			Items.saveConfig();
+		if(!ChestItems.contains("SpeedBoostEnabled.Glow")) {
+			ChestItems.set("SpeedBoostEnabled.Glow", true);
+			ChestItems.saveConfig();
 		}
 		// Speed Boost Disabled
-		if(!Items.contains("SpeedBoostDisabled.Name")) {
-			Items.set("SpeedBoostDisabled.Name", "&cEnable Speed Boost");
-			Items.saveConfig();
+		if(!ChestItems.contains("SpeedBoostDisabled.Name")) {
+			ChestItems.set("SpeedBoostDisabled.Name", "&cEnable Speed Boost");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("SpeedBoostDisabled.Lore")) {
+		if(!ChestItems.contains("SpeedBoostDisabled.Lore")) {
 			ArrayList<String> lore = new ArrayList<String>();
 			lore.add("&7- &8A Basic Lore");
-			Items.set("SpeedBoostDisabled.Lore", lore);
-			Items.saveConfig();
+			ChestItems.set("SpeedBoostDisabled.Lore", lore);
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("SpeedBoostDisabled.Material")) {
-			Items.set("SpeedBoostDisabled.Material", "POTION");
-			Items.saveConfig();
+		if(!ChestItems.contains("SpeedBoostDisabled.Material")) {
+			ChestItems.set("SpeedBoostDisabled.Material", "POTION");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("SpeedBoostDisabled.Glow")) {
-			Items.set("SpeedBoostDisabled.Glow", false);
-			Items.saveConfig();
+		if(!ChestItems.contains("SpeedBoostDisabled.Glow")) {
+			ChestItems.set("SpeedBoostDisabled.Glow", false);
+			ChestItems.saveConfig();
 		}
 		// Jump Boost Enabled
-		if(!Items.contains("JumpBoostEnabled.Name")) {
-			Items.set("JumpBoostEnabled.Name", "&aDisable Jump Boost");
-			Items.saveConfig();
+		if(!ChestItems.contains("JumpBoostEnabled.Name")) {
+			ChestItems.set("JumpBoostEnabled.Name", "&aDisable Jump Boost");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("JumpBoostEnabled.Lore")) {
+		if(!ChestItems.contains("JumpBoostEnabled.Lore")) {
 			ArrayList<String> lore = new ArrayList<String>();
 			lore.add("&7- &8A Basic Lore");
-			Items.set("JumpBoostEnabled.Lore", lore);
-			Items.saveConfig();
+			ChestItems.set("JumpBoostEnabled.Lore", lore);
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("JumpBoostEnabled.Material")) {
-			Items.set("JumpBoostEnabled.Material", "POTION");
-			Items.saveConfig();
+		if(!ChestItems.contains("JumpBoostEnabled.Material")) {
+			ChestItems.set("JumpBoostEnabled.Material", "POTION");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("JumpBoostEnabled.Glow")) {
-			Items.set("JumpBoostEnabled.Glow", true);
-			Items.saveConfig();
+		if(!ChestItems.contains("JumpBoostEnabled.Glow")) {
+			ChestItems.set("JumpBoostEnabled.Glow", true);
+			ChestItems.saveConfig();
 		}
 		// Jump Boost Disabled
-		if(!Items.contains("JumpBoostDisabled.Name")) {
-			Items.set("JumpBoostDisabled.Name", "&cEnable Jump Boost");
-			Items.saveConfig();
+		if(!ChestItems.contains("JumpBoostDisabled.Name")) {
+			ChestItems.set("JumpBoostDisabled.Name", "&cEnable Jump Boost");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("JumpBoostDisabled.Lore")) {
+		if(!ChestItems.contains("JumpBoostDisabled.Lore")) {
 			ArrayList<String> lore = new ArrayList<String>();
 			lore.add("&7- &8A Basic Lore");
-			Items.set("JumpBoostDisabled.Lore", lore);
-			Items.saveConfig();
+			ChestItems.set("JumpBoostDisabled.Lore", lore);
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("JumpBoostDisabled.Material")) {
-			Items.set("JumpBoostDisabled.Material", "POTION");
-			Items.saveConfig();
+		if(!ChestItems.contains("JumpBoostDisabled.Material")) {
+			ChestItems.set("JumpBoostDisabled.Material", "POTION");
+			ChestItems.saveConfig();
 		}
-		if(!Items.contains("JumpBoostDisabled.Glow")) {
-			Items.set("JumpBoostDisabled.Glow", false);
-			Items.saveConfig();
+		if(!ChestItems.contains("JumpBoostDisabled.Glow")) {
+			ChestItems.set("JumpBoostDisabled.Glow", false);
+			ChestItems.saveConfig();
 		}
 	}
 }

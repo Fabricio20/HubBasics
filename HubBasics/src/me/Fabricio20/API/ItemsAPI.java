@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemsAPI {
 	
-	public static SimpleConfig Items = Main.theClass.Items;
+	public static SimpleConfig ChestItems = Main.theClass.ChestItems;
 	
 	public static boolean shouldGive(String playerName) {
 		SimpleConfig pConfig = SettingsManager.theClass.getSettings(playerName);
@@ -42,14 +42,14 @@ public class ItemsAPI {
 		switch(string) {
 		case "MagicClock":
 			if(Enabled) {
-				String name = Items.getString("MagicClockEnabled.Name").replace("&", "§");
-				List<String> loreO = Items.getStringList("MagicClockEnabled.Lore");
-				String material = Items.getString("MagicClockEnabled.Material");
+				String name = ChestItems.getString("MagicClockEnabled.Name").replace("&", "§");
+				List<String> loreO = ChestItems.getStringList("MagicClockEnabled.Lore");
+				String material = ChestItems.getString("MagicClockEnabled.Material");
 				List<String> lore = new ArrayList<String>();
 				for(String s: loreO) {
 					lore.add(s.replace("&", "§"));
 				}
-				boolean glow = Items.getBoolean("MagicClockEnabled.Glow");
+				boolean glow = ChestItems.getBoolean("MagicClockEnabled.Glow");
 				ItemStack stack = new ItemStack(Material.getMaterial(material));
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);
@@ -60,14 +60,14 @@ public class ItemsAPI {
 				}
 				return stack;
 			} else {
-				String name = Items.getString("MagicClockDisabled.Name").replace("&", "§");
-				List<String> loreO = Items.getStringList("MagicClockDisabled.Lore");
-				String material = Items.getString("MagicClockDisabled.Material");
+				String name = ChestItems.getString("MagicClockDisabled.Name").replace("&", "§");
+				List<String> loreO = ChestItems.getStringList("MagicClockDisabled.Lore");
+				String material = ChestItems.getString("MagicClockDisabled.Material");
 				List<String> lore = new ArrayList<String>();
 				for(String s: loreO) {
 					lore.add(s.replace("&", "§"));
 				}
-				boolean glow = Items.getBoolean("MagicClockDisabled.Glow");
+				boolean glow = ChestItems.getBoolean("MagicClockDisabled.Glow");
 				ItemStack stack = new ItemStack(Material.getMaterial(material));
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);
@@ -80,14 +80,14 @@ public class ItemsAPI {
 			}
 		case "SpeedBoost":
 			if(Enabled) {
-				String name = Items.getString("SpeedBoostEnabled.Name").replace("&", "§");
-				List<String> loreO = Items.getStringList("SpeedBoostEnabled.Lore");
-				String material = Items.getString("SpeedBoostEnabled.Material");
+				String name = ChestItems.getString("SpeedBoostEnabled.Name").replace("&", "§");
+				List<String> loreO = ChestItems.getStringList("SpeedBoostEnabled.Lore");
+				String material = ChestItems.getString("SpeedBoostEnabled.Material");
 				List<String> lore = new ArrayList<String>();
 				for(String s: loreO) {
 					lore.add(s.replace("&", "§"));
 				}
-				boolean glow = Items.getBoolean("SpeedBoostEnabled.Glow");
+				boolean glow = ChestItems.getBoolean("SpeedBoostEnabled.Glow");
 				ItemStack stack = new ItemStack(Material.getMaterial(material));
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);
@@ -98,14 +98,14 @@ public class ItemsAPI {
 				}
 				return stack;
 			} else {
-				String name = Items.getString("SpeedBoostDisabled.Name").replace("&", "§");
-				List<String> loreO = Items.getStringList("SpeedBoostDisabled.Lore");
-				String material = Items.getString("SpeedBoostDisabled.Material");
+				String name = ChestItems.getString("SpeedBoostDisabled.Name").replace("&", "§");
+				List<String> loreO = ChestItems.getStringList("SpeedBoostDisabled.Lore");
+				String material = ChestItems.getString("SpeedBoostDisabled.Material");
 				List<String> lore = new ArrayList<String>();
 				for(String s: loreO) {
 					lore.add(s.replace("&", "§"));
 				}
-				boolean glow = Items.getBoolean("SpeedBoostDisabled.Glow");
+				boolean glow = ChestItems.getBoolean("SpeedBoostDisabled.Glow");
 				ItemStack stack = new ItemStack(Material.getMaterial(material));
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);
@@ -118,14 +118,14 @@ public class ItemsAPI {
 			}
 		case "JumpBoost":
 			if(Enabled) {
-				String name = Items.getString("JumpBoostEnabled.Name").replace("&", "§");
-				List<String> loreO = Items.getStringList("JumpBoostEnabled.Lore");
-				String material = Items.getString("JumpBoostEnabled.Material");
+				String name = ChestItems.getString("JumpBoostEnabled.Name").replace("&", "§");
+				List<String> loreO = ChestItems.getStringList("JumpBoostEnabled.Lore");
+				String material = ChestItems.getString("JumpBoostEnabled.Material");
 				List<String> lore = new ArrayList<String>();
 				for(String s: loreO) {
 					lore.add(s.replace("&", "§"));
 				}
-				boolean glow = Items.getBoolean("JumpBoostEnabled.Glow");
+				boolean glow = ChestItems.getBoolean("JumpBoostEnabled.Glow");
 				ItemStack stack = new ItemStack(Material.getMaterial(material));
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);
@@ -136,14 +136,14 @@ public class ItemsAPI {
 				}
 				return stack;
 			} else {
-				String name = Items.getString("JumpBoostDisabled.Name").replace("&", "§");
-				List<String> loreO = Items.getStringList("JumpBoostDisabled.Lore");
-				String material = Items.getString("JumpBoostDisabled.Material");
+				String name = ChestItems.getString("JumpBoostDisabled.Name").replace("&", "§");
+				List<String> loreO = ChestItems.getStringList("JumpBoostDisabled.Lore");
+				String material = ChestItems.getString("JumpBoostDisabled.Material");
 				List<String> lore = new ArrayList<String>();
 				for(String s: loreO) {
 					lore.add(s.replace("&", "§"));
 				}
-				boolean glow = Items.getBoolean("JumpBoostDisabled.Glow");
+				boolean glow = ChestItems.getBoolean("JumpBoostDisabled.Glow");
 				ItemStack stack = new ItemStack(Material.getMaterial(material));
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);

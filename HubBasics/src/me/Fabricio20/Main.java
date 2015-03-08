@@ -67,7 +67,7 @@ public class Main extends JavaPlugin {
     public SimpleConfig Language;
     public SimpleConfig Tags;
     public SimpleConfig QuickWarpChest;
-    public SimpleConfig Items;
+    public SimpleConfig ChestItems;
 	
     private int ChatTime = 0;
     private int BossTime = 0;
@@ -254,8 +254,8 @@ public class Main extends JavaPlugin {
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header8 = {"HubBasics Custom Items File", "These Items Are Displayed On Chests Like Settings Chest"};
-		this.Items = manager.getNewConfig("ChestItems.yml", header8);
-		this.Items.saveConfig();
+		this.ChestItems = manager.getNewConfig("ChestItems.yml", header8);
+		this.ChestItems.saveConfig();
 	}
 	
 	public CustomEnchantment ench = new CustomEnchantment(69);

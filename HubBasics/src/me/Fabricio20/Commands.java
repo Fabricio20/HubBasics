@@ -4,9 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import me.Fabricio20.API.HoverAPI;
-import me.Fabricio20.listeners.Player.RightClickListener;
 import me.Fabricio20.Storage.Permissions;
+import me.Fabricio20.Storage.Storage;
 import me.Fabricio20.Storage.Strings;
+import me.Fabricio20.listeners.Player.RightClickListener;
 import me.Fabricio20.methods.JoinItems;
 
 import org.bukkit.Bukkit;
@@ -172,12 +173,15 @@ public class Commands implements CommandExecutor {
 					}
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
-						//TODO: FIx
 						Main.theClass.config.reloadConfig();
-						Main.theClass.JoinItems.reloadConfig();
 						Main.theClass.Hub.reloadConfig();
+						Main.theClass.JoinItems.reloadConfig();
 						Main.theClass.Warps.reloadConfig();
 						Main.theClass.Language.reloadConfig();
+						Main.theClass.Tags.reloadConfig();
+						Main.theClass.QuickWarpChest.reloadConfig();
+						Main.theClass.ChestItems.reloadConfig();
+						Storage.playerSettings.clear();
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
 					} else {
 						if(!(sender instanceof Player)) {

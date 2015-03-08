@@ -1,5 +1,6 @@
 package me.Fabricio20.listeners.Chest;
 
+import me.Fabricio20.Main;
 import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.API.LanguageAPI;
 import me.Fabricio20.API.MagicClockAPI;
@@ -27,6 +28,10 @@ public class SettingsChestClick implements Listener {
 						player.sendMessage(LanguageAPI.theClass.MagicClock_Disabled(player));
 					}
 					MagicClockAPI.theClass.toggleClock(player);
+					if(player.getInventory().contains(ItemsAPI.get("MagicClock", !SettingsManager.theClass.isPlayersEnabled(player.getName())))) {
+						player.getInventory().remove(ItemsAPI.get("MagicClock", !SettingsManager.theClass.isPlayersEnabled(player.getName())));
+						player.getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(player.getName())));
+					}
 					SettingsChest.theClass.open(player);
 				}
 				if(e.getCurrentItem().equals(ItemsAPI.get("SpeedBoost", SettingsManager.theClass.isSpeedEnabled(player.getName())))) {

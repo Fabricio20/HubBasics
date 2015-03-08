@@ -10,7 +10,7 @@ import me.Fabricio20.API.WarpAPI;
 import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.Storage.Strings;
 import me.Fabricio20.methods.ModuleManager;
-import me.Fabricio20.methods.QuickWarpChest;
+import me.Fabricio20.methods.Chests.QuickWarpChest;
 import me.Fabricio20.methods.Chests.SettingsChest;
 import me.Fabricio20.methods.Managers.EffectsManager;
 import me.Fabricio20.methods.Managers.SettingsManager;

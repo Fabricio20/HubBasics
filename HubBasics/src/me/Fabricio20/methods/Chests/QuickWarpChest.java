@@ -1,4 +1,4 @@
-package me.Fabricio20.methods;
+package me.Fabricio20.methods.Chests;
 
 import java.util.ArrayList;
 import java.util.List;

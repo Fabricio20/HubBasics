@@ -5,7 +5,10 @@ import java.util.List;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.API.BookAPI;
+import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.methods.Items;
+import me.Fabricio20.methods.ModuleManager;
+import me.Fabricio20.methods.Managers.SettingsManager;
 import me.Fabricio20.runnables.BossAnnouncer;
 import me.confuser.barapi.BarAPI;
 
@@ -74,10 +77,9 @@ public class JoinListener implements Listener {
 			BarAPI.setMessage(e.getPlayer(), Announces.get(BossAnnouncer.Stamp));
 		}
 		if(Main.theClass.config.getBoolean("MagicClock.Enabled") == true) {
-			List<String> worlds = Main.theClass.config.getStringList("Worlds");
-			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				if(!e.getPlayer().getInventory().contains(Items.MagicClock(e.getPlayer().getName()))) {
-					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
+			if(ModuleManager.theClass.isInWorld(e.getPlayer())) {
+				if(!e.getPlayer().getInventory().contains(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {
+					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())));
 				}
 			}
 		}

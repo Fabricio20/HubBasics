@@ -1,9 +1,9 @@
 package me.Fabricio20.listeners.Item;
 
-import java.util.List;
-
 import me.Fabricio20.Main;
-import me.Fabricio20.methods.Items;
+import me.Fabricio20.API.ItemsAPI;
+import me.Fabricio20.methods.ModuleManager;
+import me.Fabricio20.methods.Managers.SettingsManager;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,21 +13,20 @@ public class DropItemListener implements Listener {
 	
 	@EventHandler
 	public void Drop(PlayerDropItemEvent e) {
-		List<String> worlds = Main.theClass.config.getStringList("Worlds");
-		if (Main.theClass.config.getBoolean("Others.NoDrops") == true) {
-			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+		if(Main.theClass.config.getBoolean("Others.NoDrops") == true) {
+			if(ModuleManager.theClass.isInWorld(e.getPlayer())) {
 				e.setCancelled(true);
 			}
 		}
 		if(Main.theClass.config.getBoolean("MagicClock.NoDrop") == true) {
-			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				if(e.getItemDrop().getItemStack().equals(Items.MagicClock(e.getPlayer().getName()))) {
+			if(ModuleManager.theClass.isInWorld(e.getPlayer())) {
+				if(e.getItemDrop().getItemStack().equals(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {
 					e.setCancelled(true);
 				}
 			}
 		}
 		if(Main.theClass.config.getBoolean("HatSystem.AllowDrops") == false) {
-			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+			if(ModuleManager.theClass.isInWorld(e.getPlayer())) {
 				if(e.getItemDrop().getItemStack().hasItemMeta()) {
 					if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().contains(Main.theClass.config.getString("HatSystem.Name").substring(3))) {
 						e.setCancelled(true);

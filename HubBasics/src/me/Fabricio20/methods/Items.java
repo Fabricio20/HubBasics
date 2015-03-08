@@ -22,7 +22,6 @@ public class Items {
 	private static String Item7Name = "";
 	private static String Item8Name = "";
 	private static String Item9Name = "";
-	private static String MagicClockName = "";
 	private static String HatName = "";
 	
 	public static ItemStack Item1(String player) {
@@ -295,21 +294,6 @@ public class Items {
 		}
 	}
 	
-	public static ItemStack MagicClock(String player) {
-		fixItemName(player);
-		ItemStack Clock = new ItemStack(Material.getMaterial(Main.theClass.config.getString("MagicClock.Material")));
-		ItemMeta Meta = Clock.getItemMeta();
-		Meta.setDisplayName(MagicClockName);
-		List<String> LoreFromConfig = Main.theClass.config.getStringList("MagicClock.Lore");
-		List<String> NewLore = new ArrayList<String>();
-		for(String string : LoreFromConfig) {
-			NewLore.add(string.replace("&", "§").replace("%p", player));
-		}
-		Meta.setLore(NewLore);
-		Clock.setItemMeta(Meta);
-		return Clock;
-	}
-	
 	public static ItemStack Book(String player) {
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 		BookMeta Meta = (BookMeta) book.getItemMeta();
@@ -377,9 +361,6 @@ public class Items {
 		}
 		if(Main.theClass.ItemConfig.contains("Item9.Name") && Main.theClass.ItemConfig.getString("Item9.Name") != null && Main.theClass.ItemConfig.getString("Item9.Name") != "") {
 			Item9Name = Main.theClass.ItemConfig.getString("Item9.Name").replace("&", "§").replace("%p", playername);
-		}
-		if(Main.theClass.config.contains("MagicClock.Name")) {
-			MagicClockName = Main.theClass.config.getString("MagicClock.Name").replace("&", "§").replace("%p", playername);
 		}
 		if(Main.theClass.config.contains("HatSystem.Name")) {
 			HatName = Main.theClass.config.getString("HatSystem.Name").replace("&", "§").replace("%p", playername);

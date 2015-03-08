@@ -3,10 +3,10 @@ package me.Fabricio20.listeners.Player;
 import java.util.List;
 
 import me.Fabricio20.Main;
-import me.Fabricio20.Storage.Strings;
+import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.methods.Items;
+import me.Fabricio20.methods.Managers.SettingsManager;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,16 +14,8 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public class PlayerChangeWorld implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerChangeWorld(PlayerChangedWorldEvent e) {
-		if(Strings.MagicClockActive.contains(e.getPlayer())) {
-			for (Player user : Bukkit.getOnlinePlayers()) {
-				if (e.getPlayer().canSee(user) == false) {
-					e.getPlayer().showPlayer(user);
-				}
-			}
-		}
 		if(Main.theClass.config.getBoolean("Others.ClearInventoryOnEveryWorld")) {
 			e.getPlayer().getInventory().clear();
 		}
@@ -87,8 +79,8 @@ public class PlayerChangeWorld implements Listener {
 	///////////////////////////////////////////////////////////////////////////////////////- End Of Stuff, Start Of MagicClock
 			}
 			if(Main.theClass.config.getBoolean("MagicClock.GiveOnWorldChange") == true) {
-				if(!e.getPlayer().getInventory().contains(Items.MagicClock(e.getPlayer().getName()))) {
-					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), Items.MagicClock(e.getPlayer().getName()));
+				if(!e.getPlayer().getInventory().contains(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {
+					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())));
 				}
 			}
 		}

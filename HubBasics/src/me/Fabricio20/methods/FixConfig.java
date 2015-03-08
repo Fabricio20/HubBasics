@@ -224,22 +224,12 @@ public class FixConfig {
 			Main.theClass.config.set("MagicClock.Enabled", false);
 			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.config.contains("MagicClock.Name")) {
-			Main.theClass.config.set("MagicClock.Name", "&cMagic Clock");
-			Main.theClass.config.saveConfig();
-		}
-		if(!Main.theClass.config.contains("MagicClock.Lore")) {
-			ArrayList<String> Lore = new ArrayList<String>();
-			Lore.add("&7- &a&oMagicClock Lore");
-			Main.theClass.config.set("MagicClock.Lore", Lore);
+		if(!Main.theClass.config.contains("MagicClock.EnabledInChest")) {
+			Main.theClass.config.set("MagicClock.EnabledInChest", false);
 			Main.theClass.config.saveConfig();
 		}
 		if(!Main.theClass.config.contains("MagicClock.Slot")) {
 			Main.theClass.config.set("MagicClock.Slot", 5);
-			Main.theClass.config.saveConfig();
-		}
-		if(!Main.theClass.config.contains("MagicClock.Material")) {
-			Main.theClass.config.set("MagicClock.Material", "WATCH");
 			Main.theClass.config.saveConfig();
 		}
 		if(!Main.theClass.config.contains("MagicClock.AllowMove")) {

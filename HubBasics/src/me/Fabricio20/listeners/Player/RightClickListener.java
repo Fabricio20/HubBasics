@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.API.LanguageAPI;
 import me.Fabricio20.API.MagicClockAPI;
 import me.Fabricio20.Storage.Permissions;
@@ -177,12 +178,12 @@ public class RightClickListener implements Listener {
 	
 	@EventHandler
 	public void onRightClickAgaing(PlayerInteractEvent e) {
-		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			if(e.getPlayer().getItemInHand() != null && e.getPlayer().getItemInHand().getType() != Material.AIR) {
 				final Player player = e.getPlayer();
 				int time = Main.theClass.config.getInt("MagicClock.Cooldown");
 				if(ModuleManager.theClass.isInWorld(player)) {
-					if(e.getPlayer().getItemInHand().equals(Items.MagicClock(e.getPlayer().getName()))) {
+					if(e.getPlayer().getItemInHand().equals(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {
 						if(cooldown.contains(e.getPlayer())) {
 							player.sendMessage(LanguageAPI.theClass.MagicClock_Cooldown(player));
 						} else {
@@ -191,6 +192,8 @@ public class RightClickListener implements Listener {
 							} else {
 								player.sendMessage(LanguageAPI.theClass.MagicClock_Disabled(player));
 							}
+							e.getPlayer().setItemInHand(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())));
+							e.getPlayer().updateInventory();
 							MagicClockAPI.theClass.toggleClock(player);
 							cooldown.add(player);
 							Bukkit.getScheduler().runTaskLater(Main.theClass.getPlugin(), new Runnable() {

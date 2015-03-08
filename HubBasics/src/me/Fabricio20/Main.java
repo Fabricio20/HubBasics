@@ -229,7 +229,7 @@ public class Main extends JavaPlugin {
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header3 = {"HubBasics Storage File", "Please do not change anything in this file"};
-		this.Storage = manager.getNewConfig("Storage.yml", header3);
+		this.Storage = manager.getNewConfig("Storage/Hub.yml", header3);
 		this.Storage.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);

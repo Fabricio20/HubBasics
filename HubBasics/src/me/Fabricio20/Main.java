@@ -224,7 +224,7 @@ public class Main extends JavaPlugin {
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header2 = {"HubBasics Item Configuration File", "Documentation Can Be Found On GitHub Page", "Edit with caution! Malformed YAML can break the plugin!"};
-		this.ItemConfig = manager.getNewConfig("Items.yml", header2);
+		this.ItemConfig = manager.getNewConfig("JoinItems.yml", header2);
 		this.ItemConfig.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);

@@ -90,6 +90,10 @@ public class FixConfig {
 			Main.theClass.config.set("VoidFall.Enabled", true);
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("VoidFall.OnlyHub")) {
+			Main.theClass.config.set("VoidFall.OnlyHub", false);
+			Main.theClass.config.saveConfig();
+		}
 		if(!Main.theClass.config.contains("VoidFall.Message")) {
 			Main.theClass.config.set("VoidFall.Message", "&8[&cHubBasics&8] &a%p &eYou were teleported back to spawn!");
 			Main.theClass.config.saveConfig();

@@ -9,6 +9,7 @@ import me.Fabricio20.API.LanguageAPI;
 import me.Fabricio20.API.WarpAPI;
 import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.Storage.Strings;
+import me.Fabricio20.methods.JoinItems;
 import me.Fabricio20.methods.ModuleManager;
 import me.Fabricio20.methods.Chests.QuickWarpChest;
 import me.Fabricio20.methods.Chests.SettingsChest;
@@ -22,6 +23,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class CommandsOverride implements Listener {
 
@@ -213,6 +215,36 @@ public class CommandsOverride implements Listener {
 							}
 						} else {
 							player.sendMessage(LanguageAPI.theClass.General_NoArgs(player));
+						}
+					}
+				}
+			} else if(cmd[0].equalsIgnoreCase("/hubitems")) {
+				if(!isDisabled("hubitems")) {
+					Player player = (Player) sender;
+					if(ModuleManager.theClass.isInWorld(player)) {
+						e.setCancelled(true);
+						for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
+							if(JoinItems.theClass.getPermission(stack, player) != null) {
+								if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+									if(!player.getInventory().contains(stack)) {
+										if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+											int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+											player.getInventory().setItem(slot, stack);
+										} else {
+											player.getInventory().addItem(stack);
+										}
+									}
+								}
+							} else {
+								if(!player.getInventory().contains(stack)) {
+									if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+										int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+										player.getInventory().setItem(slot, stack);
+									} else {
+										player.getInventory().addItem(stack);
+									}
+								}
+							}
 						}
 					}
 				}

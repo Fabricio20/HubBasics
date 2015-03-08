@@ -447,10 +447,6 @@ public class FixConfig {
 			Main.theClass.config.set("Others.AntiOP", false);
 			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.config.contains("Others.HubItems")) {
-			Main.theClass.config.set("Others.HubItems", true);
-			Main.theClass.config.saveConfig();
-		}
 		if(!Main.theClass.config.contains("Others.StackerEnabledMessage")) {
 			Main.theClass.config.set("Others.StackerEnabledMessage", "&aStacker Enabled!");
 			Main.theClass.config.saveConfig();

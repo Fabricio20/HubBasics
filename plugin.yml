@@ -18,7 +18,5 @@ commands:
     description: HubBasics.
   uuid:
     description: Get someones UUID.
-  hubitems:
-    description: Give you the hub items.
   stacker:
     description: Enable/Disable stacker.

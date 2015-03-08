@@ -145,7 +145,6 @@ public class Main extends JavaPlugin {
 		getCommand("hat").setExecutor(new Commands());
 		getCommand("hb").setExecutor(new Commands());
 		getCommand("uuid").setExecutor(new Commands());
-		getCommand("hubitems").setExecutor(new Commands());
 		getCommand("stacker").setExecutor(new Commands());
 	}
 	

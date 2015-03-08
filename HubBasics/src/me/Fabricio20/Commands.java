@@ -172,6 +172,7 @@ public class Commands implements CommandExecutor {
 					}
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
+						//TODO: FIx
 						Main.theClass.config.reloadConfig();
 						Main.theClass.JoinItems.reloadConfig();
 						Main.theClass.Hub.reloadConfig();
@@ -206,35 +207,6 @@ public class Commands implements CommandExecutor {
 				}
 			} else {
 				sender.sendMessage(Strings.PermissionError);
-			}
-		} else if(commandLabel.equalsIgnoreCase("hubitems")) {
-			if(!(sender instanceof Player)) {
-				sender.sendMessage("Only Players Can Use This Command Sir!");
-			} else {
-				if(Main.theClass.config.getBoolean("Others.HubItems") == true) {
-					Player player = (Player) sender;
-					for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
-						if(JoinItems.theClass.getPermission(stack, player) != null) {
-							if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
-								if(JoinItems.theClass.getItems(player).get(stack) > 0) {
-									int slot = JoinItems.theClass.getItems(player).get(stack) -1;
-									player.getInventory().setItem(slot, stack);
-								} else {
-									player.getInventory().addItem(stack);
-								}
-							}
-						} else {
-							if(JoinItems.theClass.getItems(player).get(stack) > 0) {
-								int slot = JoinItems.theClass.getItems(player).get(stack) -1;
-								player.getInventory().setItem(slot, stack);
-							} else {
-								player.getInventory().addItem(stack);
-							}
-						}
-					}
-				} else {
-					sender.sendMessage("§cThis command is disabled!");
-				}
 			}
 		} else if(commandLabel.equalsIgnoreCase("stacker")) {
 			if(sender.hasPermission(new Permissions().Stacker)) {

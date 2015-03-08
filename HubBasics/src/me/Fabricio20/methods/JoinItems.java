@@ -22,13 +22,13 @@ public class JoinItems {
 	
 	public String getPermission(ItemStack stack, Player player) {
 		String permission = null;
-		for(String s: ItemsConfig.getConfigurationSection("").getKeys(false)) {
-			if(ItemsConfig.contains(s + ".Displayname")) {
+		for(String s: ItemsConfig.getConfigurationSection("Items").getKeys(false)) {
+			if(ItemsConfig.contains("Items." + s + ".Displayname")) {
 				if(stack.hasItemMeta()) {
 					String dName = stack.getItemMeta().getDisplayName().replace("§", "&").replace(player.getName(), "%p");
-					if(dName.equals(ItemsConfig.getString(s + ".Displayname"))) {
-						if(ItemsConfig.contains(s + ".Permission")) {
-							permission = ItemsConfig.getString(s + ".Permission");
+					if(dName.equals(ItemsConfig.getString("Items." + s + ".Displayname"))) {
+						if(ItemsConfig.contains("Items." + s + ".Permission")) {
+							permission = ItemsConfig.getString("Items." + s + ".Permission");
 						}
 					}
 				}
@@ -39,13 +39,13 @@ public class JoinItems {
 	
 	public String getCommand(ItemStack stack, Player player) {
 		String command = null;
-		for(String s: ItemsConfig.getConfigurationSection("").getKeys(false)) {
-			if(ItemsConfig.contains(s + ".Displayname")) {
+		for(String s: ItemsConfig.getConfigurationSection("Items").getKeys(false)) {
+			if(ItemsConfig.contains("Items." + s + ".Displayname")) {
 				if(stack.hasItemMeta()) {
 					String dName = stack.getItemMeta().getDisplayName().replace("§", "&").replace(player.getName(), "%p");
-					if(dName.equals(ItemsConfig.getString(s + ".Displayname"))) {
-						if(ItemsConfig.contains(s + ".Command")) {
-							command = ItemsConfig.getString(s + ".Command");
+					if(dName.equals(ItemsConfig.getString("Items." + s + ".Displayname"))) {
+						if(ItemsConfig.contains("Items." + s + ".Command")) {
+							command = ItemsConfig.getString("Items." + s + ".Command");
 						}
 					}
 				}
@@ -56,30 +56,30 @@ public class JoinItems {
 	
 	public HashMap<ItemStack, Integer> getItems(Player player) {
 		HashMap<ItemStack, Integer> items = new HashMap<ItemStack, Integer>();
-		for(String s: ItemsConfig.getConfigurationSection("").getKeys(false)) {
+		for(String s: ItemsConfig.getConfigurationSection("Items").getKeys(false)) {
 			boolean Skull = false;
-			if(ItemsConfig.contains(s + ".Skull")) {
-				Skull = ItemsConfig.getBoolean(s + ".Skull");
+			if(ItemsConfig.contains("Items." + s + ".Skull")) {
+				Skull = ItemsConfig.getBoolean("Items." + s + ".Skull");
 			}
 			boolean Glow = false;
-			if(ItemsConfig.contains(s + ".Glow")) {
-				Glow = ItemsConfig.getBoolean(s + ".Glow");
+			if(ItemsConfig.contains("Items." + s + ".Glow")) {
+				Glow = ItemsConfig.getBoolean("Items." + s + ".Glow");
 			}
 			String name = null;
-			if(ItemsConfig.contains(s + ".Displayname")) {
-				name = ItemsConfig.getString(s + ".Displayname").replace("&", "§").replace("%p", player.getName());
+			if(ItemsConfig.contains("Items." + s + ".Displayname")) {
+				name = ItemsConfig.getString("Items." + s + ".Displayname").replace("&", "§").replace("%p", player.getName());
 			}
 			List<String> loreO = new ArrayList<String>();
-			if(ItemsConfig.contains(s + ".Lore")) {
-				loreO = ItemsConfig.getStringList(s + ".Lore");
+			if(ItemsConfig.contains("Items." + s + ".Lore")) {
+				loreO = ItemsConfig.getStringList("Items." + s + ".Lore");
 			}
 			ArrayList<String> lore = new ArrayList<String>();
 			for(String d: loreO) {
 				lore.add(d.replace("&", "§").replace("%p", player.getName()));
 			}
 			int slot = 0;
-			if(ItemsConfig.contains(s + ".Slot")) {
-				slot = ItemsConfig.getInt(s + ".Slot");
+			if(ItemsConfig.contains("Items." + s + ".Slot")) {
+				slot = ItemsConfig.getInt("Items." + s + ".Slot");
 			}
 			String owner = "Fabricio20";
 			if(Skull) {
@@ -87,8 +87,8 @@ public class JoinItems {
 				SkullMeta meta = (SkullMeta) stack.getItemMeta();
 				meta.setDisplayName(name);
 				meta.setLore(lore);
-				if(ItemsConfig.contains(s + ".Owner")) {
-					owner = ItemsConfig.getString(s + ".Owner");
+				if(ItemsConfig.contains("Items." + s + ".Owner")) {
+					owner = ItemsConfig.getString("Items." + s + ".Owner");
 				}
 				meta.setOwner(owner);
 				stack.setItemMeta(meta);
@@ -97,7 +97,7 @@ public class JoinItems {
 				}
 				items.put(stack, slot);
 			} else {
-				String mat = ItemsConfig.getString(s + ".Material");
+				String mat = ItemsConfig.getString("Items." + s + ".Material");
 				ItemStack stack = new ItemStack(Material.getMaterial(mat));
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);

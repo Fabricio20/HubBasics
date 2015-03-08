@@ -48,8 +48,7 @@ public class JoinListener implements Listener {
 			}
 		}
 		if(Main.theClass.config.getBoolean("BookSystem.Enabled") == true) {
-			List<String> worlds = Main.theClass.config.getStringList("Worlds");
-			if(worlds.contains(e.getPlayer().getWorld().getName())) {
+			if(ModuleManager.theClass.isInWorld(e.getPlayer())) {
 				if(!e.getPlayer().getInventory().contains(JoinItems.Book(e.getPlayer().getName()))) {
 					if(Main.theClass.config.getBoolean("BookSystem.FirstJoinOnly") == true) {
 						if(BookAPI.shouldGive(e.getPlayer().getName()) == true) {

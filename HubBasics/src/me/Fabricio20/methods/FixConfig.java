@@ -427,10 +427,6 @@ public class FixConfig {
 			Main.theClass.config.set("Others.ClearInventoryOnEveryWorld", false);
 			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.config.contains("Others.GiveItems")) {
-			Main.theClass.config.set("Others.GiveItems", true);
-			Main.theClass.config.saveConfig();
-		}
 		if(!Main.theClass.config.contains("Others.ClearInventory")) {
 			Main.theClass.config.set("Others.ClearInventory", false);
 			Main.theClass.config.saveConfig();
@@ -492,7 +488,20 @@ public class FixConfig {
 	}
 	
 	private static void fixItems() {
-		//TODO: Fix Items
+		if(!Main.theClass.JoinItems.contains("Items")) {
+			Main.theClass.JoinItems.set("Items.AllNodes.Material", "COMPASS");
+			Main.theClass.JoinItems.set("Items.AllNodes.Displayname", "&cQuick-Warp");
+			Main.theClass.JoinItems.set("Items.AllNodes.Skull", false);
+			Main.theClass.JoinItems.set("Items.AllNodes.Glow", false);
+			Main.theClass.JoinItems.set("Items.AllNodes.Slot", 0);
+			Main.theClass.JoinItems.set("Items.AllNodes.Owner", "Fabricio20");
+			ArrayList<String> lore = new ArrayList<String>();
+			lore.add("&7- &8Lore");
+			Main.theClass.JoinItems.set("Items.AllNodes.Lore", lore);
+			Main.theClass.JoinItems.set("Items.AllNodes.Command", "TELL:&8[&eHubBasics&8] &aIt Works!");
+			Main.theClass.JoinItems.set("Items.AllNodes.Permission", "");
+			Main.theClass.JoinItems.saveConfig();
+		}
 	}
 	
 	private static void fixStorage() {

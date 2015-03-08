@@ -125,13 +125,14 @@ public class RightClickListener implements Listener {
 						for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
 							if(stk.equals(stack)) {
 								if(JoinItems.theClass.getCommand(stack, player) != null) {
-									String[] command = JoinItems.theClass.getCommand(stack, player).split(":");
-									if(command[0].equals("SERVER:")) {
-										sendToServer(player, command[1]);
-									} else if(command[0].equals("CONSOLE:")) {
-										Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command[1]);
-									} else if(command[0].equals("TELL:")){
-										player.sendMessage(command[1].replace("&", "§"));
+									String[] arg = JoinItems.theClass.getCommand(stack, player).split(":");
+									String command = JoinItems.theClass.getCommand(stack, player);
+									if(command.startsWith("SERVER:")) {
+										sendToServer(player, arg[1]);
+									} else if(command.startsWith("CONSOLE:")) {
+										Bukkit.dispatchCommand(Bukkit.getConsoleSender(), arg[1].replace("&", "§").replace("%p", player.getName()));
+									} else if(command.startsWith("TELL:")){
+										player.sendMessage(arg[1].replace("&", "§"));
 									} else {
 										player.chat(JoinItems.theClass.getCommand(stack, player).replace("&", "§").replace("%p", player.getName()));
 									}

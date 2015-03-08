@@ -27,19 +27,23 @@ public class PlayerChangeWorld implements Listener {
 				for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
 					if(JoinItems.theClass.getPermission(stack, player) != null) {
 						if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+							if(!player.getInventory().contains(stack)) {
+								if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+									int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+									player.getInventory().setItem(slot, stack);
+								} else {
+									player.getInventory().addItem(stack);
+								}
+							}
+						}
+					} else {
+						if(!player.getInventory().contains(stack)) {
 							if(JoinItems.theClass.getItems(player).get(stack) > 0) {
 								int slot = JoinItems.theClass.getItems(player).get(stack) -1;
 								player.getInventory().setItem(slot, stack);
 							} else {
 								player.getInventory().addItem(stack);
 							}
-						}
-					} else {
-						if(JoinItems.theClass.getItems(player).get(stack) > 0) {
-							int slot = JoinItems.theClass.getItems(player).get(stack) -1;
-							player.getInventory().setItem(slot, stack);
-						} else {
-							player.getInventory().addItem(stack);
 						}
 					}
 				}

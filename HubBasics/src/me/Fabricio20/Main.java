@@ -62,7 +62,7 @@ public class Main extends JavaPlugin {
     
     public SimpleConfig config;
     public SimpleConfig Storage;
-    public SimpleConfig ItemConfig;
+    public SimpleConfig JoinItems;
     public SimpleConfig Warps;
     public SimpleConfig Language;
     public SimpleConfig Tags;
@@ -224,8 +224,8 @@ public class Main extends JavaPlugin {
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header2 = {"HubBasics Item Configuration File", "Documentation Can Be Found On GitHub Page", "Edit with caution! Malformed YAML can break the plugin!"};
-		this.ItemConfig = manager.getNewConfig("JoinItems.yml", header2);
-		this.ItemConfig.saveConfig();
+		this.JoinItems = manager.getNewConfig("JoinItems.yml", header2);
+		this.JoinItems.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header3 = {"HubBasics Storage File", "Please do not change anything in this file"};

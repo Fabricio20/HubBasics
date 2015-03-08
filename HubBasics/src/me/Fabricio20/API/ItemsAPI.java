@@ -14,7 +14,7 @@ public class ItemsAPI {
 	
 	public static SimpleConfig Items = Main.theClass.Items;
 	
-	public static boolean shouldGive(String playerName) {
+	public static boolean shouldGive(String playerName) {//Fix
 		if(!Main.theClass.Storage.contains("Players." + playerName + ".Items")) {
 			return true;
 		} else {

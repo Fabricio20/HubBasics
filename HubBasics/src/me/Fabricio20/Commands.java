@@ -7,7 +7,7 @@ import me.Fabricio20.API.HoverAPI;
 import me.Fabricio20.listeners.Player.RightClickListener;
 import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.Storage.Strings;
-import me.Fabricio20.methods.Items;
+import me.Fabricio20.methods.JoinItems;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -115,7 +115,7 @@ public class Commands implements CommandExecutor {
 								Player player = (Player) sender;
 								id = Integer.parseInt(args[0]);
 								if(player.hasPermission("HubBasics.Hat." + id)) {
-									player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), 0));
+									player.getInventory().setHelmet(JoinItems.Hat(player.getName(), Material.getMaterial(id), 0));
 									player.sendMessage(Strings.Prefix + Main.theClass.config.getString("HatSystem.Set").replace("&", "§")
 													.replace("%p", player.getName()));
 								} else {
@@ -138,7 +138,7 @@ public class Commands implements CommandExecutor {
 									id = Integer.parseInt(args[0]);
 									meta = Integer.parseInt(args[1]);
 									if(player.hasPermission("HubBasics.Hat." + id)) {
-										player.getInventory().setHelmet(Items.Hat(player.getName(), Material.getMaterial(id), meta));
+										player.getInventory().setHelmet(JoinItems.Hat(player.getName(), Material.getMaterial(id), meta));
 										player.sendMessage(Strings.Prefix + Main.theClass.config.getString("HatSystem.Set").replace("&", "§")
 														.replace("%p", player.getName()));
 									} else {
@@ -173,7 +173,7 @@ public class Commands implements CommandExecutor {
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
 						Main.theClass.config.reloadConfig();
-						Main.theClass.ItemConfig.reloadConfig();
+						Main.theClass.JoinItems.reloadConfig();
 						Main.theClass.Storage.reloadConfig();
 						Main.theClass.Warps.reloadConfig();
 						Main.theClass.Language.reloadConfig();
@@ -213,67 +213,23 @@ public class Commands implements CommandExecutor {
 			} else {
 				if(Main.theClass.config.getBoolean("Others.HubItems") == true) {
 					Player player = (Player) sender;
-					// ITEM 1
-					if(Main.theClass.ItemConfig.getBoolean("Item1.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item1(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item1.Slot"),
-									Items.Item1(player.getName()));
-						}
-					}
-					// Item 2
-					if(Main.theClass.ItemConfig.getBoolean("Item2.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item2(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item2.Slot"),
-									Items.Item2(player.getName()));
-						}
-					}
-					// Item 3
-					if(Main.theClass.ItemConfig.getBoolean("Item3.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item3(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item3.Slot"),
-									Items.Item3(player.getName()));
-						}
-					}
-					// Item 4
-					if(Main.theClass.ItemConfig.getBoolean("Item4.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item4(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item4.Slot"),
-									Items.Item4(player.getName()));
-						}
-					}
-					// Item 5
-					if(Main.theClass.ItemConfig.getBoolean("Item5.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item5(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item5.Slot"),
-									Items.Item5(player.getName()));
-						}
-					}
-					// Item 6
-					if(Main.theClass.ItemConfig.getBoolean("Item6.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item6(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item6.Slot"),
-									Items.Item6(player.getName()));
-						}
-					}
-					// Item 7
-					if(Main.theClass.ItemConfig.getBoolean("Item7.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item7(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item7.Slot"),
-									Items.Item7(player.getName()));
-						}
-					}
-					// Item 8
-					if(Main.theClass.ItemConfig.getBoolean("Item8.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item8(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item8.Slot"),
-									Items.Item8(player.getName()));
-						}
-					}
-					// Item 9
-					if(Main.theClass.ItemConfig.getBoolean("Item9.Enabled") == true) {
-						if(!player.getInventory().contains(Items.Item9(player.getName()))) {
-							player.getInventory().setItem(Main.theClass.ItemConfig.getInt("Item9.Slot"),
-									Items.Item9(player.getName()));
+					for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
+						if(JoinItems.theClass.getPermission(stack, player) != null) {
+							if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+								if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+									int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+									player.getInventory().setItem(slot, stack);
+								} else {
+									player.getInventory().addItem(stack);
+								}
+							}
+						} else {
+							if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+								int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+								player.getInventory().setItem(slot, stack);
+							} else {
+								player.getInventory().addItem(stack);
+							}
 						}
 					}
 				} else {

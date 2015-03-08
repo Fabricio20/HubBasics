@@ -6,7 +6,7 @@ import java.util.List;
 import me.Fabricio20.Main;
 import me.Fabricio20.API.BookAPI;
 import me.Fabricio20.API.ItemsAPI;
-import me.Fabricio20.methods.Items;
+import me.Fabricio20.methods.JoinItems;
 import me.Fabricio20.methods.ModuleManager;
 import me.Fabricio20.methods.Managers.SettingsManager;
 import me.Fabricio20.runnables.BossAnnouncer;
@@ -50,22 +50,22 @@ public class JoinListener implements Listener {
 		if(Main.theClass.config.getBoolean("BookSystem.Enabled") == true) {
 			List<String> worlds = Main.theClass.config.getStringList("Worlds");
 			if(worlds.contains(e.getPlayer().getWorld().getName())) {
-				if(!e.getPlayer().getInventory().contains(Items.Book(e.getPlayer().getName()))) {
+				if(!e.getPlayer().getInventory().contains(JoinItems.Book(e.getPlayer().getName()))) {
 					if(Main.theClass.config.getBoolean("BookSystem.FirstJoinOnly") == true) {
 						if(BookAPI.shouldGive(e.getPlayer().getName()) == true) {
 							if(Main.theClass.config.getBoolean("BookSystem.Give") == false) {
-								e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
+								e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), JoinItems.Book(e.getPlayer().getName()));
 								BookAPI.give(e.getPlayer().getName());
 							} else {
-								e.getPlayer().getInventory().addItem(Items.Book(e.getPlayer().getName()));
+								e.getPlayer().getInventory().addItem(JoinItems.Book(e.getPlayer().getName()));
 								BookAPI.give(e.getPlayer().getName());
 							}
 						}
 					} else {
 						if(Main.theClass.config.getBoolean("BookSystem.Give") == false) {
-							e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), Items.Book(e.getPlayer().getName()));
+							e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("BookSystem.Slot"), JoinItems.Book(e.getPlayer().getName()));
 						} else {
-							e.getPlayer().getInventory().addItem(Items.Book(e.getPlayer().getName()));
+							e.getPlayer().getInventory().addItem(JoinItems.Book(e.getPlayer().getName()));
 						}
 					}
 				}

@@ -492,33 +492,7 @@ public class FixConfig {
 	}
 	
 	private static void fixItems() {
-		if(!Main.theClass.ItemConfig.contains("Item1.Skull")) {
-        	MakeItemsConfig.make1();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item2.Skull")) {
-        	MakeItemsConfig.make2();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item3.Skull")) {
-        	MakeItemsConfig.make3();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item4.Skull")) {
-        	MakeItemsConfig.make4();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item5.Skull")) {
-        	MakeItemsConfig.make5();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item6.Skull")) {
-        	MakeItemsConfig.make6();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item7.Skull")) {
-        	MakeItemsConfig.make7();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item8.Skull")) {
-        	MakeItemsConfig.make8();
-        }
-        if(!Main.theClass.ItemConfig.contains("Item9.Skull")) {
-        	MakeItemsConfig.make9();
-        }
+		//TODO: Fix Items
 	}
 	
 	private static void fixStorage() {

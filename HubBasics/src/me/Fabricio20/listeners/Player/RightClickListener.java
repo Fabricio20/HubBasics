@@ -1,5 +1,7 @@
 package me.Fabricio20.listeners.Player;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.API.LanguageAPI;
 import me.Fabricio20.API.MagicClockAPI;
 import me.Fabricio20.Storage.Permissions;
-import me.Fabricio20.methods.Items;
+import me.Fabricio20.methods.JoinItems;
 import me.Fabricio20.methods.ModuleManager;
 import me.Fabricio20.methods.Managers.SettingsManager;
 
@@ -22,6 +24,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 public class RightClickListener implements Listener {
@@ -98,73 +101,40 @@ public class RightClickListener implements Listener {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	public void sendToServer(Player player, String targetServer) {
+		ByteArrayOutputStream b = new ByteArrayOutputStream();
+		DataOutputStream out = new DataOutputStream(b);
+		try {
+			out.writeUTF("Connect");
+			out.writeUTF(targetServer);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		player.sendPluginMessage(Main.theClass.getPlugin(), "BungeeCord", b.toByteArray());
+	}
+	
 	@EventHandler
 	public void Interact(PlayerInteractEvent e) {
+		Player player = e.getPlayer();
 		if(e.getPlayer().getItemInHand() != null  || e.getPlayer().getItemInHand().getType() != Material.AIR) {
 			if(Main.theClass.config.getBoolean("Others.JoinItems") == true) {
-				List<String> worlds = Main.theClass.config.getStringList("Worlds");
-				if(worlds.contains(e.getPlayer().getWorld().getName())) {
+				if(ModuleManager.theClass.isInWorld(player)) {
 					if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-						if(Main.theClass.ItemConfig.getBoolean("Item1.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item1(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item1.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item1.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item2.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item2(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item2.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item2.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item3.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item3(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item3.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item3.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item4.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item4(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item4.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item4.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item5.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item5(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item5.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item5.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item6.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item6(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item6.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item6.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item7.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item7(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item7.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item7.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item8.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item8(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item8.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item8.Command"));
-								}
-							}
-						}
-						if(Main.theClass.ItemConfig.getBoolean("Item9.Enabled") == true) {
-							if(e.getPlayer().getItemInHand().equals(Items.Item9(e.getPlayer().getName()))) {
-								if(Main.theClass.ItemConfig.getString("Item9.Command") != null) {
-									e.getPlayer().chat(Main.theClass.ItemConfig.getString("Item9.Command"));
+						ItemStack stk = e.getPlayer().getItemInHand();
+						for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
+							if(stk.equals(stack)) {
+								if(JoinItems.theClass.getCommand(stack, player) != null) {
+									String[] command = JoinItems.theClass.getCommand(stack, player).split(":");
+									if(command[0].equals("SERVER:")) {
+										sendToServer(player, command[1]);
+									} else if(command[0].equals("CONSOLE:")) {
+										Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command[1]);
+									} else if(command[0].equals("TELL:")){
+										player.sendMessage(command[1].replace("&", "§"));
+									} else {
+										player.chat(JoinItems.theClass.getCommand(stack, player).replace("&", "§").replace("%p", player.getName()));
+									}
 								}
 							}
 						}

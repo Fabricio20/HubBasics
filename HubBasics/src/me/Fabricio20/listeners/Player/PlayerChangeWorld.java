@@ -4,13 +4,14 @@ import java.util.List;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.API.ItemsAPI;
-import me.Fabricio20.methods.Items;
+import me.Fabricio20.methods.JoinItems;
 import me.Fabricio20.methods.Managers.SettingsManager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class PlayerChangeWorld implements Listener {
 
@@ -23,60 +24,25 @@ public class PlayerChangeWorld implements Listener {
 		if(worlds.contains(e.getPlayer().getWorld())) {
 			Player player = e.getPlayer();
 			if(Main.theClass.config.getBoolean("Others.JoinItemsChangeWorld") == true) {
-				if(Main.theClass.ItemConfig.getBoolean("Item1.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item1(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item1.Slot"), Items.Item1(e.getPlayer().getName()));
+				for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
+					if(JoinItems.theClass.getPermission(stack, player) != null) {
+						if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+							if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+								int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+								player.getInventory().setItem(slot, stack);
+							} else {
+								player.getInventory().addItem(stack);
+							}
+						}
+					} else {
+						if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+							int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+							player.getInventory().setItem(slot, stack);
+						} else {
+							player.getInventory().addItem(stack);
+						}
 					}
 				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 1 & Start Of 2
-				if(Main.theClass.ItemConfig.getBoolean("Item2.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item2(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item2.Slot"), Items.Item2(e.getPlayer().getName()));
-					}
-				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 2 & Start Of 3
-				if(Main.theClass.ItemConfig.getBoolean("Item3.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item3(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item3.Slot"), Items.Item3(e.getPlayer().getName()));
-					}
-				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 3 & Start Of 4
-				if(Main.theClass.ItemConfig.getBoolean("Item4.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item4(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item4.Slot"), Items.Item4(e.getPlayer().getName()));
-					}
-				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 4 & Start Of 5
-				if(Main.theClass.ItemConfig.getBoolean("Item5.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item5(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item5.Slot"), Items.Item5(e.getPlayer().getName()));
-					}
-				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 5 & Start Of 6
-				if(Main.theClass.ItemConfig.getBoolean("Item6.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item6(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item6.Slot"), Items.Item6(e.getPlayer().getName()));
-					}
-				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 6 & Start Of 7
-				if(Main.theClass.ItemConfig.getBoolean("Item7.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item7(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item7.Slot"), Items.Item7(e.getPlayer().getName()));
-					}
-				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 7 & Start Of 8
-				if(Main.theClass.ItemConfig.getBoolean("Item8.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item8(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item8.Slot"), Items.Item8(e.getPlayer().getName()));
-					}
-				}
-	////////////////////////////////////////////////////////////////////////////////////////- End Of 8 & Start Of 9
-				if(Main.theClass.ItemConfig.getBoolean("Item9.Enabled") == true) {
-					if(!player.getInventory().contains(Items.Item9(e.getPlayer().getName()))) {
-						e.getPlayer().getInventory().setItem(Main.theClass.ItemConfig.getInt("Item9.Slot"), Items.Item9(e.getPlayer().getName()));
-					}
-				}
-	///////////////////////////////////////////////////////////////////////////////////////- End Of Stuff, Start Of MagicClock
 			}
 			if(Main.theClass.config.getBoolean("MagicClock.GiveOnWorldChange") == true) {
 				if(!e.getPlayer().getInventory().contains(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {

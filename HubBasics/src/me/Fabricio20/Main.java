@@ -234,7 +234,7 @@ public class Main extends JavaPlugin {
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header4 = {"HubBasics Warp Storage File", "Please do not change anything in this file"};
-		this.Warps = manager.getNewConfig("Warps.yml", header4);
+		this.Warps = manager.getNewConfig("Storage/Warps.yml", header4);
 		this.Warps.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);

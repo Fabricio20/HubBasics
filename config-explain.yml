@@ -10,10 +10,6 @@ JoinEvents: # Here are listed the events that happen when a player joins the ser
   Message: '&8[&cHubBasics&8] &eWelcome &a%p &eto the server!' # Here you can configure your custom join message if enabled.
   HubAtLogin: false # Here you can configure if the player will be teleported to the hub on join.
   BossBarOnJoin: false # Here you can configure if the BossBarAnnouncer system will display the boss bar on join.
-  Effects:
-    Enabled: true # If true then potion effects on hub will be enabled
-    SPEED: true # If true Speed will be applied on hub
-    JUMP: true # If true Jump will be applied on hub
 #
 LeaveEvents: # Here are listed the events that happen when a player leaves the server.
   DisableLeaveMessage: false # Here you can set if the Leave Message will appear or not.
@@ -69,18 +65,12 @@ BungeeCord: # BungeeCord configuration area.
   LobbyServer: lobby # The default "lobby" server.
 #
 MagicClock: # Magic Clock Configuration
-  Enabled: true # If true the Magic Clock will be enabled.
-  Name: '&cMagic Clock' # The Name Of the Magic Clock.
-  Lore: # The lore of the Magic Clock.
-  - '&7- &a&oMagicClock Lore'
+  Enabled: true # If true the Magic Clock will be enabled. ( Will Give The Clock To The Player )
+  EnabledInChest: false # If the magic clock will be avaliable on the /settings chest
   Slot: 5 # The Slot Of the Magic Clock
-  Material: WATCH # The Material of the Magic Clock. WARNING MUST  BE A BUKKIT MATERIAL NAME.
-  EnabledMessage: '&cMagic Clock Is Now Enabled!' # The "Magic Clock Enabled" message.
-  DisabledMessage: '&cMagic Clock Is Now Disabled!' # The "Magic Clock Disabled" message.
   AllowMove: false # If the item should be allowed to move.
   NoDrop: false # If false the player cannot drop the item.
   Cooldown: 12 # Cooldown for using the clock.
-  CooldownMSG: '&cCooldown! You Must Wait 12 Seconds!' # Cooldown message.
   GiveOnWorldChange: false #If the Clock will be given on world change.
 #
 TitleSystem: # 1.8 Titles Configuration

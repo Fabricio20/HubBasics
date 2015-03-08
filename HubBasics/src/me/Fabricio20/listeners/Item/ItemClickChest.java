@@ -58,7 +58,7 @@ public class ItemClickChest implements Listener {
 											}
 										}
 									} else {
-										player.sendMessage(LanguageAPI.theClass.ServerSelectorNoPerm(player.getName(), player.getWorld().getName()));
+										player.sendMessage(LanguageAPI.theClass.ServerSelectorNoPerm(player));
 									}
 								} else {
 									if(Main.theClass.QuickWarpChest.getBoolean("Items." + st + ".Console")) {

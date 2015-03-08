@@ -54,7 +54,7 @@ public class CommandsOverride implements Listener {
 					e.setCancelled(true);
 					Player player = (Player) sender;
 					if(args.length < 2) {
-						player.sendMessage(LanguageAPI.theClass.WarpUsage(player.getName(), player.getWorld().getName()));
+						player.sendMessage(LanguageAPI.theClass.WarpUsage(player));
 					}
 					if(args.length == 2) {
 						String name = args[1];

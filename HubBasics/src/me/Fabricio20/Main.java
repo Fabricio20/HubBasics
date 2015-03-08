@@ -273,7 +273,6 @@ public class Main extends JavaPlugin {
 				Enchantment.registerEnchantment(ench);
 			} catch (IllegalArgumentException e) {
 				System.out.println("[HubBasics] Failed To Register Enchantment ID, Is this a reload?");
-				// if this is thrown it means the id is already taken.
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

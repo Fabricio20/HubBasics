@@ -11,8 +11,8 @@ public class LanguageAPI {
 	
 	public SimpleConfig Language = Main.theClass.Language;
 	
-	public String WarpUsage(String playerName, String worldName) {
-		return Language.getString("WarpUsage").replace("&", "§").replace("%player%", playerName).replace("%world%", worldName);
+	public String WarpUsage(Player player) {
+		return Language.getString("WarpUsage").replace("&", "§").replace("%player%", player.getName()).replace("%world%", player.getWorld().getName());
 	}
 	
 	public String WarpedMessage(String playerName, String worldName) {
@@ -56,8 +56,8 @@ public class LanguageAPI {
 	
 	// Messages
 	
-	public String ServerSelectorNoPerm(String playerName, String worldName) {
-		return Language.getString("ServerSelectorNoPerm").replace("&", "§").replace("%p", playerName).replace("%world%", worldName);
+	public String ServerSelectorNoPerm(Player player) {
+		return Language.getString("ServerSelectorNoPerm").replace("&", "§").replace("%p", player.getName()).replace("%world%", player.getWorld().getName());
 	}
 	
 	public String Effects_SpeedEnabled(Player player) {

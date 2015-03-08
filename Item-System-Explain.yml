@@ -3,12 +3,15 @@
 # <     Documentation Can Be Found On GitHub Page      >
 # +----------------------------------------------------+
 
-Item1: # Item Number, The Limit Is 9, Sorry! I'll be fixing this soon
-  Enabled: true # If true, the item will be added to inventory
-  Skull: false # If it's a sjull
-  Material: PAPER # The Item Material ( Not Used If Skull = true )
-  Name: '&bThis is a paper!' # The Item Name
-  Lore: # The Item Lore
-  - '&cThis is the &bPAPER''s &cLore!'
-  Slot: 0 # The Slot It Should Be Placed, Starting at 0
-  Command: /me I just installed HubBasics! # The Command that will be run when a player right clicks w/ the item
+Items: # Here is the area where you will make your custom join items.
+  AllNodes: # Internal Item Name, Will NOT Be Displayed
+    Material: COMPASS # The Item Material ( Will Be Ignored If Skull Is True )
+    Displayname: '&cQuick-Warp' # The Item Displayname
+    Skull: false # If the Item Is A Skull
+    Glow: false # If the item should glow
+    Slot: 0 # The Item Slot, If 0 then the item will be given
+    Owner: Fabricio20 # The Skull Owner
+    Lore: # The Item Lore
+    - '&7- &8Lore'
+    Command: /settings # The Command That Should Be Ran, Avaliable Tags are SERVER:, TELL:, CONSOLE:, None for normal playerChat
+    Permission: HubBasics.Test # The Permission To Get The Item

@@ -669,6 +669,10 @@ public class FixConfig {
 			ChestItems.set("MagicClockEnabled.Material", "WATCH");
 			ChestItems.saveConfig();
 		}
+		if(!ChestItems.contains("MagicClockEnabled.Data")) {
+			ChestItems.set("MagicClockEnabled.Data", 0);
+			ChestItems.saveConfig();
+		}
 		if(!ChestItems.contains("MagicClockEnabled.Glow")) {
 			ChestItems.set("MagicClockEnabled.Glow", true);
 			ChestItems.saveConfig();
@@ -686,6 +690,10 @@ public class FixConfig {
 		}
 		if(!ChestItems.contains("MagicClockDisabled.Material")) {
 			ChestItems.set("MagicClockDisabled.Material", "WATCH");
+			ChestItems.saveConfig();
+		}
+		if(!ChestItems.contains("MagicClockDisabled.Data")) {
+			ChestItems.set("MagicClockDisabled.Data", 0);
 			ChestItems.saveConfig();
 		}
 		if(!ChestItems.contains("MagicClockDisabled.Glow")) {
@@ -707,6 +715,10 @@ public class FixConfig {
 			ChestItems.set("SpeedBoostEnabled.Material", "POTION");
 			ChestItems.saveConfig();
 		}
+		if(!ChestItems.contains("SpeedBoostEnabled.Data")) {
+			ChestItems.set("SpeedBoostEnabled.Data", 0);
+			ChestItems.saveConfig();
+		}
 		if(!ChestItems.contains("SpeedBoostEnabled.Glow")) {
 			ChestItems.set("SpeedBoostEnabled.Glow", true);
 			ChestItems.saveConfig();
@@ -724,6 +736,10 @@ public class FixConfig {
 		}
 		if(!ChestItems.contains("SpeedBoostDisabled.Material")) {
 			ChestItems.set("SpeedBoostDisabled.Material", "POTION");
+			ChestItems.saveConfig();
+		}
+		if(!ChestItems.contains("SpeedBoostDisabled.Data")) {
+			ChestItems.set("SpeedBoostDisabled.Data", 0);
 			ChestItems.saveConfig();
 		}
 		if(!ChestItems.contains("SpeedBoostDisabled.Glow")) {
@@ -745,6 +761,10 @@ public class FixConfig {
 			ChestItems.set("JumpBoostEnabled.Material", "POTION");
 			ChestItems.saveConfig();
 		}
+		if(!ChestItems.contains("JumpBoostEnabled.Data")) {
+			ChestItems.set("JumpBoostEnabled.Data", 0);
+			ChestItems.saveConfig();
+		}
 		if(!ChestItems.contains("JumpBoostEnabled.Glow")) {
 			ChestItems.set("JumpBoostEnabled.Glow", true);
 			ChestItems.saveConfig();
@@ -762,6 +782,10 @@ public class FixConfig {
 		}
 		if(!ChestItems.contains("JumpBoostDisabled.Material")) {
 			ChestItems.set("JumpBoostDisabled.Material", "POTION");
+			ChestItems.saveConfig();
+		}
+		if(!ChestItems.contains("JumpBoostDisabled.Data")) {
+			ChestItems.set("JumpBoostDisabled.Data", 0);
 			ChestItems.saveConfig();
 		}
 		if(!ChestItems.contains("JumpBoostDisabled.Glow")) {

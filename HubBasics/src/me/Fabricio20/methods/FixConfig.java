@@ -232,6 +232,10 @@ public class FixConfig {
 			Main.theClass.config.set("MagicClock.EnabledInChest", false);
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("MagicClock.IgnoreBypass")) {
+			Main.theClass.config.set("MagicClock.IgnoreBypass", false);
+			Main.theClass.config.saveConfig();
+		}
 		if(!Main.theClass.config.contains("MagicClock.Slot")) {
 			Main.theClass.config.set("MagicClock.Slot", 5);
 			Main.theClass.config.saveConfig();

@@ -6,6 +6,7 @@ import java.util.List;
 import me.Fabricio20.Main;
 import me.Fabricio20.API.BookAPI;
 import me.Fabricio20.API.ItemsAPI;
+import me.Fabricio20.API.MagicClockAPI;
 import me.Fabricio20.methods.JoinItems;
 import me.Fabricio20.methods.ModuleManager;
 import me.Fabricio20.methods.Managers.SettingsManager;
@@ -14,6 +15,7 @@ import me.confuser.barapi.BarAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -21,7 +23,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class JoinListener implements Listener {	
 	 
-	 @EventHandler(priority = EventPriority.HIGH)
+	 @SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.HIGH)
 	 public void Join(PlayerJoinEvent e) {
 		 if(Main.theClass.config.getBoolean("JoinEvents.DisableMessage") == true) {
 			 e.setJoinMessage(null);
@@ -80,6 +83,9 @@ public class JoinListener implements Listener {
 				if(!e.getPlayer().getInventory().contains(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {
 					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())));
 				}
+			}
+			for(Player player: Bukkit.getOnlinePlayers()) { // Updates Everyone's Clock Satus When Someone Joins
+				MagicClockAPI.theClass.toggleClock(player);
 			}
 		}
 	}

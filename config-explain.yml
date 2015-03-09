@@ -67,6 +67,7 @@ BungeeCord: # BungeeCord configuration area.
 MagicClock: # Magic Clock Configuration
   Enabled: true # If true the Magic Clock will be enabled. ( Will Give The Clock To The Player )
   EnabledInChest: false # If the magic clock will be avaliable on the /settings chest
+  IgnoreBypass: false # If true the Bypass permission for magic clock will be ignored
   Slot: 5 # The Slot Of the Magic Clock
   AllowMove: false # If the item should be allowed to move.
   NoDrop: false # If false the player cannot drop the item.
@@ -119,6 +120,7 @@ Others: # Uncategorized features here.
   DoubleJump: true # If true, your players will be able to double jump!
   Prefix: '&8[&cHubBasics&8] ' # Prefix for Hat system messages.
   JumpPadBlock: REDSTONE_BLOCK # Jump Pad block. !!WARNING!! MUST BE A MATERIAL NAME.
+  JumpPadEnabled: true # If true, JumpPad will be enabled
   KeepFood: true # If true, players will not starv.
   KeepHealth: true # If true, players will not take damage.
   Stacker: true # If true, the minigame stacker will be enabled.

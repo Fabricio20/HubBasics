@@ -1,5 +1,6 @@
 package me.Fabricio20.API;
 
+import me.Fabricio20.Main;
 import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.methods.ModuleManager;
 import me.Fabricio20.methods.Managers.SettingsManager;
@@ -22,8 +23,12 @@ public class MagicClockAPI {
 			if(!SettingsManager.theClass.isPlayersEnabled(player.getName())) {
 				for(Player ps: Bukkit.getOnlinePlayers()) {
 					if(player.canSee(ps)) {
-						if(!ps.hasPermission(new Permissions().IgnoreMagicClock)) {
+						if(Main.theClass.config.getBoolean("MagicClock.IgnoreBypass")) {
 							player.hidePlayer(ps);
+						} else {
+							if(!ps.hasPermission(new Permissions().IgnoreMagicClock)) {
+								player.hidePlayer(ps);
+							}
 						}
 					}
 				}

@@ -31,6 +31,7 @@ import me.Fabricio20.listeners.Player.LeaveListener;
 import me.Fabricio20.listeners.Player.LeaveSettings;
 import me.Fabricio20.listeners.Player.MoveListener;
 import me.Fabricio20.listeners.Player.PlayerChangeWorld;
+import me.Fabricio20.listeners.Player.PlayerRespawn;
 import me.Fabricio20.listeners.Player.RightClickListener;
 import me.Fabricio20.listeners.Player.VoidFallListener;
 import me.Fabricio20.listeners.Veichle.VeichleLeaveListener;
@@ -194,6 +195,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ChangeWorldSettings(), this);
 		getServer().getPluginManager().registerEvents(new SettingsChestClick(), this);
 		getServer().getPluginManager().registerEvents(new LeaveSettings(), this);
+		getServer().getPluginManager().registerEvents(new PlayerRespawn(), this);
 	}
 	
 	@SuppressWarnings("unused")

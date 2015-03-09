@@ -407,6 +407,10 @@ public class FixConfig {
 			Main.theClass.config.set("Others.JumpPadBlock", "REDSTONE_BLOCK");
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("Others.JumpPadEnabled")) {
+			Main.theClass.config.set("Others.JumpPadEnabled", true);
+			Main.theClass.config.saveConfig();
+		}
 		if(!Main.theClass.config.contains("Others.KeepFood")) {
 			Main.theClass.config.set("Others.KeepFood", true);
 			Main.theClass.config.saveConfig();
@@ -425,6 +429,10 @@ public class FixConfig {
 		}
 		if(!Main.theClass.config.contains("Others.JoinItemsChangeWorld")) {
 			Main.theClass.config.set("Others.JoinItemsChangeWorld", false);
+			Main.theClass.config.saveConfig();
+		}
+		if(!Main.theClass.config.contains("Others.JoinItemsDeath")) {
+			Main.theClass.config.set("Others.JoinItemsDeath", false);
 			Main.theClass.config.saveConfig();
 		}
 		if(!Main.theClass.config.contains("Others.ClearInventoryOnEveryWorld")) {

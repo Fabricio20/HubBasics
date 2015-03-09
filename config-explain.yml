@@ -124,6 +124,7 @@ Others: # Uncategorized features here.
   Stacker: true # If true, the minigame stacker will be enabled.
   JoinItems: false # If true, the Item-Giving system will be enabled.
   JoinItemsChangeWorld: false # If the join items will be given on world change.
+  JoinItemsDeath: false # If true, the player will receive the Join Items on death.
   ClearInventoryOnEveryWorld: false # If true the player inventory will be cleared on world change ( Every World )
   ClearInventory: false # If true the player inventory will be cleared upon join.
   NoDrops: true # If true, the player will not be able to drop items.

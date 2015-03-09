@@ -1,8 +1,7 @@
 package me.Fabricio20.listeners.Player;
 
-import java.util.List;
-
 import me.Fabricio20.Main;
+import me.Fabricio20.methods.ModuleManager;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,9 +11,8 @@ public class DeathListener implements Listener {
 	
 	@EventHandler
 	public void Die(PlayerDeathEvent e) {
-		List<String> worlds = Main.theClass.config.getStringList("Worlds");
 		if(Main.theClass.config.getBoolean("Others.NoDeathDrops") == true) {
-			if(worlds.contains(e.getEntity().getWorld().getName())) {
+			if(ModuleManager.theClass.isInWorld(e.getEntity())) {
 				e.getDrops().clear();
 			}
 		}

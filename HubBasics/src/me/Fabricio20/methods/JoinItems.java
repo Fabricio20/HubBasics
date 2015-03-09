@@ -81,9 +81,17 @@ public class JoinItems {
 			if(ItemsConfig.contains("Items." + s + ".Slot")) {
 				slot = ItemsConfig.getInt("Items." + s + ".Slot");
 			}
+			int Data = 0;
+			if(ItemsConfig.contains("Items." + s + ".Data")) {
+				Data = ItemsConfig.getInt("Items." + s + ".Data");
+			}
+			int Quantity = 1;
+			if(ItemsConfig.contains("Items." + s + ".Quantity")) {
+				Quantity = ItemsConfig.getInt("Items." + s + ".Quantity");
+			}
 			String owner = "Fabricio20";
 			if(Skull) {
-				ItemStack stack = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+				ItemStack stack = new ItemStack(Material.SKULL_ITEM, Quantity, (short) 3);
 				SkullMeta meta = (SkullMeta) stack.getItemMeta();
 				meta.setDisplayName(name);
 				meta.setLore(lore);
@@ -98,7 +106,7 @@ public class JoinItems {
 				items.put(stack, slot);
 			} else {
 				String mat = ItemsConfig.getString("Items." + s + ".Material");
-				ItemStack stack = new ItemStack(Material.getMaterial(mat));
+				ItemStack stack = new ItemStack(Material.getMaterial(mat), Quantity, (short) Data);
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);
 				meta.setLore(lore);

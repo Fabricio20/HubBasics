@@ -502,6 +502,8 @@ public class FixConfig {
 	private static void fixItems() {
 		if(!Main.theClass.JoinItems.contains("Items")) {
 			Main.theClass.JoinItems.set("Items.AllNodes.Material", "COMPASS");
+			Main.theClass.JoinItems.set("Items.AllNodes.Data", 0);
+			Main.theClass.JoinItems.set("Items.AllNodes.Quantity", 1);
 			Main.theClass.JoinItems.set("Items.AllNodes.Displayname", "&cQuick-Warp");
 			Main.theClass.JoinItems.set("Items.AllNodes.Skull", false);
 			Main.theClass.JoinItems.set("Items.AllNodes.Glow", false);

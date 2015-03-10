@@ -16,10 +16,21 @@ public class PlayerRespawn implements Listener {
 	public void onRespawn(PlayerRespawnEvent e) {
 		Player player = e.getPlayer();
 		if(ModuleManager.theClass.isInWorld(player)) {
-			if(Main.theClass.config.getBoolean("Others.JoinItemsDeath")) {
-				for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
-					if(JoinItems.theClass.getPermission(stack, player) != null) {
-						if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+			if(Main.theClass.config.getBoolean("Others.JoinItems") == true) {
+				if(Main.theClass.config.getBoolean("Others.JoinItemsDeath")) {
+					for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
+						if(JoinItems.theClass.getPermission(stack, player) != null) {
+							if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+								if(!player.getInventory().contains(stack)) {
+									if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+										int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+										player.getInventory().setItem(slot, stack);
+									} else {
+										player.getInventory().addItem(stack);
+									}
+								}
+							}
+						} else {
 							if(!player.getInventory().contains(stack)) {
 								if(JoinItems.theClass.getItems(player).get(stack) > 0) {
 									int slot = JoinItems.theClass.getItems(player).get(stack) -1;
@@ -27,15 +38,6 @@ public class PlayerRespawn implements Listener {
 								} else {
 									player.getInventory().addItem(stack);
 								}
-							}
-						}
-					} else {
-						if(!player.getInventory().contains(stack)) {
-							if(JoinItems.theClass.getItems(player).get(stack) > 0) {
-								int slot = JoinItems.theClass.getItems(player).get(stack) -1;
-								player.getInventory().setItem(slot, stack);
-							} else {
-								player.getInventory().addItem(stack);
 							}
 						}
 					}

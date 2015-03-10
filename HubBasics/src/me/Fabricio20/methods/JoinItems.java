@@ -89,6 +89,14 @@ public class JoinItems {
 			if(ItemsConfig.contains("Items." + s + ".Quantity")) {
 				Quantity = ItemsConfig.getInt("Items." + s + ".Quantity");
 			}
+			Material mat = Material.BEDROCK;
+			if(ItemsConfig.contains("Items." + s + ".Material")) {
+				try {
+					mat = Material.getMaterial(ItemsConfig.getString("Items." + s +".Material"));
+				} catch (Exception e) {
+					System.out.println("[HubBasics] Invalid Item Name '" + ItemsConfig.getString("Items." + s + ".Material") + "'");
+				}
+			}
 			String owner = "Fabricio20";
 			if(Skull) {
 				ItemStack stack = new ItemStack(Material.SKULL_ITEM, Quantity, (short) 3);
@@ -105,8 +113,7 @@ public class JoinItems {
 				}
 				items.put(stack, slot);
 			} else {
-				String mat = ItemsConfig.getString("Items." + s + ".Material");
-				ItemStack stack = new ItemStack(Material.getMaterial(mat), Quantity, (short) Data);
+				ItemStack stack = new ItemStack(mat, Quantity, (short) Data);
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName(name);
 				meta.setLore(lore);

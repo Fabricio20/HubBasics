@@ -118,7 +118,6 @@ WarpSystem: # The warp system config, to disable see DisableCommands
 Others: # Uncategorized features here.
   DisableRain: false # If true, the weather changing will be disabled on your server.
   DoubleJump: true # If true, your players will be able to double jump!
-  Prefix: '&8[&cHubBasics&8] ' # Prefix for Hat system messages.
   JumpPadBlock: REDSTONE_BLOCK # Jump Pad block. !!WARNING!! MUST BE A MATERIAL NAME.
   JumpPadEnabled: true # If true, JumpPad will be enabled
   KeepFood: true # If true, players will not starv.

@@ -117,16 +117,16 @@ public class Commands implements CommandExecutor {
 								id = Integer.parseInt(args[0]);
 								if(player.hasPermission("HubBasics.Hat." + id)) {
 									player.getInventory().setHelmet(JoinItems.Hat(player.getName(), Material.getMaterial(id), 0));
-									player.sendMessage(Strings.Prefix + Main.theClass.config.getString("HatSystem.Set").replace("&", "§")
+									player.sendMessage(Main.theClass.config.getString("HatSystem.Set").replace("&", "§")
 													.replace("%p", player.getName()));
 								} else {
-									player.sendMessage(Strings.Prefix + Main.theClass.config.getString("HatSystem.NoPerm")
+									player.sendMessage(Main.theClass.config.getString("HatSystem.NoPerm")
 											.replace("&", "§").replace("%p", player.getName()));
 								}
 							} else if(args[0].equalsIgnoreCase("remove")) {
 								Player player = (Player) sender;
 								player.getInventory().setHelmet(new ItemStack(Material.AIR));
-								player.sendMessage(Strings.Prefix + Main.theClass.config.getString("HatSystem.Removed").replace("&", "§")
+								player.sendMessage(Main.theClass.config.getString("HatSystem.Removed").replace("&", "§")
 												.replace("%p", player.getName()));
 							} else {
 								sender.sendMessage("§cID must be a number!");
@@ -140,10 +140,10 @@ public class Commands implements CommandExecutor {
 									meta = Integer.parseInt(args[1]);
 									if(player.hasPermission("HubBasics.Hat." + id)) {
 										player.getInventory().setHelmet(JoinItems.Hat(player.getName(), Material.getMaterial(id), meta));
-										player.sendMessage(Strings.Prefix + Main.theClass.config.getString("HatSystem.Set").replace("&", "§")
+										player.sendMessage(Main.theClass.config.getString("HatSystem.Set").replace("&", "§")
 														.replace("%p", player.getName()));
 									} else {
-										player.sendMessage(Strings.Prefix + Main.theClass.config.getString("HatSystem.NoPerm")
+										player.sendMessage(Main.theClass.config.getString("HatSystem.NoPerm")
 														.replace("&", "§").replace("%p", player.getName()));
 									}
 								} else {

@@ -403,10 +403,6 @@ public class FixConfig {
 			Main.theClass.config.set("Others.DoubleJump", true);
 			Main.theClass.config.saveConfig();
 		}
-		if(!Main.theClass.config.contains("Others.Prefix")) {
-			Main.theClass.config.set("Others.Prefix", "&8[&cHubBasics&8] ");
-			Main.theClass.config.saveConfig();
-		}
 		if(!Main.theClass.config.contains("Others.JumpPadBlock")) {
 			Main.theClass.config.set("Others.JumpPadBlock", "REDSTONE_BLOCK");
 			Main.theClass.config.saveConfig();

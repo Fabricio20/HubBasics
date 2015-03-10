@@ -228,6 +228,10 @@ public class FixConfig {
 			Main.theClass.config.set("MagicClock.Enabled", false);
 			Main.theClass.config.saveConfig();
 		}
+		if(!Main.theClass.config.contains("MagicClock.OnDeath")) {
+			Main.theClass.config.set("MagicClock.OnDeath", false);
+			Main.theClass.config.saveConfig();
+		}
 		if(!Main.theClass.config.contains("MagicClock.EnabledInChest")) {
 			Main.theClass.config.set("MagicClock.EnabledInChest", false);
 			Main.theClass.config.saveConfig();

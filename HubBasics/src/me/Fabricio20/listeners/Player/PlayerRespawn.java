@@ -1,8 +1,10 @@
 package me.Fabricio20.listeners.Player;
 
 import me.Fabricio20.Main;
+import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.methods.JoinItems;
 import me.Fabricio20.methods.ModuleManager;
+import me.Fabricio20.methods.Managers.SettingsManager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,6 +41,15 @@ public class PlayerRespawn implements Listener {
 									player.getInventory().addItem(stack);
 								}
 							}
+						}
+					}
+				}
+			}
+			if(Main.theClass.config.getBoolean("MagicClock.Enabled") == true) {
+				if(Main.theClass.config.getBoolean("MagicClock.OnDeath")) {
+					if(ModuleManager.theClass.isInWorld(e.getPlayer())) {
+						if(!e.getPlayer().getInventory().contains(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {
+							e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())));
 						}
 					}
 				}

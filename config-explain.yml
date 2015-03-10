@@ -66,6 +66,7 @@ BungeeCord: # BungeeCord configuration area.
 #
 MagicClock: # Magic Clock Configuration
   Enabled: true # If true the Magic Clock will be enabled. ( Will Give The Clock To The Player )
+  OnDeath: false # If true, the player will receive MagicClock when he dies.
   EnabledInChest: false # If the magic clock will be avaliable on the /settings chest
   IgnoreBypass: false # If true the Bypass permission for magic clock will be ignored
   Slot: 5 # The Slot Of the Magic Clock

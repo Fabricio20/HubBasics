@@ -91,10 +91,13 @@ public class JoinItems {
 			}
 			Material mat = Material.BEDROCK;
 			if(ItemsConfig.contains("Items." + s + ".Material")) {
-				try {
-					mat = Material.getMaterial(ItemsConfig.getString("Items." + s +".Material"));
-				} catch (Exception e) {
+				mat = Material.getMaterial(ItemsConfig.getString("Items." + s +".Material"));
+				if(mat != null) {
+					continue;
+				} else {
+					mat = Material.BEDROCK;
 					System.out.println("[HubBasics] Invalid Item Name '" + ItemsConfig.getString("Items." + s + ".Material") + "'");
+					continue;
 				}
 			}
 			String owner = "Fabricio20";

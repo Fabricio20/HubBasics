@@ -157,11 +157,11 @@ public class Main extends JavaPlugin {
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_7.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else if(version.contains("1.8")) {
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TabListJoin(), this);
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.TitleJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TitleJoin(), this);
 			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
-			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
+			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v1.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else {
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Unsuported Server Version Detected!");
 			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Some Options Where Disabled!");

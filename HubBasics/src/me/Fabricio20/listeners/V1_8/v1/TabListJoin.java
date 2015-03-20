@@ -1,4 +1,4 @@
-package me.Fabricio20.listeners.V1_8;
+package me.Fabricio20.listeners.V1_8.v1;
 
 import me.Fabricio20.Main;
 import me.Fabricio20.Storage.Strings;

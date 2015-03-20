@@ -3,7 +3,6 @@ package me.Fabricio20;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
-import me.Fabricio20.API.HoverAPI;
 import me.Fabricio20.Storage.Permissions;
 import me.Fabricio20.Storage.Storage;
 import me.Fabricio20.Storage.Strings;
@@ -168,8 +167,8 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage("[HubBasics] /hb reload");
 					} else {
 						Player player = (Player) sender;
-						player.spigot().sendMessage(HoverAPI.buildTextLinkText(player, "§f-§a-§f-§a-§f-§a-  ", "§9HubBasics", "http://www.spigotmc.org/resources/hubbasics.2654/", "§eClick to open HubBasics website", "  §a-§f-§a-§f-§a-§f-"));
-						player.spigot().sendMessage(HoverAPI.buildTextCommandText(player, "", "§c/hb reload", "/hb reload", "§9Reloads The Plugin\n§e- Click to reload", ""));
+						player.sendMessage("§f-§a-§f-§a-§f-§a-  §9HubBasics  §a-§f-§a-§f-§a-§f-");
+						player.sendMessage("§c/hb reload | Reloads the plugin");
 					}
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
@@ -189,8 +188,8 @@ public class Commands implements CommandExecutor {
 							sender.sendMessage("[HubBasics] /hb reload");
 						} else {
 							Player player = (Player) sender;
-							player.spigot().sendMessage(HoverAPI.buildTextLinkText(player, "§f-§a-§f-§a-§f-§a-  ", "§9HubBasics", "http://www.spigotmc.org/resources/hubbasics.2654/", "§eClick to open HubBasics website", "  §a-§f-§a-§f-§a-§f-"));
-							player.spigot().sendMessage(HoverAPI.buildTextCommandText(player, "", "§c/hb reload", "/hb reload", "§9Reloads The Plugin\n§e- Click to reload", ""));
+							player.sendMessage("§f-§a-§f-§a-§f-§a-  §9HubBasics  §a-§f-§a-§f-§a-§f-");
+							player.sendMessage("§c/hb reload | Reloads the plugin");
 						}
 					}
 				}

@@ -1,10 +1,13 @@
 package me.Fabricio20.listeners.V1_8.v1;
 
+import java.lang.reflect.Field;
+
 import me.Fabricio20.Main;
 import me.Fabricio20.Storage.Strings;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
 import net.minecraft.server.v1_8_R1.IChatBaseComponent;
 import net.minecraft.server.v1_8_R1.PlayerConnection;
+import net.minecraft.server.v1_8_R1.PacketPlayOutPlayerListHeaderFooter;
 
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -24,7 +27,28 @@ public class TabListJoin implements Listener {
 			IChatBaseComponent footer = ChatSerializer.a("'" + Strings.TabFooter.replace("%p", p.getName()) + "'");
 		    /*connection.sendPacket(new ProtocolInjector.PacketTabHeader(header, footer));
 		    connection.sendPacket(new PacketTabHeader(header, footer));*/
+			setHeaderFooter(p, header, footer);
 		}
+	}
+	
+	public void setHeaderFooter(Player player, IChatBaseComponent header, IChatBaseComponent footer) {
+		CraftPlayer cp = (CraftPlayer) player;
+        PlayerConnection con = cp.getHandle().playerConnection;
+        PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();
+        try{
+            Field footerField = packet.getClass().getDeclaredField("b");
+            footerField.setAccessible(true);
+            footerField.set(packet, footer);
+            footerField.setAccessible(!footerField.isAccessible());
+            
+            Field headerField = packet.getClass().getDeclaredField("a");
+            headerField.setAccessible(true);
+            headerField.set(packet, header);
+            headerField.setAccessible(!headerField.isAccessible());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        con.sendPacket(packet);
 	}
 	
 	private boolean isEnabled() {

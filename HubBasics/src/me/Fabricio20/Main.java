@@ -152,11 +152,20 @@ public class Main extends JavaPlugin {
 	@SuppressWarnings("unused")
 	private void registerlisteners() {
 		if(version.contains("1.7")) {
+			getLogger().log(Level.INFO, "[HubBasics] Protocol Patch Detected..");
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_7.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
-		} else if(version.contains("1.8")) { // 1.8.0 SHOULD BE 1.8.3 THEN 1.8.0
+		} else if(version.contains("1.8.3")) {
+			getLogger().log(Level.INFO, "[HubBasics] Spigot 1.8.3 Detected..");
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TitleJoin(), this);
+			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
+			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v2.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
+		} else if(version.contains("1.8")) {
+			getLogger().log(Level.INFO, "[HubBasics] Spigot 1.8.0 Detected..");
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TitleJoin(), this);
 			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);

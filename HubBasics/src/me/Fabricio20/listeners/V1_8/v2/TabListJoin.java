@@ -17,12 +17,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class TabListJoin implements Listener {
 	
-	@SuppressWarnings("unused")
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		if(isEnabled()) {
 			Player p = e.getPlayer();
-		    PlayerConnection connection = ((CraftPlayer)p).getHandle().playerConnection;
 		    IChatBaseComponent header = ChatSerializer.a("'" + Strings.TabHeader.replace("%p", p.getName()) + "'");
 			IChatBaseComponent footer = ChatSerializer.a("'" + Strings.TabFooter.replace("%p", p.getName()) + "'");
 			setHeaderFooter(p, header, footer);

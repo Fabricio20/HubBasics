@@ -4,7 +4,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/BarAPI.jar"/>
 	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/PermissionsEx-1.23.1.jar"/>
-	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/Spigot.jar"/>
-	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/spigot18.jar"/>
+	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/Spigot Jars/Spigot.jar"/>
+	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/Spigot Jars/spigot-1.8.3-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/Spigot Jars/spigot18.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

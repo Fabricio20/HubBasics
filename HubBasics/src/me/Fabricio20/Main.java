@@ -235,7 +235,7 @@ public class Main extends JavaPlugin {
 	@SuppressWarnings("unused")
 	public void check183() {
 		try { // Check For 1.8.3
-			Class.forName( "net.minecraft.server.v1_8_R1.ChatSerializer" );
+			Class.forName( "org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer" );
 			getLogger().log(Level.INFO, "Spigot 1.8.3 Detected..");
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TitleJoin(), this);

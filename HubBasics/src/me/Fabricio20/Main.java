@@ -149,32 +149,8 @@ public class Main extends JavaPlugin {
 		getCommand("stacker").setExecutor(new Commands());
 	}
 	
-	@SuppressWarnings("unused")
 	private void registerlisteners() {
-		if(version.contains("git-Spigot-1.7.9-R0.2")) {
-			getLogger().log(Level.INFO, "Protocol Patch Detected..");
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);
-			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
-			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_7.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
-		} else if(version.contains("1.8.3")) {
-			getLogger().log(Level.INFO, "Spigot 1.8.3 Detected..");
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TabListJoin(), this);
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TitleJoin(), this);
-			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
-			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
-			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v2.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
-		} else if(version.contains("1.8")) {
-			getLogger().log(Level.INFO, "Spigot 1.8.0 Detected..");
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TabListJoin(), this);
-			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TitleJoin(), this);
-			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
-			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
-			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v1.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
-		} else {
-			Bukkit.getLogger().log(Level.WARNING, "Unsuported Server Version Detected!");
-			Bukkit.getLogger().log(Level.WARNING, "Some Options Where Disabled!");
-		}
+		checkVersion();
 		if(getServer().getPluginManager().getPlugin("PermissionsEx") != null) {
 			getServer().getPluginManager().registerEvents(new PEXChatListener(), this);
 		}
@@ -224,6 +200,51 @@ public class Main extends JavaPlugin {
 		    System.out.println("[HubBasics] Metrics Started!");
 		} catch (IOException e) {
 		   System.out.println("[HubBasics] Error while trying to submit metrics!");
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	public void checkVersion() {
+		try { // Check For Protocol Patch
+			Class.forName( "net.minecraft.server.v1_7_R4.ChatSerializer" );
+			getLogger().log(Level.INFO, "[Startup] Protocol Patch Detected..");
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);
+			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_7.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
+		} catch( ClassNotFoundException e ) {
+			 check180();
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	public void check180() {
+		try { // Check For 1.8.0
+			Class.forName( "net.minecraft.server.v1_8_R1.ChatSerializer" );
+			getLogger().log(Level.INFO, "[Startup] Spigot 1.8.0 Detected..");
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TitleJoin(), this);
+			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
+			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v1.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
+		} catch( ClassNotFoundException e ) {
+			 check183();
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	public void check183() {
+		try { // Check For 1.8.3
+			Class.forName( "net.minecraft.server.v1_8_R1.ChatSerializer" );
+			getLogger().log(Level.INFO, "Spigot 1.8.3 Detected..");
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TitleJoin(), this);
+			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
+			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v2.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
+		} catch( ClassNotFoundException e ) {
+			Bukkit.getLogger().log(Level.WARNING, "Unsuported Server Version Detected!");
+			Bukkit.getLogger().log(Level.WARNING, "Some Options Where Disabled!");
 		}
 	}
 	

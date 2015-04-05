@@ -41,9 +41,9 @@ public class VoidFallListener implements Listener {
 					} else if(ModuleManager.theClass.isInWorld((Player)ent)) {
 						Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
 						loc.setWorld(Bukkit.getWorld(Main.theClass.Hub.getString("Hub.World")));
-						loc.setX(Main.theClass.Hub.getInt("Hub.X"));
-						loc.setY(Main.theClass.Hub.getInt("Hub.Y"));
-						loc.setZ(Main.theClass.Hub.getInt("Hub.Z"));
+						loc.setX(Main.theClass.Hub.getDouble("Hub.X"));
+						loc.setY(Main.theClass.Hub.getDouble("Hub.Y"));
+						loc.setZ(Main.theClass.Hub.getDouble("Hub.Z"));
 						loc.setYaw(Main.theClass.Hub.getInt("Hub.Yaw"));
 						loc.setPitch(Main.theClass.Hub.getInt("Hub.Pitch"));
 						((Player) ent).teleport(loc);

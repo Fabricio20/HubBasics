@@ -151,29 +151,29 @@ public class Main extends JavaPlugin {
 	
 	@SuppressWarnings("unused")
 	private void registerlisteners() {
-		if(version.contains("1.7")) {
-			getLogger().log(Level.INFO, "[HubBasics] Protocol Patch Detected..");
+		if(version.contains("git-Spigot-1.7.9-R0.2")) {
+			getLogger().log(Level.INFO, "Protocol Patch Detected..");
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_7.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else if(version.contains("1.8.3")) {
-			getLogger().log(Level.INFO, "[HubBasics] Spigot 1.8.3 Detected..");
+			getLogger().log(Level.INFO, "Spigot 1.8.3 Detected..");
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v2.TitleJoin(), this);
 			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v2.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else if(version.contains("1.8")) {
-			getLogger().log(Level.INFO, "[HubBasics] Spigot 1.8.0 Detected..");
+			getLogger().log(Level.INFO, "Spigot 1.8.0 Detected..");
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_8.v1.TitleJoin(), this);
 			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.runnables.V1_8.v1.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} else {
-			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Unsuported Server Version Detected!");
-			Bukkit.getLogger().log(Level.WARNING, "[HubBasics] Some Options Where Disabled!");
+			Bukkit.getLogger().log(Level.WARNING, "Unsuported Server Version Detected!");
+			Bukkit.getLogger().log(Level.WARNING, "Some Options Where Disabled!");
 		}
 		if(getServer().getPluginManager().getPlugin("PermissionsEx") != null) {
 			getServer().getPluginManager().registerEvents(new PEXChatListener(), this);
@@ -205,6 +205,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new SettingsChestClick(), this);
 		getServer().getPluginManager().registerEvents(new LeaveSettings(), this);
 		getServer().getPluginManager().registerEvents(new PlayerRespawn(), this);
+		// System.out.println(version); git-Spigot-1.7.9-R0.2-205-g0a049fa (MC: 1.7.10) [ Protocol Patch ]
 	}
 	
 	@SuppressWarnings("unused")

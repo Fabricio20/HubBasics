@@ -7,6 +7,7 @@ import me.Fabricio20.API.ItemsAPI;
 import me.Fabricio20.methods.JoinItems;
 import me.Fabricio20.methods.Managers.SettingsManager;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -51,6 +52,14 @@ public class PlayerChangeWorld implements Listener {
 			if(Main.theClass.config.getBoolean("MagicClock.GiveOnWorldChange") == true) {
 				if(!e.getPlayer().getInventory().contains(ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())))) {
 					e.getPlayer().getInventory().setItem(Main.theClass.config.getInt("MagicClock.Slot"), ItemsAPI.get("MagicClock", SettingsManager.theClass.isPlayersEnabled(e.getPlayer().getName())));
+				}
+			}
+		} else {
+			if(e.getPlayer().getAllowFlight()) {
+				if(Main.theClass.config.getBoolean("Others.DoubleJump") == true) {
+					if(e.getPlayer().getGameMode() != GameMode.CREATIVE) {
+						e.getPlayer().setAllowFlight(false);
+					}
 				}
 			}
 		}

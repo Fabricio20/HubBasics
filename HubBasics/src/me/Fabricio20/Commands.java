@@ -169,6 +169,7 @@ public class Commands implements CommandExecutor {
 						Player player = (Player) sender;
 						player.sendMessage("§f-§a-§f-§a-§f-§a-  §9HubBasics  §a-§f-§a-§f-§a-§f-");
 						player.sendMessage("§c/hb reload | Reloads the plugin");
+						player.sendMessage("§c/hb version | Gets plugin version");
 					}
 				} else if(args.length >= 1) {
 					if(args[0].equalsIgnoreCase("reload")) {
@@ -182,14 +183,20 @@ public class Commands implements CommandExecutor {
 						Main.theClass.ChestItems.reloadConfig();
 						Storage.playerSettings.clear();
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
+					} else if(args[0].equalsIgnoreCase("version")) {
+						sender.sendMessage("§8[§cHubBasics§8] §eRunning version: " + Strings.Version);
+						sender.sendMessage("§8[§cHubBasics§8] §eOn Server Version: " + Bukkit.getVersion());
+						sender.sendMessage("§8[§cHubBasics§8] §eOn Bukkit Version: " + Bukkit.getBukkitVersion());
 					} else {
 						if(!(sender instanceof Player)) {
 							sender.sendMessage("[HubBasics] Avaliable Commands:");
 							sender.sendMessage("[HubBasics] /hb reload");
+							sender.sendMessage("[HubBasics] /hb version");
 						} else {
 							Player player = (Player) sender;
 							player.sendMessage("§f-§a-§f-§a-§f-§a-  §9HubBasics  §a-§f-§a-§f-§a-§f-");
 							player.sendMessage("§c/hb reload | Reloads the plugin");
+							player.sendMessage("§c/hb version | Gets plugin version");
 						}
 					}
 				}

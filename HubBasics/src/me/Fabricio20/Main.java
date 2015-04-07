@@ -207,6 +207,7 @@ public class Main extends JavaPlugin {
 	public void checkVersion() {
 		try { // Check For Protocol Patch
 			Class.forName( "net.minecraft.server.v1_7_R4.ChatSerializer" );
+			Class.forName( "org.spigotmc.ProtocolInjector" );
 			getLogger().log(Level.INFO, "[Startup] Protocol Patch Detected..");
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TabListJoin(), this);
 			getServer().getPluginManager().registerEvents(new me.Fabricio20.listeners.V1_7.TitleJoin(), this);

@@ -20,10 +20,10 @@ public class FriendsCommand extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		if(args.length == 0) {
-			sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_Usage)));
+			sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
 		}
 		if(args.length == 1) {
-			String separator = ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_SeparatorColor);
+			String separator = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_SeparatorColor);
 			if(args[0].equalsIgnoreCase("list")) {
 				ArrayList<String> now = new ArrayList<String>();
 				for(ProxiedPlayer player: BungeeCord.getInstance().getPlayers()) {
@@ -38,7 +38,7 @@ public class FriendsCommand extends Command {
 						Offline.add(s);
 					}
 				}
-				String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_List);
+				String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_List);
 				String msg2 = "";
 				int max = (Online.size() + Offline.size());
 				int index = 0;
@@ -61,7 +61,7 @@ public class FriendsCommand extends Command {
 				msg = msg.replace("{friends}", msg2);
 				sender.sendMessage(new TextComponent(msg));
 			} else {
-				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_Usage)));
+				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
 			}
 		}
 		if(args.length >= 2) {
@@ -72,32 +72,32 @@ public class FriendsCommand extends Command {
 						FriendsAPI.addRequest(sender.getName(), who);
 						ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
 						if(other != null) {
-							for(String s: Main.theClass.config.Friends_RequestReceived) {
+							for(String s: Main.theClass.language.Friends_RequestReceived) {
 								s = s.replace("{who}", sender.getName());
 								s = ChatColor.translateAlternateColorCodes('&', s);
 								other.sendMessage(new TextComponent(s));
 							}
 						}
-						String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_RequestSent).replace("{who}", who);
+						String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_RequestSent).replace("{who}", who);
 						sender.sendMessage(new TextComponent(msg));
 					} else {
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_AlreadyAsked)));
+						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_AlreadyAsked)));
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_NotFound)));
+					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
 				}
 			} else if(args[0].equalsIgnoreCase("deny")) {
 				String who = args[1];
 				if(FriendsAPI.friendsContains(who)) {
 					if(FriendsAPI.requestsContains(sender.getName(), who)) {
 						FriendsAPI.removeRequest(sender.getName(), who);
-						String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_RequestRemoved).replace("{who}", who);
+						String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_RequestRemoved).replace("{who}", who);
 						sender.sendMessage(new TextComponent(msg));
 					} else {
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_RequestNotThere)));
+						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_RequestNotThere)));
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_NotFound)));
+					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
 				}
 			} else if(args[0].equalsIgnoreCase("accept")) {
 				String who = args[1];
@@ -107,12 +107,12 @@ public class FriendsCommand extends Command {
 						FriendsAPI.addFriend(sender.getName(), who);
 						ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
 						if(other != null) {
-							other.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_Added.replace("{who}", sender.getName()))));
+							other.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Added.replace("{who}", sender.getName()))));
 						}
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_Added.replace("{who}", who))));
+						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Added.replace("{who}", who))));
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_NotFound)));
+					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
 				}
 			} else if(args[0].equalsIgnoreCase("remove")) {
 				String who = args[1];
@@ -121,17 +121,17 @@ public class FriendsCommand extends Command {
 						FriendsAPI.removeFriend(sender.getName(), who);
 						ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
 						if(other != null) {
-							other.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_Removed.replace("{who}", sender.getName()))));
+							other.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Removed.replace("{who}", sender.getName()))));
 						}
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_Removed.replace("{who}", who))));
+						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Removed.replace("{who}", who))));
 					} else {
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_NotFriend.replace("{who}", who))));
+						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFriend.replace("{who}", who))));
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_NotFound)));
+					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
 				}
 			} else {
-				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.config.Friends_Usage)));
+				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
 			}
 		}
 	}

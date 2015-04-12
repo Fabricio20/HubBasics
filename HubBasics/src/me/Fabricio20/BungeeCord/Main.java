@@ -7,6 +7,7 @@ import me.Fabricio20.BungeeCord.API.MySQLAPI;
 import me.Fabricio20.BungeeCord.Commands.FriendsCommand;
 import me.Fabricio20.BungeeCord.Commands.ListCommand;
 import me.Fabricio20.BungeeCord.Configs.DatabaseConfig;
+import me.Fabricio20.BungeeCord.Configs.LanguageFile;
 import me.Fabricio20.BungeeCord.Configs.MainConfig;
 import me.Fabricio20.BungeeCord.Listeners.FriendsPostLoginListener;
 import me.Fabricio20.BungeeCord.Runnables.KeepAlive;
@@ -21,6 +22,7 @@ public class Main extends Plugin {
 	
 	public MainConfig config = null;
 	public DatabaseConfig dbSettings = null;
+	public LanguageFile language = null;
 	
 	private ScheduledTask KeepAlive = null;
 	
@@ -89,6 +91,13 @@ public class Main extends Plugin {
 		} catch(InvalidConfigurationException ex) {
 		    System.out.println("[HubBasics] Error While Loading Your Database Config!");
 		    ex.printStackTrace();
+		}
+		try {
+			language = new LanguageFile(this);
+			language.init();
+		} catch(InvalidConfigurationException ex) {
+			System.out.println("[HubBasics] Error While Loading Your Language File!");
+			ex.printStackTrace();
 		}
 	}
 	

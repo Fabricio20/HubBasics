@@ -33,16 +33,10 @@ public class Main extends Plugin {
 	@Override
 	public void onEnable() {
 		theClass = this;
-		fixConfig();
+		FixConfig.Fix();
 		initConfigs();
 		callListeners();
 		getLogger().info("Started!");
-	}
-	
-	private void fixConfig() {
-		WantsToBe.add("&aFriends: &9{who} &aWants To Be Your Friend!");
-		WantsToBe.add("&aUse: /friends accept {who} to accept");
-		WantsToBe.add("&aOr /friends deny {who} to deny.");
 	}
 
 	/** ----------------------------------------------- **/

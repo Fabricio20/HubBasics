@@ -1,9 +1,12 @@
 package me.Fabricio20.BungeeCord;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import me.Fabricio20.BungeeCord.API.MySQLAPI;
+import me.Fabricio20.BungeeCord.Commands.AlertCommand;
+import me.Fabricio20.BungeeCord.Commands.AlertCommandWithTitle;
 import me.Fabricio20.BungeeCord.Commands.FriendsCommand;
 import me.Fabricio20.BungeeCord.Commands.ListCommand;
 import me.Fabricio20.BungeeCord.Configs.DatabaseConfig;
@@ -36,9 +39,22 @@ public class Main extends Plugin {
 		FixConfig.Fix();
 		initConfigs();
 		callListeners();
+		initMetrics();
 		getLogger().info("Started!");
 	}
 
+	/** ----------------------------------------------- **/
+	
+	private void initMetrics() {
+		try {
+			MetricsLite metrics = new MetricsLite(this);
+		    metrics.start();
+		    System.out.println("[HubBasics] Metrics Started!");
+		} catch (IOException e) {
+		   System.out.println("[HubBasics] Error while trying to submit metrics!");
+		}
+	}
+	
 	/** ----------------------------------------------- **/
 	
 	@Override
@@ -65,6 +81,15 @@ public class Main extends Plugin {
 			MySQLAPI.openConnection();
 			KeepAlive = BungeeCord.getInstance().getScheduler().schedule(this, new KeepAlive(), 2, 60, TimeUnit.SECONDS);
 			getProxy().getPluginManager().registerListener(this, new FriendsPostLoginListener());
+		}
+		if(config.Alert_Enabled) {
+			if(BungeeCord.getInstance().getVersion().contains("1.8")) {
+				getProxy().getPluginManager().registerCommand(this, new AlertCommandWithTitle());
+				System.out.println("[HubBasics] Alert Command Enabled With Title!");
+			} else {
+				getProxy().getPluginManager().registerCommand(this, new AlertCommand());
+				System.out.println("[HubBasics] Alert Command Enabled Without Title!");
+			}
 		}
 		//
 	}

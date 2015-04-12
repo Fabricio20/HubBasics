@@ -51,4 +51,8 @@ public class LanguageFile extends Config {
 	@Comment("Here you can change the friend not found message")
 	public String Friends_NotFound = "&aFriends: &cThat player has never joined the server.";
 	
+	/** --------------------------------------- END FRIENDS SYSTEM ----------------------------------------------- **/
+	
+	@Comment("Here you can change the Alert usage message")
+	public String Alert_Usage = "§7Usage: §e/alert <message>";
 }

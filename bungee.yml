@@ -1,5 +1,5 @@
 name: HubBasics
 main: me.Fabricio20.BungeeCord.Main
-version: 1.0
+version: 3.0.5
 author: [Fabricio20]
 depends: [Yamler]

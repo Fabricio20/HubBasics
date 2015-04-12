@@ -1,4 +1,5 @@
 name: HubBasics
-main: BungeeCord.me.Fabricio20.Main
+main: me.Fabricio20.BungeeCord.Main
 version: 1.0
 author: [Fabricio20]
+depends: [Yamler]

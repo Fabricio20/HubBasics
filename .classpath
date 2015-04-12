@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/Spigot Jars/spigot-1.8.3-R0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/Spigot Jars/spigot18.jar"/>
 	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/BungeeCord.jar"/>
+	<classpathentry kind="lib" path="E:/Eclipse/WorkSpace/DefaultJRE/Yamler-Bungee-2.3.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

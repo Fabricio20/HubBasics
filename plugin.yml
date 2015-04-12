@@ -1,6 +1,6 @@
 name: HubBasics
 version: 3.0.5
-main: me.Fabricio20.Main
+main: me.Fabricio20.Bukkit.Main
 softdepend: [BarAPI, PermissionsEx]
 commands:
   plugins:

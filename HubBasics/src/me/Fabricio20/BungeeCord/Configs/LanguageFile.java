@@ -3,6 +3,7 @@ package me.Fabricio20.BungeeCord.Configs;
 import java.io.File;
 import java.util.ArrayList;
 
+import me.Fabricio20.BungeeCord.FixConfig;
 import me.Fabricio20.BungeeCord.Main;
 import net.cubespace.Yamler.Config.Comment;
 import net.cubespace.Yamler.Config.Config;
@@ -19,7 +20,7 @@ public class LanguageFile extends Config {
 	public String Friends_Usage = "&7Usage: &a/friends [add/remove/list/accept/deny] <player>";
 	
 	@Comment("Here you can change the friends list message")
-	public String Friends_List = "&aFriends: &9{friends}";
+	public String Friends_List = "&aFriends: &9";
 	
 	@Comment("Here you can change the separator color for list and online commands!")
 	public String Friends_SeparatorColor = "&e";
@@ -40,19 +41,42 @@ public class LanguageFile extends Config {
 	public ArrayList<String> Friends_RequestReceived = Main.theClass.WantsToBe;
 	
 	@Comment("Here you can edit the already sent request message")
-	public String Friends_AlreadyAsked = "&aFriends: &9You already asked that player to be your friend!";
+	public ArrayList<String> Friends_AlreadyAsked = FixConfig.Friends_AlreadyAsked();
 	
 	@Comment("Here you can edit the request not found message")
-	public String Friends_RequestNotThere = "&aFriends: &9That player didn't ask to be your friend!";
+	public ArrayList<String> Friends_RequestNotThere = FixConfig.Friends_RequestNotThere();
 	
 	@Comment("Here you can change the request removed message")
-	public String Friends_RequestRemoved = "&aFriends: &9Friend request denied!";
+	public ArrayList<String> Friends_RequestRemoved = FixConfig.Friends_RequestRemoved();
 	
 	@Comment("Here you can change the friend not found message")
-	public String Friends_NotFound = "&aFriends: &cThat player has never joined the server.";
+	public ArrayList<String> Friends_NotFound = FixConfig.Friends_NotFound();
+	
+	@Comment("Here you can change the online hover message")
+	public ArrayList<String> Friends_HoverOnline = FixConfig.Friends_HoverOnline();
+	
+	@Comment("Here you can change the offline hover message")
+	public ArrayList<String> Friends_HoverOffline = FixConfig.Friends_HoverOffline();
 	
 	/** --------------------------------------- END FRIENDS SYSTEM ----------------------------------------------- **/
 	
 	@Comment("Here you can change the Alert usage message")
-	public String Alert_Usage = "§7Usage: §e/alert <message>";
+	public ArrayList<String> Alert_Usage = FixConfig.Alert_Usage();
+	
+	@Comment("Here you can change the appearence of the Alert system")
+	public String Alert_Format = "&7[&cALERT&7]: &c{message}";
+	
+	/** ----------------------------------------END ALERT SYSTEM ------------------------------------------ **/
+	
+	@Comment("Here you can change the lobby system teleport message")
+	public ArrayList<String> Lobby_Teleporting = FixConfig.Lobby_Teleporting();
+	
+	/** ----------------------------------------END LOBBY SYSTEM ------------------------------------------ **/
+	
+	@Comment("Here you can change the unkown server message")
+	public ArrayList<String> General_UnkownServer = FixConfig.General_UnkownServer();
+	
+	@Comment("Here you can change the only players message")
+	public ArrayList<String> General_OnlyPlayers = FixConfig.General_OnlyPlayers();
+	
 }

@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import me.Fabricio20.BungeeCord.API.CommandAPI;
 import me.Fabricio20.BungeeCord.API.MySQLAPI;
 import me.Fabricio20.BungeeCord.Commands.AlertCommand;
-import me.Fabricio20.BungeeCord.Commands.AlertCommandWithTitle;
 import me.Fabricio20.BungeeCord.Commands.FriendsCommand;
 import me.Fabricio20.BungeeCord.Commands.ListCommand;
+import me.Fabricio20.BungeeCord.Commands.Lobby;
 import me.Fabricio20.BungeeCord.Configs.DatabaseConfig;
 import me.Fabricio20.BungeeCord.Configs.LanguageFile;
 import me.Fabricio20.BungeeCord.Configs.MainConfig;
@@ -72,24 +73,22 @@ public class Main extends Plugin {
 	/** ----------------------------------------------- **/
 	
 	void callListeners() {
-		if(config.List_Enabled) {
+		if(CommandAPI.isEnabled(CommandAPI.Commands.List)) {
 			getProxy().getPluginManager().registerCommand(this, new ListCommand());
 		}
 		//
-		if(config.Friends_Enabled) {
+		if(CommandAPI.isEnabled(CommandAPI.Commands.Friends)) {
 			getProxy().getPluginManager().registerCommand(this, new FriendsCommand());
 			MySQLAPI.openConnection();
 			KeepAlive = BungeeCord.getInstance().getScheduler().schedule(this, new KeepAlive(), 2, 60, TimeUnit.SECONDS);
 			getProxy().getPluginManager().registerListener(this, new FriendsPostLoginListener());
 		}
-		if(config.Alert_Enabled) {
-			if(BungeeCord.getInstance().getVersion().contains("1.8")) {
-				getProxy().getPluginManager().registerCommand(this, new AlertCommandWithTitle());
-				System.out.println("[HubBasics] Alert Command Enabled With Title!");
-			} else {
-				getProxy().getPluginManager().registerCommand(this, new AlertCommand());
-				System.out.println("[HubBasics] Alert Command Enabled Without Title!");
-			}
+		if(CommandAPI.isEnabled(CommandAPI.Commands.Alert)) {
+			getProxy().getPluginManager().registerCommand(this, new AlertCommand());
+			System.out.println("[HubBasics] Alert Command Enabled Without Title!");
+		}
+		if(CommandAPI.isEnabled(CommandAPI.Commands.Lobby)) {
+			getProxy().getPluginManager().registerCommand(this, new Lobby());
 		}
 		//
 	}

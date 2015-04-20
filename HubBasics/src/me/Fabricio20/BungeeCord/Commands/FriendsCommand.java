@@ -4,9 +4,13 @@ import java.util.ArrayList;
 
 import me.Fabricio20.BungeeCord.Main;
 import me.Fabricio20.BungeeCord.API.FriendsAPI;
+import me.Fabricio20.BungeeCord.API.LanguageAPI;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.HoverEvent.Action;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
@@ -39,27 +43,44 @@ public class FriendsCommand extends Command {
 					}
 				}
 				String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_List);
-				String msg2 = "";
+				TextComponent tC = new TextComponent(msg);
 				int max = (Online.size() + Offline.size());
 				int index = 0;
 				for(String s: Online) {
 					index++;
 					if(index == max) {
-						msg2 = msg2 + "§a" + s + separator + ".";
+						TextComponent other = new TextComponent("§a" + s);
+						other.setHoverEvent(new HoverEvent(Action.SHOW_TEXT, LanguageAPI.HoverOnline(s)));
+						other.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friends follow " + s));
+						tC.addExtra(other);
+						TextComponent dot = new TextComponent(separator + ".");
+						tC.addExtra(dot);
 					} else {
-						msg2 = msg2 + "§a" + s + separator + ", ";
+						TextComponent other = new TextComponent("§a" + s);
+						other.setHoverEvent(new HoverEvent(Action.SHOW_TEXT, LanguageAPI.HoverOnline(s)));
+						other.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friends follow " + s));
+						tC.addExtra(other);
+						TextComponent dot = new TextComponent(separator + ", ");
+						tC.addExtra(dot);
 					}
 				}
 				for(String s: Offline) {
 					index++;
 					if(index == max) {
-						msg2 = msg2 + "§c" + s + separator + ".";
+						TextComponent other = new TextComponent("§c" + s);
+						other.setHoverEvent(new HoverEvent(Action.SHOW_TEXT, LanguageAPI.HoverOffline()));
+						tC.addExtra(other);
+						TextComponent dot = new TextComponent(separator + ".");
+						tC.addExtra(dot);
 					} else {
-						msg2 = msg2 + "§c" + s + separator + ", ";
+						TextComponent other = new TextComponent("§c" + s);
+						other.setHoverEvent(new HoverEvent(Action.SHOW_TEXT, LanguageAPI.HoverOffline()));
+						tC.addExtra(other);
+						TextComponent dot = new TextComponent(separator + ", ");
+						tC.addExtra(dot);
 					}
 				}
-				msg = msg.replace("{friends}", msg2);
-				sender.sendMessage(new TextComponent(msg));
+				sender.sendMessage(tC);
 			} else {
 				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
 			}
@@ -81,23 +102,22 @@ public class FriendsCommand extends Command {
 						String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_RequestSent).replace("{who}", who);
 						sender.sendMessage(new TextComponent(msg));
 					} else {
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_AlreadyAsked)));
+						LanguageAPI.sendFriends_AlreadyAsked(sender);
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
+					LanguageAPI.sendFriends_NotFound(sender);
 				}
 			} else if(args[0].equalsIgnoreCase("deny")) {
 				String who = args[1];
 				if(FriendsAPI.friendsContains(who)) {
 					if(FriendsAPI.requestsContains(sender.getName(), who)) {
 						FriendsAPI.removeRequest(sender.getName(), who);
-						String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_RequestRemoved).replace("{who}", who);
-						sender.sendMessage(new TextComponent(msg));
+						LanguageAPI.sendFriends_RequestRemoved(sender);
 					} else {
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_RequestNotThere)));
+						LanguageAPI.sendFriends_RequestNotThere(sender);
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
+					LanguageAPI.sendFriends_NotFound(sender);
 				}
 			} else if(args[0].equalsIgnoreCase("accept")) {
 				String who = args[1];
@@ -112,7 +132,7 @@ public class FriendsCommand extends Command {
 						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Added.replace("{who}", who))));
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
+					LanguageAPI.sendFriends_NotFound(sender);
 				}
 			} else if(args[0].equalsIgnoreCase("remove")) {
 				String who = args[1];
@@ -128,8 +148,11 @@ public class FriendsCommand extends Command {
 						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFriend.replace("{who}", who))));
 					}
 				} else {
-					sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFound)));
+					LanguageAPI.sendFriends_NotFound(sender);
 				}
+			} else if(args[0].equalsIgnoreCase("follow")) { 
+				sender.sendMessage(new TextComponent("§cFollow Command Parsed!"));
+				// FOLLOW
 			} else {
 				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
 			}

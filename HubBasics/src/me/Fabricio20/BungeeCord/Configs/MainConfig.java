@@ -36,7 +36,7 @@ public class MainConfig extends Config {
 	public ArrayList<String> Friends_Aliases = new ArrayList<String>();
 	
 	@Comment("Here you can change the servers that the player is allowed to be followed")
-	public static ArrayList<String> Friends_AllowedServers = FixConfig.Friends_AllowedServers();
+	public ArrayList<String> Friends_AllowedServers = FixConfig.Friends_AllowedServers();
 	
 	//
 	

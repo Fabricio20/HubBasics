@@ -110,4 +110,16 @@ public class FixConfig {
 		return array;
 	}
 	
+	public static ArrayList<String> Friends_CantAddYourSelf() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("&cError: &7You can't add yourself as a friend!");
+		return array;
+	}
+
+	public static ArrayList<String> Friends_CannotFollow() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("&cError: &7You cannot follow this player on this server!");
+		return array;
+	}
+	
 }

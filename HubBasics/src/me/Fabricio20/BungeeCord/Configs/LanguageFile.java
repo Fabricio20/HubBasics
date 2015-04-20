@@ -58,6 +58,12 @@ public class LanguageFile extends Config {
 	@Comment("Here you can change the offline hover message")
 	public ArrayList<String> Friends_HoverOffline = FixConfig.Friends_HoverOffline();
 	
+	@Comment("Here you can change the you cant add yourself message")
+	public ArrayList<String> Friends_CantAddYourSelf = FixConfig.Friends_CantAddYourSelf();
+	
+	@Comment("Here you can change the cannot follow message")
+	public ArrayList<String> Friends_CannotFollow = FixConfig.Friends_CannotFollow();
+	
 	/** --------------------------------------- END FRIENDS SYSTEM ----------------------------------------------- **/
 	
 	@Comment("Here you can change the Alert usage message")

@@ -12,6 +12,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.HoverEvent.Action;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
@@ -90,16 +91,20 @@ public class FriendsCommand extends Command {
 				String who = args[1];
 				if(FriendsAPI.friendsContains(who)) {
 					if(!FriendsAPI.requestsContains(sender.getName(), who)) {
-						FriendsAPI.addRequest(sender.getName(), who);
-						ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
-						if(other != null) {
-							for(String s: Main.theClass.language.Friends_RequestReceived) {
-								s = s.replace("{who}", sender.getName());
-								s = ChatColor.translateAlternateColorCodes('&', s);
-								other.sendMessage(new TextComponent(s));
+						if(!who.equals(sender.getName())) {
+							FriendsAPI.addRequest(sender.getName(), who);
+							ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
+							if(other != null) {
+								for(String s: Main.theClass.language.Friends_RequestReceived) {
+									s = s.replace("{who}", sender.getName());
+									s = ChatColor.translateAlternateColorCodes('&', s);
+									other.sendMessage(new TextComponent(s));
+								}
 							}
+							LanguageAPI.sendFriends_RequestSent(sender);
+						} else {
+							LanguageAPI.sendFriends_CantAddYourSelf(sender);
 						}
-						LanguageAPI.sendFriends_RequestSent(sender);
 					} else {
 						LanguageAPI.sendFriends_AlreadyAsked(sender);
 					}
@@ -149,9 +154,25 @@ public class FriendsCommand extends Command {
 				} else {
 					LanguageAPI.sendFriends_NotFound(sender);
 				}
-			} else if(args[0].equalsIgnoreCase("follow")) { 
-				sender.sendMessage(new TextComponent("§cFollow Command Parsed!"));
-				// FOLLOW
+			} else if(args[0].equalsIgnoreCase("follow")) {
+				if(!(sender instanceof ProxiedPlayer)) {
+					LanguageAPI.sendGeneral_OnlyPlayers(sender);
+				} else {
+					ArrayList<String> servers = Main.theClass.config.Friends_AllowedServers;
+					String who = args[1];
+					ProxiedPlayer player = BungeeCord.getInstance().getPlayer(who);
+					if(player != null) {
+						ServerInfo info = player.getServer().getInfo();
+						if(servers.contains(info.getName())) {
+							ProxiedPlayer x = (ProxiedPlayer) sender;
+							x.connect(info);
+						} else {
+							LanguageAPI.sendFriends_CannotFollow(sender);
+						}
+					} else {
+						LanguageAPI.sendFriends_NotFound(sender);
+					}
+				}
 			} else {
 				LanguageAPI.sendFriends_Usage(sender);
 			}

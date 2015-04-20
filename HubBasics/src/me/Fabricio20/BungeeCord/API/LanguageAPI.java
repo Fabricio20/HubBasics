@@ -117,4 +117,18 @@ public class LanguageAPI {
 		}
 	}
 	
+	public static void sendFriends_CantAddYourSelf(CommandSender player) {
+		for(String s: Main.theClass.language.Friends_CantAddYourSelf) {
+			TextComponent base = new TextComponent(s.replace("{who}", player.getName()).replace("&", "§"));
+			player.sendMessage(base);
+		}
+	}
+	
+	public static void sendFriends_CannotFollow(CommandSender sender) {
+		for(String s: Main.theClass.language.Friends_CannotFollow) {
+			TextComponent base = new TextComponent(s.replace("{who}", sender.getName()).replace("&", "§"));
+			sender.sendMessage(base);
+		}
+	}
+	
 }

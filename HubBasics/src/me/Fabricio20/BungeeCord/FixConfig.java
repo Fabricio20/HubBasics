@@ -10,6 +10,16 @@ public class FixConfig {
 		Main.theClass.WantsToBe.add("&aOr /friends deny {who} to deny.");
 	}
 	
+	//
+	
+	public static ArrayList<String> Friends_AllowedServers() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("lobby");
+		return array;
+	}
+	
+	//
+	
 	public static ArrayList<String> General_UnkownServer() {
 		ArrayList<String> array = new ArrayList<String>();
 		array.add("&cError: &7Server Not Found!");
@@ -67,6 +77,36 @@ public class FixConfig {
 	public static ArrayList<String> Friends_HoverOffline() {
 		ArrayList<String> array = new ArrayList<String>();
 		array.add("&cOffline");
+		return array;
+	}
+	
+	public static ArrayList<String> Friends_NotFriend() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("&aFriends: &9This player is not your friend!");
+		return array;
+	}
+	
+	public static ArrayList<String> Friends_RequestSent() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("&aFriends: &9{who} &aWas Asked To Be Your Friend!");
+		return array;
+	}
+	
+	public static ArrayList<String> Friends_Removed() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("&aFriends: &9{who} &aIs Not Your Friend Anymore!");
+		return array;
+	}
+	
+	public static ArrayList<String> Friends_Added() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("&aFriends: &9{who} &aIs Now Your Friend!");
+		return array;
+	}
+	
+	public static ArrayList<String> Friends_Usage() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("&7Usage: &a/friends [add/remove/list/accept/deny] <player>");
 		return array;
 	}
 	

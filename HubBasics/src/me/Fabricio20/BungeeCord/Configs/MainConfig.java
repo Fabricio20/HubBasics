@@ -3,6 +3,7 @@ package me.Fabricio20.BungeeCord.Configs;
 import java.io.File;
 import java.util.ArrayList;
 
+import me.Fabricio20.BungeeCord.FixConfig;
 import net.cubespace.Yamler.Config.Comment;
 import net.cubespace.Yamler.Config.Config;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -33,6 +34,9 @@ public class MainConfig extends Config {
 	
 	@Comment("Here you can set aliases for the friends command")
 	public ArrayList<String> Friends_Aliases = new ArrayList<String>();
+	
+	@Comment("Here you can change the servers that the player is allowed to be followed")
+	public static ArrayList<String> Friends_AllowedServers = FixConfig.Friends_AllowedServers();
 	
 	//
 	

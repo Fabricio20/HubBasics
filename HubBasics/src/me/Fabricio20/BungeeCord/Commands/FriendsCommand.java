@@ -24,7 +24,7 @@ public class FriendsCommand extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		if(args.length == 0) {
-			sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
+			LanguageAPI.sendFriends_Usage(sender);
 		}
 		if(args.length == 1) {
 			String separator = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_SeparatorColor);
@@ -82,7 +82,7 @@ public class FriendsCommand extends Command {
 				}
 				sender.sendMessage(tC);
 			} else {
-				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
+				LanguageAPI.sendFriends_Usage(sender);
 			}
 		}
 		if(args.length >= 2) {
@@ -99,8 +99,7 @@ public class FriendsCommand extends Command {
 								other.sendMessage(new TextComponent(s));
 							}
 						}
-						String msg = ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_RequestSent).replace("{who}", who);
-						sender.sendMessage(new TextComponent(msg));
+						LanguageAPI.sendFriends_RequestSent(sender);
 					} else {
 						LanguageAPI.sendFriends_AlreadyAsked(sender);
 					}
@@ -127,9 +126,9 @@ public class FriendsCommand extends Command {
 						FriendsAPI.addFriend(sender.getName(), who);
 						ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
 						if(other != null) {
-							other.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Added.replace("{who}", sender.getName()))));
+							LanguageAPI.sendFriends_Added(other, sender.getName());
 						}
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Added.replace("{who}", who))));
+						LanguageAPI.sendFriends_Added(sender, who);
 					}
 				} else {
 					LanguageAPI.sendFriends_NotFound(sender);
@@ -141,11 +140,11 @@ public class FriendsCommand extends Command {
 						FriendsAPI.removeFriend(sender.getName(), who);
 						ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
 						if(other != null) {
-							other.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Removed.replace("{who}", sender.getName()))));
+							LanguageAPI.sendFriends_Removed(other, sender.getName());
 						}
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Removed.replace("{who}", who))));
+						LanguageAPI.sendFriends_Removed(sender, who);
 					} else {
-						sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_NotFriend.replace("{who}", who))));
+						LanguageAPI.sendFriends_NotFriend(sender);
 					}
 				} else {
 					LanguageAPI.sendFriends_NotFound(sender);
@@ -154,7 +153,7 @@ public class FriendsCommand extends Command {
 				sender.sendMessage(new TextComponent("§cFollow Command Parsed!"));
 				// FOLLOW
 			} else {
-				sender.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Main.theClass.language.Friends_Usage)));
+				LanguageAPI.sendFriends_Usage(sender);
 			}
 		}
 	}

@@ -17,7 +17,7 @@ public class LanguageFile extends Config {
 	}
 	
 	@Comment("Friends Command Usage Message")
-	public String Friends_Usage = "&7Usage: &a/friends [add/remove/list/accept/deny] <player>";
+	public ArrayList<String> Friends_Usage = FixConfig.Friends_Usage();
 	
 	@Comment("Here you can change the friends list message")
 	public String Friends_List = "&aFriends: &9";
@@ -26,16 +26,16 @@ public class LanguageFile extends Config {
 	public String Friends_SeparatorColor = "&e";
 	
 	@Comment("Here you can change the friend added message")
-	public String Friends_Added = "&aFriends: &9{who} &aIs Now Your Friend!";
+	public ArrayList<String> Friends_Added = FixConfig.Friends_Added();
 	
 	@Comment("Here you can change the friend added message")
-	public String Friends_Removed = "&aFriends: &9{who} &aIs Not Your Friend Anymore!";
+	public ArrayList<String> Friends_Removed = FixConfig.Friends_Removed();
 	
 	@Comment("Here you can change the friend request sent message")
-	public String Friends_RequestSent = "&aFriends: &9{who} &aWas Asked To Be Your Friend!";
+	public ArrayList<String> Friends_RequestSent = FixConfig.Friends_RequestSent();
 	
 	@Comment("Here you can change the 'this player is not your friend' message")
-	public String Friends_NotFriend = "&aFriends: &9This player is not your friend!";
+	public ArrayList<String> Friends_NotFriend = FixConfig.Friends_NotFriend();
 	
 	@Comment("Here you can change the friend request received message")
 	public ArrayList<String> Friends_RequestReceived = Main.theClass.WantsToBe;

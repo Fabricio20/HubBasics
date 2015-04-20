@@ -79,7 +79,42 @@ public class LanguageAPI {
 			BaseComponent[] base = new ComponentBuilder(s.replace("&", "§")).create();
 			return base;
 		}
-		return new ComponentBuilder("§cError While Building HoverOnline Message").create();
+		return new ComponentBuilder("§cError While Building HoverOffline Message").create();
+	}
+	
+	public static void sendFriends_NotFriend(CommandSender player) {
+		for(String s: Main.theClass.language.Friends_NotFriend) {
+			TextComponent base = new TextComponent(s.replace("{who}", player.getName()).replace("&", "§"));
+			player.sendMessage(base);
+		}
+	}
+	
+	public static void sendFriends_RequestSent(CommandSender player) {
+		for(String s: Main.theClass.language.Friends_RequestSent) {
+			TextComponent base = new TextComponent(s.replace("{who}", player.getName()).replace("&", "§"));
+			player.sendMessage(base);
+		}
+	}
+	
+	public static void sendFriends_Removed(CommandSender player, String who) {
+		for(String s: Main.theClass.language.Friends_Removed) {
+			TextComponent base = new TextComponent(s.replace("{who}", who).replace("&", "§"));
+			player.sendMessage(base);
+		}
+	}
+	
+	public static void sendFriends_Added(CommandSender player, String who) {
+		for(String s: Main.theClass.language.Friends_Added) {
+			TextComponent base = new TextComponent(s.replace("{who}", who).replace("&", "§"));
+			player.sendMessage(base);
+		}
+	}
+	
+	public static void sendFriends_Usage(CommandSender sender) {
+		for(String s: Main.theClass.language.Friends_Usage) {
+			TextComponent base = new TextComponent(s.replace("{who}", sender.getName()).replace("&", "§"));
+			sender.sendMessage(base);
+		}
 	}
 	
 }

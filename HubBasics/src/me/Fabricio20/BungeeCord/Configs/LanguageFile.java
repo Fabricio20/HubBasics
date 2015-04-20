@@ -64,6 +64,9 @@ public class LanguageFile extends Config {
 	@Comment("Here you can change the cannot follow message")
 	public ArrayList<String> Friends_CannotFollow = FixConfig.Friends_CannotFollow();
 	
+	@Comment("Here you can change the friend joined message")
+	public ArrayList<String> Friends_Joined = FixConfig.Friends_Joined();
+	
 	/** --------------------------------------- END FRIENDS SYSTEM ----------------------------------------------- **/
 	
 	@Comment("Here you can change the Alert usage message")

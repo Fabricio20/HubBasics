@@ -131,4 +131,11 @@ public class LanguageAPI {
 		}
 	}
 	
+	public static void sendFriends_Joined(CommandSender sender, String who) {
+		for(String s: Main.theClass.language.Friends_Joined) {
+			TextComponent base = new TextComponent(s.replace("{who}", who).replace("&", "§"));
+			sender.sendMessage(base);
+		}
+	}
+	
 }

@@ -85,7 +85,6 @@ public class Main extends Plugin {
 		}
 		if(CommandAPI.isEnabled(CommandAPI.Commands.Alert)) {
 			getProxy().getPluginManager().registerCommand(this, new AlertCommand());
-			System.out.println("[HubBasics] Alert Command Enabled Without Title!");
 		}
 		if(CommandAPI.isEnabled(CommandAPI.Commands.Lobby)) {
 			getProxy().getPluginManager().registerCommand(this, new Lobby());

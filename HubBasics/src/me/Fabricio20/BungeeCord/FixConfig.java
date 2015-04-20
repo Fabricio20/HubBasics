@@ -122,4 +122,10 @@ public class FixConfig {
 		return array;
 	}
 	
+	public static ArrayList<String> Friends_Joined() {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add("§9[§e+§9] Your Friend §e{who} §9Joined The Server!");
+		return array;
+	}
+	
 }

@@ -91,7 +91,7 @@ public class FriendsCommand extends Command {
 				String who = args[1];
 				if(FriendsAPI.friendsContains(who)) {
 					if(!FriendsAPI.requestsContains(sender.getName(), who)) {
-						if(!who.equals(sender.getName())) {
+						if(!who.toLowerCase().equals(sender.getName().toLowerCase())) {
 							FriendsAPI.addRequest(sender.getName(), who);
 							ProxiedPlayer other = BungeeCord.getInstance().getPlayer(who);
 							if(other != null) {

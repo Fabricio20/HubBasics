@@ -1,4 +1,4 @@
-package me.Fabricio20.Bukkit.API;
+package me.Fabricio20.BungeeCord.API;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,7 +14,7 @@ import org.bukkit.Bukkit;
 
 public class UpdateAPI {
 	
-	public static boolean isAvaliable = false;
+public static boolean isAvaliable = false;
 	
 	public static void checkUpdate() {
 		List<String> info = new ArrayList<String>();

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import me.Fabricio20.BungeeCord.API.CommandAPI;
 import me.Fabricio20.BungeeCord.API.MySQLAPI;
+import me.Fabricio20.BungeeCord.API.UpdateAPI;
 import me.Fabricio20.BungeeCord.Commands.AlertCommand;
 import me.Fabricio20.BungeeCord.Commands.FriendsCommand;
 import me.Fabricio20.BungeeCord.Commands.ListCommand;
@@ -41,6 +42,7 @@ public class Main extends Plugin {
 		initConfigs();
 		callListeners();
 		initMetrics();
+		UpdateAPI.checkUpdate();
 		getLogger().info("Started!");
 	}
 

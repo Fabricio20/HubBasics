@@ -17,5 +17,7 @@ public class Permissions {
 	public Permission MoveItems = new Permission("HubBasics.MoveItems");
 	public Permission EditWorld = new Permission("HubBasics.EditWorld");
 	public Permission IgnoreMagicClock = new Permission("HubBasics.IgnoreClock");
+	public Permission HubItemsOther = new Permission("HubBasics.HubItemsOther");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 }

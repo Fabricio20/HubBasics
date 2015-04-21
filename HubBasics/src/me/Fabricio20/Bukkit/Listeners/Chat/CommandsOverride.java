@@ -221,11 +221,22 @@ public class CommandsOverride implements Listener {
 			} else if(cmd[0].equalsIgnoreCase("/hubitems")) {
 				if(!isDisabled("hubitems")) {
 					Player player = (Player) sender;
-					if(ModuleManager.theClass.isInWorld(player)) {
-						e.setCancelled(true);
-						for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
-							if(JoinItems.theClass.getPermission(stack, player) != null) {
-								if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+					if(args.length == 0) {
+						if(ModuleManager.theClass.isInWorld(player)) {
+							e.setCancelled(true);
+							for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
+								if(JoinItems.theClass.getPermission(stack, player) != null) {
+									if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
+										if(!player.getInventory().contains(stack)) {
+											if(JoinItems.theClass.getItems(player).get(stack) > 0) {
+												int slot = JoinItems.theClass.getItems(player).get(stack) -1;
+												player.getInventory().setItem(slot, stack);
+											} else {
+												player.getInventory().addItem(stack);
+											}
+										}
+									}
+								} else {
 									if(!player.getInventory().contains(stack)) {
 										if(JoinItems.theClass.getItems(player).get(stack) > 0) {
 											int slot = JoinItems.theClass.getItems(player).get(stack) -1;
@@ -235,16 +246,39 @@ public class CommandsOverride implements Listener {
 										}
 									}
 								}
-							} else {
-								if(!player.getInventory().contains(stack)) {
-									if(JoinItems.theClass.getItems(player).get(stack) > 0) {
-										int slot = JoinItems.theClass.getItems(player).get(stack) -1;
-										player.getInventory().setItem(slot, stack);
+							}
+						}
+					} else if(args.length >= 1) {
+						Player other = Bukkit.getPlayer(args[0]);
+						if(player.hasPermission(new Permissions().HubItemsOther)) {
+							if(ModuleManager.theClass.isInWorld(other)) {
+								e.setCancelled(true);
+								for(ItemStack stack: JoinItems.theClass.getItems(other).keySet()) {
+									if(JoinItems.theClass.getPermission(stack, other) != null) {
+										if(other.hasPermission(JoinItems.theClass.getPermission(stack, other))) {
+											if(!other.getInventory().contains(stack)) {
+												if(JoinItems.theClass.getItems(other).get(stack) > 0) {
+													int slot = JoinItems.theClass.getItems(other).get(stack) -1;
+													other.getInventory().setItem(slot, stack);
+												} else {
+													other.getInventory().addItem(stack);
+												}
+											}
+										}
 									} else {
-										player.getInventory().addItem(stack);
+										if(!other.getInventory().contains(stack)) {
+											if(JoinItems.theClass.getItems(other).get(stack) > 0) {
+												int slot = JoinItems.theClass.getItems(other).get(stack) -1;
+												other.getInventory().setItem(slot, stack);
+											} else {
+												other.getInventory().addItem(stack);
+											}
+										}
 									}
 								}
 							}
+						} else {
+							player.sendMessage("§cError: §7You don't have permission to use this command!");
 						}
 					}
 				}

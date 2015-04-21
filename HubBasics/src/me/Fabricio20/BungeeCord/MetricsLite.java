@@ -31,6 +31,7 @@ package me.Fabricio20.BungeeCord;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginDescription;
+import net.md_5.bungee.api.scheduler.ScheduledTask;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -47,6 +48,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Properties;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 
@@ -105,7 +107,7 @@ public class MetricsLite {
     /**
      * Id of the scheduled task
      */
-    private Thread thread = null;
+    private ScheduledTask thread = null;
 
     public MetricsLite(Plugin plugin) throws IOException {
         if (plugin == null) {
@@ -159,7 +161,7 @@ public class MetricsLite {
             }
 
             // Begin hitting the server with glorious data
-            thread = new Thread(new Runnable() {
+            thread = plugin.getProxy().getScheduler().schedule( plugin, new Runnable() {
 
                 private boolean firstPost = true;
 
@@ -173,9 +175,7 @@ public class MetricsLite {
                                 synchronized (optOutLock) {
                                     // Disable Task, if it is running and the server owner decided to opt-out
                                     if (isOptOut() && thread != null) {
-                                        Thread temp = thread;
                                         thread = null;
-                                        temp.interrupt(); // interrupting ourselves
                                         return;
                                     }
                                 }
@@ -202,7 +202,7 @@ public class MetricsLite {
                         }
                     }
                 }
-            }, "MCStats / Plugin Metrics");
+            }, 0, 100, TimeUnit.MILLISECONDS);
 
             return true;
         }
@@ -266,7 +266,6 @@ public class MetricsLite {
 
             // Disable Task, if it is running
             if (thread != null) {
-                thread.interrupt();
                 thread = null;
             }
         }

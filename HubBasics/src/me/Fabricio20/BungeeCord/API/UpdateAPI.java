@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import me.Fabricio20.Bukkit.Storage.Strings;
-
-import org.bukkit.Bukkit;
+import net.md_5.bungee.BungeeCord;
 
 public class UpdateAPI {
 	
@@ -31,12 +30,12 @@ public static boolean isAvaliable = false;
 			}
 			if(!info.contains(Strings.Version)) {
 				isAvaliable = true;
-				Bukkit.getLogger().log(Level.INFO, "[HubBasics] There's An Update Avaliable!");
+				BungeeCord.getInstance().getLogger().log(Level.INFO, "[HubBasics] There's An Update Avaliable!");
 			} else {
-				Bukkit.getLogger().log(Level.INFO, "[HubBasics] No Update Found!");
+				BungeeCord.getInstance().getLogger().log(Level.INFO, "[HubBasics] No Update Found!");
 			}
 		} catch (Exception ex) {
-			Bukkit.getLogger().log(Level.INFO, "[HubBasics] Could Not Verify Update!");
+			BungeeCord.getInstance().getLogger().log(Level.INFO, "[HubBasics] Could Not Verify Update!");
 			return;
 		}
 	}

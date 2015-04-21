@@ -15,6 +15,7 @@ import me.Fabricio20.BungeeCord.Configs.DatabaseConfig;
 import me.Fabricio20.BungeeCord.Configs.LanguageFile;
 import me.Fabricio20.BungeeCord.Configs.MainConfig;
 import me.Fabricio20.BungeeCord.Listeners.FriendsPostLoginListener;
+import me.Fabricio20.BungeeCord.Listeners.JoinListener;
 import me.Fabricio20.BungeeCord.Runnables.KeepAlive;
 import net.cubespace.Yamler.Config.InvalidConfigurationException;
 import net.md_5.bungee.BungeeCord;
@@ -75,6 +76,7 @@ public class Main extends Plugin {
 	/** ----------------------------------------------- **/
 	
 	void callListeners() {
+		getProxy().getPluginManager().registerListener(this, new JoinListener());
 		if(CommandAPI.isEnabled(CommandAPI.Commands.List)) {
 			getProxy().getPluginManager().registerCommand(this, new ListCommand());
 		}

@@ -7,6 +7,7 @@ import me.Fabricio20.Bukkit.Main;
 import me.Fabricio20.Bukkit.API.BookAPI;
 import me.Fabricio20.Bukkit.API.ItemsAPI;
 import me.Fabricio20.Bukkit.API.MagicClockAPI;
+import me.Fabricio20.Bukkit.API.UpdateAPI;
 import me.Fabricio20.Bukkit.Methods.JoinItems;
 import me.Fabricio20.Bukkit.Methods.ModuleManager;
 import me.Fabricio20.Bukkit.Methods.Managers.SettingsManager;
@@ -26,6 +27,11 @@ public class JoinListener implements Listener {
 	 @SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGH)
 	 public void Join(PlayerJoinEvent e) {
+		 if(UpdateAPI.isAvaliable) {
+			 if(e.getPlayer().hasPermission("HubBasics.UpdateAlert")) {
+				 e.getPlayer().sendMessage("§9HubBasics > §eThere's An Update Avaliable!");
+			 }
+		 }
 		 if(Main.theClass.config.getBoolean("JoinEvents.DisableMessage") == true) {
 			 e.setJoinMessage(null);
 		 } else {

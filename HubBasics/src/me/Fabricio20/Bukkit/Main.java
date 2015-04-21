@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import me.Fabricio20.Bukkit.Storage.CustomEnchantment;
 import me.Fabricio20.Bukkit.Storage.Strings;
+import me.Fabricio20.Bukkit.API.UpdateAPI;
 import me.Fabricio20.Bukkit.Listeners.Block.BlockBreak;
 import me.Fabricio20.Bukkit.Listeners.Block.BlockPlace;
 import me.Fabricio20.Bukkit.Listeners.Chat.CommandListener;
@@ -93,6 +94,7 @@ public class Main extends JavaPlugin {
 		theClass = this;
 		plugin = this;
 		initPlugin();
+		UpdateAPI.checkUpdate();
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

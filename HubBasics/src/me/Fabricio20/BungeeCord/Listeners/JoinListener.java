@@ -9,7 +9,7 @@ public class JoinListener implements Listener {
 	
 	@EventHandler
 	public void onJoin(PostLoginEvent e) {
-		if(e.getPlayer().hasPermission("HubBasics.ReceiveUpdate")) {
+		if(e.getPlayer().hasPermission("HubBasics.UpdateAlert")) {
 			e.getPlayer().sendMessage(new TextComponent("§9HubBasics > §eThere's an update aliable!"));
 		}
 	}

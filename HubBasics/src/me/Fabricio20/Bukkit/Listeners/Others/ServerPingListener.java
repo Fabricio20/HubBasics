@@ -21,16 +21,23 @@ public class ServerPingListener implements Listener {
 		Motds = Main.theClass.config.getStringList("MotdSystem.Motds");
 		if(Main.theClass.config.getBoolean("MotdSystem.CustomMotd") == true) {
 			if(Main.theClass.config.getBoolean("MotdSystem.MoreMotds") == true) {
-				if(Stamp == 0) {
+				if(!(Motds.size() == 1)) {
+					if(Stamp == 0) {
+						e.setMotd(Motds.get(0).replace("&", "§"));
+						Stamp = Stamp + 1;
+					} else if (Stamp != 0 && Stamp != Motds.size() - 1) {
+						e.setMotd(Motds.get(Stamp).replace("&", "§"));
+						Stamp = Stamp + 1;
+					} else if (Stamp == Motds.size() - 1) {
+						int max = Motds.size() - 1;
+						e.setMotd(Motds.get(max).replace("&", "§"));
+						Stamp = 0;
+					}
+				} else {
 					e.setMotd(Motds.get(0).replace("&", "§"));
-					Stamp = Stamp + 1;
-				} else if (Stamp != 0 && Stamp != Motds.size() - 1) {
-					e.setMotd(Motds.get(Stamp).replace("&", "§"));
-					Stamp = Stamp + 1;
-				} else if (Stamp == Motds.size() - 1) {
-					int max = Motds.size() - 1;
-					e.setMotd(Motds.get(max).replace("&", "§"));
-					Stamp = 0;
+					System.out.println("[HubBasics] Seems Like I've Found A Misconfiguration On Your Config File!");
+					System.out.println("[HubBasics] You are using one MOTD only, so you need "
+							+ "to change 'MotdSystem.MoreMotds' to false on your config!");
 				}
 			} else {
 				e.setMotd(Motds.get(0).replace("&", "§"));

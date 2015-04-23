@@ -27,8 +27,12 @@ public class Lobby extends Command {
 		if(server != null) {
 			if(sender instanceof ProxiedPlayer) {
 				ProxiedPlayer p = (ProxiedPlayer) sender;
-				p.connect(server);
-				LanguageAPI.sendLobby_Teleporting(sender);
+				if(!p.getServer().getInfo().equals(server)) {
+					p.connect(server);
+					LanguageAPI.sendLobby_Teleporting(sender);
+				} else {
+					((ProxiedPlayer) sender).chat("/lobby");
+				}
 			} else {
 				LanguageAPI.sendGeneral_OnlyPlayers(sender);
 			}

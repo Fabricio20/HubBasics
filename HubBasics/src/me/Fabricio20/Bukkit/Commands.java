@@ -8,6 +8,7 @@ import me.Fabricio20.Bukkit.Storage.Storage;
 import me.Fabricio20.Bukkit.Storage.Strings;
 import me.Fabricio20.Bukkit.Listeners.Player.RightClickListener;
 import me.Fabricio20.Bukkit.Methods.JoinItems;
+import me.Fabricio20.Global.GlobalStrings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -184,7 +185,7 @@ public class Commands implements CommandExecutor {
 						Storage.playerSettings.clear();
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");
 					} else if(args[0].equalsIgnoreCase("version")) {
-						sender.sendMessage("§8[§cHubBasics§8] §eRunning version: " + Strings.Version);
+						sender.sendMessage("§8[§cHubBasics§8] §eRunning version: " + GlobalStrings.Version);
 						sender.sendMessage("§8[§cHubBasics§8] §eOn Server Version: " + Bukkit.getVersion());
 						sender.sendMessage("§8[§cHubBasics§8] §eOn Bukkit Version: " + Bukkit.getBukkitVersion());
 					} else {

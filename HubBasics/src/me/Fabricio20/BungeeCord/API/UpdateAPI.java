@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import me.Fabricio20.Bukkit.Storage.Strings;
+import me.Fabricio20.Global.GlobalStrings;
 import net.md_5.bungee.BungeeCord;
 
 public class UpdateAPI {
@@ -28,7 +28,7 @@ public static boolean isAvaliable = false;
 			while ((inputLine = reader.readLine()) != null) {
 				info.add(inputLine);
 			}
-			if(!info.contains(Strings.Version)) {
+			if(!info.contains(GlobalStrings.Version)) {
 				isAvaliable = true;
 				BungeeCord.getInstance().getLogger().log(Level.INFO, "[HubBasics] There's An Update Avaliable!");
 			} else {

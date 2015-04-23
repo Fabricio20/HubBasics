@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.logging.Level;
 
-import me.Fabricio20.Bukkit.Storage.CustomEnchantment;
-import me.Fabricio20.Bukkit.Storage.Strings;
 import me.Fabricio20.Bukkit.API.UpdateAPI;
 import me.Fabricio20.Bukkit.Listeners.Block.BlockBreak;
 import me.Fabricio20.Bukkit.Listeners.Block.BlockPlace;
@@ -42,6 +40,8 @@ import me.Fabricio20.Bukkit.Methods.Configs.SimpleConfigManager;
 import me.Fabricio20.Bukkit.Runnables.AntiOp;
 import me.Fabricio20.Bukkit.Runnables.BossAnnouncer;
 import me.Fabricio20.Bukkit.Runnables.ChatAnnouncer;
+import me.Fabricio20.Bukkit.Storage.CustomEnchantment;
+import me.Fabricio20.Global.GlobalStrings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
@@ -125,7 +125,7 @@ public class Main extends JavaPlugin {
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-HubBasics-=-=-=-=-=-=-=-=-=-=-=-=");
 		System.out.println("= Config: \u001B[32mReady\u001B[0m");
 		System.out.println("= Runnables: \u001B[32m" + "5" + "\u001B[0m");
-		System.out.println("= Version : \u001B[32m" + Strings.Version + "\u001B[0m");
+		System.out.println("= Version : \u001B[32m" + GlobalStrings.Version + "\u001B[0m");
 		if(Bukkit.getPluginManager().getPlugin("BarAPI") != null) {
 			System.out.println("= BarAPI: \u001B[32mFound\u001B[0m");
 		} else {

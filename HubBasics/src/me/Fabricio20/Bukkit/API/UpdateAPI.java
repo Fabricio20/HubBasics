@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import me.Fabricio20.Bukkit.Storage.Strings;
+import me.Fabricio20.Global.GlobalStrings;
 
 import org.bukkit.Bukkit;
 
@@ -29,7 +29,7 @@ public class UpdateAPI {
 			while ((inputLine = reader.readLine()) != null) {
 				info.add(inputLine);
 			}
-			if(!info.contains(Strings.Version)) {
+			if(!info.contains(GlobalStrings.Version)) {
 				isAvaliable = true;
 				Bukkit.getLogger().log(Level.INFO, "[HubBasics] There's An Update Avaliable!");
 			} else {

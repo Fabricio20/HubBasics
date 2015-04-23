@@ -51,7 +51,7 @@ public class JoinListenerForItems implements Listener {
 					if(ItemsAPI.shouldGive(e.getPlayer().getName())) {
 						
 						for(ItemStack stack: JoinItems.theClass.getItems(player).keySet()) {
-							if(JoinItems.theClass.getPermission(stack, player) != null) {
+							if(JoinItems.theClass.getPermission(stack, player) != null){
 								if(player.hasPermission(JoinItems.theClass.getPermission(stack, player))) {
 									if(!player.getInventory().contains(stack)) {
 										if(JoinItems.theClass.getItems(player).get(stack) > 0) {

@@ -28,7 +28,9 @@ public class JoinItems {
 					String dName = stack.getItemMeta().getDisplayName().replace("§", "&").replace(player.getName(), "%p");
 					if(dName.equals(ItemsConfig.getString("Items." + s + ".Displayname"))) {
 						if(ItemsConfig.contains("Items." + s + ".Permission")) {
-							permission = ItemsConfig.getString("Items." + s + ".Permission");
+							if(ItemsConfig.getString("Items." + s + ".Permission") != "") {
+								permission = ItemsConfig.getString("Items." + s + ".Permission");
+							}
 						}
 					}
 				}

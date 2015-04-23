@@ -31,6 +31,7 @@ public class Main extends Plugin {
 	public LanguageFile language = null;
 	
 	private ScheduledTask KeepAlive = null;
+	private ScheduledTask Updater = null;
 	
 	public ArrayList<String> WantsToBe = new ArrayList<String>();
 	
@@ -71,6 +72,9 @@ public class Main extends Plugin {
 		if(KeepAlive != null) {
 			KeepAlive.cancel();
 		}
+		if(Updater != null) {
+			Updater.cancel();
+		}
 	}
 	
 	/** ----------------------------------------------- **/
@@ -94,6 +98,7 @@ public class Main extends Plugin {
 			getProxy().getPluginManager().registerCommand(this, new Lobby());
 		}
 		//
+		Updater = BungeeCord.getInstance().getScheduler().schedule(this, new KeepAlive(), 2, 60, TimeUnit.MINUTES);
 	}
 	
 	/** ----------------------------------------------- **/

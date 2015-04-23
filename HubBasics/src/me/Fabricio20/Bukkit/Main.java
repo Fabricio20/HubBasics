@@ -40,6 +40,7 @@ import me.Fabricio20.Bukkit.Methods.Configs.SimpleConfigManager;
 import me.Fabricio20.Bukkit.Runnables.AntiOp;
 import me.Fabricio20.Bukkit.Runnables.BossAnnouncer;
 import me.Fabricio20.Bukkit.Runnables.ChatAnnouncer;
+import me.Fabricio20.Bukkit.Runnables.UpdateChecker;
 import me.Fabricio20.Bukkit.Storage.CustomEnchantment;
 import me.Fabricio20.Global.GlobalStrings;
 
@@ -193,6 +194,8 @@ public class Main extends JavaPlugin {
 		BukkitTask BossAnnouncer = new BossAnnouncer().runTaskTimer(getPlugin(), 20, BossTime * 20);
 		ChatTime = getPlugin().getConfig().getInt("ChatAnnouncer.Time");
 		BukkitTask ChatAnnouncer = new ChatAnnouncer().runTaskTimer(getPlugin(), 20, ChatTime * 20);
+		//
+		BukkitTask updater = new UpdateChecker().runTaskTimer(getPlugin(), 20, ((20*60)*60));
 	}
 	
 	private void initMetrics() {

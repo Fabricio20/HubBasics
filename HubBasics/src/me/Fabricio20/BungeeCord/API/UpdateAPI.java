@@ -40,4 +40,26 @@ public static boolean isAvaliable = false;
 		}
 	}
 	
+	public static void silentCheck() {
+		List<String> info = new ArrayList<String>();
+		URL host = null;
+		URLConnection connection = null;
+		BufferedReader reader = null;
+		try {
+			host = new URL("http://fallcraft.com.br/exploitbr/hubbasics.txt");
+			connection = host.openConnection();
+			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String inputLine;
+			while ((inputLine = reader.readLine()) != null) {
+				info.add(inputLine);
+			}
+			if(!info.contains(GlobalStrings.Version)) {
+				isAvaliable = true;
+				BungeeCord.getInstance().getLogger().log(Level.INFO, "[HubBasics] There's An Update Avaliable!");
+			}
+		} catch (Exception ex) {
+			return;
+		}
+	}
+	
 }

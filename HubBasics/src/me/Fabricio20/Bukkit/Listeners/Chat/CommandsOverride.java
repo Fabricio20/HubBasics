@@ -251,11 +251,22 @@ public class CommandsOverride implements Listener {
 					} else if(args.length >= 1) {
 						Player other = Bukkit.getPlayer(args[0]);
 						if(player.hasPermission(new Permissions().HubItemsOther)) {
-							if(ModuleManager.theClass.isInWorld(other)) {
-								e.setCancelled(true);
-								for(ItemStack stack: JoinItems.theClass.getItems(other).keySet()) {
-									if(JoinItems.theClass.getPermission(stack, other) != null) {
-										if(other.hasPermission(JoinItems.theClass.getPermission(stack, other))) {
+							if(other != null) {
+								if(ModuleManager.theClass.isInWorld(other)) {
+									e.setCancelled(true);
+									for(ItemStack stack: JoinItems.theClass.getItems(other).keySet()) {
+										if(JoinItems.theClass.getPermission(stack, other) != null) {
+											if(other.hasPermission(JoinItems.theClass.getPermission(stack, other))) {
+												if(!other.getInventory().contains(stack)) {
+													if(JoinItems.theClass.getItems(other).get(stack) > 0) {
+														int slot = JoinItems.theClass.getItems(other).get(stack) -1;
+														other.getInventory().setItem(slot, stack);
+													} else {
+														other.getInventory().addItem(stack);
+													}
+												}
+											}
+										} else {
 											if(!other.getInventory().contains(stack)) {
 												if(JoinItems.theClass.getItems(other).get(stack) > 0) {
 													int slot = JoinItems.theClass.getItems(other).get(stack) -1;
@@ -265,17 +276,10 @@ public class CommandsOverride implements Listener {
 												}
 											}
 										}
-									} else {
-										if(!other.getInventory().contains(stack)) {
-											if(JoinItems.theClass.getItems(other).get(stack) > 0) {
-												int slot = JoinItems.theClass.getItems(other).get(stack) -1;
-												other.getInventory().setItem(slot, stack);
-											} else {
-												other.getInventory().addItem(stack);
-											}
-										}
 									}
 								}
+							} else {
+								player.sendMessage("§cError: §7Player Not Found!");
 							}
 						} else {
 							player.sendMessage("§cError: §7You don't have permission to use this command!");

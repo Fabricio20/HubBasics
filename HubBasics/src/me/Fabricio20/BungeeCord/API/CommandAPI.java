@@ -11,7 +11,9 @@ public class CommandAPI {
 	}
 	
 	public static Boolean isEnabled(Commands command) {
-		if(command.equals(Commands.Alert)) {
+		if(command.equals(Commands.List)) {
+			return Main.theClass.config.List_Enabled;
+		} else if(command.equals(Commands.Alert)) {
 			return Main.theClass.config.Alert_Enabled;
 		} else if(command.equals(Commands.Friends)) {
 			return Main.theClass.config.Friends_Enabled;

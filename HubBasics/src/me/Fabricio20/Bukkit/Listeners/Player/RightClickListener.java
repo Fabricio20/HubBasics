@@ -136,6 +136,7 @@ public class RightClickListener implements Listener {
 									} else {
 										player.chat(JoinItems.theClass.getCommand(stack, player).replace("&", "§").replace("%p", player.getName()));
 									}
+									e.setCancelled(true);
 								}
 							}
 						}

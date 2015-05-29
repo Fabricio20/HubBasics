@@ -1,0 +1,17 @@
+Displayname: ''
+Slots: 9
+Chest:
+  Command: ''
+  Material: 'GOLD_BLOCK'
+  OpenLeftClick: false
+  OpenRightClick: true
+Items:
+  ExampleItem:
+    Material: 'DIAMOND'
+    Amount: 2
+    Displayname: '&cExample Item'
+    Lore:
+      - '&9Simple Lore'
+    Glow: true
+    Command: '/me hello!'
+    Server: 'Lobby'

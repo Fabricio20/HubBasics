@@ -11,6 +11,10 @@ import me.Fabricio20.Bukkit.Listeners.Chat.CommandListener;
 import me.Fabricio20.Bukkit.Listeners.Chat.CommandsOverride;
 import me.Fabricio20.Bukkit.Listeners.Chat.PEXChatListener;
 import me.Fabricio20.Bukkit.Listeners.Chest.SettingsChestClick;
+import me.Fabricio20.Bukkit.Listeners.HubChest.CHEST_Command;
+import me.Fabricio20.Bukkit.Listeners.HubChest.CHEST_InventoryClick;
+import me.Fabricio20.Bukkit.Listeners.HubChest.CHEST_LeftClickListener;
+import me.Fabricio20.Bukkit.Listeners.HubChest.CHEST_RightClickListener;
 import me.Fabricio20.Bukkit.Listeners.Item.DropItemListener;
 import me.Fabricio20.Bukkit.Listeners.Item.ItemClickChest;
 import me.Fabricio20.Bukkit.Listeners.Item.ItemMoveListener;
@@ -184,6 +188,10 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new SettingsChestClick(), this);
 		getServer().getPluginManager().registerEvents(new LeaveSettings(), this);
 		getServer().getPluginManager().registerEvents(new PlayerRespawn(), this);
+		getServer().getPluginManager().registerEvents(new CHEST_RightClickListener(), this);
+		getServer().getPluginManager().registerEvents(new CHEST_LeftClickListener(), this);
+		getServer().getPluginManager().registerEvents(new CHEST_Command(), this);
+		getServer().getPluginManager().registerEvents(new CHEST_InventoryClick(), this);
 		// System.out.println(version); git-Spigot-1.7.9-R0.2-205-g0a049fa (MC: 1.7.10) [ Protocol Patch ]
 	}
 	

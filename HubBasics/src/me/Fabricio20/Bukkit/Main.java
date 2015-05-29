@@ -249,6 +249,21 @@ public class Main extends JavaPlugin {
 			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
 			BukkitTask ActionAnnouncer = new me.Fabricio20.Bukkit.Runnables.V1_8.v2.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
 		} catch( ClassNotFoundException e ) {
+			check186();
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	public void check186() {
+		try { // Check For 1.8.6
+			Class.forName("org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer" );
+			getLogger().log(Level.INFO, "Spigot 1.8.6 Detected..");
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.Bukkit.Listeners.V1_8.v3.TabListJoin(), this);
+			getServer().getPluginManager().registerEvents(new me.Fabricio20.Bukkit.Listeners.V1_8.v3.TitleJoin(), this);
+			getServer().getPluginManager().registerEvents(new JoinListenerForTags(), this);
+			ActionTime = getPlugin().getConfig().getInt("ActionAnnouncer.Time");
+			BukkitTask ActionAnnouncer = new me.Fabricio20.Bukkit.Runnables.V1_8.v3.ActionAnnouncer().runTaskTimer(getPlugin(), 20, ActionTime * 20);
+		} catch( ClassNotFoundException e ) {
 			Bukkit.getLogger().log(Level.WARNING, "Unsuported Server Version Detected!");
 			Bukkit.getLogger().log(Level.WARNING, "Some Options Where Disabled!");
 		}

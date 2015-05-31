@@ -7,14 +7,13 @@ import java.util.Set;
 import me.Fabricio20.Bukkit.Main;
 import me.Fabricio20.Bukkit.API.LanguageAPI;
 import me.Fabricio20.Bukkit.API.WarpAPI;
-import me.Fabricio20.Bukkit.Storage.Permissions;
-import me.Fabricio20.Bukkit.Storage.Strings;
 import me.Fabricio20.Bukkit.Methods.JoinItems;
 import me.Fabricio20.Bukkit.Methods.ModuleManager;
-import me.Fabricio20.Bukkit.Methods.Chests.QuickWarpChest;
 import me.Fabricio20.Bukkit.Methods.Chests.SettingsChest;
 import me.Fabricio20.Bukkit.Methods.Managers.EffectsManager;
 import me.Fabricio20.Bukkit.Methods.Managers.SettingsManager;
+import me.Fabricio20.Bukkit.Storage.Permissions;
+import me.Fabricio20.Bukkit.Storage.Strings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -148,19 +147,6 @@ public class CommandsOverride implements Listener {
 					} else {
 						player.sendMessage(Strings.PermissionError);
 					}
-				}
-			} else if(cmd[0].equalsIgnoreCase("/quickwarp")) {
-				if(!isDisabled("quickwarp")) {
-					e.setCancelled(true);
-					Player player = (Player) sender;
-					if(Main.theClass.QuickWarpChest.getBoolean("PerWorld")) {
-						if(ModuleManager.theClass.isInWorld(player)) {
-							QuickWarpChest.open(player);
-						}
-					} else {
-						QuickWarpChest.open(player);
-					}
-					
 				}
 			} else if(cmd[0].equalsIgnoreCase("/settings")) {
 				if(!isDisabled("settings")) {

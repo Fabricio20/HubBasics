@@ -16,7 +16,6 @@ public class FixConfig {
 		fixItems();
 		fixStorage();
 		fixLanguage();
-		fixQuickWarp();
 		fixTags();
 		fixChestItems();
 	}
@@ -613,32 +612,6 @@ public class FixConfig {
 		if(!Main.theClass.Language.contains("MagicClock.Cooldown")) {
 			Main.theClass.Language.set("MagicClock.Cooldown", "&cYou Must Wait 12 Seconds! ");
 			Main.theClass.Language.saveConfig();
-		}
-	}
-	
-	private static void fixQuickWarp() {
-		if(!Main.theClass.QuickWarpChest.contains("Rows")) {
-			Main.theClass.QuickWarpChest.set("Rows", 3, "The Chest Hows / Maximum is 6");
-			Main.theClass.QuickWarpChest.saveConfig();
-		}
-		if(!Main.theClass.QuickWarpChest.contains("PerWorld")) {
-			Main.theClass.QuickWarpChest.set("PerWorld", false);
-			Main.theClass.QuickWarpChest.saveConfig();
-		}
-		if(!Main.theClass.QuickWarpChest.contains("Items")) {
-			Main.theClass.QuickWarpChest.set("Items.Example.Material", "DIAMOND_BLOCK");
-			Main.theClass.QuickWarpChest.set("Items.Example.Name", "&bDIAMOND BLOCK");
-			ArrayList<String> lore = new ArrayList<String>();
-			lore.add("&cBasic Lore");
-			Main.theClass.QuickWarpChest.set("Items.Example.Lore", lore);
-			Main.theClass.QuickWarpChest.set("Items.Example.Command", "/me This Is a Command!");
-			Main.theClass.QuickWarpChest.set("Items.Example.Console", false);
-			Main.theClass.QuickWarpChest.set("Items.Example.Permission", "ExampleItem.use");
-			Main.theClass.QuickWarpChest.set("Items.Example.UsePerm", false);
-			Main.theClass.QuickWarpChest.set("Items.Example.Slot", 0);
-			Main.theClass.QuickWarpChest.set("Items.Example.ViewPermEnabled", true);
-			Main.theClass.QuickWarpChest.set("Items.Example.ViewPerm", "ExampleItem.see");
-			Main.theClass.QuickWarpChest.saveConfig();
 		}
 	}
 	

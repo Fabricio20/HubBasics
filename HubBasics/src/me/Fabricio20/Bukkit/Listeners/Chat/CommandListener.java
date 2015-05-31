@@ -2,7 +2,6 @@ package me.Fabricio20.Bukkit.Listeners.Chat;
 
 import me.Fabricio20.Bukkit.Main;
 import me.Fabricio20.Bukkit.Storage.Permissions;
-import me.Fabricio20.Bukkit.Methods.Chests.QuickWarpChest;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -28,8 +27,6 @@ public class CommandListener implements Listener {
 						e.setCancelled(true);
 					}
 				}
-			} else if(args[0].equalsIgnoreCase("/chest")) {
-				QuickWarpChest.open(e.getPlayer());
 			}
 	}
 	

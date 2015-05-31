@@ -180,7 +180,6 @@ public class Commands implements CommandExecutor {
 						Main.theClass.Warps.reloadConfig();
 						Main.theClass.Language.reloadConfig();
 						Main.theClass.Tags.reloadConfig();
-						Main.theClass.QuickWarpChest.reloadConfig();
 						Main.theClass.ChestItems.reloadConfig();
 						Storage.playerSettings.clear();
 						sender.sendMessage("§8[§cHubBasics§8] §eConfig Reloaded!");

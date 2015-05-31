@@ -16,7 +16,6 @@ import me.Fabricio20.Bukkit.Listeners.HubChest.CHEST_InventoryClick;
 import me.Fabricio20.Bukkit.Listeners.HubChest.CHEST_LeftClickListener;
 import me.Fabricio20.Bukkit.Listeners.HubChest.CHEST_RightClickListener;
 import me.Fabricio20.Bukkit.Listeners.Item.DropItemListener;
-import me.Fabricio20.Bukkit.Listeners.Item.ItemClickChest;
 import me.Fabricio20.Bukkit.Listeners.Item.ItemMoveListener;
 import me.Fabricio20.Bukkit.Listeners.Others.JumpListener;
 import me.Fabricio20.Bukkit.Listeners.Others.RainListener;
@@ -73,7 +72,6 @@ public class Main extends JavaPlugin {
     public SimpleConfig Warps;
     public SimpleConfig Language;
     public SimpleConfig Tags;
-    public SimpleConfig QuickWarpChest;
     public SimpleConfig ChestItems;
 	
     private int ChatTime = 0;
@@ -180,7 +178,6 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ItemMoveListener(), this);
 		getServer().getPluginManager().registerEvents(new PlayerChangeWorld(), this);
 		getServer().getPluginManager().registerEvents(new VeichleLeaveListener(), this);
-		getServer().getPluginManager().registerEvents(new ItemClickChest(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreak(), this);
 		getServer().getPluginManager().registerEvents(new BlockPlace(), this);
 		getServer().getPluginManager().registerEvents(new JoinSettings(), this);
@@ -302,11 +299,6 @@ public class Main extends JavaPlugin {
 		String[] header5 = {"HubBasics Language File", "Change with caution / Color codes are supported!"};
 		this.Language = manager.getNewConfig("Language.yml", header5);
 		this.Language.saveConfig();
-		//
-		this.manager = new SimpleConfigManager(this);
-		String[] header6 = {"HubBasics Chest File", "Change with caution / Color codes are supported!"};
-		this.QuickWarpChest = manager.getNewConfig("Chests/QuickWarp.yml", header6);
-		this.QuickWarpChest.saveConfig();
 		//
 		this.manager = new SimpleConfigManager(this);
 		String[] header7 = {"HubBasics Tags System", "Only Works On 1.8 Servers!", "Change with caution / Color codes are supported!"};

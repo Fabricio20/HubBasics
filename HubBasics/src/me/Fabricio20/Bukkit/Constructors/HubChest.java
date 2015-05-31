@@ -33,11 +33,11 @@ public class HubChest {
 		this.displayName = config.getString("Displayname");
 		this.slots = config.getInt("Slots");
 		//
-		if(this.slots % 9 == 0) {
+		if(!(this.slots % 9 == 0)) {
 		     this.slots = 54;
 		}
 		//
-		this.inv = Bukkit.createInventory(null, this.slots, getDisplayName());
+		this.inv = Bukkit.createInventory(null, this.slots, this.displayName);
 		if(config.contains("Chest.Command")) {
 			this.commandToOpen = config.getString("Chest.Command");
 		}

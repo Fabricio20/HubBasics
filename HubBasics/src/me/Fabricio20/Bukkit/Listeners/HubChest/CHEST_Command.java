@@ -20,7 +20,7 @@ public class CHEST_Command implements Listener {
 			HubChest chest = new HubChest(s);
 			if(cmd.startsWith("/" + chest.getCommand())) {
 				e.setCancelled(true);
-				e.getPlayer().chat("/" + chest.getCommand());
+				e.getPlayer().openInventory(chest.getInventory());
 			}
 		}
 	}

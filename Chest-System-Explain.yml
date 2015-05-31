@@ -1,7 +1,7 @@
-Displayname: ''
+Displayname: '&cChest'
 Slots: 9
 Chest:
-  Command: ''
+  Command: 'test'
   Material: 'GOLD_BLOCK'
   OpenLeftClick: false
   OpenRightClick: true

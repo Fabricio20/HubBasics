@@ -9,7 +9,6 @@ import java.util.List;
 import me.Fabricio20.Bukkit.Main;
 import me.Fabricio20.Bukkit.Constructors.HubChest;
 import me.Fabricio20.Bukkit.Methods.Configs.SimpleConfig;
-import me.Fabricio20.Bukkit.Utils.InventoryUtils;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,7 +31,7 @@ public class CHEST_InventoryClick implements Listener {
 							e.setCancelled(true);
 							Player player = (Player) e.getWhoClicked();
 							if(config.contains("Items." + d + ".Command")) {
-								player.chat(InventoryUtils.parseString("Items." + d + ".Command", config));
+								player.chat(config.getString("Items." + d + ".Command"));
 							}
 							if(config.contains("Items." + d + ".Server")) {
 								sendToServer(player, config.getString("Items." + d + ".Server"));

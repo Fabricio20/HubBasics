@@ -24,7 +24,7 @@ public class HubChest {
 	private Material material;
 	private Boolean leftClick;
 	private Boolean rightClick;
-	private HashMap<String, ItemStack> contents;
+	private HashMap<String, ItemStack> contents = new HashMap<String, ItemStack>();
 	
 	public HubChest(String name) {
 		name = name.replace(".yml", "");
@@ -37,11 +37,11 @@ public class HubChest {
 		     this.slots = 54;
 		}
 		//
-		this.inv = Bukkit.createInventory(null, this.slots, this.displayName);
+		this.inv = Bukkit.createInventory(null, this.slots, this.displayName.replace("&", "§"));
 		if(config.contains("Chest.Command")) {
 			this.commandToOpen = config.getString("Chest.Command");
 		}
-		this.material = InventoryUtils.parseMaterial("Chest.Material", config);
+		this.material = Material.getMaterial(config.getString("Chest.Material"));
 		if(config.contains("Chest.OpenLeftClick")) {
 			this.leftClick = config.getBoolean("Chest.OpenLeftClick");
 		}
@@ -52,11 +52,11 @@ public class HubChest {
 		if(config.contains("Items")) {
 			for(String s: config.getConfigurationSection("Items").getKeys(false)) {
 				if(config.contains("Items." + s + ".Material")) {
-					Material mat = InventoryUtils.parseMaterial("Items." + s + ".Material", config);
+					Material mat = Material.getMaterial(config.getString("Items." + s + ".Material"));
 					Integer amount = InventoryUtils.parseInteger("Items." + s + ".Amount", config);
 					ItemStack stack = new ItemStack(mat, amount);
 					ItemMeta meta = stack.getItemMeta();
-					meta.setDisplayName(InventoryUtils.parseString("Items." + s + ".Displayname", config));
+					meta.setDisplayName(config.getString("Items." + s + ".Displayname").replace("&", "§"));
 					meta.setLore(InventoryUtils.parseList("Items." + s + ".Lore", config));
 					stack.setItemMeta(meta);
 					if(InventoryUtils.parseBoolean("Items." + s + ".Glow", config)) {
@@ -68,8 +68,8 @@ public class HubChest {
 				}
 			}
 		}
-		for(ItemStack stack: getContents().values()) {
-			getInventory().addItem(stack);
+		for(ItemStack stack: this.contents.values()) {
+			this.inv.addItem(stack);
 		}
 	}
 	

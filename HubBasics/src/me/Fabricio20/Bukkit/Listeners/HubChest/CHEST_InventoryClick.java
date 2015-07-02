@@ -59,8 +59,10 @@ public class CHEST_InventoryClick implements Listener {
 	private List<String> getAllChests() {
 		ArrayList<String> files = new ArrayList<String>();
 		File folder = new File(Main.theClass.getDataFolder() + File.separator + "Chests");
-		for(File fileEntry : folder.listFiles()) {
-		    files.add(fileEntry.getName().toLowerCase().replace(".yml", ""));
+		if(folder.exists() && folder.isDirectory()) {
+			for(File fileEntry : folder.listFiles()) {
+			    files.add(fileEntry.getName().toLowerCase().replace(".yml", ""));
+			}
 		}
 		return files;
 	}

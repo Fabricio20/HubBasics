@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.Fabricio20</groupId>
     <artifactId>HubBasics</artifactId>
+    <version>3.3.4.6</version>
     <repositories>
         <repository>
             <id>spigot-repo</id>

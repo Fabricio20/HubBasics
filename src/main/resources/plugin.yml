@@ -1,0 +1,15 @@
+main: net.notfab.HubBasics.Bukkit.HubBasics
+version: 4.0
+name: HubBasics
+authors: [Fabricio20]
+description: >
+             HubBasics
+commands:
+   hat:
+     description: HubBasics Hat! Change Your Hat!
+   hub:
+     description: HubBasics Lobby! Goes Back To The Lobby!
+     aliases: [lobby]
+   sethub:
+     description: HubBasics SetHub! Sets The Hub!
+     aliases: [setlobby]

@@ -1,12 +1,12 @@
 package net.notfab.HubBasics.Bukkit;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import lombok.Getter;
 import net.notfab.HubBasics.Bukkit.API.Updater;
 import net.notfab.HubBasics.Bukkit.Listeners.ConnectionListener;
 import net.notfab.HubBasics.Bukkit.Listeners.MovementListener;
+import net.notfab.HubBasics.Bukkit.Listeners.WorldListener;
 import net.notfab.HubBasics.Bukkit.Managers.CommandManager;
 import net.notfab.HubBasics.Bukkit.Managers.JSONConfigManager;
 import net.notfab.HubBasics.Bukkit.Managers.ProfileManager;
@@ -54,8 +54,9 @@ public class HubBasics extends JavaPlugin {
 		this._CommandManager = new CommandManager(this);
 		getServer().getPluginManager().registerEvents(new ConnectionListener(), this);
 		getServer().getPluginManager().registerEvents(new MovementListener(), this);
+		getServer().getPluginManager().registerEvents(new WorldListener(), this);
+		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		this.BossAnnouncer = new BossAnnouncer();
-		Bukkit.getScheduler().runTaskTimerAsynchronously(this, this.BossAnnouncer, 20, 20 * 1);
 	}
 	
 	@Override

@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.entity.Player;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -39,6 +39,7 @@ public class BossAnnouncer implements Runnable {
 		this._Random = _BossAnnouncer.getBoolean("Random");
 		this._Index = 0;
 		this.BossBar = Bukkit.createBossBar("", BarColor.GREEN, BarStyle.SOLID, new BarFlag[]{});
+		Bukkit.getScheduler().runTaskTimerAsynchronously(HubBasics.getInstance(), this, 20, (20 * _BossAnnouncer.getInt("Interval")));
 	}
 	
 	@Override
@@ -51,12 +52,7 @@ public class BossAnnouncer implements Runnable {
 				BarStyle style = BarStyle.valueOf(_Bar.getString("Style"));
 				this.BossBar.setColor(color);
 				this.BossBar.setStyle(style);
-				this.BossBar.setTitle(_Bar.getString("Message"));
-				this.BossBar.removeAll();
-				for(Player p: Bukkit.getOnlinePlayers()) {
-					this.BossBar.addPlayer(p);
-				}
-				this.BossBar.show();
+				this.BossBar.setTitle(ChatColor.translateAlternateColorCodes('&', _Bar.getString("Message")));
 			} else {
 				if(_Index > this._Messages.length) {
 					_Index = 0;
@@ -68,12 +64,7 @@ public class BossAnnouncer implements Runnable {
 				BarStyle style = BarStyle.valueOf(_Bar.getString("Style"));
 				this.BossBar.setColor(color);
 				this.BossBar.setStyle(style);
-				this.BossBar.setTitle(_Bar.getString("Message"));
-				this.BossBar.removeAll();
-				for(Player p: Bukkit.getOnlinePlayers()) {
-					this.BossBar.addPlayer(p);
-				}
-				this.BossBar.show();
+				this.BossBar.setTitle(ChatColor.translateAlternateColorCodes('&', _Bar.getString("Message")));
 			}
 		}
 	}

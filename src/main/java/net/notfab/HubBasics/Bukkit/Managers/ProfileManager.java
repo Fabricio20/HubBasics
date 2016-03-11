@@ -69,7 +69,8 @@ public class ProfileManager {
 			File file = new File("plugins/HubBasics/" + this.ProfilesFolder + "/" + uid.toString() + ".json");
 			return HubBasics.getInstance().getConfigManager().readFile(file);
 		} else if(_StorageType.equals(EnumStorage.MYSQL)) {
-			return null; //TODO
+			// TODO: MySQL
+			return null;
 		} else {
 			if(hasProfile(uid)) {
 				Jedis jedis = JedisPool.getResource();
@@ -90,7 +91,8 @@ public class ProfileManager {
 			File file = new File("plugins/HubBasics/" + this.ProfilesFolder + "/" + uid.toString() + ".json");
 			return file.exists();
 		} else if(_StorageType.equals(EnumStorage.MYSQL)) {
-			return false; //TODO
+			// TODO: MySQL
+			return false;
 		} else {
 			Jedis jedis = JedisPool.getResource();
 			String s = jedis.get(this.REDIS_PREFIX + "Profile:" + uid.toString());
@@ -105,7 +107,7 @@ public class ProfileManager {
 			File file = new File("plugins/HubBasics/" + this.ProfilesFolder + "/" + uid.toString() + ".json");
 			HubBasics.getInstance().getConfigManager().writeFile(file, _Profile);
 		} else if(_StorageType.equals(EnumStorage.MYSQL)) {
-			
+			// TODO: MySQL
 		} else {
 			Jedis jedis = JedisPool.getResource();
 			jedis.set(this.REDIS_PREFIX + "Profile:" + uid.toString(), _Profile.toString());

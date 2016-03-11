@@ -90,13 +90,16 @@ public class Updater {
 		JSONObject _SoftwareInfo = new JSONObject();
 		_SoftwareInfo.put("ID", 0);
 		_SoftwareInfo.put("Version", _Version);
-		_SoftwareInfo.put("ServerVersion", Bukkit.getServer().getVersion()); // Bukkit Version ?
+		_SoftwareInfo.put("ServerVersion", Bukkit.getServer().getVersion());
 		_SoftwareInfo.put("OS", System.getProperties().get("os.name"));
 		try {
 			String r = Jsoup.connect("http://updater.notfab.net").data("SoftwareInfo", _SoftwareInfo.toString()).ignoreContentType(true).post().text();
 			JSONObject o = new JSONObject(r);
 			if(o.has("error")) {
 				Bukkit.getLogger().log(Level.WARNING, "[Updater] Update Server Returned An Error -> '" + o.getString("error") + "'");
+				return;
+			}
+			if(o.getBoolean("Updated") == true) {
 				return;
 			}
 			_Update = new JSONObject();

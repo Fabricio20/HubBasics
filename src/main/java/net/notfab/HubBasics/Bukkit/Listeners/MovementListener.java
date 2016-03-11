@@ -36,7 +36,7 @@ public class MovementListener implements Listener {
 				return;
 			}
 			List<String> worlds = new ArrayList<String>();
-			JSONArray w = config.getJSONArray("Worlds");
+			JSONArray w = pads.getJSONArray("Worlds");
 			for(int i = 0; i < w.length(); i++) {
 				worlds.add(w.getString(i));
 			}

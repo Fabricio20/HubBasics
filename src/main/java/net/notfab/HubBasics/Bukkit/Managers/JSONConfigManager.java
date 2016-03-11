@@ -99,7 +99,7 @@ public class JSONConfigManager {
 			}
 			fw.write(content.toString(1));
 		} catch (IOException e) {
-			System.out.println("[HubBasics] Error While Saving Config Contents:");
+			System.out.println("[HubBasics] Error While Saving File Contents:");
 			e.printStackTrace();
 		}
 	}

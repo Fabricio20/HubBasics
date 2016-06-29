@@ -1,6 +1,7 @@
 
 package net.notfab.hubbasics.managers;
 
+import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.objects.HCommand;
 import org.bukkit.command.PluginCommand;
@@ -12,8 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CommandManager {
-    
-    private List<HCommand> _Commands = new ArrayList<>();
+
+    @Getter private List<HCommand> Commands = new ArrayList<>();
     
     public CommandManager(HubBasics plugin) {
         //
@@ -29,11 +30,7 @@ public class CommandManager {
         } else {
             plugin.getCommand(cmd.getNames()[0]).setExecutor(cmd);
         }
-        _Commands.add(cmd);
-    }
-    
-    public List<HCommand> getCommands() {
-        return this._Commands;
+        Commands.add(cmd);
     }
 
 }

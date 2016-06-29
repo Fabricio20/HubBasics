@@ -288,7 +288,7 @@ public class SimpleConfig {
 
         if (list == null) {
 
-            return new ArrayList<Long>(0);
+            return new ArrayList<>(0);
 
         }
 
@@ -306,13 +306,13 @@ public class SimpleConfig {
 
                     result.add(Long.valueOf((String) object));
 
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
 
                 }
 
             } else if (object instanceof Character) {
 
-                result.add((long) ((Character) object).charValue());
+                result.add((long) (Character) object);
 
             } else if (object instanceof Number) {
 
@@ -332,11 +332,11 @@ public class SimpleConfig {
 
         if (list == null) {
 
-            return new ArrayList<Byte>(0);
+            return new ArrayList<>(0);
 
         }
 
-        List<Byte> result = new ArrayList<Byte>();
+        List<Byte> result = new ArrayList<>();
 
         for (Object object : list) {
 
@@ -350,7 +350,7 @@ public class SimpleConfig {
 
                     result.add(Byte.valueOf((String) object));
 
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
 
                 }
 
@@ -376,11 +376,11 @@ public class SimpleConfig {
 
         if (list == null) {
 
-            return new ArrayList<Character>(0);
+            return new ArrayList<>(0);
 
         }
 
-        List<Character> result = new ArrayList<Character>();
+        List<Character> result = new ArrayList<>();
 
         for (Object object : list) {
 
@@ -416,11 +416,11 @@ public class SimpleConfig {
 
         if (list == null) {
 
-            return new ArrayList<Short>(0);
+            return new ArrayList<>(0);
 
         }
 
-        List<Short> result = new ArrayList<Short>();
+        List<Short> result = new ArrayList<>();
 
         for (Object object : list) {
 
@@ -434,7 +434,7 @@ public class SimpleConfig {
 
                     result.add(Short.valueOf((String) object));
 
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
 
                 }
 
@@ -458,7 +458,7 @@ public class SimpleConfig {
 
         List<?> list = getList(path);
 
-        List<Map<?, ?>> result = new ArrayList<Map<?, ?>>();
+        List<Map<?, ?>> result = new ArrayList<>();
 
         if (list == null) {
 

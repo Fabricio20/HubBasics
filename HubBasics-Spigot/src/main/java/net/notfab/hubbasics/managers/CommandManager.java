@@ -16,7 +16,7 @@ public class CommandManager {
 
     @Getter private List<HCommand> Commands = new ArrayList<>();
     
-    public CommandManager(HubBasics plugin) {
+    public CommandManager() {
         //
     }
     

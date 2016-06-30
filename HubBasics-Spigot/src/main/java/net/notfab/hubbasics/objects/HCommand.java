@@ -2,7 +2,7 @@ package net.notfab.hubbasics.objects;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.notfab.hubbasics.utils.MessageUtils;
+import net.notfab.hubbasics.utils.HMessenger;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -41,7 +41,7 @@ public abstract class HCommand implements CommandExecutor {
                 onCommand((Player) arg0, arg3);
             } else {
                 if(!arg0.hasPermission(this.permission)) {
-                    MessageUtils.sendError(arg0, "You do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.");
+                    HMessenger.sendError(arg0, "You do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.");
                 } else {
                     onCommand((Player) arg0, arg3);
                 }

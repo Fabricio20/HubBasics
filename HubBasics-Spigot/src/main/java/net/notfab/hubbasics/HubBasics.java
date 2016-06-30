@@ -19,14 +19,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class HubBasics extends JavaPlugin {
 
-	@Getter	private static HubBasics Instance;
+	@Getter	private static HubBasics instance;
 
 	@Getter	private CommandManager commandManager;
 	@Getter	private HConfiguration hConfiguration;
 
 	@Override
 	public void onEnable() {
-		Instance = this;
+		instance = this;
 		this.init();
 		//TODO: Load
 	}
@@ -35,7 +35,7 @@ public class HubBasics extends JavaPlugin {
 	public void onDisable() {
 		this.getCommandManager().unloadMap();
 		//TODO: Unload
-		Instance = null;
+		instance = null;
 	}
 
 	private void init() {

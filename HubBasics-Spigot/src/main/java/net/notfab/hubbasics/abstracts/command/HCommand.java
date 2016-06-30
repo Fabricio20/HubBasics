@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.objects;
+package net.notfab.hubbasics.abstracts.command;
 
 import lombok.Getter;
 import lombok.Setter;

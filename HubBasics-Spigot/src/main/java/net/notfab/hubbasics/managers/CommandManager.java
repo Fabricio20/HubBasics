@@ -4,7 +4,7 @@ package net.notfab.hubbasics.managers;
 import lombok.Getter;
 import lombok.Setter;
 
-import net.notfab.hubbasics.objects.HCommand;
+import net.notfab.hubbasics.abstracts.command.HCommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

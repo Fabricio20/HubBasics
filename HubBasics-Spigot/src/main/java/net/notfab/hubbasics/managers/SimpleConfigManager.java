@@ -20,14 +20,14 @@ public class SimpleConfigManager {
 
     private JavaPlugin plugin;
 
-    /*
+    /**
      * Manage custom configurations and files
      */
     public SimpleConfigManager(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
-    /*
+    /**
      * Get new configuration with header
      *
      * @param filePath - Path to file
@@ -46,7 +46,7 @@ public class SimpleConfigManager {
                 file, this.getCommentsNum(file), plugin);
     }
 
-    /*
+    /**
      * Get new configuration
      *
      * @param filePath - Path to file
@@ -57,7 +57,7 @@ public class SimpleConfigManager {
         return this.getNewConfig(filePath, null);
     }
 
-    /*
+    /**
      * Get configuration file from string
      *
      * @param file - File path
@@ -83,7 +83,7 @@ public class SimpleConfigManager {
         return configFile;
     }
 
-    /*
+    /**
      * Create new file for config and copy resource into it
      *
      * @param file - Path to file
@@ -106,7 +106,7 @@ public class SimpleConfigManager {
         }
     }
 
-    /*
+    /**
      * Create new file for config without resource
      *
      * @param file - File to create
@@ -115,7 +115,7 @@ public class SimpleConfigManager {
         this.prepareFile(filePath, null);
     }
 
-    /*
+    /**
      * Adds header block to config
      *
      * @param file - Config file
@@ -162,7 +162,7 @@ public class SimpleConfigManager {
         }
     }
 
-    /*
+    /**
      * Read file and make comments SnakeYAML friendly
      *
      * @param filePath - Path to file
@@ -201,7 +201,7 @@ public class SimpleConfigManager {
         }
     }
 
-    /*
+    /**
      * Get comments from file
      *
      * @param file - File
@@ -229,7 +229,7 @@ public class SimpleConfigManager {
         }
     }
 
-    /*
+    /**
      * Get config content from file
      *
      * @param filePath - Path to file
@@ -290,7 +290,7 @@ public class SimpleConfigManager {
         return config.toString();
     }
 
-    /*
+    /**
      * Saves configuration to file
      *
      * @param configString - Config string
@@ -313,7 +313,7 @@ public class SimpleConfigManager {
         return plugin.getDescription().getName();
     }
 
-    /*
+    /**
      * Copy resource from Input Stream to file
      *
      * @param resource - Resource from .jar

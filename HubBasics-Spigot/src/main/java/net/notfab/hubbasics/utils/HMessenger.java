@@ -8,7 +8,7 @@ import org.bukkit.permissions.Permission;
 
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
-import net.notfab.hubbasics.objects.HCommand;
+import net.notfab.hubbasics.abstracts.command.HCommand;
 import net.notfab.hubbasics.settings.ConfigKeys;
 
 /*

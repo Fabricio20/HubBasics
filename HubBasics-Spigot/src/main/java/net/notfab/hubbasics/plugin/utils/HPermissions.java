@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.utils;
+package net.notfab.hubbasics.plugin.utils;
 
 import org.bukkit.permissions.Permission;
 

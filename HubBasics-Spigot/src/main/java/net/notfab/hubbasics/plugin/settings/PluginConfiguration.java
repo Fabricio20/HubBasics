@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.settings;
+package net.notfab.hubbasics.plugin.settings;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,11 +16,11 @@ import net.notfab.hubbasics.HubBasics;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-public class HConfiguration {
+public class PluginConfiguration {
 
 	private HubBasics pl;
 
-	public HConfiguration() {
+	public PluginConfiguration() {
 		this.pl = HubBasics.getInstance();
 	}
 

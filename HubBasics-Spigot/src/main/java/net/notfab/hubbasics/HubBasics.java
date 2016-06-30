@@ -3,7 +3,7 @@ package net.notfab.hubbasics;
 import lombok.Getter;
 
 import net.notfab.hubbasics.managers.CommandManager;
-import net.notfab.hubbasics.settings.HConfiguration;
+import net.notfab.hubbasics.plugin.settings.PluginConfiguration;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,7 +22,7 @@ public class HubBasics extends JavaPlugin {
 	@Getter	private static HubBasics instance;
 
 	@Getter	private CommandManager commandManager;
-	@Getter	private HConfiguration hConfiguration;
+	@Getter	private PluginConfiguration pluginConfiguration;
 
 	@Override
 	public void onEnable() {
@@ -42,7 +42,7 @@ public class HubBasics extends JavaPlugin {
 		this.commandManager = new CommandManager();
 		this.getCommandManager().loadMap();
 
-		this.hConfiguration = new HConfiguration();
-		this.getHConfiguration().loadDefaults();
+		this.pluginConfiguration = new PluginConfiguration();
+		this.getPluginConfiguration().loadDefaults();
 	}
 }

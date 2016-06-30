@@ -2,11 +2,9 @@ package net.notfab.hubbasics.abstracts.command;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.notfab.hubbasics.utils.HMessenger;
+import net.notfab.hubbasics.plugin.utils.HMessenger;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;

@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.utils;
+package net.notfab.hubbasics.plugin.utils;
 
 import java.util.Arrays;
 
@@ -9,7 +9,7 @@ import org.bukkit.permissions.Permission;
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
-import net.notfab.hubbasics.settings.ConfigKeys;
+import net.notfab.hubbasics.plugin.settings.ConfigKeys;
 
 /*
  * Copyright (c) 2016.
@@ -63,35 +63,67 @@ public class HMessenger {
 		sendSelectiveBroadcast(HPermissions.MESSAGE_ADMIN, ChatColor.RED + "" + ChatColor.BOLD + "(HB Admin) " + ChatColor.GOLD + arrayToString(message));
 	}
 
-
+	/**
+	 * Display the correct usage of a command
+	 *
+	 * @param sender  The receiver
+	 * @param command The command
+	 * @param msg     The usage message
+	 */
 	public static void sendCommandUsageMessage(CommandSender sender, HCommand command, String msg) {
 		String format = ChatColor.BLUE + "" + ChatColor.ITALIC;
 		String prefix = format + "Usage of command " + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + command.getNames()[0] + format + ": ";
 		sender.sendMessage(prefix + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + msg);
 	}
 
-	public static void sendCommandUsageMessage(CommandSender sender, String[] msg) {
-		sender.sendMessage(ChatColor.BLUE + "" + ChatColor.ITALIC + "Usage: ");
+	/**
+	 * Display the correct usage of a command
+	 *
+	 * @param sender  The receiver
+	 * @param command The command
+	 * @param msgs    The usage messages, if command has multiple subcommands
+	 */
+	public static void sendCommandUsageMessage(CommandSender sender, HCommand command, String[] msgs) {
+		String format = ChatColor.BLUE + "" + ChatColor.ITALIC;
+		String msg = format + "Usage of command " + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + command.getNames()[0] + format + ": ";
+		sender.sendMessage(msg);
 
-		for (String str : msg) {
+		for (String str : msgs) {
 			sender.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + "  " + str);
 		}
 	}
 
+	/**
+	 * Default message when a player does not have permission to perform an action
+	 *
+	 * @param sender The receiver
+	 */
 	public static void errorNoPerms(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "You don't have permission to execute this command!");
 	}
 
+	/**
+	 * Default message when the console tries to perform a player-only command
+	 *
+	 * @param sender The receiver
+	 */
 	public static void errorPlayersOnly(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "This command is limited to players only!");
 	}
 
+	/**
+	 * Default message when a player attempts to target a player, and the player is not found
+	 *
+	 * @param sender The receiver
+	 * @param player Player that wasn't found
+	 */
 	public static void errorPlayerNotFound(CommandSender sender, String player) {
 		sender.sendMessage(ChatColor.RED + "Player " + ChatColor.DARK_RED + player + ChatColor.RED + " was not found.");
 	}
 
-	public static void sendStackTrace(Exception exc) {
+	public static void printStackTrace(Exception exc) {
 		exc.printStackTrace();
+		if (!HubBasics.getInstance().getConfig().getBoolean(ConfigKeys.ENABLE_DEBUG.getPath())) return;
 		sendDebugMessage("Printing stacktrace elements for caught @!" + exc.getClass().getName() + "@@...");
 		sendDebugMessage("Message: @!" + exc.getMessage());
 		int skipped = 0;
@@ -99,7 +131,7 @@ public class HMessenger {
 		for (StackTraceElement element : exc.getStackTrace()) {
 			index++;
 			String clazz = element.getClass().getName();
-			if (!clazz.startsWith("net.notfab")) {
+			if (!clazz.startsWith("net.notfab.hubbasics")) {
 				skipped++;
 				continue;
 			} else {

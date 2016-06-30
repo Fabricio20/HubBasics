@@ -7,13 +7,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.common.collect.Lists;
 
 /*
  * Copyright (c) 2016.
@@ -25,13 +29,10 @@ import java.util.regex.Pattern;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-public abstract class HCommand implements CommandExecutor {
+public abstract class HCommand implements TabExecutor {
 
     @Getter @Setter private Permission permission;
-    @Getter @Setter
-    private String[] names;
-
-	/* -------------------------------------------------------------------- */
+    @Getter @Setter private String[] names;
 
     public HCommand(String... names) {
         this.names = names;
@@ -56,23 +57,37 @@ public abstract class HCommand implements CommandExecutor {
                     onCommand((Player) sender, args);
                 }
             }
-            onCommand((Player) sender, args);
         } else {
-            onCommand((ConsoleCommandSender) sender, args);
+            onCommand(sender, args);
         }
-        onCommand(sender, args);
         return true;
     }
 
-	/* ------------------------------------------------------------------------- */
-
-    public abstract void onCommand(ConsoleCommandSender sender, String[] args);
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
+        if(sender instanceof Player) {
+            if(this.permission == null) {
+                return onTabComplete((Player) sender, args);
+            } else {
+                if(!sender.hasPermission(this.permission)) {
+                    HMessenger.errorNoPerms(sender);
+                    return Lists.newArrayList();
+                } else {
+                    return onTabComplete((Player) sender, args);
+                }
+            }
+        } else {
+	        return onTabComplete(sender, args);
+        }
+    }
 
     public abstract void onCommand(Player player, String[] args);
 
     public abstract void onCommand(CommandSender sender, String[] args);
 
-	/* ------------------------------------------------------------------------- */
+    public abstract List<String> onTabComplete(Player player, String[] args);
+
+    public abstract List<String> onTabComplete(CommandSender sender, String[] args);
 
     public boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=ยง^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|"
@@ -92,7 +107,6 @@ public abstract class HCommand implements CommandExecutor {
         for(int d = i; d < args.length; d++) {
             s += " " + args[d];
         }
-        return s.replaceFirst(" ", "");
+        return s.trim();
     }
-
 }

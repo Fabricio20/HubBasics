@@ -33,14 +33,16 @@ public class HubBasics extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
+		this.getCommandManager().unloadMap();
 		//TODO: Unload
 		Instance = null;
 	}
 
 	private void init() {
 		this.commandManager = new CommandManager();
-		this.hConfiguration = new HConfiguration();
+		this.getCommandManager().loadMap();
 
+		this.hConfiguration = new HConfiguration();
 		this.getHConfiguration().loadDefaults();
 	}
 }

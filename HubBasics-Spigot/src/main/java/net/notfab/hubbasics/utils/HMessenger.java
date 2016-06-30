@@ -11,6 +11,16 @@ import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.objects.HCommand;
 import net.notfab.hubbasics.settings.ConfigKeys;
 
+/*
+ * Copyright (c) 2016.
+ *
+ * The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+ * Please read the information linked below before you attempt to use this project or it's contents to make sure you are abiding
+ * by it's terms.
+ *
+ * https://creativecommons.org/licenses/by-nc-sa/4.0/
+ */
+
 public class HMessenger {
 
 	/**
@@ -48,19 +58,19 @@ public class HMessenger {
 	 *
 	 * @param message - The message
 	 */
-	public void notifyAdmins(String... message) {
+	public static void notifyAdmins(String... message) {
 		System.out.println("[HubBasics] " + message);
 		sendSelectiveBroadcast(HPermissions.MESSAGE_ADMIN, ChatColor.RED + "" + ChatColor.BOLD + "(HB Admin) " + ChatColor.GOLD + arrayToString(message));
 	}
 
 
-	public void sendCommandUsageMessage(CommandSender sender, HCommand command, String msg) {
+	public static void sendCommandUsageMessage(CommandSender sender, HCommand command, String msg) {
 		String format = ChatColor.BLUE + "" + ChatColor.ITALIC;
 		String prefix = format + "Usage of command " + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + command.getNames()[0] + format + ": ";
 		sender.sendMessage(prefix + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + msg);
 	}
 
-	public void sendCommandUsageMessage(CommandSender sender, String[] msg) {
+	public static void sendCommandUsageMessage(CommandSender sender, String[] msg) {
 		sender.sendMessage(ChatColor.BLUE + "" + ChatColor.ITALIC + "Usage: ");
 
 		for (String str : msg) {
@@ -68,22 +78,22 @@ public class HMessenger {
 		}
 	}
 
-	public void errorNoPerms(CommandSender sender) {
+	public static void errorNoPerms(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "You don't have permission to execute this command!");
 	}
 
-	public void errorPlayersOnly(CommandSender sender) {
+	public static void errorPlayersOnly(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "This command is limited to players only!");
 	}
 
-	public void errorPlayerNotFound(CommandSender sender, String player) {
+	public static void errorPlayerNotFound(CommandSender sender, String player) {
 		sender.sendMessage(ChatColor.RED + "Player " + ChatColor.DARK_RED + player + ChatColor.RED + " was not found.");
 	}
 
-	public void sendStackTrace(Exception exc) {
+	public static void sendStackTrace(Exception exc) {
 		exc.printStackTrace();
-		this.sendDebugMessage("Printing stacktrace elements for caught @!" + exc.getClass().getName() + "@@...");
-		this.sendDebugMessage("Message: @!" + exc.getMessage());
+		sendDebugMessage("Printing stacktrace elements for caught @!" + exc.getClass().getName() + "@@...");
+		sendDebugMessage("Message: @!" + exc.getMessage());
 		int skipped = 0;
 		int index = 0;
 		for (StackTraceElement element : exc.getStackTrace()) {
@@ -96,10 +106,10 @@ public class HMessenger {
 				int lineNumber = element.getLineNumber();
 				String method = element.getMethodName();
 				if (skipped > 0) {
-					this.sendDebugMessage("Stacktrace skipped @!" + skipped + "@@ non-HubBasics classes.");
+					sendDebugMessage("Stacktrace skipped @!" + skipped + "@@ non-HubBasics classes.");
 				}
 
-				this.sendDebugMessage("Stacktrace @!" + index + "@@: @!" + clazz + "@@ (@!" + lineNumber + "@@) -> @!" + method);
+				sendDebugMessage("Stacktrace @!" + index + "@@: @!" + clazz + "@@ (@!" + lineNumber + "@@) -> @!" + method);
 				skipped = 0;
 			}
 		}

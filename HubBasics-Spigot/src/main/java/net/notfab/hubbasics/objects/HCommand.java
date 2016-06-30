@@ -15,6 +15,16 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+ * Copyright (c) 2016.
+ *
+ * The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+ * Please read the information linked below before you attempt to use this project or it's contents to make sure you are abiding
+ * by it's terms.
+ *
+ * https://creativecommons.org/licenses/by-nc-sa/4.0/
+ */
+
 public abstract class HCommand implements CommandExecutor {
 
     @Getter @Setter private Permission permission;
@@ -35,22 +45,22 @@ public abstract class HCommand implements CommandExecutor {
 
     @Override
     @Deprecated
-    public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-        if(arg0 instanceof Player) {
+    public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
+        if(sender instanceof Player) {
             if(this.permission == null) {
-                onCommand((Player) arg0, arg3);
+                onCommand((Player) sender, args);
             } else {
-                if(!arg0.hasPermission(this.permission)) {
-                    HMessenger.sendError(arg0, "You do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.");
+                if(!sender.hasPermission(this.permission)) {
+                    HMessenger.errorNoPerms(sender);
                 } else {
-                    onCommand((Player) arg0, arg3);
+                    onCommand((Player) sender, args);
                 }
             }
-            onCommand((Player) arg0, arg3);
+            onCommand((Player) sender, args);
         } else {
-            onCommand((ConsoleCommandSender) arg0, arg3);
+            onCommand((ConsoleCommandSender) sender, args);
         }
-        onCommand(arg0, arg3);
+        onCommand(sender, args);
         return true;
     }
 

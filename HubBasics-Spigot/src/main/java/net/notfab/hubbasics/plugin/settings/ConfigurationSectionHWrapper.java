@@ -20,6 +20,10 @@ public class ConfigurationSectionHWrapper {
 
 	private ConfigurationSection config;
 
+	/**
+	 * This class functions as a wrapper for ConfigurationSection, but it accepts {@link ConfigurationKey} as path
+	 * @param config The ConfigurationSection
+	 */
 	public ConfigurationSectionHWrapper(ConfigurationSection config) {
 		this.config = config;
 	}

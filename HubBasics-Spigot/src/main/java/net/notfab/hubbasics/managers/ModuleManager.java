@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
+import net.notfab.hubbasics.modules.AntiVoid;
 import net.notfab.hubbasics.modules.DoubleJump;
 import net.notfab.hubbasics.modules.JumpPads;
 import org.bukkit.Bukkit;
@@ -18,6 +19,7 @@ public class ModuleManager {
     public ModuleManager() {
         moduleMap.put(ModuleEnum.DOUBLE_JUMP, new DoubleJump());
         moduleMap.put(ModuleEnum.JUMP_PADS, new JumpPads());
+        moduleMap.put(ModuleEnum.ANTI_VOID, new AntiVoid());
         registerListeners();
         onEnable();
     }

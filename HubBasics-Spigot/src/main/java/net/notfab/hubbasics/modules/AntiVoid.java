@@ -2,6 +2,7 @@ package net.notfab.hubbasics.modules;
 
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,6 +34,7 @@ public class AntiVoid extends Module {
         }
         e.setCancelled(true);
         e.setDamage(0.0);
+        HMessenger.sendMessage(player, ConfigurationKey.ANTI_VOID_MESSAGE);
         player.teleport(player.getWorld().getSpawnLocation());
     }
 

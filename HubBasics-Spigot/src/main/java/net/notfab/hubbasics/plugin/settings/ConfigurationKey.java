@@ -16,10 +16,10 @@ import java.util.Arrays;
  */
 
 public enum ConfigurationKey {
-	ENABLE_DEBUG("messages.debug", false, false),
-	PLAYER_CONNECT("messages.player.connect", true, "&8[&a+&8] &f<displayName> &7joined the game"),
-	PLAYER_DISCONNECT("messages.player.disconnect", true, "&8[&c-&8] &f<displayName> &7quit the game"),
-	PLAYER_FIRST_CONNECT("messages.player.firstConnect", true, "&9Welcome to the server, &f<displayName>&9!"),
+	ENABLE_DEBUG("Messages.Debug", false, false),
+	PLAYER_CONNECT("Messages.Player.Connect", true, "&8[&a+&8] &f<displayname> &7joined the game"),
+	PLAYER_DISCONNECT("Messages.Player.Disconnect", true, "&8[&c-&8] &f<displayname> &7quit the game"),
+	PLAYER_FIRST_CONNECT("Messages.Player.FirstConnect", true, "&9Welcome to the server, &f<displayname>&9!"),
 
 	JUMP_PADS_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.JUMP_PADS),
 	JUMP_PADS_FORCE("Force", false, 0.3, ModuleEnum.JUMP_PADS),
@@ -36,7 +36,7 @@ public enum ConfigurationKey {
 
 	/**
 	 * If this option is set to true, it will allow the user to change this setting per world.
-	 * The config section will look like this
+	 * The config section will look like this;
 	 *
 	 * key_path:
 	 *   global: value // This is the global value if there is no specific setting for the given world
@@ -45,7 +45,7 @@ public enum ConfigurationKey {
 	@Getter	private boolean perWorldAllowed;
 
 	/**
-	 * The default value that will be set when the config file is created.
+	 * The default value that will be set when the config file is created/someone removes the key in the config file
 	 */
 	@Getter	private Object defaultValue;
 

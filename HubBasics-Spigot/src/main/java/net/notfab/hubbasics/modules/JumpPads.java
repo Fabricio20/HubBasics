@@ -18,10 +18,19 @@ public class JumpPads extends Module {
         super(ModuleEnum.JUMP_PADS);
     }
 
+    @Override
+    public void onEnable() {}
+
+    @Override
+    public void onDisable() {}
+
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         Player player = e.getPlayer();
         if(player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR) {
+            return;
+        }
+        if(!isInWorld(player.getWorld(), ConfigurationKey.JUMP_PADS_ENABLED)) {
             return;
         }
         Material mat;

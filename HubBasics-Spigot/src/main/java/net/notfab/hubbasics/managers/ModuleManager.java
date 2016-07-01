@@ -19,13 +19,19 @@ public class ModuleManager {
         moduleMap.put(ModuleEnum.DOUBLE_JUMP, new DoubleJump());
         moduleMap.put(ModuleEnum.JUMP_PADS, new JumpPads());
         registerListeners();
+        onEnable();
+    }
+
+    public void onEnable() {
+        this.moduleMap.values().forEach(Module::onEnableInternal);
+    }
+
+    public void onDisable() {
+        this.moduleMap.values().forEach(Module::onDisableInternal);
     }
 
     private void registerListeners() {
-        for(Iterator<Module> iterator = this.moduleMap.values().iterator(); iterator.hasNext();) {
-            Module module = iterator.next();
-            Bukkit.getPluginManager().registerEvents(module, HubBasics.getInstance());
-        }
+        this.moduleMap.values().forEach(module -> Bukkit.getPluginManager().registerEvents(module, HubBasics.getInstance()));
     }
 
     public Module getModule(ModuleEnum moduleEnum) {

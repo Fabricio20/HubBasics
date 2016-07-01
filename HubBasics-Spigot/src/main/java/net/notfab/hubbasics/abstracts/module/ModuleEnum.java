@@ -13,6 +13,7 @@ package net.notfab.hubbasics.abstracts.module;
 public enum ModuleEnum {
 
 	DOUBLE_JUMP,
-	JUMP_PADS;
+	JUMP_PADS,
+	ANTI_VOID;
 
 }

@@ -36,9 +36,7 @@ public class HMessenger {
 		if(msg.equalsIgnoreCase("null")) {
 			return;
 		}
-		msg = org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
-		msg = msg.replaceAll("<displayname>", commandSender.getName());
-		msg = msg.replaceAll("<name>", commandSender.getName());
+		msg = format(msg, commandSender);
 		commandSender.sendMessage(msg);
 	}
 
@@ -204,7 +202,7 @@ public class HMessenger {
 	 * @param commandSender (Optional) CommandSender
 	 * @return The formatted message
      */
-	private static String format(String message, CommandSender commandSender) {
+	public static String format(String message, CommandSender commandSender) {
 		if(message.equalsIgnoreCase("null")) {
 			return null;
 		}

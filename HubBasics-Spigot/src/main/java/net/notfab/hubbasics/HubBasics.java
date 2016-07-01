@@ -3,6 +3,7 @@ package net.notfab.hubbasics;
 import lombok.Getter;
 
 import net.notfab.hubbasics.managers.CommandManager;
+import net.notfab.hubbasics.managers.ModuleManager;
 import net.notfab.hubbasics.managers.SimpleConfigManager;
 import net.notfab.hubbasics.objects.SimpleConfig;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
@@ -28,6 +29,7 @@ public class HubBasics extends JavaPlugin {
 	@Getter	private HConfiguration pluginConfiguration;
 	@Getter private SimpleConfigManager configManager;
 	@Getter private MessageManager messageManager;
+	@Getter private ModuleManager moduleManager;
 
 	@Override
 	public void onEnable() {
@@ -53,5 +55,7 @@ public class HubBasics extends JavaPlugin {
 
 		this.pluginConfiguration = new HConfiguration();
 		this.getPluginConfiguration().loadDefaults();
+
+		this.moduleManager = new ModuleManager();
 	}
 }

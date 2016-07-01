@@ -1,15 +1,21 @@
 package net.notfab.hubbasics.abstracts.module;
 
-/*
- * Copyright (c) 2016.
- *
- * The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
- * Please read the information linked below before you attempt to use this project or it's contents to make sure you are abiding
- * by it's terms.
- *
- * https://creativecommons.org/licenses/by-nc-sa/4.0/
- */
+import lombok.Getter;
+import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
+import org.bukkit.World;
+import org.bukkit.event.Listener;
 
-public enum Module {
-	DOUBLE_JUMP
+public abstract class Module implements Listener {
+
+    @Getter private final ModuleEnum moduleEnum;
+
+    public Module(ModuleEnum moduleEnum) {
+        this.moduleEnum = moduleEnum;
+    }
+
+    public Boolean isInWorld(World world, ConfigurationKey configurationKey) {
+        //TODO: Implement this as Idk how Mister is doing it - Fab
+        return false;
+    }
+
 }

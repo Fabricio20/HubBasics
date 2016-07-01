@@ -5,6 +5,7 @@ import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.modules.DoubleJump;
+import net.notfab.hubbasics.modules.JumpPads;
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;
@@ -16,14 +17,21 @@ public class ModuleManager {
 
     public ModuleManager() {
         moduleMap.put(ModuleEnum.DOUBLE_JUMP, new DoubleJump());
+        moduleMap.put(ModuleEnum.JUMP_PADS, new JumpPads());
         registerListeners();
+        onEnable();
+    }
+
+    public void onEnable() {
+        this.moduleMap.values().forEach(Module::onEnableInternal);
+    }
+
+    public void onDisable() {
+        this.moduleMap.values().forEach(Module::onDisableInternal);
     }
 
     private void registerListeners() {
-        for(Iterator<Module> iterator = this.moduleMap.values().iterator(); iterator.hasNext();) {
-            Module module = iterator.next();
-            Bukkit.getPluginManager().registerEvents(module, HubBasics.getInstance());
-        }
+        this.moduleMap.values().forEach(module -> Bukkit.getPluginManager().registerEvents(module, HubBasics.getInstance()));
     }
 
     public Module getModule(ModuleEnum moduleEnum) {

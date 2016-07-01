@@ -18,6 +18,12 @@ public class DoubleJump extends Module {
         super(ModuleEnum.DOUBLE_JUMP);
     }
 
+    @Override
+    public void onEnable() {}
+
+    @Override
+    public void onDisable() {}
+
     @EventHandler
     public void onJump(PlayerToggleFlightEvent e) {
         Player player = e.getPlayer();

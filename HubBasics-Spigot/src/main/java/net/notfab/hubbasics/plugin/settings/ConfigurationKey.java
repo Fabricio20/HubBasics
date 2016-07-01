@@ -3,9 +3,7 @@ package net.notfab.hubbasics.plugin.settings;
 import lombok.Getter;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 /*
  * Copyright (c) 2016.
@@ -22,6 +20,10 @@ public enum ConfigurationKey {
 	PLAYER_CONNECT("messages.player.connect", true, "&8[&a+&8] &f<displayName> &7joined the game"),
 	PLAYER_DISCONNECT("messages.player.disconnect", true, "&8[&c-&8] &f<displayName> &7quit the game"),
 	PLAYER_FIRST_CONNECT("messages.player.firstConnect", true, "&9Welcome to the server, &f<displayName>&9!"),
+
+	JUMP_PADS_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.JUMP_PADS),
+	JUMP_PADS_FORCE("Force", false, 0.3, ModuleEnum.JUMP_PADS),
+	JUMP_PADS_MATERIAL("Material", false, "REDSTONE_BLOCK", ModuleEnum.JUMP_PADS),
 
 	DOUBLE_JUMP_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.DOUBLE_JUMP),
 	DOUBLE_JUMP_FORCE("Force", false, 0.3, ModuleEnum.DOUBLE_JUMP),

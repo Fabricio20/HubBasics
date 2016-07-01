@@ -21,7 +21,8 @@ public enum ConfigurationKey {
 	ENABLE_DEBUG("messages.debug", false, false),
 	PLAYER_CONNECT("messages.player.connect", true, "&8[&a+&8] &f<displayName> &7joined the game"),
 	PLAYER_DISCONNECT("messages.player.disconnect", true, "&8[&c-&8] &f<displayName> &7quit the game"),
-	PLAYER_FIRST_CONNECT("messages.player.firstConnect", true, "&9Welcome to the server, &f<displayName>&9!");
+	PLAYER_FIRST_CONNECT("messages.player.firstConnect", true, "&9Welcome to the server, &f<displayName>&9!"),
+	ENABLE_DOUBLE_JUMP("enableDoubleJump", true, true, Module.DOUBLE_JUMP);
 
 	@Getter	private String path;
 	@Getter	private boolean perWorldAllowed;

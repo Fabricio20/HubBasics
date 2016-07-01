@@ -125,6 +125,10 @@ public class HConfiguration {
 		return this.config.getConfigurationSection(this.getGlobalPath(key));
 	}
 
+	public ConfigurationSectionHWrapper getWrappedConfigSection(ConfigurationKey key) {
+		return new ConfigurationSectionHWrapper(this.getConfigurationSection(key));
+	}
+
 	public double getDouble(ConfigurationKey key) {
 		return this.config.getDouble(key.getPath());
 	}

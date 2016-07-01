@@ -14,8 +14,6 @@ import net.notfab.hubbasics.abstracts.module.ModuleEnum;
  */
 
 public enum ConfigurationKey {
-
-	WORLD_PARENT_SECTION("world.config", false, null),
 	ENABLE_DEBUG("messages.debug", false, false),
 	PLAYER_CONNECT("messages.player.connect", true, "&8[&a+&8] &f<displayName> &7joined the game"),
 	PLAYER_DISCONNECT("messages.player.disconnect", true, "&8[&c-&8] &f<displayName> &7quit the game"),
@@ -24,9 +22,30 @@ public enum ConfigurationKey {
 	DOUBLE_JUMP_FORCE("Force", false, 0.3, ModuleEnum.DOUBLE_JUMP),
 	DOUBLE_JUMP_SOUND("Sound", false, "ENTITY_BAT_TAKEOFF", ModuleEnum.DOUBLE_JUMP);
 
+	/**
+	 * This is the path the option will have in the config.yml file
+	 */
 	@Getter	private String path;
+
+	/**
+	 * If this option is set to true, it will allow the user to change this setting per world.
+	 * The config section will look like this
+	 *
+	 * key_path:
+	 *   global: value // This is the global value if there is no specific setting for the current world
+	 *   world_name: value // This value will be used if the key is accessed from this world
+	 */
 	@Getter	private boolean perWorldAllowed;
+
+	/**
+	 * The default value that will be set when the config file is created
+	 */
 	@Getter	private Object defaultValue;
+
+	/**
+	 * If the key is related to a module, this allows you to specify that
+	 * Can be null
+	 */
 	@Getter private ModuleEnum moduleEnum;
 
 	ConfigurationKey(String path, Boolean worldDependant, Object defaultValue) {
@@ -42,6 +61,10 @@ public enum ConfigurationKey {
 		this.moduleEnum = moduleEnum;
 	}
 
+	/**
+	 * Same as .getPath();
+	 * @return The path in config.yml
+	 */
 	@Override
 	public String toString() {
 		return this.getPath();

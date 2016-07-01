@@ -25,6 +25,37 @@ import net.notfab.hubbasics.plugin.utils.HPermissions;
 public class HMessenger {
 
 	/**
+	 * Sends the given message
+	 *
+	 * @param commandSender The receiver of the message
+	 * @param message       The message
+     */
+	public static void sendMessage(CommandSender commandSender, String... message) {
+		String msg = arrayToString(message);
+		msg = org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
+		msg = msg.replaceAll("<displayname>", commandSender.getName());
+		msg = msg.replaceAll("<name>", commandSender.getName());
+		commandSender.sendMessage(msg);
+	}
+
+	/**
+	 * Sends the given ConfigurationKey message
+	 * PS: Make sure this ConfigurationKey is a String, else it will silentely fail.
+	 *
+	 * @param commandSender    The receiver of the message
+	 * @param configurationKey The message
+     */
+	public static void sendMessage(CommandSender commandSender, ConfigurationKey configurationKey) {
+		String message;
+		try {
+			message = HubBasics.getInstance().getPluginConfiguration().getString(configurationKey);
+		} catch (IllegalArgumentException ex) {
+			return;
+		}
+		sendMessage(commandSender, message);
+	}
+
+	/**
 	 * Sends the given message formatted as an error
 	 *
 	 * @param sender The receiver of the message
@@ -60,7 +91,7 @@ public class HMessenger {
 	 * @param message - The message
 	 */
 	public static void notifyAdmins(String... message) {
-		System.out.println("[HubBasics] " + message);
+		System.out.println("[HubBasics] " + arrayToString(message));
 		sendSelectiveBroadcast(HPermissions.MESSAGE_ADMIN, ChatColor.RED + "" + ChatColor.BOLD + "(HB Admin) " + ChatColor.GOLD + arrayToString(message));
 	}
 

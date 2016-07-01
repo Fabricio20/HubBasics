@@ -38,6 +38,7 @@ public class HubBasics extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		this.getCommandManager().unloadMap();
+		this.moduleManager.onDisable();
 		//TODO: Unload
 		instance = null;
 	}

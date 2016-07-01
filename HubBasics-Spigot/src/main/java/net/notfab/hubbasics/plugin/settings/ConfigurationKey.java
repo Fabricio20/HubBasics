@@ -21,6 +21,9 @@ public enum ConfigurationKey {
 	PLAYER_DISCONNECT("messages.player.disconnect", true, "&8[&c-&8] &f<displayName> &7quit the game"),
 	PLAYER_FIRST_CONNECT("messages.player.firstConnect", true, "&9Welcome to the server, &f<displayName>&9!"),
 
+	ANTI_VOID_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.ANTI_VOID),
+	ANTI_VOID_MESSAGE("Message", false, "&e<displayname> &9You got teleported to the spawn.", ModuleEnum.ANTI_VOID),
+
 	JUMP_PADS_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.JUMP_PADS),
 	JUMP_PADS_FORCE("Force", false, 0.3, ModuleEnum.JUMP_PADS),
 	JUMP_PADS_MATERIAL("Material", false, "REDSTONE_BLOCK", ModuleEnum.JUMP_PADS),

@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -81,8 +82,11 @@ public class CommandManager {
 				names.remove(0);
 				pcmd.setAliases(names);
 				pcmd.setExecutor(cmd);
+				pcmd.setTabCompleter(cmd);
 			} else {
-				plugin.getCommand(cmd.getNames()[0]).setExecutor(cmd);
+				PluginCommand command = plugin.getCommand(cmd.getNames()[0]);
+				command.setExecutor(cmd);
+				command.setTabCompleter(cmd);
 			}
 		} else if(cmd.getNames().length > 1) {
             List<String> names = new LinkedList<>(Arrays.asList(cmd.getNames()));
@@ -91,9 +95,11 @@ public class CommandManager {
 	        names.remove(0);
             command.setAliases(names);
             command.setExecutor(cmd);
+			command.setTabCompleter(cmd);
         } else {
 	        UnregisteredCommand command = new UnregisteredCommand(cmd.getNames()[0]);
 	        command.setExecutor(cmd);
+			command.setTabCompleter(cmd);
         }
 
         this.commands.add(cmd);
@@ -101,6 +107,7 @@ public class CommandManager {
 
     private class UnregisteredCommand extends Command {
         @Setter private CommandExecutor executor;
+		@Setter private TabCompleter tabCompleter;
 
         protected UnregisteredCommand(String name) {
             super(name);
@@ -109,6 +116,11 @@ public class CommandManager {
 	    @Override
 	    public boolean execute(CommandSender commandSender, String s, String[] strings) {
 		    return executor == null ? false : executor.onCommand(commandSender, this, s, strings);
+	    }
+
+	    @Override
+	    public List<String> tabComplete(CommandSender sender, String alias, String[] args) {
+		    return this.tabCompleter.onTabComplete(sender, this, alias, args);
 	    }
     }
 }

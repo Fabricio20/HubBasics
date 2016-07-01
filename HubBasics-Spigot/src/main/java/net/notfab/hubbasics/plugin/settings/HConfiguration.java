@@ -30,11 +30,17 @@ public class HConfiguration {
 
 	private final String globalSetting = ".global";
 
+	/**
+	 * YAML configuration wrapper with world configuration support.
+	 */
 	public HConfiguration() {
 		this.pl = HubBasics.getInstance();
 		this.config = pl.getConfigManager().getNewConfig("config.yml");
 	}
 
+	/**
+	 * Iterates through all the {@link ConfigurationKey}s and checks if they are in the file. If not, it will set the value to the keys default value.
+	 */
 	public void loadDefaults() {
 		Arrays.stream(ConfigurationKey.values()).filter(configurationKey ->
 				!this.config.contains(configurationKey.getPath())).forEach(key ->

@@ -4,10 +4,7 @@ import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
-import net.notfab.hubbasics.modules.AntiVoid;
-import net.notfab.hubbasics.modules.DoubleJump;
-import net.notfab.hubbasics.modules.FixedWeather;
-import net.notfab.hubbasics.modules.JumpPads;
+import net.notfab.hubbasics.modules.*;
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;
@@ -22,6 +19,8 @@ public class ModuleManager {
         moduleMap.put(ModuleEnum.JUMP_PADS, new JumpPads());
         moduleMap.put(ModuleEnum.ANTI_VOID, new AntiVoid());
         moduleMap.put(ModuleEnum.FIXED_WEATHER, new FixedWeather());
+        moduleMap.put(ModuleEnum.KEEP_FOOD, new KeepFood());
+        moduleMap.put(ModuleEnum.KEEP_HEALTH, new KeepHealth());
         registerListeners();
         onEnable();
     }

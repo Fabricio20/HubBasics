@@ -22,6 +22,8 @@ public enum ConfigurationKey {
 	PLAYER_FIRST_CONNECT("Messages.Player.FirstConnect", true, "&9Welcome to the server, &f<displayname>&9!"),
 
 	FIXED_WEATHER_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.FIXED_WEATHER),
+	KEEP_FOOD_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_FOOD),
+	KEEP_HEALTH_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_HEALTH),
 
 	ANTI_VOID_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.ANTI_VOID),
 	ANTI_VOID_MESSAGE("Message", false, "&e<displayname> &9You got teleported to the spawn.", ModuleEnum.ANTI_VOID),

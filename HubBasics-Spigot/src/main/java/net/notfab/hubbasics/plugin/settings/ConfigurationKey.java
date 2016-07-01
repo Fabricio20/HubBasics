@@ -21,7 +21,7 @@ public enum ConfigurationKey {
 
 	CONNECT_MESSAGES_ENABLED("Enabled", false, true, ModuleEnum.CONNECTION_MESSAGES),
 	PLAYER_CONNECT("Join", false, "&8[&a+&8] &f<displayname> &7joined the game", ModuleEnum.CONNECTION_MESSAGES),
-	PLAYER_DISCONNECT("Join", false, "&8[&c-&8] &f<displayname> &7quit the game", ModuleEnum.CONNECTION_MESSAGES),
+	PLAYER_DISCONNECT("Leave", false, "&8[&c-&8] &f<displayname> &7quit the game", ModuleEnum.CONNECTION_MESSAGES),
 	PLAYER_FIRST_CONNECT("FirstJoin", false, "&9Welcome to the server, &f<displayname>&9!", ModuleEnum.CONNECTION_MESSAGES),
 
 	FIXED_WEATHER_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.FIXED_WEATHER),

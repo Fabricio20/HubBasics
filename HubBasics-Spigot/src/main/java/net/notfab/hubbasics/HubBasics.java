@@ -1,14 +1,11 @@
 package net.notfab.hubbasics;
 
 import lombok.Getter;
-
 import net.notfab.hubbasics.managers.CommandManager;
 import net.notfab.hubbasics.managers.ModuleManager;
 import net.notfab.hubbasics.managers.SimpleConfigManager;
-import net.notfab.hubbasics.objects.SimpleConfig;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
 import net.notfab.hubbasics.plugin.settings.HConfiguration;
-
 import org.bukkit.plugin.java.JavaPlugin;
 
 /*

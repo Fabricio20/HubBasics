@@ -4,7 +4,6 @@ import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
-import net.notfab.hubbasics.plugin.settings.HConfiguration;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -33,13 +32,13 @@ public class DoubleJump extends Module {
         player.setFlying(false);
         Sound sound;
         try {
-            sound = Sound.valueOf(""); // ConfigurationKey.DOUBLE_JUMP_SOUND
+            sound = Sound.valueOf(getString(ConfigurationKey.DOUBLE_JUMP_SOUND));
         } catch (IllegalArgumentException ex) {
             HMessenger.printStackTrace(new IllegalArgumentException("Invalid sound name for DoubleJump sound"));
             return;
         }
-        player.setVelocity(player.getLocation().getDirection().multiply(1.5D).setY(1));
-        player.playSound(player.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0F, -5.0F);
+        player.setVelocity(player.getLocation().getDirection().multiply(getDouble(ConfigurationKey.DOUBLE_JUMP_FORCE)).setY(1));
+        player.playSound(player.getLocation(), sound, 1.0F, -5.0F);
     }
 
     @EventHandler

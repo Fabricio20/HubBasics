@@ -6,6 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * Copyright (c) 2016.
@@ -20,12 +22,14 @@ import java.nio.charset.Charset;
 public class SimpleConfigManager {
 
 	private JavaPlugin plugin;
+	private Map<String, SimpleConfig> configs;
 
 	/**
 	 * Manage custom configurations and files
 	 */
 	public SimpleConfigManager(JavaPlugin plugin) {
 		this.plugin = plugin;
+		this.configs = new HashMap<>();
 	}
 
 	/**
@@ -35,6 +39,7 @@ public class SimpleConfigManager {
 	 * @return - New SimpleConfig
 	 */
 	public SimpleConfig getNewConfig(String filePath, String[] header) {
+		if (this.configs.containsKey(filePath)) return this.configs.get(filePath);
 		File file = this.getConfigFile(filePath);
 		if (!file.exists()) {
 			this.prepareFile(filePath);
@@ -42,8 +47,9 @@ public class SimpleConfigManager {
 				this.setHeader(file, header);
 			}
 		}
-		return new SimpleConfig(this.getConfigContent(filePath),
-				file, this.getCommentsNum(file), plugin);
+		SimpleConfig config = new SimpleConfig(this.getConfigContent(filePath), file, this.getCommentsNum(file), plugin);
+		this.configs.put(filePath, config);
+		return config;
 	}
 
 	/**

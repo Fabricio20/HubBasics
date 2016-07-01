@@ -166,8 +166,8 @@ public class HMessenger {
 	public static void printStackTrace(Exception exc) {
 		exc.printStackTrace();
 		if (!HubBasics.getInstance().getConfig().getBoolean(ConfigurationKey.ENABLE_DEBUG.getPath())) return;
-		sendDebugMessage("Printing stacktrace elements for caught @!" + exc.getClass().getName() + "@@...");
-		sendDebugMessage("Message: @!" + exc.getMessage());
+		sendDebugMessage("Printing stacktrace elements for caught " + exc.getClass().getName() + "...");
+		sendDebugMessage("Message: " + exc.getMessage());
 		int skipped = 0;
 		int index = 0;
 		for (StackTraceElement element : exc.getStackTrace()) {
@@ -179,11 +179,8 @@ public class HMessenger {
 			} else {
 				int lineNumber = element.getLineNumber();
 				String method = element.getMethodName();
-				if (skipped > 0) {
-					sendDebugMessage("Stacktrace skipped @!" + skipped + "@@ non-HubBasics classes.");
-				}
-
-				sendDebugMessage("Stacktrace @!" + index + "@@: @!" + clazz + "@@ (@!" + lineNumber + "@@) -> @!" + method);
+				if (skipped > 0) sendDebugMessage("Stacktrace skipped " + skipped + " non-HubBasics classes.");
+				sendDebugMessage("Stacktrace " + index + ": " + clazz + " (" + lineNumber + ") -> " + method);
 				skipped = 0;
 			}
 		}

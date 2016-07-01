@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.plugin.settings;
 
 import lombok.Getter;
+import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 
 import java.util.Arrays;
@@ -17,9 +18,11 @@ import java.util.Arrays;
 
 public enum ConfigurationKey {
 	ENABLE_DEBUG("Messages.Debug", false, false),
-	PLAYER_CONNECT("Messages.Player.Connect", true, "&8[&a+&8] &f<displayname> &7joined the game"),
-	PLAYER_DISCONNECT("Messages.Player.Disconnect", true, "&8[&c-&8] &f<displayname> &7quit the game"),
-	PLAYER_FIRST_CONNECT("Messages.Player.FirstConnect", true, "&9Welcome to the server, &f<displayname>&9!"),
+
+	CONNECT_MESSAGES_ENABLED("Enabled", false, true, ModuleEnum.CONNECTION_MESSAGES),
+	PLAYER_CONNECT("Join", false, "&8[&a+&8] &f<displayname> &7joined the game", ModuleEnum.CONNECTION_MESSAGES),
+	PLAYER_DISCONNECT("Join", false, "&8[&c-&8] &f<displayname> &7quit the game", ModuleEnum.CONNECTION_MESSAGES),
+	PLAYER_FIRST_CONNECT("FirstJoin", false, "&9Welcome to the server, &f<displayname>&9!", ModuleEnum.CONNECTION_MESSAGES),
 
 	FIXED_WEATHER_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.FIXED_WEATHER),
 	KEEP_FOOD_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_FOOD),

@@ -44,4 +44,8 @@ public abstract class Module implements Listener {
         return HubBasics.getInstance().getPluginConfiguration().getDouble(configurationKey);
     }
 
+    public Boolean getBoolean(ConfigurationKey configurationKey) {
+        return HubBasics.getInstance().getPluginConfiguration().getBoolean(configurationKey);
+    }
+
 }

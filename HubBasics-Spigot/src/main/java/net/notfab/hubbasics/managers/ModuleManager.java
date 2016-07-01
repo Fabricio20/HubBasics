@@ -21,6 +21,7 @@ public class ModuleManager {
         moduleMap.put(ModuleEnum.FIXED_WEATHER, new FixedWeather());
         moduleMap.put(ModuleEnum.KEEP_FOOD, new KeepFood());
         moduleMap.put(ModuleEnum.KEEP_HEALTH, new KeepHealth());
+        moduleMap.put(ModuleEnum.CONNECTION_MESSAGES, new ConnectionMessages());
         registerListeners();
         onEnable();
     }

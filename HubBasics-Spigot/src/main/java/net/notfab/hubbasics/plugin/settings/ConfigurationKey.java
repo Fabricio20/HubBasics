@@ -39,19 +39,20 @@ public enum ConfigurationKey {
 	 * The config section will look like this
 	 *
 	 * key_path:
-	 *   global: value // This is the global value if there is no specific setting for the current world
-	 *   world_name: value // This value will be used if the key is accessed from this world
+	 *   global: value // This is the global value if there is no specific setting for the given world
+	 *   world_name: value // This value will be used if the key is accessed and a world with the name "world_name" is given
 	 */
 	@Getter	private boolean perWorldAllowed;
 
 	/**
-	 * The default value that will be set when the config file is created
+	 * The default value that will be set when the config file is created.
 	 */
 	@Getter	private Object defaultValue;
 
 	/**
-	 * If the key is related to a module, this allows you to specify that
-	 * Can be null
+	 * If the key is related to a module, this allows you to specify that. In addition, this creates a parent
+	 * section with the same name as the module. For example, if Module.DOUBLE_JUMP was specified, all options
+	 * with this module given, will have the parent section "double_jump". This option can be null.
 	 */
 	@Getter private ModuleEnum moduleEnum;
 
@@ -62,14 +63,14 @@ public enum ConfigurationKey {
 	}
 
 	ConfigurationKey(String path, Boolean worldDependant, Object defaultValue, ModuleEnum moduleEnum) {
-		this.path = path;
+		this.path = moduleEnum.name().toLowerCase() + "." + path;
 		this.perWorldAllowed = worldDependant;
 		this.defaultValue = defaultValue;
 		this.moduleEnum = moduleEnum;
 	}
 
 	/**
-	 * Same as .getPath();
+	 * Same as getPath
 	 * @return The path in config.yml
 	 */
 	@Override

@@ -176,10 +176,7 @@ public class HMessenger {
 			} else {
 				int lineNumber = element.getLineNumber();
 				String method = element.getMethodName();
-				if (skipped > 0) {
-					sendDebugMessage("Stacktrace skipped " + skipped + " non-HubBasics classes.");
-				}
-
+				if (skipped > 0) sendDebugMessage("Stacktrace skipped " + skipped + " non-HubBasics classes.");
 				sendDebugMessage("Stacktrace " + index + ": " + clazz + " (" + lineNumber + ") -> " + method);
 				skipped = 0;
 			}

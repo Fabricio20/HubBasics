@@ -5,6 +5,7 @@ import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.modules.DoubleJump;
+import net.notfab.hubbasics.modules.JumpPads;
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public class ModuleManager {
 
     public ModuleManager() {
         moduleMap.put(ModuleEnum.DOUBLE_JUMP, new DoubleJump());
+        moduleMap.put(ModuleEnum.JUMP_PADS, new JumpPads());
         registerListeners();
     }
 

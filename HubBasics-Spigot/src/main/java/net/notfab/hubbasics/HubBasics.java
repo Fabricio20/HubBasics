@@ -3,7 +3,10 @@ package net.notfab.hubbasics;
 import lombok.Getter;
 
 import net.notfab.hubbasics.managers.CommandManager;
-import net.notfab.hubbasics.plugin.settings.PluginConfiguration;
+import net.notfab.hubbasics.managers.SimpleConfigManager;
+import net.notfab.hubbasics.objects.SimpleConfig;
+import net.notfab.hubbasics.plugin.messages.MessageManager;
+import net.notfab.hubbasics.plugin.settings.HConfiguration;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,7 +25,9 @@ public class HubBasics extends JavaPlugin {
 	@Getter	private static HubBasics instance;
 
 	@Getter	private CommandManager commandManager;
-	@Getter	private PluginConfiguration pluginConfiguration;
+	@Getter	private HConfiguration pluginConfiguration;
+	@Getter private SimpleConfigManager configManager;
+	@Getter private MessageManager messageManager;
 
 	@Override
 	public void onEnable() {
@@ -39,10 +44,14 @@ public class HubBasics extends JavaPlugin {
 	}
 
 	private void init() {
+		this.configManager = new SimpleConfigManager(this);
+		this.messageManager = new MessageManager();
+		this.getMessageManager().loadMessages();
+
 		this.commandManager = new CommandManager();
 		this.getCommandManager().loadMap();
 
-		this.pluginConfiguration = new PluginConfiguration();
+		this.pluginConfiguration = new HConfiguration();
 		this.getPluginConfiguration().loadDefaults();
 	}
 }

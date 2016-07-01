@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
 
-import net.notfab.hubbasics.plugin.utils.HMessenger;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
 
 /*
  * Copyright (c) 2016.

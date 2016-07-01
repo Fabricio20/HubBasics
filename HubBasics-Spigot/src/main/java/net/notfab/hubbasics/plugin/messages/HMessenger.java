@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.plugin.utils;
+package net.notfab.hubbasics.plugin.messages;
 
 import java.util.Arrays;
 
@@ -9,7 +9,8 @@ import org.bukkit.permissions.Permission;
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
-import net.notfab.hubbasics.plugin.settings.ConfigKeys;
+import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
+import net.notfab.hubbasics.plugin.utils.HPermissions;
 
 /*
  * Copyright (c) 2016.
@@ -30,7 +31,7 @@ public class HMessenger {
 	 * @param msg    The message
 	 */
 	public static void sendErrorMessage(CommandSender sender, String... msg) {
-		sender.sendMessage(ChatColor.RED + "An error occurred: " + arrayToString(msg));
+		sender.sendMessage(ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_OCCURRED.getMessage() + ": " + arrayToString(msg));
 	}
 
 	/**
@@ -49,7 +50,7 @@ public class HMessenger {
 	 * @param message The message
 	 */
 	public static void sendDebugMessage(String message) {
-		if (!HubBasics.getInstance().getConfig().getBoolean(ConfigKeys.ENABLE_DEBUG.getPath())) return;
+		if (!HubBasics.getInstance().getConfig().getBoolean(ConfigurationKey.ENABLE_DEBUG.getPath())) return;
 		sendSelectiveBroadcast(HPermissions.MESSAGE_DEBUG, ChatColor.YELLOW + "" + ChatColor.ITALIC + "HubBasics debug >> ", ChatColor.GRAY + message);
 	}
 
@@ -72,7 +73,7 @@ public class HMessenger {
 	 */
 	public static void sendCommandUsageMessage(CommandSender sender, HCommand command, String msg) {
 		String format = ChatColor.BLUE + "" + ChatColor.ITALIC;
-		String prefix = format + "Usage of command " + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + command.getNames()[0] + format + ": ";
+		String prefix = format + HubBasicsMessage.COMMAND_USAGE_PREFIX + ": ";
 		sender.sendMessage(prefix + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + msg);
 	}
 
@@ -84,10 +85,7 @@ public class HMessenger {
 	 * @param msgs    The usage messages, if command has multiple subcommands
 	 */
 	public static void sendCommandUsageMessage(CommandSender sender, HCommand command, String[] msgs) {
-		String format = ChatColor.BLUE + "" + ChatColor.ITALIC;
-		String msg = format + "Usage of command " + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + command.getNames()[0] + format + ": ";
-		sender.sendMessage(msg);
-
+		sender.sendMessage(ChatColor.BLUE + "" + ChatColor.ITALIC + HubBasicsMessage.COMMAND_USAGE_PREFIX + ": ");
 		for (String str : msgs) {
 			sender.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + "  " + str);
 		}
@@ -123,7 +121,7 @@ public class HMessenger {
 
 	public static void printStackTrace(Exception exc) {
 		exc.printStackTrace();
-		if (!HubBasics.getInstance().getConfig().getBoolean(ConfigKeys.ENABLE_DEBUG.getPath())) return;
+		if (!HubBasics.getInstance().getConfig().getBoolean(ConfigurationKey.ENABLE_DEBUG.getPath())) return;
 		sendDebugMessage("Printing stacktrace elements for caught @!" + exc.getClass().getName() + "@@...");
 		sendDebugMessage("Message: @!" + exc.getMessage());
 		int skipped = 0;

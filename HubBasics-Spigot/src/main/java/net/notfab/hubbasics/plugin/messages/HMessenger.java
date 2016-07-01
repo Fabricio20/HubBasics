@@ -39,6 +39,16 @@ public class HMessenger {
 	}
 
 	/**
+	 * Sends the given HubBasicsMessage
+	 *
+	 * @param commandSender The receiver of the message
+	 * @param message       The message
+     */
+	public static void sendMessage(CommandSender commandSender, HubBasicsMessage message) {
+		sendMessage(commandSender, message.getMessage());
+	}
+
+	/**
 	 * Sends the given ConfigurationKey message
 	 * PS: Make sure this ConfigurationKey is a String, else it will silentely fail.
 	 *

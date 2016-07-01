@@ -3,6 +3,7 @@ package net.notfab.hubbasics.plugin.messages;
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
 
@@ -86,6 +87,16 @@ public class HMessenger {
 	 */
 	public static void sendSelectiveBroadcast(Permission permission, String... msg) {
 		Bukkit.getOnlinePlayers().parallelStream().filter(target -> target.hasPermission(permission)).forEach(target -> target.sendMessage(msg));
+	}
+
+	/**
+	 * Sends the given message to all players in the given world
+	 *
+	 * @param world The world
+	 * @param msg   The message
+	 */
+	public static void sendSelectiveBroadcast(World world, String... msg) {
+		Bukkit.getOnlinePlayers().parallelStream().filter(target -> target.getWorld().equals(world)).forEach(target -> target.sendMessage(msg));
 	}
 
 	/**
@@ -184,6 +195,25 @@ public class HMessenger {
 				skipped = 0;
 			}
 		}
+	}
+
+	/**
+	 * Formats the given message (can return null if message equals to "null")
+	 *
+	 * @param message The message
+	 * @param commandSender (Optional) CommandSender
+	 * @return The formatted message
+     */
+	private static String format(String message, CommandSender commandSender) {
+		if(message.equalsIgnoreCase("null")) {
+			return null;
+		}
+		message = org.bukkit.ChatColor.translateAlternateColorCodes('&', message);
+		if(commandSender != null) {
+			message = message.replaceAll("<displayname>", commandSender.getName());
+			message = message.replaceAll("<name>", commandSender.getName());
+		}
+		return message;
 	}
 
 	private static String arrayToString(String... strings) {

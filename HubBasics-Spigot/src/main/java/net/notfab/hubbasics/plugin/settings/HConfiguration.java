@@ -27,43 +27,26 @@ public class HConfiguration {
 
 	private HubBasics pl;
 	private SimpleConfig config;
-	private Map<String, ConfigurationSectionHWrapper> worldConfigs;
+
+	private final String globalSetting = ".global";
 
 	public HConfiguration() {
 		this.pl = HubBasics.getInstance();
 		this.config = pl.getConfigManager().getNewConfig("config.yml");
-		this.loadWorldConfigs();
-	}
-
-	private void loadWorldConfigs() {
-		this.worldConfigs = new HashMap<>();
-		for (String world : config.getConfigurationSection(ConfigurationKey.WORLD_PARENT_SECTION.getPath()).getKeys(false)) {
-			if (Bukkit.getWorld(world) == null) {
-				throw new IllegalArgumentException("World " + world + " does not exist!");
-			} else {
-				this.worldConfigs.put(world, new ConfigurationSectionHWrapper(config.getConfigurationSection(ConfigurationKey.WORLD_PARENT_SECTION.getPath() + "." + world)));
-				System.out.println("Registered separate configuration file for world \"" + world + "\".");
-			}
-		}
 	}
 
 	public void loadDefaults() {
-		pl.getConfig().options().copyDefaults(true);
-		Map<String, Object> defaults = new HashMap<>();
-		Arrays.stream(ConfigurationKey.values()).forEach(key -> defaults.put(key.getPath(), key.getDefaultValue()));
-		pl.getConfig().addDefaults(defaults);
+		Arrays.stream(ConfigurationKey.values()).filter(configurationKey ->
+				!this.config.contains(configurationKey.getPath())).forEach(key ->
+				this.config.set(key.getPath(), key.getDefaultValue()));
 	}
 
-	public boolean hasSeparateConfig(World world) {
-		return this.worldConfigs.containsKey(world.getName());
+	private boolean hasWorldSpecificSetting(ConfigurationKey key, World world) {
+		return key.isPerWorldAllowed() && this.contains(key.getPath() + "." + world.getName());
 	}
 
-	public void createWorldConfig(World world) {
-		Arrays.stream(ConfigurationKey.values()).forEach(key -> this.set(key, key.getDefaultValue(), world));
-	}
-
-	public ConfigurationSectionHWrapper getSubConfig(World world) {
-		return this.worldConfigs.get(world.getName());
+	private String getGlobalPath(ConfigurationKey key) {
+		return key.getPath() + (key.isPerWorldAllowed() ? this.globalSetting : "");
 	}
 
 	public Object get(String path) {
@@ -75,79 +58,71 @@ public class HConfiguration {
 	}
 
 	public Object get(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.get(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.get(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).get(key);
+			return this.config.get(this.getGlobalPath(key));
 		}
 	}
 
 	public Object get(ConfigurationKey key, Object def) {
-		return this.config.get(key.getPath(), def);
+		return this.config.get(this.getGlobalPath(key), def);
 	}
 
 	public String getString(ConfigurationKey key) {
-		return this.config.getString(key.getPath());
+		return this.config.getString(this.getGlobalPath(key));
 	}
 
 	public String getString(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getString(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getString(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getString(key);
+			return this.config.getString(this.getGlobalPath(key));
 		}
 	}
 
 	public String getString(ConfigurationKey key, String def) {
-		return this.config.getString(key.getPath(), def);
+		return this.config.getString(this.getGlobalPath(key), def);
 	}
 
 	public int getInt(ConfigurationKey key) {
-		return this.config.getInt(key.getPath());
+		return this.config.getInt(this.getGlobalPath(key));
 	}
 
 	public int getInt(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getInt(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getInt(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getInt(key);
+			return this.config.getInt(this.getGlobalPath(key));
 		}
 	}
 
 	public int getInt(ConfigurationKey key, int def) {
-		return this.config.getInt(key.getPath(), def);
+		return this.config.getInt(this.getGlobalPath(key), def);
 	}
 
 	public boolean getBoolean(ConfigurationKey key) {
-		return this.config.getBoolean(key.getPath());
+		return this.config.getBoolean(this.getGlobalPath(key));
 	}
 
 	public boolean getBoolean(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getBoolean(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getBoolean(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getBoolean(key);
+			return this.config.getBoolean(this.getGlobalPath(key));
 		}
 	}
 
 	public boolean getBoolean(ConfigurationKey key, boolean def) {
-		return this.config.getBoolean(key.getPath(), def);
+		return this.config.getBoolean(this.getGlobalPath(key), def);
 	}
 
 	public void createSection(ConfigurationKey key) {
-		this.config.createSection(key.getPath());
+		this.config.createSection(this.getGlobalPath(key));
 	}
 
 	public ConfigurationSection getConfigurationSection(ConfigurationKey key) {
-		return this.config.getConfigurationSection(key.getPath());
-	}
-
-	public ConfigurationSection getConfigurationSection(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getConfigurationSection(key.getPath());
-		} else {
-			return this.getSubConfig(world).getConfigurationSection(key);
-		}
+		return this.config.getConfigurationSection(this.getGlobalPath(key));
 	}
 
 	public double getDouble(ConfigurationKey key) {
@@ -155,15 +130,15 @@ public class HConfiguration {
 	}
 
 	public double getDouble(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getDouble(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getDouble(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getDouble(key);
+			return this.config.getDouble(this.getGlobalPath(key));
 		}
 	}
 
 	public double getDouble(ConfigurationKey key, double def) {
-		return this.config.getDouble(key.getPath(), def);
+		return this.config.getDouble(this.getGlobalPath(key), def);
 	}
 
 	public List<?> getList(ConfigurationKey key) {
@@ -171,15 +146,15 @@ public class HConfiguration {
 	}
 
 	public List<?> getList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getList(key);
+			return this.config.getList(this.getGlobalPath(key));
 		}
 	}
 
 	public List<?> getList(ConfigurationKey key, List<?> def) {
-		return this.config.getList(key.getPath(), def);
+		return this.config.getList(this.getGlobalPath(key), def);
 	}
 
 	public List<String> getStringList(ConfigurationKey key) {
@@ -187,10 +162,10 @@ public class HConfiguration {
 	}
 
 	public List<String> getStringList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getStringList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getStringList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getStringList(key);
+			return this.config.getStringList(this.getGlobalPath(key));
 		}
 	}
 
@@ -199,10 +174,10 @@ public class HConfiguration {
 	}
 
 	public List<Integer> getIntegerList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getIntegerList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getIntegerList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getIntegerList(key);
+			return this.config.getIntegerList(this.getGlobalPath(key));
 		}
 	}
 
@@ -211,10 +186,10 @@ public class HConfiguration {
 	}
 
 	public List<Boolean> getBooleanList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getBooleanList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getBooleanList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getBooleanList(key);
+			return this.config.getBooleanList(this.getGlobalPath(key));
 		}
 	}
 
@@ -223,10 +198,10 @@ public class HConfiguration {
 	}
 
 	public List<Double> getDoubleList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getDoubleList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getDoubleList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getDoubleList(key);
+			return this.config.getDoubleList(this.getGlobalPath(key));
 		}
 	}
 
@@ -235,10 +210,10 @@ public class HConfiguration {
 	}
 
 	public List<Float> getFloatList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getFloatList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getFloatList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getFloatList(key);
+			return this.config.getFloatList(this.getGlobalPath(key));
 		}
 	}
 
@@ -247,10 +222,10 @@ public class HConfiguration {
 	}
 
 	public List<Long> getLongList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getLongList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getLongList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getLongList(key);
+			return this.config.getLongList(this.getGlobalPath(key));
 		}
 	}
 
@@ -259,10 +234,10 @@ public class HConfiguration {
 	}
 
 	public List<Byte> getByteList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getByteList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getByteList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getByteList(key);
+			return this.config.getByteList(this.getGlobalPath(key));
 		}
 	}
 
@@ -271,10 +246,10 @@ public class HConfiguration {
 	}
 
 	public List<Character> getCharacterList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getCharacterList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getCharacterList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getCharacterList(key);
+			return this.config.getCharacterList(this.getGlobalPath(key));
 		}
 	}
 
@@ -283,10 +258,10 @@ public class HConfiguration {
 	}
 
 	public List<Short> getShortList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getShortList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getShortList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getShortList(key);
+			return this.config.getShortList(this.getGlobalPath(key));
 		}
 	}
 
@@ -295,10 +270,10 @@ public class HConfiguration {
 	}
 
 	public List<Map<?, ?>> getMapList(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.getMapList(key.getPath());
+		if (this.hasWorldSpecificSetting(key, world)) {
+			return this.config.getMapList(key.getPath() + "." + world.getName());
 		} else {
-			return this.getSubConfig(world).getMapList(key);
+			return this.config.getMapList(this.getGlobalPath(key));
 		}
 	}
 
@@ -306,24 +281,20 @@ public class HConfiguration {
 		return this.config.contains(key.getPath());
 	}
 
+	public boolean contains(String string) {
+		return this.config.contains(string);
+	}
+
 	public boolean contains(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			return this.config.contains(key.getPath());
-		} else {
-			return this.getSubConfig(world).contains(key);
-		}
+		return this.contains(key.getPath() + "." + world.getName());
 	}
 
 	public void removeKey(ConfigurationKey key) {
-		this.config.set(key.getPath(), null);
+		this.config.removeKey(key.getPath());
 	}
 
 	public void removeKey(ConfigurationKey key, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			this.config.removeKey(key.getPath());
-		} else {
-			this.getSubConfig(world).removeKey(key);
-		}
+		this.config.removeKey(key.getPath() + "." + world.getName());
 	}
 
 	public void set(ConfigurationKey key, Object value) {
@@ -331,11 +302,7 @@ public class HConfiguration {
 	}
 
 	public void set(ConfigurationKey key, Object value, World world) {
-		if (!this.hasSeparateConfig(world)) {
-			this.config.set(key.getPath(), value);
-		} else {
-			this.getSubConfig(world).set(key, value);
-		}
+		this.config.set(key.getPath() + "." + world.getName(), value);
 	}
 
 	public void set(ConfigurationKey key, Object value, String comment) {

@@ -32,6 +32,9 @@ public class HMessenger {
      */
 	public static void sendMessage(CommandSender commandSender, String... message) {
 		String msg = arrayToString(message);
+		if(msg.equalsIgnoreCase("null")) {
+			return;
+		}
 		msg = org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
 		msg = msg.replaceAll("<displayname>", commandSender.getName());
 		msg = msg.replaceAll("<name>", commandSender.getName());

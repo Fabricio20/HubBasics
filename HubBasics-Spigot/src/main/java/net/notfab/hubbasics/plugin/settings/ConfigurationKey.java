@@ -1,5 +1,9 @@
 package net.notfab.hubbasics.plugin.settings;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
+import net.notfab.hubbasics.abstracts.module.Module;
+
 import lombok.Getter;
 
 /*
@@ -22,11 +26,19 @@ public enum ConfigurationKey {
 	@Getter	private String path;
 	@Getter	private boolean perWorldAllowed;
 	@Getter	private Object defaultValue;
+	@Getter private Module module;
 
 	ConfigurationKey(String path, Boolean worldDependant, Object defaultValue) {
 		this.path = path;
 		this.perWorldAllowed = worldDependant;
 		this.defaultValue = defaultValue;
+	}
+
+	ConfigurationKey(String path, Boolean worldDependant, Object defaultValue, Module module) {
+		this.path = path;
+		this.perWorldAllowed = worldDependant;
+		this.defaultValue = defaultValue;
+		this.module = module;
 	}
 
 	@Override

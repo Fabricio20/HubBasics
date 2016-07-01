@@ -15,7 +15,7 @@ import lombok.Getter;
  */
 
 public enum HubBasicsMessage {
-	NO_PERMISSION("noPermission", "You dont have permission to execute this command!"),
+	NO_PERMISSION("noPermission", "You don't have permission to execute this command!"),
 	COMMAND_PLAYERS_ONLY("commandPlayersOnly", "This command is limited to players only!"),
 	COMMAND_USAGE_PREFIX("commandUsagePrefix", "Usage"),
 	COMMAND_ERROR_OCCURRED("commandErrorOccurred", "An error occurred");

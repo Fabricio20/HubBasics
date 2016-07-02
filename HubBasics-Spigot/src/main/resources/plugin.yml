@@ -7,3 +7,5 @@ description: >
 commands:
   holograms:
     description: Manage holograms
+  hat:
+    description: Changes your hat

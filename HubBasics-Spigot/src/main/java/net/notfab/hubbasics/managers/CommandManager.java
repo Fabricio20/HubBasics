@@ -5,6 +5,7 @@ import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
 import net.notfab.hubbasics.commands.HatCommand;
+import net.notfab.hubbasics.commands.HologramsCmd;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +31,7 @@ public class CommandManager {
     public CommandManager() {
         this.commands = new ArrayList<>();
         registerCommand(new HatCommand(), HubBasics.getInstance());
+        registerCommand(new HologramsCmd(), HubBasics.getInstance());
     }
 
     /**
@@ -51,7 +53,6 @@ public class CommandManager {
             command.setExecutor(cmd);
             command.setTabCompleter(cmd);
         }
-
         this.commands.add(cmd);
     }
 }

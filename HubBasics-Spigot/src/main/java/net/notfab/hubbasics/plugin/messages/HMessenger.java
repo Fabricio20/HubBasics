@@ -123,7 +123,7 @@ public class HMessenger {
      * @param sender  The receiver
      * @param msg     The usage message
      */
-    public static void sendCommandUsageMessage(CommandSender sender, String msg) {
+    private static void sendCommandUsageMessageSingle(CommandSender sender, String msg) {
         String format = ChatColor.BLUE + "" + ChatColor.ITALIC;
         String prefix = format + HubBasicsMessage.COMMAND_USAGE_PREFIX + ": ";
         sender.sendMessage(prefix + ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + msg);
@@ -135,7 +135,12 @@ public class HMessenger {
      * @param sender  The receiver
      * @param msgs    The usage messages, if command has multiple subcommands
      */
-    public static void sendCommandUsageMessage(CommandSender sender, String[] msgs) {
+    public static void sendCommandUsageMessage(CommandSender sender, String... msgs) {
+        if (msgs.length == 1) {
+            sendCommandUsageMessageSingle(sender, msgs[0]);
+            return;
+        }
+
         sender.sendMessage(ChatColor.BLUE + "" + ChatColor.ITALIC + HubBasicsMessage.COMMAND_USAGE_PREFIX + ": ");
         for (String str : msgs) {
             sender.sendMessage(ChatColor.DARK_AQUA + "" + ChatColor.ITALIC + "  " + str);

@@ -3,16 +3,11 @@ package net.notfab.hubbasics.managers;
 
 import lombok.Getter;
 import lombok.Setter;
-
+import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
-
+import net.notfab.hubbasics.commands.HatCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandMap;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.*;
 import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,6 +34,7 @@ public class CommandManager {
 
     public CommandManager() {
         this.commands = new ArrayList<>();
+		registerCommand(new HatCommand(), HubBasics.getInstance());
     }
 
 	/**

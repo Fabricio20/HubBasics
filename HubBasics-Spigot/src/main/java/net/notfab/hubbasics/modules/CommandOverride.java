@@ -53,13 +53,11 @@ public class CommandOverride extends Module {
     }
 
     @Override
-    public void onDisable() {
-
-    }
+    public void onDisable() {}
 
     @EventHandler
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
-        String command = event.getMessage().split(" ")[0].toLowerCase();
+        String command = event.getMessage().split(" ")[0].toLowerCase().substring(1);
         if (this.messages.containsKey(command)) {
             if (!event.getPlayer().hasPermission(this.permissions.get(command))) {
                 event.setCancelled(true);

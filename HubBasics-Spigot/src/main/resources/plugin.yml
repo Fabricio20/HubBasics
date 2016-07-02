@@ -1,0 +1,7 @@
+main: net.notfab.hubbasics.HubBasics
+version: 5.0
+name: HubBasics
+authors: [Fabricio20, Mister_2]
+description: >
+             HubBasics Is A Plugin For Lobby Owners.
+commands:

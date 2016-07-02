@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
 
@@ -71,11 +72,29 @@ public abstract class HCommand implements TabExecutor {
                     HMessenger.errorNoPerms(sender);
                     return Lists.newArrayList();
                 } else {
-                    return onTabComplete((Player) sender, args);
+                    List<String> list = onTabComplete((Player) sender, args);
+
+                    if (list == null) return null;
+                    if (list.contains("§raw")) {
+                        list.remove("§raw");
+                        return list;
+                    }
+
+                    List<String> returnList = list.stream().filter(str -> str.toLowerCase().startsWith(args[args.length - 1].toLowerCase())).collect(Collectors.toList());
+                    return returnList;
                 }
             }
         } else {
-	        return onTabComplete(sender, args);
+            List<String> list = onTabComplete(sender, args);
+
+            if (list == null) return null;
+            if (list.contains("§raw")) {
+                list.remove("§raw");
+                return list;
+            }
+
+            List<String> returnList = list.stream().filter(str -> str.toLowerCase().startsWith(args[args.length - 1].toLowerCase())).collect(Collectors.toList());
+            return returnList;
         }
     }
 

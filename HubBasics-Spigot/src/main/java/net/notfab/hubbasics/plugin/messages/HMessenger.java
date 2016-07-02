@@ -104,7 +104,7 @@ public class HMessenger {
     public static void sendDebugMessage(String message) {
         if (!HubBasics.getInstance().getConfig().getBoolean(ConfigurationKey.ENABLE_DEBUG.getPath())) return;
         sendSelectiveBroadcast(HPermissions.MESSAGE_DEBUG, ChatColor.YELLOW + "" + ChatColor.ITALIC + "HubBasics debug >> ", ChatColor.GRAY + message);
-        System.out.println(ChatColor.YELLOW + "" + ChatColor.ITALIC + "HubBasics debug >> " + ChatColor.GRAY + message);
+        System.out.println("HubBasics Debug >> " + message);
     }
 
     /**

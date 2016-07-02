@@ -23,6 +23,7 @@ public class ModuleManager {
         moduleMap.put(ModuleEnum.KEEP_HEALTH, new KeepHealth());
         moduleMap.put(ModuleEnum.CONNECTION_MESSAGES, new ConnectionMessages());
         moduleMap.put(ModuleEnum.ADVANCED_MOTD, new AdvancedMOTD());
+        moduleMap.put(ModuleEnum.COMMAND_OVERRIDE, new CommandOverride());
         registerListeners();
         onEnable();
     }

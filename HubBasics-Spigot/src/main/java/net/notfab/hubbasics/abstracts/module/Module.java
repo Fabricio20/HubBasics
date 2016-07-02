@@ -4,6 +4,8 @@ import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
+import net.notfab.hubbasics.plugin.settings.HConfiguration;
+
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 import sun.security.ssl.HandshakeMessage;
@@ -36,16 +38,19 @@ public abstract class Module implements Listener {
         return worlds.contains(world.getName());
     }
 
-    public String getString(ConfigurationKey configurationKey) {
+    protected String getString(ConfigurationKey configurationKey) {
         return HubBasics.getInstance().getPluginConfiguration().getString(configurationKey);
     }
 
-    public Double getDouble(ConfigurationKey configurationKey) {
+    protected Double getDouble(ConfigurationKey configurationKey) {
         return HubBasics.getInstance().getPluginConfiguration().getDouble(configurationKey);
     }
 
-    public Boolean getBoolean(ConfigurationKey configurationKey) {
+    protected Boolean getBoolean(ConfigurationKey configurationKey) {
         return HubBasics.getInstance().getPluginConfiguration().getBoolean(configurationKey);
     }
 
+    protected HConfiguration getConfig() {
+        return HubBasics.getInstance().getPluginConfiguration();
+    }
 }

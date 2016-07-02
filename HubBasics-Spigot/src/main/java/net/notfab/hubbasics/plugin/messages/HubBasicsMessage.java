@@ -15,20 +15,20 @@ import lombok.Getter;
  */
 
 public enum HubBasicsMessage {
-	NO_PERMISSION("noPermission", "You don't have permission to execute this command!"),
-	COMMAND_PLAYERS_ONLY("commandPlayersOnly", "This command is limited to players only!"),
-	COMMAND_USAGE_PREFIX("commandUsagePrefix", "Usage"),
-	COMMAND_ERROR_OCCURRED("commandErrorOccurred", "An error occurred");
+    NO_PERMISSION("noPermission", "You don't have permission to execute this command!"),
+    COMMAND_PLAYERS_ONLY("commandPlayersOnly", "This command is limited to players only!"),
+    COMMAND_USAGE_PREFIX("commandUsagePrefix", "Usage"),
+    COMMAND_ERROR_OCCURRED("commandErrorOccurred", "An error occurred");
 
-	@Getter private String filePath;
-	@Getter private Object defaultValue;
+    @Getter private String filePath;
+    @Getter private Object defaultValue;
 
-	HubBasicsMessage(String filePath, Object defaultValue) {
-		this.filePath = filePath;
-		this.defaultValue = defaultValue;
-	}
+    HubBasicsMessage(String filePath, Object defaultValue) {
+        this.filePath = filePath;
+        this.defaultValue = defaultValue;
+    }
 
-	public String getMessage() {
-		return HubBasics.getInstance().getMessageManager().getMessage(this);
-	}
+    public String getMessage() {
+        return HubBasics.getInstance().getMessageManager().getMessage(this);
+    }
 }

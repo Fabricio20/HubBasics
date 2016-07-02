@@ -1,7 +1,7 @@
 package net.notfab.hubbasics.plugin.settings;
 
 import lombok.Getter;
-import net.notfab.hubbasics.abstracts.module.Module;
+
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 
 import java.util.Arrays;
@@ -40,7 +40,9 @@ public enum ConfigurationKey {
 	DOUBLE_JUMP_SOUND("Sound", false, "ENTITY_BAT_TAKEOFF", ModuleEnum.DOUBLE_JUMP),
 
 	ADVANCED_MOTD_MOTDS("Motds", false, Arrays.asList("&aThis server has HubBasics!", "&2Maybe the server owner should change these messages?"), ModuleEnum.ADVANCED_MOTD),
-	ADVANCED_MOTD_SWITCHRATE("Switchrate", false, true, ModuleEnum.ADVANCED_MOTD);
+	ADVANCED_MOTD_SWITCHRATE("Switchrate", false, true, ModuleEnum.ADVANCED_MOTD),
+
+	COMMAND_OVERRIDE_COMMANDS("Commands", false, Arrays.asList("{\"command\":\"plugin\",\"aliases\":\"pl\",\"permission\":\"hubbasics.bypass.plugin\",\"message\":\"&cYou don't have permission to execute this command\"}"), ModuleEnum.COMMAND_OVERRIDE);
 
 	/**
 	 * This is the path the option will have in the config.yml file
@@ -67,7 +69,7 @@ public enum ConfigurationKey {
 	 * section with the same name as the module. For example, if Module.DOUBLE_JUMP was specified, all options
 	 * with this module given, will have the parent section "double_jump". This option can be null.
 	 */
-	@Getter private ModuleEnum moduleEnum;
+	@Getter private ModuleEnum attachedModule;
 
 	ConfigurationKey(String path, Boolean worldDependant, Object defaultValue) {
 		this.path = path;
@@ -79,7 +81,7 @@ public enum ConfigurationKey {
 		this.path = moduleEnum.name().toLowerCase() + "." + path;
 		this.perWorldAllowed = worldDependant;
 		this.defaultValue = defaultValue;
-		this.moduleEnum = moduleEnum;
+		this.attachedModule = moduleEnum;
 	}
 
 	/**

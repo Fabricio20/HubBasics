@@ -11,7 +11,6 @@ package net.notfab.hubbasics.abstracts.module;
  */
 
 public enum ModuleEnum {
-
 	DOUBLE_JUMP,
 	JUMP_PADS,
 	ANTI_VOID,
@@ -20,6 +19,6 @@ public enum ModuleEnum {
 	KEEP_HEALTH,
 	HOLOGRAMS,
 	CONNECTION_MESSAGES,
-	ADVANCED_MOTD
-
+	ADVANCED_MOTD,
+	COMMAND_OVERRIDE
 }

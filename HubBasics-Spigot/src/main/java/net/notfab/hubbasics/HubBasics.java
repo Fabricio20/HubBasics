@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.notfab.hubbasics.managers.CommandManager;
 import net.notfab.hubbasics.managers.ModuleManager;
 import net.notfab.hubbasics.managers.SimpleConfigManager;
+import net.notfab.hubbasics.managers.UpdateManager;
 import net.notfab.hubbasics.objects.MetricsLite;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
@@ -33,6 +34,7 @@ public class HubBasics extends JavaPlugin {
     @Getter private ModuleManager moduleManager;
     @Getter private String serverVersion;
     @Getter private MetricsLite metrics;
+    @Getter private UpdateManager updateManager;
 
     @Override
     public void onEnable() {
@@ -54,6 +56,7 @@ public class HubBasics extends JavaPlugin {
         } catch (IOException ex) {
             HMessenger.printStackTrace(ex);
         }
+        this.updateManager = new UpdateManager();
         //TODO: Load
     }
 

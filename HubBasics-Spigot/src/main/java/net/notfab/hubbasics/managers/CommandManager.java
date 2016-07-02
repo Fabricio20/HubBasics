@@ -36,36 +36,9 @@ import java.util.List;
 public class CommandManager {
 
     @Getter private List<HCommand> commands;
-    @Getter private CommandMap commandMap;
 
     public CommandManager() {
         this.commands = new ArrayList<>();
-    }
-
-    /**
-     * Uses reflection and loads the current CommandMap from CraftServer
-     * Method to be called in onEnable ONLY!
-     */
-    public void loadMap() {
-        try {
-            Field mapField = Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getServerVersion() + ".CraftServer").getDeclaredField("commandMap");
-            mapField.setAccessible(true);
-            this.commandMap = (CommandMap) mapField.get(Bukkit.getServer());
-        } catch (NoSuchFieldException e) {
-            HMessenger.printStackTrace(e);
-        } catch (IllegalAccessException e) {
-            HMessenger.printStackTrace(e);
-        } catch (ClassNotFoundException e) {
-            HMessenger.printStackTrace(e);
-        }
-    }
-
-    /**
-     * Make sure there is no reference left to previous CommandMap
-     * Method to be called in onDisable ONLY!
-     */
-    public void unloadMap() {
-        this.commandMap = null;
     }
 
     /**
@@ -75,54 +48,19 @@ public class CommandManager {
      * @param plugin The plugin registering
      */
     public void registerCommand(HCommand cmd, JavaPlugin plugin) {
-        if (plugin.getCommand(cmd.getNames()[0]) != null) {
-            if (cmd.getNames().length > 1) {
-                List<String> names = new LinkedList<>(Arrays.asList(cmd.getNames()));
-                PluginCommand pcmd = plugin.getCommand(names.get(0));
-                names.remove(0);
-                pcmd.setAliases(names);
-                pcmd.setExecutor(cmd);
-                pcmd.setTabCompleter(cmd);
-            } else {
-                PluginCommand command = plugin.getCommand(cmd.getNames()[0]);
-                command.setExecutor(cmd);
-                command.setTabCompleter(cmd);
-            }
-        } else if (cmd.getNames().length > 1) {
+        if (cmd.getNames().length > 1) {
             List<String> names = new LinkedList<>(Arrays.asList(cmd.getNames()));
-            UnregisteredCommand command = new UnregisteredCommand(names.get(0));
-            this.commandMap.register(plugin.getName(), command);
+            PluginCommand pcmd = plugin.getCommand(names.get(0));
             names.remove(0);
-            command.setAliases(names);
-            command.setExecutor(cmd);
-            command.setTabCompleter(cmd);
+            pcmd.setAliases(names);
+            pcmd.setExecutor(cmd);
+            pcmd.setTabCompleter(cmd);
         } else {
-            UnregisteredCommand command = new UnregisteredCommand(cmd.getNames()[0]);
+            PluginCommand command = plugin.getCommand(cmd.getNames()[0]);
             command.setExecutor(cmd);
             command.setTabCompleter(cmd);
         }
 
         this.commands.add(cmd);
-    }
-
-    private class UnregisteredCommand extends Command {
-        @Setter
-        private CommandExecutor executor;
-        @Setter
-        private TabCompleter tabCompleter;
-
-        protected UnregisteredCommand(String name) {
-            super(name);
-        }
-
-        @Override
-        public boolean execute(CommandSender commandSender, String s, String[] strings) {
-            return executor == null ? false : executor.onCommand(commandSender, this, s, strings);
-        }
-
-        @Override
-        public List<String> tabComplete(CommandSender sender, String alias, String[] args) {
-            return tabCompleter == null ? null : tabCompleter.onTabComplete(sender, this, alias, args);
-        }
     }
 }

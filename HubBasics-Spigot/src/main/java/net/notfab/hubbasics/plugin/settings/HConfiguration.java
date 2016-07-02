@@ -1,17 +1,14 @@
 package net.notfab.hubbasics.plugin.settings;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.bukkit.Bukkit;
+import net.notfab.hubbasics.HubBasics;
+import net.notfab.hubbasics.objects.SimpleConfig;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 
-import net.notfab.hubbasics.HubBasics;
-import net.notfab.hubbasics.objects.SimpleConfig;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /*
  * Copyright (c) 2016.
@@ -45,6 +42,7 @@ public class HConfiguration {
         Arrays.stream(ConfigurationKey.values()).filter(configurationKey ->
                 !this.config.contains(configurationKey.getPath())).forEach(key ->
                 this.config.set(key.getPath(), key.getDefaultValue()));
+        this.config.saveConfig();
     }
 
     private boolean hasWorldSpecificSetting(ConfigurationKey key, World world) {

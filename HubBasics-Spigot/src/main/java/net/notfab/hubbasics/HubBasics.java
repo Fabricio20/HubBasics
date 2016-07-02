@@ -4,9 +4,13 @@ import lombok.Getter;
 import net.notfab.hubbasics.managers.CommandManager;
 import net.notfab.hubbasics.managers.ModuleManager;
 import net.notfab.hubbasics.managers.SimpleConfigManager;
+import net.notfab.hubbasics.objects.MetricsLite;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
 import net.notfab.hubbasics.plugin.settings.HConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
 
 /*
  * Copyright (c) 2016.
@@ -28,10 +32,18 @@ public class HubBasics extends JavaPlugin {
 	@Getter private MessageManager messageManager;
 	@Getter private ModuleManager moduleManager;
 
+	@Getter private MetricsLite metrics;
+
 	@Override
 	public void onEnable() {
 		instance = this;
 		this.init();
+		try {
+			metrics = new MetricsLite(this);
+			metrics.start();
+		} catch (IOException ex) {
+			HMessenger.printStackTrace(ex);
+		}
 		//TODO: Load
 	}
 

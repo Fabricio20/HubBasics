@@ -1,8 +1,6 @@
 package net.notfab.hubbasics;
 
 import lombok.Getter;
-
-import net.notfab.hubbasics.commands.HologramsCmd;
 import net.notfab.hubbasics.managers.CommandManager;
 import net.notfab.hubbasics.managers.ModuleManager;
 import net.notfab.hubbasics.managers.SimpleConfigManager;
@@ -10,7 +8,6 @@ import net.notfab.hubbasics.objects.MetricsLite;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
 import net.notfab.hubbasics.plugin.settings.HConfiguration;
-
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -40,7 +37,17 @@ public class HubBasics extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        this.init();
+        String packageName = getServer().getClass().getPackage().getName();
+        this.serverVersion = packageName.substring(packageName.lastIndexOf('.') + 1);
+        this.configManager = new SimpleConfigManager(this);
+        this.pluginConfiguration = new HConfiguration();
+        this.messageManager = new MessageManager();
+        this.getMessageManager().loadMessages();
+
+        this.commandManager = new CommandManager();
+        this.getPluginConfiguration().loadDefaults();
+
+        this.moduleManager = new ModuleManager();
         try {
             metrics = new MetricsLite(this);
             metrics.start();
@@ -57,18 +64,4 @@ public class HubBasics extends JavaPlugin {
         instance = null;
     }
 
-    private void init() {
-        String packageName = getServer().getClass().getPackage().getName();
-        this.serverVersion = packageName.substring(packageName.lastIndexOf('.') + 1);
-        this.configManager = new SimpleConfigManager(this);
-        this.pluginConfiguration = new HConfiguration();
-        this.messageManager = new MessageManager();
-        this.getMessageManager().loadMessages();
-
-        this.commandManager = new CommandManager();
-        this.getPluginConfiguration().loadDefaults();
-
-        this.moduleManager = new ModuleManager();
-        this.getCommandManager().registerCommand(new HologramsCmd(), this);
-    }
 }

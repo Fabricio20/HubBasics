@@ -1,17 +1,16 @@
 package net.notfab.hubbasics.plugin.messages;
 
-import java.util.Arrays;
-
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.command.CommandSender;
-import org.bukkit.permissions.Permission;
-
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 import net.notfab.hubbasics.plugin.utils.HPermissions;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.command.CommandSender;
+import org.bukkit.permissions.Permission;
+
+import java.util.Arrays;
 
 /*
  * Copyright (c) 2016.
@@ -105,6 +104,7 @@ public class HMessenger {
     public static void sendDebugMessage(String message) {
         if (!HubBasics.getInstance().getConfig().getBoolean(ConfigurationKey.ENABLE_DEBUG.getPath())) return;
         sendSelectiveBroadcast(HPermissions.MESSAGE_DEBUG, ChatColor.YELLOW + "" + ChatColor.ITALIC + "HubBasics debug >> ", ChatColor.GRAY + message);
+        System.out.println(ChatColor.YELLOW + "" + ChatColor.ITALIC + "HubBasics debug >> " + ChatColor.GRAY + message);
     }
 
     /**

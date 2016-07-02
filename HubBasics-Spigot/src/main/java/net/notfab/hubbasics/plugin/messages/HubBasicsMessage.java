@@ -1,8 +1,7 @@
 package net.notfab.hubbasics.plugin.messages;
 
-import net.notfab.hubbasics.HubBasics;
-
 import lombok.Getter;
+import net.notfab.hubbasics.HubBasics;
 
 /*
  * Copyright (c) 2016.
@@ -31,7 +30,9 @@ public enum HubBasicsMessage {
     HOLOGRAMS_SUCCESS_ADDLINE("holograms.success.addline", "Added line to <hologramID> successfully."),
     HOLOGRAMS_SUCCESS_DELETE("holograms.success.delete", "Deleted hologram <hologramID> successfully."),
     HOLOGRAMS_SUCCESS_LIST_PREFIX("holograms.success.list.prefix", "Holograms"),
-    HOLOGRAMS_SUCCESS_LIST_EMPTY("holograms.success.list.empty", "No holograms found.");
+    HOLOGRAMS_SUCCESS_LIST_EMPTY("holograms.success.list.empty", "No holograms found."),
+    COMMAND_HAT_USAGE("Commands.Hat.Usage", "&9/hat <id> [meta]"),
+    COMMAND_HAT_CHANGED("Commands.Hat.Changed", "&aHat updated!");
 
     @Getter private String filePath;
     @Getter private Object defaultValue;

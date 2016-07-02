@@ -22,7 +22,7 @@ public class HatCommand extends HCommand {
     @SuppressWarnings("deprecated")
     public void onCommand(Player player, String[] args) {
         if(args.length > 2 || args.length == 0) {
-            HMessenger.sendCommandUsageMessage(player, this, HubBasicsMessage.COMMAND_HAT_USAGE.getMessage());
+            HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.COMMAND_HAT_USAGE.getMessage());
         }
         if(args.length == 1) {
             if (args[0].matches("[0-999]+")) {
@@ -48,7 +48,7 @@ public class HatCommand extends HCommand {
     @Override
     public void onCommand(CommandSender sender, String[] args) {
         if(args.length <= 1 || args.length > 3) {
-            HMessenger.sendCommandUsageMessage(sender, this, HubBasicsMessage.COMMAND_HAT_USAGE.getMessage());
+            HMessenger.sendCommandUsageMessage(sender, HubBasicsMessage.COMMAND_HAT_USAGE.getMessage());
         } else if(args.length == 2) {
             if(!args[0].matches("[0-999]+")) {
                 HMessenger.sendErrorMessage(sender, "ID Must Be A Number");

@@ -1,4 +1,4 @@
-#HubBasics
+# HubBasics [![Build Status](http://jenkins.notfab.net/job/HubBasics/badge/icon)](http://jenkins.notfab.net/job/HubBasics/)
 
 As the name suggests, this plugin is intended for hubs. It gives you the settings and options you as a server owner might desire, and
 a few more. Having a million different plugins just for one of their features not only makes your server a complete mess of different

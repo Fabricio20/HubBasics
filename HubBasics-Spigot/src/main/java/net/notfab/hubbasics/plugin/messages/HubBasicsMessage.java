@@ -1,7 +1,8 @@
 package net.notfab.hubbasics.plugin.messages;
 
-import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
+
+import lombok.Getter;
 
 /*
  * Copyright (c) 2016.
@@ -18,9 +19,19 @@ public enum HubBasicsMessage {
     COMMAND_PLAYERS_ONLY("commandPlayersOnly", "This command is limited to players only!"),
     COMMAND_USAGE_PREFIX("commandUsagePrefix", "Usage"),
     COMMAND_ERROR_OCCURRED("commandErrorOccurred", "An error occurred"),
-    COMMAND_HAT_USAGE("Command.Hat.Usage", "&e/hat <id> [metadata]"),
-    COMMAND_HAT_CHANGED("Command.Hat.Changed", "&aHat Changed!");
-
+    HOLOGRAMS_USAGE_CREATE("holograms.usage.create", "/holograms create <text>"),
+    HOLOGRAMS_USAGE_RESET("holograms.usage.reset", "/holograms reset <hologramID>"),
+    HOLOGRAMS_USAGE_ADDLINE("holograms.usage.addLine", "/holograms addline <hologramID> <text>"),
+    HOLOGRAMS_USAGE_DELETE("holograms.usage.delete", "/holograms delete <hologramID>"),
+    HOLOGRAMS_USAGE_LIST("holograms.usage.list", "/holograms list"),
+    HOLOGRAMS_ERROR_NOTNUMBER("holograms.error.notNumber", "<string> isn't a number!"),
+    HOLOGRAMS_ERROR_NOTEXIST("holograms.error.notExist", "Hologram <hologramID> doesn't exist!"),
+    HOLOGRAMS_SUCCESS_CREATED("holograms.success.create", "Created hologram <hologramID> successfully."),
+    HOLOGRAMS_SUCCESS_RESET("holograms.success.reset", "Hologram <hologramID> was successfully reset."),
+    HOLOGRAMS_SUCCESS_ADDLINE("holograms.success.addline", "Added line to <hologramID> successfully."),
+    HOLOGRAMS_SUCCESS_DELETE("holograms.success.delete", "Deleted hologram <hologramID> successfully."),
+    HOLOGRAMS_SUCCESS_LIST_PREFIX("holograms.success.list.prefix", "Holograms"),
+    HOLOGRAMS_SUCCESS_LIST_EMPTY("holograms.success.list.empty", "No holograms found.");
 
     @Getter private String filePath;
     @Getter private Object defaultValue;
@@ -32,5 +43,10 @@ public enum HubBasicsMessage {
 
     public String getMessage() {
         return HubBasics.getInstance().getMessageManager().getMessage(this);
+    }
+
+    @Override
+    public String toString() {
+        return this.getMessage();
     }
 }

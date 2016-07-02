@@ -24,6 +24,7 @@ public class ModuleManager {
         moduleMap.put(ModuleEnum.CONNECTION_MESSAGES, new ConnectionMessages());
         moduleMap.put(ModuleEnum.ADVANCED_MOTD, new AdvancedMOTD());
         moduleMap.put(ModuleEnum.COMMAND_OVERRIDE, new CommandOverride());
+        moduleMap.put(ModuleEnum.HOLOGRAMS, new CustomHolograms());
         registerListeners();
         onEnable();
     }
@@ -47,5 +48,4 @@ public class ModuleManager {
     public void registerModule(ModuleEnum moduleEnum, Module module) {
         this.moduleMap.put(moduleEnum, module);
     }
-
 }

@@ -3,5 +3,7 @@ version: 5.0
 name: HubBasics
 authors: [Fabricio20, Mister_2]
 description: >
-             HubBasics Is A Plugin For Lobby Owners.
+             HubBasics is a plugin containing settings, options and features you as a server owner might desire
 commands:
+  holograms:
+    description: Manage holograms

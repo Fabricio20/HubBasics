@@ -1,6 +1,8 @@
 package net.notfab.hubbasics;
 
 import lombok.Getter;
+
+import net.notfab.hubbasics.commands.HologramsCmd;
 import net.notfab.hubbasics.managers.CommandManager;
 import net.notfab.hubbasics.managers.ModuleManager;
 import net.notfab.hubbasics.managers.SimpleConfigManager;
@@ -8,6 +10,7 @@ import net.notfab.hubbasics.objects.MetricsLite;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
 import net.notfab.hubbasics.plugin.settings.HConfiguration;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -24,48 +27,48 @@ import java.io.IOException;
 
 public class HubBasics extends JavaPlugin {
 
-	@Getter	private static HubBasics instance;
+    @Getter private static HubBasics instance;
 
-	@Getter	private CommandManager commandManager;
-	@Getter	private HConfiguration pluginConfiguration;
-	@Getter private SimpleConfigManager configManager;
-	@Getter private MessageManager messageManager;
-	@Getter private ModuleManager moduleManager;
+    @Getter private CommandManager commandManager;
+    @Getter private HConfiguration pluginConfiguration;
+    @Getter private SimpleConfigManager configManager;
+    @Getter private MessageManager messageManager;
+    @Getter private ModuleManager moduleManager;
+    @Getter private String serverVersion;
+    @Getter private MetricsLite metrics;
 
-	@Getter private MetricsLite metrics;
+    @Override
+    public void onEnable() {
+        instance = this;
+        this.init();
+        try {
+            metrics = new MetricsLite(this);
+            metrics.start();
+        } catch (IOException ex) {
+            HMessenger.printStackTrace(ex);
+        }
+        //TODO: Load
+    }
 
-	@Override
-	public void onEnable() {
-		instance = this;
-		this.init();
-		try {
-			metrics = new MetricsLite(this);
-			metrics.start();
-		} catch (IOException ex) {
-			HMessenger.printStackTrace(ex);
-		}
-		//TODO: Load
-	}
+    @Override
+    public void onDisable() {
+        this.moduleManager.onDisable();
+        //TODO: Unload
+        instance = null;
+    }
 
-	@Override
-	public void onDisable() {
-		this.getCommandManager().unloadMap();
-		this.moduleManager.onDisable();
-		//TODO: Unload
-		instance = null;
-	}
+    private void init() {
+        String packageName = getServer().getClass().getPackage().getName();
+        this.serverVersion = packageName.substring(packageName.lastIndexOf('.') + 1);
+        this.configManager = new SimpleConfigManager(this);
+        this.pluginConfiguration = new HConfiguration();
+        this.messageManager = new MessageManager();
+        this.getMessageManager().loadMessages();
 
-	private void init() {
-		this.configManager = new SimpleConfigManager(this);
-		this.messageManager = new MessageManager();
-		this.getMessageManager().loadMessages();
+        this.commandManager = new CommandManager();
+        this.getPluginConfiguration().loadDefaults();
 
-		this.commandManager = new CommandManager();
-		this.getCommandManager().loadMap();
-
-		this.pluginConfiguration = new HConfiguration();
-		this.getPluginConfiguration().loadDefaults();
-
-		this.moduleManager = new ModuleManager();
-	}
+        this.moduleManager = new ModuleManager();
+        this.getCommandManager().registerCommand(new HologramsCmd(), this);
+    }
 }

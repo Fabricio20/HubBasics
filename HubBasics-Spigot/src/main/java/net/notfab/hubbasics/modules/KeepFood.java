@@ -25,5 +25,4 @@ public class KeepFood extends Module {
             e.setFoodLevel(20);
         }
     }
-
 }

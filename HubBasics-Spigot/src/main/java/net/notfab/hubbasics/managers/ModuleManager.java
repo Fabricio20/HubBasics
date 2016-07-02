@@ -47,5 +47,4 @@ public class ModuleManager {
     public void registerModule(ModuleEnum moduleEnum, Module module) {
         this.moduleMap.put(moduleEnum, module);
     }
-
 }

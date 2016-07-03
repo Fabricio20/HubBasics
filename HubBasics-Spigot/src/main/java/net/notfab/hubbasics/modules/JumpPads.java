@@ -4,7 +4,7 @@ import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
-import org.bukkit.GameMode;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,8 +16,9 @@ import org.bukkit.util.Vector;
 
 public class JumpPads extends Module {
 
-    double padPower;
-    Material mat;
+    private double padPower;
+    private Material material;
+    private boolean requirePressurePlate;
 
     public JumpPads() {
         super(ModuleEnum.JUMP_PADS);
@@ -30,11 +31,13 @@ public class JumpPads extends Module {
         }
 
         try {
-            this.mat = Material.valueOf(getString(ConfigurationKey.JUMP_PADS_MATERIAL));
+            this.material = Material.valueOf(getString(ConfigurationKey.JUMP_PADS_MATERIAL));
         } catch (IllegalArgumentException ex) {
             HMessenger.printStackTrace(new IllegalArgumentException("Invalid material name for jump pad"));
             return;
         }
+
+        this.requirePressurePlate = getBoolean(ConfigurationKey.JUMP_PADS_REQUIRE_PRESSUREPLATE);
     }
 
     @Override
@@ -44,12 +47,24 @@ public class JumpPads extends Module {
     public void onDisable() {}
 
     @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        if (requirePressurePlate) return;
+        Player player = event.getPlayer();
+        if (!isInWorld(player.getWorld(), ConfigurationKey.JUMP_PADS_ENABLED)) return;
+        Location loc =  player.getLocation().subtract(0, 1, 0);
+        if (loc.getBlock().getType() == this.material) {
+            player.setVelocity(calculateVector(player));
+        }
+    }
+
+    @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        if (!requirePressurePlate) return;
         Player player = event.getPlayer();
         if (event.getAction() == Action.PHYSICAL && !event.isCancelled() && isInWorld(player.getWorld(), ConfigurationKey.JUMP_PADS_ENABLED)) {
             if (event.getClickedBlock().getType() == Material.STONE_PLATE) {
                 Location loc = event.getClickedBlock().getLocation().subtract(0, 1, 0);
-                if (loc.getWorld().getBlockAt(loc).getType() == this.mat) {
+                if (loc.getWorld().getBlockAt(loc).getType() == this.material) {
                     player.setVelocity(calculateVector(player));
                     event.setCancelled(true);
                 }
@@ -64,5 +79,4 @@ public class JumpPads extends Module {
         double z = Math.cos(radians)*padPower;
         return new Vector(x, y, z);
     }
-
 }

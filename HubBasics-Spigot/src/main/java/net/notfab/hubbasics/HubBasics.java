@@ -59,13 +59,11 @@ public class HubBasics extends JavaPlugin {
 
         this.updateManager = new UpdateManager();
         this.commandManager = new CommandManager();
-        //TODO: Load
     }
 
     @Override
     public void onDisable() {
         this.moduleManager.onDisable();
-        //TODO: Unload
         instance = null;
     }
 

@@ -34,13 +34,14 @@ public enum ConfigurationKey {
 	JUMP_PADS_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.JUMP_PADS),
 	JUMP_PADS_FORCE("Force", false, 0.3, ModuleEnum.JUMP_PADS),
 	JUMP_PADS_MATERIAL("Material", false, "REDSTONE_BLOCK", ModuleEnum.JUMP_PADS),
+	JUMP_PADS_REQUIRE_PRESSUREPLATE("RequirePressurePlate", false, false, ModuleEnum.JUMP_PADS),
 
 	DOUBLE_JUMP_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.DOUBLE_JUMP),
 	DOUBLE_JUMP_FORCE("Force", false, 0.3, ModuleEnum.DOUBLE_JUMP),
 	DOUBLE_JUMP_SOUND("Sound", false, "ENTITY_BAT_TAKEOFF", ModuleEnum.DOUBLE_JUMP),
 
 	ADVANCED_MOTD_MOTDS("Motds", false, Arrays.asList("&aThis server has HubBasics!", "&2Maybe the server owner should change these messages?"), ModuleEnum.ADVANCED_MOTD),
-	ADVANCED_MOTD_SWITCHRATE("Switchrate", false, true, ModuleEnum.ADVANCED_MOTD),
+	ADVANCED_MOTD_SWITCHRATE("Switchrate", false, 20, ModuleEnum.ADVANCED_MOTD),
 
 	COMMAND_OVERRIDE_COMMANDS("Commands", false, Arrays.asList("{\"command\":\"plugin\",\"aliases\":\"pl\",\"permission\":\"hubbasics.bypass.plugin\",\"message\":\"&cYou don't have permission to execute this command\"}"), ModuleEnum.COMMAND_OVERRIDE);
 

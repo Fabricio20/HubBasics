@@ -18,12 +18,12 @@ public enum HubBasicsMessage {
     COMMAND_PLAYERS_ONLY("commandPlayersOnly", "This command is limited to players only!"),
     COMMAND_USAGE_PREFIX("commandUsagePrefix", "Usage"),
     COMMAND_ERROR_OCCURRED("commandErrorOccurred", "An error occurred"),
+    COMMAND_ERROR_NOTNUMBER("commandInputNotNumber", "<string> isn't a number!"),
     HOLOGRAMS_USAGE_CREATE("holograms.usage.create", "/holograms create <text>"),
     HOLOGRAMS_USAGE_RESET("holograms.usage.reset", "/holograms reset <hologramID>"),
     HOLOGRAMS_USAGE_ADDLINE("holograms.usage.addLine", "/holograms addline <hologramID> <text>"),
     HOLOGRAMS_USAGE_DELETE("holograms.usage.delete", "/holograms delete <hologramID>"),
     HOLOGRAMS_USAGE_LIST("holograms.usage.list", "/holograms list"),
-    HOLOGRAMS_ERROR_NOTNUMBER("holograms.error.notNumber", "<string> isn't a number!"),
     HOLOGRAMS_ERROR_NOTEXIST("holograms.error.notExist", "Hologram <hologramID> doesn't exist!"),
     HOLOGRAMS_SUCCESS_CREATED("holograms.success.create", "Created hologram <hologramID> successfully."),
     HOLOGRAMS_SUCCESS_RESET("holograms.success.reset", "Hologram <hologramID> was successfully reset."),
@@ -31,8 +31,8 @@ public enum HubBasicsMessage {
     HOLOGRAMS_SUCCESS_DELETE("holograms.success.delete", "Deleted hologram <hologramID> successfully."),
     HOLOGRAMS_SUCCESS_LIST_PREFIX("holograms.success.list.prefix", "Holograms"),
     HOLOGRAMS_SUCCESS_LIST_EMPTY("holograms.success.list.empty", "No holograms found."),
-    COMMAND_HAT_USAGE("Commands.Hat.Usage", "&9/hat <id> [meta]"),
-    COMMAND_HAT_CHANGED("Commands.Hat.Changed", "&aHat updated!");
+    HAT_USAGE("hat.usage", "/hat <id> [meta]"),
+    HAT_CHANGED("hat.success", "Hat updated!");
 
     @Getter private String filePath;
     @Getter private Object defaultValue;

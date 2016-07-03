@@ -50,7 +50,7 @@ public class HologramsCmd extends HPlayerCommand {
                     if (args.length == 1) {
                         HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HOLOGRAMS_USAGE_RESET.getMessage());
                     } else if (!args[1].matches("\\d{1,5}")) {
-                        player.sendMessage(ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                        player.sendMessage(ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
@@ -67,7 +67,7 @@ public class HologramsCmd extends HPlayerCommand {
                     if (args.length < 3) {
                         HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HOLOGRAMS_USAGE_ADDLINE.getMessage());
                     } else if (!args[1].matches("\\d{1,5}")) {
-                        player.sendMessage(ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                        player.sendMessage(ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
@@ -84,7 +84,7 @@ public class HologramsCmd extends HPlayerCommand {
                     if (args.length == 1) {
                         HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HOLOGRAMS_USAGE_DELETE.getMessage());
                     } else if (!args[1].matches("\\d{1,5}")) {
-                        player.sendMessage(ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                        player.sendMessage(ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 

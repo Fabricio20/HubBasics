@@ -44,19 +44,21 @@ public class HubBasics extends JavaPlugin {
         this.configManager = new SimpleConfigManager(this);
         this.pluginConfiguration = new HConfiguration();
         this.messageManager = new MessageManager();
-        this.getMessageManager().loadMessages();
 
-        this.commandManager = new CommandManager();
+        this.getMessageManager().loadMessages();
         this.getPluginConfiguration().loadDefaults();
 
         this.moduleManager = new ModuleManager();
+
         try {
             metrics = new MetricsLite(this);
             metrics.start();
         } catch (IOException ex) {
             HMessenger.printStackTrace(ex);
         }
+
         this.updateManager = new UpdateManager();
+        this.commandManager = new CommandManager();
         //TODO: Load
     }
 

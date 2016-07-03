@@ -9,13 +9,32 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
 public class JumpPads extends Module {
 
+    double padPower;
+    Material mat;
+
     public JumpPads() {
         super(ModuleEnum.JUMP_PADS);
+
+        try {
+            this.padPower = getDouble(ConfigurationKey.JUMP_PADS_FORCE);
+        } catch (IllegalArgumentException ex) {
+            HMessenger.printStackTrace(new IllegalArgumentException("Invalid force for jump pad"));
+            return;
+        }
+
+        try {
+            this.mat = Material.valueOf(getString(ConfigurationKey.JUMP_PADS_MATERIAL));
+        } catch (IllegalArgumentException ex) {
+            HMessenger.printStackTrace(new IllegalArgumentException("Invalid material name for jump pad"));
+            return;
+        }
     }
 
     @Override
@@ -25,40 +44,20 @@ public class JumpPads extends Module {
     public void onDisable() {}
 
     @EventHandler
-    public void onMove(PlayerMoveEvent e) {
-        Player player = e.getPlayer();
-        if(player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR) {
-            return;
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        if (event.getAction() == Action.PHYSICAL && !event.isCancelled() && isInWorld(player.getWorld(), ConfigurationKey.JUMP_PADS_ENABLED)) {
+            if (event.getClickedBlock().getType() == Material.STONE_PLATE) {
+                Location loc = event.getClickedBlock().getLocation().subtract(0, 1, 0);
+                if (loc.getWorld().getBlockAt(loc).getType() == this.mat) {
+                    player.setVelocity(calculateVector(player));
+                    event.setCancelled(true);
+                }
+            }
         }
-        if(!isInWorld(player.getWorld(), ConfigurationKey.JUMP_PADS_ENABLED)) {
-            return;
-        }
-        Material mat;
-        try {
-            mat = Material.valueOf(getString(ConfigurationKey.JUMP_PADS_MATERIAL));
-        } catch (IllegalArgumentException ex) {
-            HMessenger.printStackTrace(new IllegalArgumentException("Invalid material name for jump pad"));
-            return;
-        }
-        if(!(getBlockBelow(player.getLocation()) == mat)) {
-            return;
-        }
-        Double padPower;
-        try {
-            padPower = getDouble(ConfigurationKey.JUMP_PADS_FORCE);
-        } catch (IllegalArgumentException ex) {
-            HMessenger.printStackTrace(new IllegalArgumentException("Invalid force for jump pad"));
-            return;
-        }
-        player.setVelocity(calculateVector(player, padPower));
     }
 
-    private Material getBlockBelow(Location loc) {
-        Location block = new Location(loc.getWorld(), loc.getX(), loc.getY()-1, loc.getZ(), loc.getYaw(), loc.getPitch());
-        return block.getBlock().getType();
-    }
-
-    private Vector calculateVector(Player player, Double padPower) {
+    private Vector calculateVector(Player player) {
         double radians = Math.toRadians(player.getLocation().getYaw());
         double x = -Math.sin(radians)*padPower;
         double y = padPower/6;

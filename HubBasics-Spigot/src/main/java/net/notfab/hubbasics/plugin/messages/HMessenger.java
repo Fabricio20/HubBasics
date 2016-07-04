@@ -217,6 +217,14 @@ public class HMessenger {
         return message;
     }
 
+    public static void notifyUpdate() {
+        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "======================================");
+        Bukkit.getServer().getConsoleSender().sendMessage("");
+        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "An update is available for HubBasics!");
+        Bukkit.getServer().getConsoleSender().sendMessage("");
+        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "======================================");
+    }
+
     private static String arrayToString(String... strings) {
         StringBuilder builder = new StringBuilder();
         Arrays.stream(strings).forEach(s -> builder.append(s + " "));

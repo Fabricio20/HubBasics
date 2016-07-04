@@ -18,9 +18,7 @@ public class UpdateManager {
     public UpdateManager() {
         version = HubBasics.getInstance().getDescription().getVersion();
         this.hasUpdate = hasUpdate();
-        if(this.getHasUpdate()) {
-            HMessenger.notifyAdmins("There is an update available!");
-        }
+        if(this.getHasUpdate()) HMessenger.notifyUpdate();
     }
 
     public boolean hasUpdate() {

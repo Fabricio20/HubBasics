@@ -25,6 +25,7 @@ public class ModuleManager {
         moduleMap.put(ModuleEnum.ADVANCED_MOTD, new AdvancedMOTD());
         moduleMap.put(ModuleEnum.COMMAND_OVERRIDE, new CommandOverride());
         moduleMap.put(ModuleEnum.HOLOGRAMS, new CustomHolograms());
+        moduleMap.put(ModuleEnum.AUTOMATED_BROADCASTS, new AutomatedBroadcast());
         registerListeners();
         onEnable();
     }

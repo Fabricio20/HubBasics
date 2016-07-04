@@ -42,6 +42,10 @@ public enum HubBasicsMessage {
         this.defaultValue = defaultValue;
     }
 
+    /*
+     * Convert to MessageFormat in 5.0.1
+     *      - Mister
+     */
     public String getMessage() {
         return HubBasics.getInstance().getMessageManager().getMessage(this);
     }

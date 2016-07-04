@@ -26,8 +26,7 @@ public class HatCommand extends HCommand {
     public void onCommand(Player player, String[] args) {
         if (args.length > 2 || args.length == 0) {
             HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HAT_USAGE.getMessage());
-        }
-        if (args.length == 1) {
+        } else if (args.length == 1) {
             if (args[0].matches("[0-999]+")) {
                 Integer id = Integer.parseInt(args[0]);
                 player.getInventory().setHelmet(new ItemStack(Material.getMaterial(id)));
@@ -35,8 +34,7 @@ public class HatCommand extends HCommand {
             } else {
                 HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[0] + ChatColor.RED));
             }
-        }
-        if (args.length == 2) {
+        } else if (args.length == 2) {
             if (!args[0].matches("[0-999]+")) {
                 HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;

@@ -16,4 +16,5 @@ public class HPermissions {
 	public static final Permission MESSAGE_DEBUG = new Permission("hubbasics.messages.debug");
 	public static final Permission MESSAGE_ADMIN = new Permission("hubbasics.messages.admin");
 	public static final Permission HAT_COMMAND = new Permission("hubbasics.commands.hat");
+	public static final Permission HOLOGRAMS_COMMAND = new Permission("hubbasics.commands.holograms");
 }

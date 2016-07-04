@@ -1,5 +1,5 @@
 main: net.notfab.hubbasics.HubBasics
-version: 5.0
+version: 5.0-DEVELOPMENT
 name: HubBasics
 authors: [Fabricio20, Mister_2]
 description: >

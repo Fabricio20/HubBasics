@@ -18,6 +18,7 @@ public class AdvancedMOTD extends Module {
 	private List<String> motds;
 	private HubBasics pl;
 	private int current;
+	private boolean enabled;
 
 	public AdvancedMOTD() {
 		super(ModuleEnum.ADVANCED_MOTD);
@@ -28,11 +29,14 @@ public class AdvancedMOTD extends Module {
 
 	@EventHandler
 	public void onPlayerPing(ServerListPingEvent event) {
+		if (!enabled) return;
 		event.setMotd(this.motds.get(this.current));
 	}
 
 	@Override
 	public void onEnable() {
+		this.enabled = getBoolean(ConfigurationKey.ADVANCED_MOTD_ENABLED);
+		if (!enabled) return;
 		List<String> rawMotds = pl.getPluginConfiguration().getStringList(ConfigurationKey.ADVANCED_MOTD_MOTDS);
 		rawMotds.stream().forEach(s -> this.motds.add(ChatColor.translateAlternateColorCodes('&', s)));
 		int switchRate = pl.getPluginConfiguration().getInt(ConfigurationKey.ADVANCED_MOTD_SWITCHRATE)*20;

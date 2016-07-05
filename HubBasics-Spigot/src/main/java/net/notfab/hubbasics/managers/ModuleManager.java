@@ -26,6 +26,9 @@ public class ModuleManager {
         moduleMap.put(ModuleEnum.COMMAND_OVERRIDE, new CommandOverride());
         moduleMap.put(ModuleEnum.HOLOGRAMS, new CustomHolograms());
         moduleMap.put(ModuleEnum.AUTOMATED_BROADCASTS, new AutomatedBroadcast());
+        if (HubBasics.getInstance().getServerVersion().contains("1_10") || HubBasics.getInstance().getServerVersion().contains("1_9"))
+            moduleMap.put(ModuleEnum.BOSSBAR_MESSAGES, new BossBarMessages());
+
         registerListeners();
         onEnable();
     }

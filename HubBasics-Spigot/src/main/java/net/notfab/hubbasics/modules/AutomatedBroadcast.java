@@ -33,7 +33,7 @@ public class AutomatedBroadcast extends Module {
                 .map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
         if (!enable) return;
         if (timing <= 0) {
-            Bukkit.getConsoleSender().sendMessage("Automated broadcast timings below or equal to 0 are not allowed!");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[HubBasics] Automated broadcast timings below or equal to 0 are not allowed!");
             return;
         }
 

@@ -206,9 +206,7 @@ public class HMessenger {
      * @return The formatted message
      */
     public static String format(String message, CommandSender commandSender) {
-        if (message.equalsIgnoreCase("null")) {
-            return null;
-        }
+        if (message == null || message.equalsIgnoreCase("null")) return null;
         message = org.bukkit.ChatColor.translateAlternateColorCodes('&', message);
         if (commandSender != null) {
             message = message.replaceAll("<displayname>", commandSender.getName());
@@ -217,12 +215,15 @@ public class HMessenger {
         return message;
     }
 
+    /**
+     * Easy-to-notice update notification
+     */
     public static void notifyUpdate() {
-        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "======================================");
-        Bukkit.getServer().getConsoleSender().sendMessage("");
-        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "An update is available for HubBasics!");
-        Bukkit.getServer().getConsoleSender().sendMessage("");
-        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "======================================");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "======================================");
+        Bukkit.getConsoleSender().sendMessage("");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "An update is available for HubBasics!");
+        Bukkit.getConsoleSender().sendMessage("");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "======================================");
     }
 
     private static String arrayToString(String... strings) {

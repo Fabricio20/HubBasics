@@ -6,6 +6,8 @@ import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 
 import java.util.Arrays;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 /*
  * Copyright (c) 2016.
  *
@@ -40,6 +42,7 @@ public enum ConfigurationKey {
     DOUBLE_JUMP_FORCE("Force", false, 0.3, ModuleEnum.DOUBLE_JUMP),
     DOUBLE_JUMP_SOUND("Sound", false, "ENTITY_BAT_TAKEOFF", ModuleEnum.DOUBLE_JUMP),
 
+    ADVANCED_MOTD_ENABLED("Enabled", false, true, ModuleEnum.ADVANCED_MOTD),
     ADVANCED_MOTD_MOTDS("Motds", false, Arrays.asList("&aThis server has HubBasics!", "&2Maybe the server owner should change these messages?"), ModuleEnum.ADVANCED_MOTD),
     ADVANCED_MOTD_SWITCHRATE("Switchrate", false, 20, ModuleEnum.ADVANCED_MOTD),
 
@@ -48,7 +51,11 @@ public enum ConfigurationKey {
     AUTOMATED_BROADCASTS_ENABLED("Enabled", false, false, ModuleEnum.AUTOMATED_BROADCASTS),
     AUTOMATED_BROADCASTS_MESSAGES("Messages", false, Arrays.asList("&3This server uses HubBasics!", "&2This is just an example!"), ModuleEnum.AUTOMATED_BROADCASTS),
     AUTOMATED_BROADCASTS_TIMING("Timing", false, 60, ModuleEnum.AUTOMATED_BROADCASTS),
-    AUTOMATED_BROADCASTS_RANDOM("RandomOrder", false, false, ModuleEnum.AUTOMATED_BROADCASTS);
+    AUTOMATED_BROADCASTS_RANDOM("RandomOrder", false, false, ModuleEnum.AUTOMATED_BROADCASTS),
+
+    BOSSBAR_MESSAGES_ENABLED("Enabled", false, false, ModuleEnum.BOSSBAR_MESSAGES),
+    BOSSBAR_MESSAGES_MESSAGES("Messages", false, Arrays.asList("&3This server uses HubBasics!", "&2This is just an example!"), ModuleEnum.BOSSBAR_MESSAGES),
+    BOSSBAR_MESSAGES_TIMING("Timing", false, 15, ModuleEnum.BOSSBAR_MESSAGES);
 
     /**
      * This is the path the option will have in the config.yml file

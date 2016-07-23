@@ -22,9 +22,9 @@ public enum ConfigurationKey {
     ENABLE_DEBUG("Messages.Debug", false, false),
 
     CONNECT_MESSAGES_ENABLED("Enabled", false, true, ModuleEnum.CONNECTION_MESSAGES),
-    PLAYER_CONNECT("Join", false, "&8[&a+&8] &f<displayname> &7joined the game", ModuleEnum.CONNECTION_MESSAGES),
-    PLAYER_DISCONNECT("Leave", false, "&8[&c-&8] &f<displayname> &7quit the game", ModuleEnum.CONNECTION_MESSAGES),
-    PLAYER_FIRST_CONNECT("FirstJoin", false, "&9Welcome to the server, &f<displayname>&9!", ModuleEnum.CONNECTION_MESSAGES),
+    CONNECT_MESSAGES_CONNECT("Join", false, "&8[&a+&8] &f<displayname> &7joined the game", ModuleEnum.CONNECTION_MESSAGES),
+    CONNECT_MESSAGES_DISCONNECT("Leave", false, "&8[&c-&8] &f<displayname> &7quit the game", ModuleEnum.CONNECTION_MESSAGES),
+    CONNECT_MESSAGES_FIRST_CONNECT("FirstJoin", false, "&9Welcome to the server, &f<displayname>&9!", ModuleEnum.CONNECTION_MESSAGES),
 
     FIXED_WEATHER_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.FIXED_WEATHER),
     KEEP_FOOD_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_FOOD),
@@ -55,7 +55,13 @@ public enum ConfigurationKey {
 
     BOSSBAR_MESSAGES_ENABLED("Enabled", false, false, ModuleEnum.BOSSBAR_MESSAGES),
     BOSSBAR_MESSAGES_MESSAGES("Messages", false, Arrays.asList("&3This server uses HubBasics!", "&2This is just an example!"), ModuleEnum.BOSSBAR_MESSAGES),
-    BOSSBAR_MESSAGES_TIMING("Timing", false, 15, ModuleEnum.BOSSBAR_MESSAGES);
+    BOSSBAR_MESSAGES_TIMING("Timing", false, 15, ModuleEnum.BOSSBAR_MESSAGES),
+
+    JOIN_TELEPORT_ENABLED("Enabled", false, Arrays.asList("insertWorldNamesHere"), ModuleEnum.JOIN_TELEPORT),
+    JOIN_TELEPORT_LOCATION_X("X", false, 0, ModuleEnum.JOIN_TELEPORT),
+    JOIN_TELEPORT_LOCATION_Y("Y", false, 0, ModuleEnum.JOIN_TELEPORT),
+    JOIN_TELEPORT_LOCATION_Z("Z", false, 0, ModuleEnum.JOIN_TELEPORT),
+    JOIN_TELEPORT_LOCATION_WORLD("World", false, "world", ModuleEnum.JOIN_TELEPORT);
 
     /**
      * This is the path the option will have in the config.yml file

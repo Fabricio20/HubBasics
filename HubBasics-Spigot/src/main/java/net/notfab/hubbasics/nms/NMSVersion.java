@@ -71,9 +71,9 @@ public class NMSVersion {
     }
 
     public int getVersionID(String version) {
-        return Integer.parseInt(this.versionMap.entrySet().parallelStream()
+        return this.versionMap.entrySet().parallelStream()
                 .filter(e -> e.getValue().equalsIgnoreCase(version))
-                .map(e -> e.getValue()).collect(Collectors.toList()).get(0));
+                .map(e -> e.getKey()).collect(Collectors.toList()).get(0);
     }
 
     public boolean runningNewerThan(String version) {

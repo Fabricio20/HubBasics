@@ -8,6 +8,8 @@ import org.bukkit.Bukkit;
 
 import net.md_5.bungee.api.ChatColor;
 
+import lombok.Getter;
+
 public class NMSVersion {
     public static final String V1_7_R1 = "v1_7_R1";
     public static final String V1_7_R2 = "v1_7_R2";
@@ -21,7 +23,7 @@ public class NMSVersion {
     public static final String V1_10_R1 = "v1_10_R1";
 
     private Map<Integer, String> versionMap;
-    private int versionID;
+    @Getter private int versionID;
 
     public NMSVersion() {
         this.versionMap = new HashMap<>();
@@ -41,8 +43,9 @@ public class NMSVersion {
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "complaining to us, the developers of HubBasics, when something breaks,");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "because running an unsupported version will cause exactly this. We do");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "in no way accept responsibility for ANY damage caused to a server running");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "an unsupported version of HubBasics. It is recommended that you change to");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "a supported version of CraftBukkit.");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "an unsupported version of CraftBukkit. It is recommended that you change to");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "a supported version of CraftBukkit. Supported versions are 1.7*, 1.8*, 1.9,");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "1.10. Versions marked with an asterisk (*) may not be fully compatible.");
             Bukkit.getConsoleSender().sendMessage("");
             Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "----------------------------------------------------------");
         }
@@ -66,14 +69,14 @@ public class NMSVersion {
         this.versionMap.put(this.versionMap.size(), string);
     }
 
-    public int getVersionID() {
-        return this.versionID;
-    }
-
     public int getVersionID(String version) {
-        return this.versionMap.entrySet().parallelStream()
-                .filter(e -> e.getValue().equalsIgnoreCase(version))
-                .map(e -> e.getKey()).collect(Collectors.toList()).get(0);
+        try {
+            return this.versionMap.entrySet().parallelStream()
+                    .filter(e -> e.getValue().equalsIgnoreCase(version))
+                    .map(e -> e.getKey()).collect(Collectors.toList()).get(0);
+        } catch (NullPointerException e) {
+            return 0;
+        }
     }
 
     public boolean runningNewerThan(String version) {

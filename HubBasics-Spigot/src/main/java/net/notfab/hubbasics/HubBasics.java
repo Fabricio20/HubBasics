@@ -5,6 +5,7 @@ import net.notfab.hubbasics.managers.CommandManager;
 import net.notfab.hubbasics.managers.ModuleManager;
 import net.notfab.hubbasics.managers.SimpleConfigManager;
 import net.notfab.hubbasics.managers.UpdateManager;
+import net.notfab.hubbasics.nms.NMSVersion;
 import net.notfab.hubbasics.objects.MetricsLite;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
@@ -32,15 +33,14 @@ public class HubBasics extends JavaPlugin {
     @Getter private SimpleConfigManager configManager;
     @Getter private MessageManager messageManager;
     @Getter private ModuleManager moduleManager;
-    @Getter private String serverVersion;
     @Getter private MetricsLite metrics;
     @Getter private UpdateManager updateManager;
+    @Getter private NMSVersion nmsVersion;
 
     @Override
     public void onEnable() {
         instance = this;
-        String packageName = getServer().getClass().getPackage().getName();
-        this.serverVersion = packageName.substring(packageName.lastIndexOf('.') + 1);
+        this.nmsVersion = new NMSVersion();
         this.configManager = new SimpleConfigManager(this);
         this.pluginConfiguration = new HConfiguration();
         this.messageManager = new MessageManager();

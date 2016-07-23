@@ -1,10 +1,14 @@
 package net.notfab.hubbasics.managers;
 
 import lombok.Getter;
+
+import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.modules.*;
+import net.notfab.hubbasics.nms.NMSVersion;
+
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;
@@ -15,19 +19,25 @@ public class ModuleManager {
     @Getter private HashMap<ModuleEnum, Module> moduleMap = new HashMap<>();
 
     public ModuleManager() {
-        moduleMap.put(ModuleEnum.DOUBLE_JUMP, new DoubleJump());
-        moduleMap.put(ModuleEnum.JUMP_PADS, new JumpPads());
-        moduleMap.put(ModuleEnum.ANTI_VOID, new AntiVoid());
-        moduleMap.put(ModuleEnum.FIXED_WEATHER, new FixedWeather());
-        moduleMap.put(ModuleEnum.KEEP_FOOD, new KeepFood());
-        moduleMap.put(ModuleEnum.KEEP_HEALTH, new KeepHealth());
-        moduleMap.put(ModuleEnum.CONNECTION_MESSAGES, new ConnectionMessages());
-        moduleMap.put(ModuleEnum.ADVANCED_MOTD, new AdvancedMOTD());
-        moduleMap.put(ModuleEnum.COMMAND_OVERRIDE, new CommandOverride());
-        moduleMap.put(ModuleEnum.HOLOGRAMS, new CustomHolograms());
-        moduleMap.put(ModuleEnum.AUTOMATED_BROADCASTS, new AutomatedBroadcast());
-        if (HubBasics.getInstance().getServerVersion().contains("1_10") || HubBasics.getInstance().getServerVersion().contains("1_9"))
-            moduleMap.put(ModuleEnum.BOSSBAR_MESSAGES, new BossBarMessages());
+        registerModule(new DoubleJump());
+        registerModule(new JumpPads());
+        registerModule(new AntiVoid());
+        registerModule(new FixedWeather());
+        registerModule(new KeepFood());
+        registerModule(new KeepHealth());
+        registerModule(new ConnectionMessages());
+        registerModule(new AdvancedMOTD());
+        registerModule(new CommandOverride());
+        registerModule(new CustomHolograms());
+        registerModule(new AutomatedBroadcast());
+        registerModule(new JoinTeleport());
+
+        if (HubBasics.getInstance().getNmsVersion().runningNewerThan(NMSVersion.V1_9_R1)) {
+            registerModule(new BossBarMessages());
+        } else {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "NMS version earlier than 1.9 detected, this means the following modules WILL NOT WORK;");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "  - Boss bar messages");
+        }
 
         registerListeners();
         onEnable();
@@ -49,7 +59,7 @@ public class ModuleManager {
         return this.moduleMap.get(moduleEnum);
     }
 
-    public void registerModule(ModuleEnum moduleEnum, Module module) {
-        this.moduleMap.put(moduleEnum, module);
+    public void registerModule(Module module) {
+        this.moduleMap.put(module.getModuleEnum(), module);
     }
 }

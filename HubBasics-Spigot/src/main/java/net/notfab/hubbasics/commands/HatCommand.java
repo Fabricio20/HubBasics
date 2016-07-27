@@ -10,12 +10,7 @@ package net.notfab.hubbasics.commands;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import net.md_5.bungee.api.ChatColor;
-import net.notfab.hubbasics.abstracts.command.HCommand;
-import net.notfab.hubbasics.abstracts.command.HPlayerCommand;
-import net.notfab.hubbasics.plugin.messages.HMessenger;
-import net.notfab.hubbasics.plugin.messages.HubBasicsMessage;
-import net.notfab.hubbasics.plugin.utils.HPermissions;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -23,7 +18,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.List;
+import net.md_5.bungee.api.ChatColor;
+import net.notfab.hubbasics.abstracts.command.HCommand;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
+import net.notfab.hubbasics.plugin.messages.HubBasicsMessage;
+import net.notfab.hubbasics.plugin.utils.HPermissions;
 
 public class HatCommand extends HCommand {
 
@@ -32,7 +31,7 @@ public class HatCommand extends HCommand {
     }
 
     @Override
-    @SuppressWarnings("deprecated")
+    @SuppressWarnings("deprecation")
     public void onCommand(Player player, String[] args) {
         if (args.length > 2 || args.length == 0) {
             HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HAT_USAGE.getMessage());
@@ -59,7 +58,8 @@ public class HatCommand extends HCommand {
         }
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onCommand(CommandSender sender, String[] args) {
         if (args.length <= 1 || args.length > 3) {
             HMessenger.sendCommandUsageMessage(sender, HubBasicsMessage.HAT_USAGE.getMessage());

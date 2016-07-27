@@ -10,14 +10,10 @@ package net.notfab.hubbasics.plugin.settings;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import lombok.Getter;
-
-import net.notfab.hubbasics.abstracts.module.ModuleEnum;
-
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import lombok.Getter;
+import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 
 public enum ConfigurationKey {
     ENABLE_DEBUG("Messages.Debug", false, false),

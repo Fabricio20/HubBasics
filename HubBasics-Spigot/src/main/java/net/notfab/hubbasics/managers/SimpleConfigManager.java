@@ -1,14 +1,5 @@
 package net.notfab.hubbasics.managers;
 
-import net.notfab.hubbasics.objects.SimpleConfig;
-
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-
 /*
  * Copyright (c) 2016.
  *
@@ -18,6 +9,15 @@ import java.util.Map;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import net.notfab.hubbasics.objects.SimpleConfig;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SimpleConfigManager {
 

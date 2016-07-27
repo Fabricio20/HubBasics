@@ -1,11 +1,5 @@
 package net.notfab.hubbasics.plugin.settings;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.bukkit.configuration.ConfigurationSection;
-
 /*
  * Copyright (c) 2016.
  *
@@ -15,6 +9,12 @@ import org.bukkit.configuration.ConfigurationSection;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.bukkit.configuration.ConfigurationSection;
 
 public class ConfigurationSectionHWrapper {
 

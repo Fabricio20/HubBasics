@@ -1,8 +1,5 @@
 package net.notfab.hubbasics.plugin.messages;
 
-import lombok.Getter;
-import net.notfab.hubbasics.HubBasics;
-
 /*
  * Copyright (c) 2016.
  *
@@ -12,6 +9,9 @@ import net.notfab.hubbasics.HubBasics;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import lombok.Getter;
+import net.notfab.hubbasics.HubBasics;
 
 public enum HubBasicsMessage {
     NO_PERMISSION("noPermission", "You don't have permission to execute this command!"),

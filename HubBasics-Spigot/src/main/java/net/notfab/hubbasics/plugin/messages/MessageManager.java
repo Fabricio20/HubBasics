@@ -1,13 +1,5 @@
 package net.notfab.hubbasics.plugin.messages;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import net.notfab.hubbasics.HubBasics;
-import net.notfab.hubbasics.objects.SimpleConfig;
-
-import lombok.Getter;
-
 /*
  * Copyright (c) 2016.
  *
@@ -17,6 +9,14 @@ import lombok.Getter;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import java.util.HashMap;
+import java.util.Map;
+
+import net.notfab.hubbasics.HubBasics;
+import net.notfab.hubbasics.objects.SimpleConfig;
+
+import lombok.Getter;
 
 public class MessageManager {
 	private final HubBasics pl;

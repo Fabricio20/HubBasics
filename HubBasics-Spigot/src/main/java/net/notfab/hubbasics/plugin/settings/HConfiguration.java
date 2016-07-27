@@ -1,15 +1,5 @@
 package net.notfab.hubbasics.plugin.settings;
 
-import net.notfab.hubbasics.HubBasics;
-import net.notfab.hubbasics.objects.SimpleConfig;
-import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 /*
  * Copyright (c) 2016.
  *
@@ -19,6 +9,16 @@ import java.util.Set;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import net.notfab.hubbasics.HubBasics;
+import net.notfab.hubbasics.objects.SimpleConfig;
+import org.bukkit.World;
+import org.bukkit.configuration.ConfigurationSection;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class HConfiguration {
 
@@ -306,19 +306,19 @@ public class HConfiguration {
     }
 
     public void set(ConfigurationKey key, Object value) {
-        this.config.set(key.getPath(), value);
+        if (key.isPerWorldAllowed()) {
+            this.config.set(getGlobalPath(key), value);
+        } else {
+            this.config.set(key.getPath(), value);
+        }
     }
 
     public void set(ConfigurationKey key, Object value, World world) {
-        this.config.set(key.getPath() + "." + world.getName(), value);
-    }
-
-    public void set(ConfigurationKey key, Object value, String comment) {
-        this.config.set(key.getPath(), value, comment);
-    }
-
-    public void set(ConfigurationKey key, Object value, String[] comment) {
-        this.config.set(key.getPath(), value, comment);
+        if (key.isPerWorldAllowed()) {
+            this.config.set(key.getPath() + "." + world.getName(), value);
+        } else {
+            this.config.set(key.getPath(), value);
+        }
     }
 
     public Set<String> getKeys() {

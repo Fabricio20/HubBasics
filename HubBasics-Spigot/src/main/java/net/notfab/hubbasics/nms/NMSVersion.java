@@ -1,5 +1,15 @@
 package net.notfab.hubbasics.nms;
 
+/*
+ * Copyright (c) 2016.
+ *
+ * The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+ * Please read the information linked below before you attempt to use this project or it's contents to make sure you are abiding
+ * by it's terms.
+ *
+ * https://creativecommons.org/licenses/by-nc-sa/4.0/
+ */
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -45,7 +55,7 @@ public class NMSVersion {
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "in no way accept responsibility for ANY damage caused to a server running");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "an unsupported version of CraftBukkit. It is recommended that you change to");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "a supported version of CraftBukkit. Supported versions are 1.7*, 1.8*, 1.9,");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "1.10. Versions marked with an asterisk (*) may not be fully compatible.");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "1.10. Versions marked with an asterisk (*) may have decreased functionality.");
             Bukkit.getConsoleSender().sendMessage("");
             Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "----------------------------------------------------------");
         }
@@ -67,6 +77,14 @@ public class NMSVersion {
 
     private void registerVersion(String string) {
         this.versionMap.put(this.versionMap.size(), string);
+    }
+
+    public String getVersionString() {
+        return this.getVersionString(this.getVersionID());
+    }
+
+    public String getVersionString(int id) {
+        return this.versionMap.get(id);
     }
 
     public int getVersionID(String version) {

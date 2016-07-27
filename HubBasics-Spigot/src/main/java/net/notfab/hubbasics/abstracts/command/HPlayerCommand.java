@@ -1,14 +1,5 @@
 package net.notfab.hubbasics.abstracts.command;
 
-import java.util.List;
-
-import com.google.common.collect.Lists;
-
-import org.bukkit.command.CommandSender;
-import org.bukkit.permissions.Permission;
-
-import net.notfab.hubbasics.plugin.messages.HMessenger;
-
 /*
  * Copyright (c) 2016.
  *
@@ -19,23 +10,32 @@ import net.notfab.hubbasics.plugin.messages.HMessenger;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
+import org.bukkit.command.CommandSender;
+import org.bukkit.permissions.Permission;
+
+import net.notfab.hubbasics.plugin.messages.HMessenger;
+
 public abstract class HPlayerCommand extends HCommand {
-	public HPlayerCommand(String... names) {
-		super(names);
-	}
+    public HPlayerCommand(String... names) {
+        super(names);
+    }
 
-	public HPlayerCommand(Permission perm, String... names) {
-		super(perm, names);
-	}
+    public HPlayerCommand(Permission perm, String... names) {
+        super(perm, names);
+    }
 
-	@Override
-	public void onCommand(CommandSender sender, String[] args) {
-		HMessenger.errorPlayersOnly(sender);
-	}
+    @Override
+    public void onCommand(CommandSender sender, String[] args) {
+        HMessenger.errorPlayersOnly(sender);
+    }
 
-	@Override
-	public List<String> onTabComplete(CommandSender sender, String[] args) {
-		HMessenger.errorPlayersOnly(sender);
-		return Lists.newArrayList();
-	}
+    @Override
+    public List<String> onTabComplete(CommandSender sender, String[] args) {
+        HMessenger.errorPlayersOnly(sender);
+        return Lists.newArrayList();
+    }
 }

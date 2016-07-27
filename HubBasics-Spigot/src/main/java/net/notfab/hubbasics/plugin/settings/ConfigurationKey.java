@@ -1,13 +1,5 @@
 package net.notfab.hubbasics.plugin.settings;
 
-import lombok.Getter;
-
-import net.notfab.hubbasics.abstracts.module.ModuleEnum;
-
-import java.util.Arrays;
-
-import com.sun.org.apache.xpath.internal.operations.Mod;
-
 /*
  * Copyright (c) 2016.
  *
@@ -18,6 +10,15 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import lombok.Getter;
+
+import net.notfab.hubbasics.abstracts.module.ModuleEnum;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 public enum ConfigurationKey {
     ENABLE_DEBUG("Messages.Debug", false, false),
 
@@ -27,7 +28,9 @@ public enum ConfigurationKey {
     CONNECT_MESSAGES_FIRST_CONNECT("FirstJoin", false, "&9Welcome to the server, &f<displayname>&9!", ModuleEnum.CONNECTION_MESSAGES),
 
     FIXED_WEATHER_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.FIXED_WEATHER),
+
     KEEP_FOOD_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_FOOD),
+
     KEEP_HEALTH_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_HEALTH),
 
     ANTI_VOID_ENABLED("Enabled", false, Arrays.asList("world", "world_the_end"), ModuleEnum.ANTI_VOID),

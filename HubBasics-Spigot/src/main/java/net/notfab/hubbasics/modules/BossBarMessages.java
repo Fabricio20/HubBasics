@@ -1,15 +1,22 @@
 package net.notfab.hubbasics.modules;
 
-import java.util.ArrayList;
+/*
+ * Copyright (c) 2016.
+ *
+ * The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+ * Please read the information linked below before you attempt to use this project or it's contents to make sure you are abiding
+ * by it's terms.
+ *
+ * https://creativecommons.org/licenses/by-nc-sa/4.0/
+ */
+
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.json.JSONObject;

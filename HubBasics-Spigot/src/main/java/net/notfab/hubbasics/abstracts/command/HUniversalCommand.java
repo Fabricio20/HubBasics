@@ -1,11 +1,5 @@
 package net.notfab.hubbasics.abstracts.command;
 
-import java.util.List;
-
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
-
 /*
  * Copyright (c) 2016.
  *
@@ -16,21 +10,27 @@ import org.bukkit.permissions.Permission;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import java.util.List;
+
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+
 public abstract class HUniversalCommand extends HCommand {
-	public HUniversalCommand(String... names) {
-		super(names);
-	}
+    public HUniversalCommand(String... names) {
+        super(names);
+    }
 
-	public HUniversalCommand(Permission perm, String... names) {
-		super(perm, names);
-	}
+    public HUniversalCommand(Permission perm, String... names) {
+        super(perm, names);
+    }
 
-	public void onCommand(Player player, String[] args) {
-		onCommand((CommandSender) player, args);
-	}
+    public void onCommand(Player player, String[] args) {
+        onCommand((CommandSender) player, args);
+    }
 
-	@Override
-	public List<String> onTabComplete(Player player, String[] args) {
-		return onTabComplete((CommandSender) player, args);
-	}
+    @Override
+    public List<String> onTabComplete(Player player, String[] args) {
+        return onTabComplete((CommandSender) player, args);
+    }
 }

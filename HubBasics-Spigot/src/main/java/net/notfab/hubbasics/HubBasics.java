@@ -1,19 +1,5 @@
 package net.notfab.hubbasics;
 
-import lombok.Getter;
-import net.notfab.hubbasics.managers.CommandManager;
-import net.notfab.hubbasics.managers.ModuleManager;
-import net.notfab.hubbasics.managers.SimpleConfigManager;
-import net.notfab.hubbasics.managers.UpdateManager;
-import net.notfab.hubbasics.nms.NMSVersion;
-import net.notfab.hubbasics.objects.MetricsLite;
-import net.notfab.hubbasics.plugin.messages.HMessenger;
-import net.notfab.hubbasics.plugin.messages.MessageManager;
-import net.notfab.hubbasics.plugin.settings.HConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.IOException;
-
 /*
  * Copyright (c) 2016.
  *
@@ -23,6 +9,23 @@ import java.io.IOException;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import lombok.Getter;
+import net.notfab.hubbasics.managers.CommandManager;
+import net.notfab.hubbasics.managers.CustomItemManager;
+import net.notfab.hubbasics.managers.ModuleManager;
+import net.notfab.hubbasics.managers.SimpleConfigManager;
+import net.notfab.hubbasics.managers.UpdateManager;
+import net.notfab.hubbasics.nms.NMSVersion;
+import net.notfab.hubbasics.objects.MetricsLite;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
+import net.notfab.hubbasics.plugin.messages.MessageManager;
+import net.notfab.hubbasics.plugin.settings.HConfiguration;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
 
 public class HubBasics extends JavaPlugin {
 
@@ -36,6 +39,7 @@ public class HubBasics extends JavaPlugin {
     @Getter private MetricsLite metrics;
     @Getter private UpdateManager updateManager;
     @Getter private NMSVersion nmsVersion;
+    @Getter private CustomItemManager customItemManager;
 
     @Override
     public void onEnable() {
@@ -59,6 +63,9 @@ public class HubBasics extends JavaPlugin {
 
         this.updateManager = new UpdateManager();
         this.commandManager = new CommandManager();
+        this.customItemManager = new CustomItemManager();
+
+        Bukkit.getPluginManager().registerEvents(this.getCustomItemManager(), this);
     }
 
     @Override

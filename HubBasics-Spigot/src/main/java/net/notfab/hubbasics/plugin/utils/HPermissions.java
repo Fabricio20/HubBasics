@@ -1,7 +1,5 @@
 package net.notfab.hubbasics.plugin.utils;
 
-import org.bukkit.permissions.Permission;
-
 /*
  * Copyright (c) 2016.
  *
@@ -11,6 +9,8 @@ import org.bukkit.permissions.Permission;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import org.bukkit.permissions.Permission;
 
 public class HPermissions {
 	public static final Permission MESSAGE_DEBUG = new Permission("hubbasics.messages.debug");

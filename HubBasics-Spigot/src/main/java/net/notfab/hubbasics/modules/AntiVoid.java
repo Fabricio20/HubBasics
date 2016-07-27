@@ -1,13 +1,5 @@
 package net.notfab.hubbasics.modules;
 
-import net.notfab.hubbasics.abstracts.module.Module;
-import net.notfab.hubbasics.abstracts.module.ModuleEnum;
-import net.notfab.hubbasics.plugin.messages.HMessenger;
-import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageEvent;
-
 /*
  * Copyright (c) 2016.
  *
@@ -17,6 +9,14 @@ import org.bukkit.event.entity.EntityDamageEvent;
  *
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
+
+import net.notfab.hubbasics.abstracts.module.Module;
+import net.notfab.hubbasics.abstracts.module.ModuleEnum;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
+import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 public class AntiVoid extends Module {
 

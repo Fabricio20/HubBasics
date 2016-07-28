@@ -10,19 +10,29 @@ package net.notfab.hubbasics.managers;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import lombok.Getter;
+import java.util.HashMap;
 
+import org.bukkit.Bukkit;
+
+import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
-import net.notfab.hubbasics.modules.*;
+import net.notfab.hubbasics.modules.AdvancedMOTD;
+import net.notfab.hubbasics.modules.AntiVoid;
+import net.notfab.hubbasics.modules.AutomatedBroadcast;
+import net.notfab.hubbasics.modules.BossBarMessages;
+import net.notfab.hubbasics.modules.CommandOverride;
+import net.notfab.hubbasics.modules.ConnectionMessages;
+import net.notfab.hubbasics.modules.CustomHolograms;
+import net.notfab.hubbasics.modules.DoubleJump;
+import net.notfab.hubbasics.modules.FixedWeather;
+import net.notfab.hubbasics.modules.JoinTeleport;
+import net.notfab.hubbasics.modules.JumpPads;
+import net.notfab.hubbasics.modules.KeepFood;
+import net.notfab.hubbasics.modules.KeepHealth;
 import net.notfab.hubbasics.nms.NMSVersion;
-
-import org.bukkit.Bukkit;
-
-import java.util.HashMap;
-import java.util.Iterator;
 
 public class ModuleManager {
 

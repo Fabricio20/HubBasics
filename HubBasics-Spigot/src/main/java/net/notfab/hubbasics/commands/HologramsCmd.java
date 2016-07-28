@@ -16,7 +16,6 @@ import java.util.Set;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
 
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HPlayerCommand;

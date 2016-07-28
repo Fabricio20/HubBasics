@@ -10,18 +10,17 @@ package net.notfab.hubbasics.abstracts.module;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import java.util.List;
+
+import org.bukkit.World;
+import org.bukkit.event.Listener;
+
 import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey.ModuleSetting;
 import net.notfab.hubbasics.plugin.settings.HConfiguration;
-
-import org.bukkit.World;
-import org.bukkit.event.Listener;
-import sun.security.ssl.HandshakeMessage;
-
-import java.util.List;
 
 public abstract class Module implements Listener {
 

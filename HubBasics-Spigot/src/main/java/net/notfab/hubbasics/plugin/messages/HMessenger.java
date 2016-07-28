@@ -10,17 +10,17 @@ package net.notfab.hubbasics.plugin.messages;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import net.md_5.bungee.api.ChatColor;
-import net.notfab.hubbasics.HubBasics;
-import net.notfab.hubbasics.abstracts.command.HCommand;
-import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
-import net.notfab.hubbasics.plugin.utils.HPermissions;
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
 
-import java.util.Arrays;
+import net.md_5.bungee.api.ChatColor;
+import net.notfab.hubbasics.HubBasics;
+import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
+import net.notfab.hubbasics.plugin.utils.HPermissions;
 
 public class HMessenger {
 

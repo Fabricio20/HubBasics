@@ -10,18 +10,21 @@ package net.notfab.hubbasics.managers;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.bukkit.command.PluginCommand;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
 import net.notfab.hubbasics.commands.HatCommand;
 import net.notfab.hubbasics.commands.HologramsCmd;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import net.notfab.hubbasics.commands.HubCommand;
+import net.notfab.hubbasics.commands.SetHubCommand;
 
 public class CommandManager {
 
@@ -31,6 +34,8 @@ public class CommandManager {
         this.commands = new ArrayList<>();
         registerCommand(new HatCommand(), HubBasics.getInstance());
         registerCommand(new HologramsCmd(), HubBasics.getInstance());
+        registerCommand(new HubCommand(), HubBasics.getInstance());
+        registerCommand(new SetHubCommand(), HubBasics.getInstance());
     }
 
     /**

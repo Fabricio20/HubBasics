@@ -66,6 +66,7 @@ public class HubBasics extends JavaPlugin {
         this.customItemManager = new CustomItemManager();
 
         Bukkit.getPluginManager().registerEvents(this.getCustomItemManager(), this);
+		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
     @Override

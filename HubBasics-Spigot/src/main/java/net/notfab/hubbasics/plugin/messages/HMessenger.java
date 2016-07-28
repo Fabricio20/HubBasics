@@ -231,4 +231,8 @@ public class HMessenger {
         Arrays.stream(strings).forEach(s -> builder.append(s + " "));
         return builder.toString().trim();
     }
+
+	public static void unknownCommand(CommandSender sender) {
+		sendMessage(sender, "Unknown command, type /help for help.");
+	}
 }

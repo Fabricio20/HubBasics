@@ -32,6 +32,11 @@ public abstract class HCommand implements TabExecutor {
 
     @Getter @Setter private Permission permission;
     @Getter @Setter private String[] names;
+    
+    @Deprecated
+    protected HCommand() {
+    	
+    }
 
     public HCommand(String... names) {
         this.names = names;

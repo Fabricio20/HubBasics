@@ -12,44 +12,45 @@ package net.notfab.hubbasics.commands;
 
 import java.util.List;
 
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
+import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 import net.notfab.hubbasics.plugin.utils.HPermissions;
 
 public class SetHubCommand extends HCommand {
-	
+
+	private HubBasics pl;
+
 	public SetHubCommand() {
 		super(HPermissions.SETHUB_COMMAND, "sethub", "setlobby");
+		this.pl = HubBasics.getInstance();
 	}
 
 	@Override
 	public void onCommand(Player player, String[] args) {
-		/*JSONObject _Config = HubBasics.getInstance().getConfigManager().readFile(new File("plugins/HubBasics/config.json"));
-		JSONObject _Hub = _Config.getJSONObject("Hub");
-		if(_Hub.getBoolean("Enabled")) {
-			if(_Hub.getBoolean("BungeeCord")) {
-				sender.sendMessage("§cHubBasics§7: You Cannot Modify Lobby Location With BungeeCord Enabled.");
+		if(pl.getPluginConfiguration().getBoolean(ConfigurationKey.HUB_COMMANDS_ENABLED)) {
+			if(pl.getPluginConfiguration().getBoolean(ConfigurationKey.USE_BUNGEECORD)) {
+				player.sendMessage("§cHubBasics§7: Modifying the hub location will NOT have any effect while BungeeCord is running. " +
+						"Please manually edit the variables found in the configuration file for HubBasics.");
 			} else {
-				Location loc = sender.getLocation();
-				JSONObject _Location = new JSONObject();
-				_Location.put("World", loc.getWorld().getName());
-				_Location.put("X", loc.getX());
-				_Location.put("Y", loc.getY());
-				_Location.put("Z", loc.getZ());
-				_Location.put("Yaw", loc.getYaw());
-				_Location.put("Pitch", loc.getPitch());
-				_Hub.put("Location", _Location);
-				_Config.put("Hub", _Hub);
-				HubBasics.getInstance().getConfigManager().writeFile(new File("plugins/HubBasics/config.json"), _Config);
-				sender.sendMessage("§aHubBasics§7: Lobby Location Updated.");
+				Location location = player.getLocation();
+				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_X, location.getX());
+				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_Y, location.getY());
+				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_Z, location.getZ());
+				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_YAW, location.getYaw());
+				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_PITCH, location.getPitch());
+				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_WORLD, location.getWorld().getName());
+
+				player.sendMessage("§aHubBasics§7: Lobby location updated.");
 			}
 		} else {
-			// Unkown Command since this command is not enabled
-			 HMessenger.unknownCommand(player); // Config?
-		}*/
+			 HMessenger.unknownCommand(player);
+		}
 	}
 
 	@Override

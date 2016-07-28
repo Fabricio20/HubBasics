@@ -22,6 +22,16 @@ import org.apache.commons.lang.WordUtils;
 
 public enum ConfigurationKey {
     ENABLE_DEBUG("Messages.Debug", false, false),
+    USE_BUNGEECORD("Bungeecord", false, false),
+
+    HUB_COMMANDS_ENABLED("Hub.CommandsEnabled", false, true),
+    HUB_LOCATION_SERVER("Hub.Location.Server", false, "none"),
+    HUB_LOCATION_X("Hub.Location.X", false, 0),
+    HUB_LOCATION_Y("Hub.Location.Y", false, 0),
+    HUB_LOCATION_Z("Hub.Location.Z", false, 0),
+    HUB_LOCATION_YAW("Hub.Location.Yaw", false, 0),
+    HUB_LOCATION_PITCH("Hub.Location.Pitch", false, 0),
+    HUB_LOCATION_WORLD("Hub.Location.World", false, "world"),
 
     CONNECT_MESSAGES_ENABLED(ModuleSetting.ENABLED_GLOBAL, false, true, ModuleEnum.CONNECTION_MESSAGES),
     CONNECT_MESSAGES_CONNECT("Join", false, "&8[&a+&8] &f<displayname> &7joined the game", ModuleEnum.CONNECTION_MESSAGES),

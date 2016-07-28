@@ -33,5 +33,4 @@ public class FixedWeather extends Module {
             e.setCancelled(true);
         }
     }
-
 }

@@ -12,7 +12,6 @@ package net.notfab.hubbasics.modules;
 
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
-import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.weather.WeatherChangeEvent;
 

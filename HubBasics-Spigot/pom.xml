@@ -11,7 +11,7 @@
 
 	<groupId>net.notfab</groupId>
 	<artifactId>HubBasics</artifactId>
-	<version>5.0-DEVELOPMENT_${build.number}</version>
+	<version>5.0d_${build.number}</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -44,8 +44,8 @@ public class UpdateManager {
                     }
                 } catch (JSONException ex) {}
             }
-        } catch (IOException ex) {
-            HMessenger.printStackTrace(ex);
+        } catch (IOException ignored) {
+            HMessenger.notifyAdmins("Failed to fetch for updates.");
         }
         return false;
     }

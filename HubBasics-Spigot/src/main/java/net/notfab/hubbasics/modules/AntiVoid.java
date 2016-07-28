@@ -32,16 +32,10 @@ public class AntiVoid extends Module {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
-        if(e.getCause() != EntityDamageEvent.DamageCause.VOID) {
-            return;
-        }
-        if(!(e.getEntity() instanceof Player)) {
-            return;
-        }
+        if(e.getCause() != EntityDamageEvent.DamageCause.VOID) return;
+        if(!(e.getEntity() instanceof Player)) return;
         Player player = (Player) e.getEntity();
-        if(!isInWorld(player.getWorld(), ConfigurationKey.ANTI_VOID_ENABLED)) {
-            return;
-        }
+        if(!isEnabledInWorld(player.getWorld())) return;
         e.setCancelled(true);
         e.setDamage(0.0);
         HMessenger.sendMessage(player, ConfigurationKey.ANTI_VOID_MESSAGE);

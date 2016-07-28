@@ -50,7 +50,7 @@ public class HubBasics extends JavaPlugin {
         this.messageManager = new MessageManager();
 
         this.getMessageManager().loadMessages();
-        this.getPluginConfiguration().loadDefaults();
+        this.getPluginConfiguration().loadConfig();
 
         this.moduleManager = new ModuleManager();
 

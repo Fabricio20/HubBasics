@@ -30,7 +30,7 @@ public class FixedWeather extends Module {
 
     @EventHandler
     public void onWeather(WeatherChangeEvent e) {
-        if(isInWorld(e.getWorld(), ConfigurationKey.FIXED_WEATHER_ENABLED)) {
+        if(isEnabledInWorld(e.getWorld())) {
             e.setCancelled(true);
         }
     }

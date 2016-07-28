@@ -40,7 +40,7 @@ public class DoubleJump extends Module {
         if(player.getGameMode() == GameMode.CREATIVE) {
             return;
         }
-        if(!isInWorld(player.getWorld(), ConfigurationKey.DOUBLE_JUMP_ENABLED)) {
+        if(!isEnabledInWorld(player.getWorld())) {
             return;
         }
         e.setCancelled(true);
@@ -62,7 +62,7 @@ public class DoubleJump extends Module {
         Player player = e.getPlayer();
         if(player.getGameMode() == GameMode.CREATIVE) return;
         if(player.isFlying()) return;
-        if(!isInWorld(player.getWorld(), ConfigurationKey.DOUBLE_JUMP_ENABLED)) return;
+        if(!isEnabledInWorld(player.getWorld())) return;
         if(player.getLocation().subtract(0.0D, 1.0D, 0.0D).getBlock().getType() != Material.AIR) player.setAllowFlight(true);
     }
 }

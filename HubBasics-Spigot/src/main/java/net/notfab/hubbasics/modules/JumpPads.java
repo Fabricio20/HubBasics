@@ -33,20 +33,8 @@ public class JumpPads extends Module {
     public JumpPads() {
         super(ModuleEnum.JUMP_PADS);
 
-        try {
-            this.padPower = getDouble(ConfigurationKey.JUMP_PADS_FORCE);
-        } catch (IllegalArgumentException ex) {
-            HMessenger.printStackTrace(new IllegalArgumentException("Invalid force for jump pad"));
-            return;
-        }
-
-        try {
-            this.material = Material.valueOf(getString(ConfigurationKey.JUMP_PADS_MATERIAL));
-        } catch (IllegalArgumentException ex) {
-            HMessenger.printStackTrace(new IllegalArgumentException("Invalid material name for jump pad"));
-            return;
-        }
-
+        this.padPower = getDouble(ConfigurationKey.JUMP_PADS_FORCE);
+        this.material = Material.valueOf(getString(ConfigurationKey.JUMP_PADS_MATERIAL));
         this.requirePressurePlate = getBoolean(ConfigurationKey.JUMP_PADS_REQUIRE_PRESSUREPLATE);
     }
 
@@ -60,7 +48,7 @@ public class JumpPads extends Module {
     public void onPlayerMove(PlayerMoveEvent event) {
         if (requirePressurePlate) return;
         Player player = event.getPlayer();
-        if (!isInWorld(player.getWorld(), ConfigurationKey.JUMP_PADS_ENABLED)) return;
+        if (!isEnabledInWorld(player.getWorld())) return;
         Location loc =  player.getLocation().subtract(0, 1, 0);
         if (loc.getBlock().getType() == this.material) {
             player.setVelocity(calculateVector(player));
@@ -71,7 +59,7 @@ public class JumpPads extends Module {
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (!requirePressurePlate) return;
         Player player = event.getPlayer();
-        if (event.getAction() == Action.PHYSICAL && !event.isCancelled() && isInWorld(player.getWorld(), ConfigurationKey.JUMP_PADS_ENABLED)) {
+        if (event.getAction() == Action.PHYSICAL && !event.isCancelled() && isEnabledInWorld(player.getWorld())) {
             if (event.getClickedBlock().getType() == Material.STONE_PLATE) {
                 Location loc = event.getClickedBlock().getLocation().subtract(0, 1, 0);
                 if (loc.getWorld().getBlockAt(loc).getType() == this.material) {

@@ -33,8 +33,10 @@ public class JoinTeleport extends Module {
         double x = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_X);
         double y = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_Y);
         double z = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_Z);
+        double yaw = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_YAW);
+        double pitch = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_PITCH);
         World world = Bukkit.getWorld(getString(ConfigurationKey.JOIN_TELEPORT_LOCATION_WORLD));
-        this.location = new Location(world, x, y, z);
+        this.location = new Location(world, x, y, z, (float) yaw, (float) pitch);
     }
 
     @Override
@@ -44,6 +46,6 @@ public class JoinTeleport extends Module {
 
     @EventHandler
     public void onPlayerConnect(PlayerJoinEvent event) {
-        if (isInWorld(event.getPlayer().getWorld(), ConfigurationKey.JOIN_TELEPORT_ENABLED)) event.getPlayer().teleport(this.location);
+        if (isEnabledInWorld(event.getPlayer().getWorld())) event.getPlayer().teleport(this.location);
     }
 }

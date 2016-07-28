@@ -30,7 +30,7 @@ public class KeepFood extends Module {
 
     @EventHandler
     public void onFoodLevel(FoodLevelChangeEvent e) {
-        if(isInWorld(e.getEntity().getWorld(), ConfigurationKey.KEEP_FOOD_ENABLED)) {
+        if(isEnabledInWorld(e.getEntity().getWorld())) {
             e.setCancelled(true);
             e.setFoodLevel(20);
         }

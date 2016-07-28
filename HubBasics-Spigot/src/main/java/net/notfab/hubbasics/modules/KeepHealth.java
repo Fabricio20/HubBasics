@@ -31,7 +31,7 @@ public class KeepHealth extends Module {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
-        if(e.getEntity() instanceof Player && isInWorld(e.getEntity().getWorld(), ConfigurationKey.KEEP_HEALTH_ENABLED)) {
+        if(e.getEntity() instanceof Player && isEnabledInWorld(e.getEntity().getWorld())) {
             e.setCancelled(true);
             e.setDamage(0.0);
         }

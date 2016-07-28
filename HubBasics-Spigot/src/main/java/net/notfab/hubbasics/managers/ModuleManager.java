@@ -54,15 +54,15 @@ public class ModuleManager {
     }
 
     public void onEnable() {
-        this.moduleMap.values().forEach(Module::onEnableInternal);
+        this.moduleMap.values().parallelStream().filter(Module::performLoading).forEach(Module::onEnableInternal);
     }
 
     public void onDisable() {
-        this.moduleMap.values().forEach(Module::onDisableInternal);
+        this.moduleMap.values().parallelStream().filter(Module::performLoading).forEach(Module::onDisableInternal);
     }
 
     private void registerListeners() {
-        this.moduleMap.values().forEach(module -> Bukkit.getPluginManager().registerEvents(module, HubBasics.getInstance()));
+        this.moduleMap.values().parallelStream().filter(Module::performLoading).forEach(module -> Bukkit.getPluginManager().registerEvents(module, HubBasics.getInstance()));
     }
 
     public Module getModule(ModuleEnum moduleEnum) {

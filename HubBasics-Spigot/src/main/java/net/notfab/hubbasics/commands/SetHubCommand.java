@@ -19,6 +19,7 @@ import org.bukkit.entity.Player;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
+import net.notfab.hubbasics.plugin.messages.HubBasicsMessage;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 import net.notfab.hubbasics.plugin.utils.HPermissions;
 
@@ -35,7 +36,7 @@ public class SetHubCommand extends HCommand {
 	public void onCommand(Player player, String[] args) {
 		if(pl.getPluginConfiguration().getBoolean(ConfigurationKey.HUB_COMMANDS_ENABLED)) {
 			if(pl.getPluginConfiguration().getBoolean(ConfigurationKey.USE_BUNGEECORD)) {
-				player.sendMessage("§cHubBasics§7: Modifying the hub location will NOT have any effect while BungeeCord is running. " +
+				HMessenger.sendMessage(player, "Modifying the hub location will NOT have any effect while BungeeCord is running. " +
 						"Please manually edit the variables found in the configuration file for HubBasics.");
 			} else {
 				Location location = player.getLocation();
@@ -46,7 +47,7 @@ public class SetHubCommand extends HCommand {
 				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_PITCH, location.getPitch());
 				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_WORLD, location.getWorld().getName());
 
-				player.sendMessage("§aHubBasics§7: Lobby location updated.");
+				HMessenger.sendMessage(player, HubBasicsMessage.HUB_LOCATION_UPDATED.getMessage());
 			}
 		} else {
 			 HMessenger.unknownCommand(player);

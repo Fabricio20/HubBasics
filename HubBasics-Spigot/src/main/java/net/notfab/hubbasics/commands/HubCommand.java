@@ -24,6 +24,7 @@ import com.google.common.io.ByteStreams;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
+import net.notfab.hubbasics.plugin.messages.HubBasicsMessage;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 import net.notfab.hubbasics.plugin.utils.HPermissions;
 
@@ -51,7 +52,7 @@ public class HubCommand extends HCommand {
 				double pitch = pl.getPluginConfiguration().getDouble(ConfigurationKey.HUB_LOCATION_PITCH);
 
 				if(world == null) {
-					sender.sendMessage("§cError§7: Invalid lobby world.");
+					HMessenger.sendErrorMessage(sender, HubBasicsMessage.HUB_INVALID_WORLD.getMessage());
 					return;
 				}
 

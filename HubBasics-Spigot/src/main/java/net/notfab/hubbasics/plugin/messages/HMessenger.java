@@ -32,11 +32,9 @@ public class HMessenger {
      */
     public static void sendMessage(CommandSender commandSender, String... message) {
         String msg = arrayToString(message);
-        if (msg.equalsIgnoreCase("null")) {
-            return;
-        }
+        if (msg.equalsIgnoreCase("null")) return;
         msg = format(msg, commandSender);
-        commandSender.sendMessage(msg);
+        commandSender.sendMessage(ChatColor.GREEN + msg);
     }
 
     /**
@@ -233,6 +231,6 @@ public class HMessenger {
     }
 
 	public static void unknownCommand(CommandSender sender) {
-		sendMessage(sender, "Unknown command, type /help for help.");
+		sendMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTFOUND);
 	}
 }

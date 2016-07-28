@@ -9,3 +9,7 @@ commands:
     description: Manage holograms
   hat:
     description: Changes your hat
+  hub:
+    description: Go to hub
+  sethub:
+    description: Set hub location

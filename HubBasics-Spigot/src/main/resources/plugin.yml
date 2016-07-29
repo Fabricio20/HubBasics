@@ -11,5 +11,7 @@ commands:
     description: Changes your hat
   hub:
     description: Go to hub
+    aliases: [lobby]
   sethub:
     description: Set hub location
+    aliases: [setlobby]

@@ -39,7 +39,8 @@ public class HologramsCmd extends HPlayerCommand {
     @Override
     public void onCommand(Player player, String[] args) {
         if (args.length == 0) {
-            HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HOLOGRAMS_USAGE_CREATE.getMessage(),
+            HMessenger.sendCommandUsageMessage(player,
+                    HubBasicsMessage.HOLOGRAMS_USAGE_CREATE.getMessage(),
                     HubBasicsMessage.HOLOGRAMS_USAGE_RESET.getMessage(),
                     HubBasicsMessage.HOLOGRAMS_USAGE_ADDLINE.getMessage(),
                     HubBasicsMessage.HOLOGRAMS_USAGE_DELETE.getMessage(),
@@ -53,23 +54,23 @@ public class HologramsCmd extends HPlayerCommand {
                         String text = ChatColor.translateAlternateColorCodes('&', argsToString(args, 1));
                         String id = this.holograms.createHologram(player.getLocation(), text) + "";
                         String holoID = ChatColor.DARK_GREEN + id + ChatColor.GREEN;
-                        player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_CREATED.getMessage().replace("<hologramID>", holoID));
+                        player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_CREATED.getMessage(holoID));
                     }
                     return;
                 case "RESET":
                     if (args.length == 1) {
                         HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HOLOGRAMS_USAGE_RESET.getMessage());
                     } else if (!args[1].matches("\\d{1,5}")) {
-                        HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                        HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[1] + ChatColor.RED));
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
                         if (!this.holograms.hologramExists(index)) {
-                            HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTEXIST.getMessage().replace("<hologramID>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                            HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTEXIST.getMessage(ChatColor.DARK_RED + args[1] + ChatColor.RED));
                         } else {
                             this.holograms.resetLines(index);
                             String holoID = ChatColor.DARK_GREEN + "" + index + ChatColor.GREEN;
-                            player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_RESET.getMessage().replace("<hologramID>", holoID));
+                            player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_RESET.getMessage(holoID));
                         }
                     }
                     return;
@@ -77,16 +78,16 @@ public class HologramsCmd extends HPlayerCommand {
                     if (args.length < 3) {
                         HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HOLOGRAMS_USAGE_ADDLINE.getMessage());
                     } else if (!args[1].matches("\\d{1,5}")) {
-                        HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                        HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[1] + ChatColor.RED));
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
                         if (!this.holograms.hologramExists(index)) {
-                            HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTEXIST.getMessage().replace("<hologramID>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                            HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTEXIST.getMessage(ChatColor.DARK_RED + args[1] + ChatColor.RED));
                         } else {
                             this.holograms.addLines(index, ChatColor.translateAlternateColorCodes('&', argsToString(args, 2)));
                             String holoID = ChatColor.DARK_GREEN + "" + index + ChatColor.GREEN;
-                            player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_ADDLINE.getMessage().replace("<hologramID>", holoID));
+                            player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_ADDLINE.getMessage(holoID));
                         }
                     }
                     return;
@@ -94,16 +95,16 @@ public class HologramsCmd extends HPlayerCommand {
                     if (args.length == 1) {
                         HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HOLOGRAMS_USAGE_DELETE.getMessage());
                     } else if (!args[1].matches("\\d{1,5}")) {
-                        HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                        HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[1] + ChatColor.RED));
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
                         if (!this.holograms.hologramExists(index)) {
-                            HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTEXIST.getMessage().replace("<hologramID>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                            HMessenger.sendErrorMessage(player, ChatColor.RED + HubBasicsMessage.HOLOGRAMS_ERROR_NOTEXIST.getMessage(ChatColor.DARK_RED + args[1] + ChatColor.RED));
                         } else {
                             this.holograms.deleteHologram(index);
                             String holoID = ChatColor.DARK_GREEN + "" + index + ChatColor.GREEN;
-                            player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_DELETE.getMessage().replace("<hologramID>", holoID));
+                            player.sendMessage(ChatColor.GREEN + HubBasicsMessage.HOLOGRAMS_SUCCESS_DELETE.getMessage(holoID));
                         }
                     }
                     return;

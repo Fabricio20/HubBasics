@@ -41,14 +41,14 @@ public class HatCommand extends HCommand {
                 player.getInventory().setHelmet(new ItemStack(Material.getMaterial(id)));
                 HMessenger.sendMessage(player, HubBasicsMessage.HAT_CHANGED.getMessage());
             } else {
-                HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[0] + ChatColor.RED));
+                HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
             }
         } else if (args.length == 2) {
             if (!args[0].matches("[0-999]+")) {
-                HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[0] + ChatColor.RED));
+                HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             } else if (!args[1].matches("[0-999]+")) {
-                HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             }
             int id = Integer.parseInt(args[0]);
@@ -65,7 +65,7 @@ public class HatCommand extends HCommand {
             HMessenger.sendCommandUsageMessage(sender, HubBasicsMessage.HAT_USAGE.getMessage());
         } else if (args.length == 2) {
             if (!args[0].matches("[0-999]+")) {
-                HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[0] + ChatColor.RED));
+                HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             }
             Integer id = Integer.parseInt(args[0]);
@@ -78,10 +78,10 @@ public class HatCommand extends HCommand {
             HMessenger.sendMessage(sender, HubBasicsMessage.HAT_CHANGED.getMessage());
         } else if (args.length == 3) {
             if (!args[0].matches("[0-999]+")) {
-                HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[0] + ChatColor.RED));
+                HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             } else if (!args[1].matches("[0-999]+")) {
-                HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage().replace("<string>", ChatColor.DARK_RED + args[1] + ChatColor.RED));
+                HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             }
 
@@ -89,7 +89,7 @@ public class HatCommand extends HCommand {
             int meta = Integer.parseInt(args[1]);
             Player target = Bukkit.getPlayer(args[2]);
             if (target == null) {
-                HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_OCCURRED.getMessage());
+                HMessenger.sendMessage(sender, ChatColor.RED + HubBasicsMessage.COMMAND_ERROR_OCCURRED.getMessage());
                 return;
             }
             target.getInventory().setHelmet(new ItemStack(id, 1, (short) meta));

@@ -10,47 +10,61 @@ package net.notfab.hubbasics.plugin.messages;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import java.text.MessageFormat;
+
+import org.bukkit.command.CommandSender;
+
 import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 
 public enum HubBasicsMessage {
-    NO_PERMISSION("noPermission", "You don't have permission to execute this command!"),
-    COMMAND_PLAYERS_ONLY("commandPlayersOnly", "This command is limited to players only!"),
-    COMMAND_USAGE_PREFIX("commandUsagePrefix", "Usage"),
-    COMMAND_ERROR_OCCURRED("commandErrorOccurred", "An error occurred"),
-    COMMAND_ERROR_NOTNUMBER("commandInputNotNumber", "<string> isn't a number!"),
-    COMMAND_ERROR_NOTFOUND("commandNotFound", "Unknown command, type /help for help."),
-    HOLOGRAMS_USAGE_CREATE("holograms.usage.create", "/holograms create <text>"),
-    HOLOGRAMS_USAGE_RESET("holograms.usage.reset", "/holograms reset <hologramID>"),
-    HOLOGRAMS_USAGE_ADDLINE("holograms.usage.addLine", "/holograms addline <hologramID> <text>"),
-    HOLOGRAMS_USAGE_DELETE("holograms.usage.delete", "/holograms delete <hologramID>"),
-    HOLOGRAMS_USAGE_LIST("holograms.usage.list", "/holograms list"),
-    HOLOGRAMS_ERROR_NOTEXIST("holograms.error.notExist", "Hologram <hologramID> doesn't exist!"),
-    HOLOGRAMS_SUCCESS_CREATED("holograms.success.create", "Created hologram <hologramID> successfully."),
-    HOLOGRAMS_SUCCESS_RESET("holograms.success.reset", "Hologram <hologramID> was successfully reset."),
-    HOLOGRAMS_SUCCESS_ADDLINE("holograms.success.addline", "Added line to <hologramID> successfully."),
-    HOLOGRAMS_SUCCESS_DELETE("holograms.success.delete", "Deleted hologram <hologramID> successfully."),
-    HOLOGRAMS_SUCCESS_LIST_PREFIX("holograms.success.list.prefix", "Holograms"),
-    HOLOGRAMS_SUCCESS_LIST_EMPTY("holograms.success.list.empty", "No holograms found."),
-    HAT_USAGE("hat.usage", "/hat <id> [meta]"),
-    HAT_CHANGED("hat.success", "Hat updated!"),
-    HUB_INVALID_WORLD("hub.invalidWord", "Invalid lobby world!"),
-    HUB_LOCATION_UPDATED("hub.locationUpdated", "Lobby location updated!");
+    COMMAND_NO_PERMISSION("Command.NoPermission", "You don't have permission to execute this command!"),
+    COMMAND_PLAYERS_ONLY("Command.PlayersOnly", "This command is limited to players only!"),
+    COMMAND_USAGE_PREFIX("Command.UsagePrefix", "Usage"),
+    COMMAND_ERROR_OCCURRED("Command.ErrorOccurred", "An error occurred"),
+    COMMAND_ERROR_NOTNUMBER("Command.InputNotNumber", "{0} isn't a number!"),
+    COMMAND_ERROR_NOTFOUND("Command.NotFound", "Unknown command, type /help for help."),
+    HOLOGRAMS_USAGE_CREATE("Holograms.Usage.Create", "/holograms create <text>"),
+    HOLOGRAMS_USAGE_RESET("Holograms.Usage.Reset", "/holograms reset <hologramID>"),
+    HOLOGRAMS_USAGE_ADDLINE("Holograms.Usage.AddLine", "/holograms addline <hologramID> <text>"),
+    HOLOGRAMS_USAGE_DELETE("Holograms.Usage.Delete", "/holograms delete <hologramID>"),
+    HOLOGRAMS_USAGE_LIST("Holograms.Usage.List", "/holograms list"),
+    HOLOGRAMS_ERROR_NOTEXIST("Holograms.Error.NotExist", "Hologram {0} doesn't exist!"),
+    HOLOGRAMS_SUCCESS_CREATED("Holograms.Success.Create", "Created hologram {0} successfully."),
+    HOLOGRAMS_SUCCESS_RESET("Holograms.Success.Reset", "Hologram {0} was successfully reset."),
+    HOLOGRAMS_SUCCESS_ADDLINE("Holograms.Success.AddLine", "Added line to {0} successfully."),
+    HOLOGRAMS_SUCCESS_DELETE("Holograms.Success.Delete", "Deleted hologram {0} successfully."),
+    HOLOGRAMS_SUCCESS_LIST_PREFIX("Holograms.Success.List.Prefix", "Holograms"),
+    HOLOGRAMS_SUCCESS_LIST_EMPTY("Holograms.Success.List.Empty", "No holograms found."),
+    HAT_USAGE("Hat.Usage", "/hat <id> [meta]"),
+    HAT_CHANGED("Hat.Success", "Hat updated!"),
+    HUB_INVALID_WORLD("Hub.InvalidWorld", "Invalid lobby world!"),
+    HUB_LOCATION_UPDATED("Hub.LocationUpdated", "Lobby location updated!");
 
-    @Getter private String filePath;
+    @Getter private String path;
     @Getter private Object defaultValue;
 
     HubBasicsMessage(String filePath, Object defaultValue) {
-        this.filePath = filePath;
+        this.path = filePath;
         this.defaultValue = defaultValue;
     }
 
-    /*
-     * Convert to MessageFormat in 5.0.1
-     *      - Mister
+    /**
+     * Get the message, and format it using MessageFormat
+     * @param strings Strings to insert in message
+     * @return Formatted message
      */
-    public String getMessage() {
-        return HubBasics.getInstance().getMessageManager().getMessage(this);
+    public String getMessage(String... strings) {
+        return MessageFormat.format(HubBasics.getInstance().getMessageManager().getMessage(this), strings);
+    }
+
+    /**
+     * Send the message to given {@link CommandSender}, and format using given strings
+     * @param sender Receiver of message
+     * @param strings Strings to insert in message
+     */
+    public void send(CommandSender sender, String... strings) {
+        sender.sendMessage(this.getMessage(strings));
     }
 
     @Override

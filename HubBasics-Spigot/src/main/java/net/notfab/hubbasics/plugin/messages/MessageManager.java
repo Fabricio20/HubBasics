@@ -15,6 +15,7 @@ import java.util.Map;
 
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.objects.SimpleConfig;
+import net.notfab.hubbasics.plugin.utils.HubBasicsFile;
 
 import lombok.Getter;
 
@@ -26,19 +27,15 @@ public class MessageManager {
 
 	public MessageManager() {
 		this.pl = HubBasics.getInstance();
-		this.messageFile = pl.getConfigManager().getNewConfig("messages.yml");
+		this.messageFile = HubBasicsFile.MESSAGES;
 		this.messages = new HashMap<>();
 	}
 
 	public void loadMessages() {
 		for (HubBasicsMessage message : HubBasicsMessage.values()) {
-			if (!this.messageFile.contains(message.getFilePath())) {
-				this.messageFile.set(message.getFilePath(), message.getDefaultValue());
-			}
-
-			this.messages.put(message, this.messageFile.getString(message.getFilePath()));
+			if (!this.messageFile.contains(message.getPath())) this.messageFile.set(message.getPath(), message.getDefaultValue());
+			this.messages.put(message, this.messageFile.getString(message.getPath()));
 		}
-
 		this.messageFile.saveConfig();
 	}
 

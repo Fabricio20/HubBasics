@@ -13,6 +13,7 @@ package net.notfab.hubbasics.plugin.settings;
 import lombok.Getter;
 
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
+import net.notfab.hubbasics.modules.JoinItems;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,7 +54,7 @@ public enum ConfigurationKey {
 
     JUMP_PADS_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.JUMP_PADS),
     JUMP_PADS_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.JUMP_PADS),
-    JUMP_PADS_FORCE("Force", false, 0.3, ModuleEnum.JUMP_PADS),
+    JUMP_PADS_FORCE("Force", false, 5, ModuleEnum.JUMP_PADS),
     JUMP_PADS_MATERIAL("Material", false, "REDSTONE_BLOCK", ModuleEnum.JUMP_PADS),
     JUMP_PADS_REQUIRE_PRESSUREPLATE("RequirePressurePlate", false, false, ModuleEnum.JUMP_PADS),
 
@@ -85,7 +86,12 @@ public enum ConfigurationKey {
     JOIN_TELEPORT_LOCATION_Z("Z", false, 0, ModuleEnum.JOIN_TELEPORT),
     JOIN_TELEPORT_LOCATION_YAW("Yaw", false, 0, ModuleEnum.JOIN_TELEPORT),
     JOIN_TELEPORT_LOCATION_PITCH("Pitch", false, 0, ModuleEnum.JOIN_TELEPORT),
-    JOIN_TELEPORT_LOCATION_WORLD("World", false, "world", ModuleEnum.JOIN_TELEPORT);
+    JOIN_TELEPORT_LOCATION_WORLD("World", false, "world", ModuleEnum.JOIN_TELEPORT),
+
+    JOIN_ITEMS_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.JOIN_ITEMS),
+    JOIN_ITEMS_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.JOIN_ITEMS),
+    JOIN_ITEMS_CLEAR_ON_CONNECT("ClearOnConnect", false, true, ModuleEnum.JOIN_ITEMS),
+    JOIN_ITEMS_ITEMS("Items", false, JoinItems.getDefaultItemSection(), ModuleEnum.JOIN_ITEMS);
 
     /**
      * This is the path the option will have in the config.yml file

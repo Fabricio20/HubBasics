@@ -10,14 +10,19 @@ package net.notfab.hubbasics.managers;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import net.md_5.bungee.api.ChatColor;
+import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.objects.SimpleConfig;
 
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class SimpleConfigManager {
 
@@ -33,12 +38,43 @@ public class SimpleConfigManager {
 	}
 
 	/**
+	 * Scans given file for tabs, very useful when loading YAML configuration.
+	 * Any configuration loaded using the API in this class is automatically scanned.
+	 * Please note that this only works for files within the HubBasics plugin folder.
+	 * @param file Path of file
+     */
+	public void scan(String file) {
+		Scanner scanner = null;
+		int lineNumber = 0;
+		String line;
+
+		try {
+			scanner = new Scanner(new File(HubBasics.getInstance().getDataFolder(), file));
+			while (scanner.hasNextLine()) {
+				line = scanner.nextLine();
+				lineNumber++;
+				if (line.indexOf("\t") != -1) {
+					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " ------------------------------------------------------ ");
+					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "HubBasics > Tab found in file \"" + file + "\" on line #" + lineNumber + "!");
+					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " ------------------------------------------------------ ");
+					throw new IllegalArgumentException("Tab found in file \"" + file + "\" on line # " + line + "!");
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (scanner != null) scanner.close();
+		}
+	}
+
+	/**
 	 * Get new configuration with header
 	 *
 	 * @param filePath - Path to file
 	 * @return - New SimpleConfig
 	 */
 	public SimpleConfig getNewConfig(String filePath, String[] header) {
+		scan(filePath);
 		if (this.configs.containsKey(filePath)) return this.configs.get(filePath);
 		File file = this.getConfigFile(filePath);
 		if (!file.exists()) {
@@ -69,9 +105,8 @@ public class SimpleConfigManager {
 	 * @return - New file object
 	 */
 	private File getConfigFile(String file) {
-		if (file == null || file.isEmpty()) {
-			return null;
-		}
+		scan(file);
+		if (file == null || file.isEmpty()) return null;
 		File configFile;
 		if (file.contains("/")) {
 			if (file.startsWith("/")) {
@@ -167,7 +202,7 @@ public class SimpleConfigManager {
 	/**
 	 * Read file and make comments SnakeYAML friendly
 	 *
-	 * @param filePath - Path to file
+	 * @param file - Path to file
 	 * @return - File as Input Stream
 	 */
 	public InputStream getConfigContent(File file) {

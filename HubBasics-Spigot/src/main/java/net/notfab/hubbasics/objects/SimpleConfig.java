@@ -41,6 +41,10 @@ public class SimpleConfig {
         this.config = YamlConfiguration.loadConfiguration(configStream);
     }
 
+    public String getName() {
+        return this.file.getName();
+    }
+
     public Object get(String path) {
         return this.config.get(path);
     }

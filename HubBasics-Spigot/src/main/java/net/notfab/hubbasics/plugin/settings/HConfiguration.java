@@ -12,13 +12,20 @@ package net.notfab.hubbasics.plugin.settings;
 
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.objects.SimpleConfig;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
+import net.notfab.hubbasics.plugin.utils.HubBasicsFile;
+
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 
@@ -34,14 +41,13 @@ public class HConfiguration {
      */
     public HConfiguration() {
         this.pl = HubBasics.getInstance();
-        this.rawConfig = pl.getConfigManager().getNewConfig("config.yml");
+        this.rawConfig = HubBasicsFile.CONFIGURATION;
     }
 
     /**
      * Iterates through all the {@link ConfigurationKey}s and checks if they are in the file. If not, it will set the value to the keys default value.
      */
     public void loadConfig() {
-        ConfigurationConverter.convert();
         Arrays.stream(ConfigurationKey.values()).filter(configurationKey ->
                 !this.rawConfig.contains(configurationKey.getPath())).forEach(key ->
                 this.rawConfig.set(key.getPath(), key.getDefaultValue()));
@@ -313,27 +319,21 @@ public class HConfiguration {
     }
 
     public void set(ConfigurationKey key, Object value) {
-        if (key.isPerWorldAllowed()) {
-            this.rawConfig.set(getGlobalPath(key), value);
-        } else {
-            this.rawConfig.set(key.getPath(), value);
-        }
+        if (key.isPerWorldAllowed()) this.rawConfig.set(getGlobalPath(key), value);
+        else this.rawConfig.set(key.getPath(), value);
     }
 
     public void set(ConfigurationKey key, Object value, World world) {
-        if (key.isPerWorldAllowed()) {
-            this.rawConfig.set(key.getPath() + "." + world.getName(), value);
-        } else {
-            this.rawConfig.set(key.getPath(), value);
-        }
+        if (key.isPerWorldAllowed()) this.rawConfig.set(key.getPath() + "." + world.getName(), value);
+        else this.rawConfig.set(key.getPath(), value);
+    }
+
+    @Deprecated
+    public void set(String path, Object value) {
+        this.rawConfig.set(path, value);
     }
 
     public Set<String> getKeys() {
         return this.rawConfig.getKeys();
-    }
-
-    public enum ConfigurationPriority {
-        WORLD,
-        DEFAULT
     }
 }

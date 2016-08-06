@@ -32,6 +32,7 @@ import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.objects.SimpleConfig;
+import net.notfab.hubbasics.plugin.utils.HubBasicsFile;
 
 public class CustomHolograms extends Module {
     private final String ARMORSTAND_TEXT = "text";
@@ -44,7 +45,7 @@ public class CustomHolograms extends Module {
     public CustomHolograms() {
         super(ModuleEnum.HOLOGRAMS);
         this.pl = HubBasics.getInstance();
-        this.file = pl.getConfigManager().getNewConfig("holograms.yml");
+        this.file = HubBasicsFile.HOLOGRAMS;
     }
 
     @Override

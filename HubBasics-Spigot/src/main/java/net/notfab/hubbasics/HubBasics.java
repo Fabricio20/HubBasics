@@ -20,6 +20,7 @@ import net.notfab.hubbasics.nms.NMSVersion;
 import net.notfab.hubbasics.objects.MetricsLite;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
+import net.notfab.hubbasics.plugin.settings.FileConverter;
 import net.notfab.hubbasics.plugin.settings.HConfiguration;
 
 import org.bukkit.Bukkit;
@@ -49,10 +50,12 @@ public class HubBasics extends JavaPlugin {
         this.pluginConfiguration = new HConfiguration();
         this.messageManager = new MessageManager();
 
+        FileConverter.convert();
         this.getMessageManager().loadMessages();
         this.getPluginConfiguration().loadConfig();
 
         this.moduleManager = new ModuleManager();
+        this.getModuleManager().onEnable();
 
         try {
             metrics = new MetricsLite(this);

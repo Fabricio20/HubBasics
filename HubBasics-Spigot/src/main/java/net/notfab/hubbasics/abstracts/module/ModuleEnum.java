@@ -10,6 +10,10 @@ package net.notfab.hubbasics.abstracts.module;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import net.notfab.hubbasics.nms.NMSVersion;
+
+import lombok.Getter;
+
 public enum ModuleEnum {
 	DOUBLE_JUMP,
 	JUMP_PADS,
@@ -17,12 +21,19 @@ public enum ModuleEnum {
 	FIXED_WEATHER,
 	KEEP_FOOD,
 	KEEP_HEALTH,
-	HOLOGRAMS,
+	HOLOGRAMS(NMSVersion.V1_8_R1, NMSVersion.V1_8_R2, NMSVersion.V1_8_R3, NMSVersion.V1_9_R1, NMSVersion.V1_9_R2, NMSVersion.V1_10_R1),
 	CONNECTION_MESSAGES,
 	ADVANCED_MOTD,
 	COMMAND_OVERRIDE,
 	AUTOMATED_BROADCASTS,
-	BOSSBAR_MESSAGES,
+	BOSSBAR_MESSAGES(NMSVersion.V1_9_R1, NMSVersion.V1_9_R2, NMSVersion.V1_10_R1),
 	JOIN_TELEPORT,
-	SERVER_SELECTOR
+	SERVER_SELECTOR,
+	JOIN_ITEMS;
+
+	@Getter private String[] versions;
+
+	ModuleEnum(String... versions) {
+		this.versions = versions;
+	}
 }

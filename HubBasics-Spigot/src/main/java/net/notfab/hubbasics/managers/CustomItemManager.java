@@ -28,6 +28,7 @@ import net.notfab.hubbasics.nms.nbt.NBTItem;
 import net.notfab.hubbasics.objects.CustomItem;
 
 
+@SuppressWarnings("deprecation")
 public class CustomItemManager implements Listener {
 
     private Map<UUID, CustomItem> customItems = new HashMap<>();
@@ -43,14 +44,14 @@ public class CustomItemManager implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
-        if(e.getPlayer().getInventory().getItemInMainHand() != null) {
-            if(e.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) {
-                ItemStack stack = e.getPlayer().getInventory().getItemInMainHand();
+        if(e.getPlayer().getInventory().getItemInHand() != null) {
+            if(e.getPlayer().getInventory().getItemInHand().getType() != Material.AIR) {
+                ItemStack stack = e.getPlayer().getInventory().getItemInHand();
                 NBTItem item = new NBTItem(stack);
                 if(item.hasKey("UUID")) {
                     UUID uid = UUID.fromString(item.getString("UUID"));
                     CustomItem factory = this.customItems.get(uid);
-                    e.setCancelled(factory.getItemActionHandler().onInteract(e.getPlayer(), e.getPlayer().getInventory().getItemInMainHand(), e.getAction(), e.getClickedBlock()));
+                    e.setCancelled(factory.getItemActionHandler().onInteract(e.getPlayer(), e.getPlayer().getInventory().getItemInHand(), e.getAction(), e.getClickedBlock()));
                 }
             }
         }

@@ -41,23 +41,25 @@ public class SimpleConfigManager {
 	 * Scans given file for tabs, very useful when loading YAML configuration.
 	 * Any configuration loaded using the API in this class is automatically scanned.
 	 * Please note that this only works for files within the HubBasics plugin folder.
-	 * @param file Path of file
+	 * @param filePath Path of file
      */
-	public void scan(String file) {
+	public void scan(String filePath) {
+		File file = new File(HubBasics.getInstance().getDataFolder(), filePath);
+		if (!file.exists()) return;
 		Scanner scanner = null;
 		int lineNumber = 0;
 		String line;
 
 		try {
-			scanner = new Scanner(new File(HubBasics.getInstance().getDataFolder(), file));
+			scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
 				line = scanner.nextLine();
 				lineNumber++;
 				if (line.indexOf("\t") != -1) {
 					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " ------------------------------------------------------ ");
-					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "HubBasics > Tab found in file \"" + file + "\" on line #" + lineNumber + "!");
+					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "HubBasics > Tab found in file \"" + filePath + "\" on line #" + lineNumber + "!");
 					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " ------------------------------------------------------ ");
-					throw new IllegalArgumentException("Tab found in file \"" + file + "\" on line # " + line + "!");
+					throw new IllegalArgumentException("Tab found in file \"" + filePath + "\" on line # " + line + "!");
 				}
 			}
 		} catch (IOException e) {

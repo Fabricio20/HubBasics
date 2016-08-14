@@ -66,6 +66,10 @@ public class HConfiguration {
 
     /* Public */
 
+    public void saveConfig() {
+        this.rawConfig.saveConfig();
+    }
+
     public Object get(String path) {
         return this.rawConfig.get(path);
     }

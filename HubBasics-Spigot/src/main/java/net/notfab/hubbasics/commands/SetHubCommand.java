@@ -46,7 +46,7 @@ public class SetHubCommand extends HCommand {
 				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_YAW, location.getYaw());
 				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_PITCH, location.getPitch());
 				pl.getPluginConfiguration().set(ConfigurationKey.HUB_LOCATION_WORLD, location.getWorld().getName());
-
+				pl.getPluginConfiguration().saveConfig();
 				HMessenger.sendMessage(player, HubBasicsMessage.HUB_LOCATION_UPDATED.getMessage());
 			}
 		} else {

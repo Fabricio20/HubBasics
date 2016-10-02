@@ -24,6 +24,7 @@ public enum HubBasicsMessage {
     COMMAND_ERROR_OCCURRED("Command.ErrorOccurred", "An error occurred"),
     COMMAND_ERROR_NOTNUMBER("Command.InputNotNumber", "{0} isn't a number!"),
     COMMAND_ERROR_NOTFOUND("Command.NotFound", "Unknown command, type /help for help."),
+
     HOLOGRAMS_USAGE_CREATE("Holograms.Usage.Create", "/holograms create <text>"),
     HOLOGRAMS_USAGE_RESET("Holograms.Usage.Reset", "/holograms reset <hologramID>"),
     HOLOGRAMS_USAGE_ADDLINE("Holograms.Usage.AddLine", "/holograms addline <hologramID> <text>"),
@@ -36,10 +37,28 @@ public enum HubBasicsMessage {
     HOLOGRAMS_SUCCESS_DELETE("Holograms.Success.Delete", "Deleted hologram {0} successfully."),
     HOLOGRAMS_SUCCESS_LIST_PREFIX("Holograms.Success.List.Prefix", "Holograms"),
     HOLOGRAMS_SUCCESS_LIST_EMPTY("Holograms.Success.List.Empty", "No holograms found."),
+
     HAT_USAGE("Hat.Usage", "/hat <id> [meta]"),
     HAT_CHANGED("Hat.Success", "Hat updated!"),
+
     HUB_INVALID_WORLD("Hub.InvalidWorld", "Invalid lobby world!"),
-    HUB_LOCATION_UPDATED("Hub.LocationUpdated", "Lobby location updated!");
+    HUB_LOCATION_UPDATED("Hub.LocationUpdated", "Lobby location updated!"),
+
+    WARP_USAGE("Warp.Usage", "/warps <name>"),
+    WARP_NOT_EXIST("Warp.NotExist", "Warp {0} does not exist!"),
+    WARP_SUCCESS("Warp.Success", "Teleported you to warp {0}."),
+    WARP_DISABLED_GLOBAL("Warp.DisabledGlobally", "Warp module is disabled."),
+    WARP_DISABLED_WORLD("Warp.DisabledInWorld", "Warp module is disabled in this world."),
+
+    SETWARP_USAGE("SetWarp.Usage", "/setwarp <name>"),
+    SETWARP_ALREADY_EXIST("SetWarp.AlreadyExist", "Warp {0} already exists."),
+    SETWARP_SUCCESS("SetWarp.Success", "Warp {0} set to your current location."),
+
+    DELWARP_USAGE("DelWarp.Usage", "/delwarp <name>"),
+    DELWARP_NOT_EXIST("DelWarp.NotExist", "Warp {0} does not exist!"),
+    DELWARP_SUCCESS("DelWarp.Success", "Warp {0} deleted successfully."),
+
+    WARPS_PREFIX("Warps.Prefix", "Warps");
 
     @Getter private String path;
     @Getter private Object defaultValue;

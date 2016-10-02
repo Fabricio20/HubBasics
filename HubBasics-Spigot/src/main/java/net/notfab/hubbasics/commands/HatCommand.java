@@ -36,7 +36,7 @@ public class HatCommand extends HCommand {
         if (args.length > 2 || args.length == 0) {
             HMessenger.sendCommandUsageMessage(player, HubBasicsMessage.HAT_USAGE.getMessage());
         } else if (args.length == 1) {
-            if (args[0].matches("[0-999]+")) {
+            if (args[0].matches("[0-9]+")) {
                 Integer id = Integer.parseInt(args[0]);
                 player.getInventory().setHelmet(new ItemStack(Material.getMaterial(id)));
                 HMessenger.sendMessage(player, HubBasicsMessage.HAT_CHANGED.getMessage());
@@ -44,10 +44,10 @@ public class HatCommand extends HCommand {
                 HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
             }
         } else if (args.length == 2) {
-            if (!args[0].matches("[0-999]+")) {
+            if (!args[0].matches("[0-9]+")) {
                 HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
-            } else if (!args[1].matches("[0-999]+")) {
+            } else if (!args[1].matches("[0-9]+")) {
                 HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             }
@@ -64,7 +64,7 @@ public class HatCommand extends HCommand {
         if (args.length <= 1 || args.length > 3) {
             HMessenger.sendCommandUsageMessage(sender, HubBasicsMessage.HAT_USAGE.getMessage());
         } else if (args.length == 2) {
-            if (!args[0].matches("[0-999]+")) {
+            if (!args[0].matches("[0-9]+")) {
                 HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             }
@@ -77,10 +77,10 @@ public class HatCommand extends HCommand {
             target.getInventory().setHelmet(new ItemStack(id));
             HMessenger.sendMessage(sender, HubBasicsMessage.HAT_CHANGED.getMessage());
         } else if (args.length == 3) {
-            if (!args[0].matches("[0-999]+")) {
+            if (!args[0].matches("[0-9]+")) {
                 HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
-            } else if (!args[1].matches("[0-999]+")) {
+            } else if (!args[1].matches("[0-9]+")) {
                 HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
             }

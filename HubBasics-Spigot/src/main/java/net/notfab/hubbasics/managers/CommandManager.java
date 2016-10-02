@@ -21,10 +21,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 import lombok.Getter;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.command.HCommand;
+import net.notfab.hubbasics.commands.DelWarpCommand;
+import net.notfab.hubbasics.commands.HBReloadCommand;
 import net.notfab.hubbasics.commands.HatCommand;
 import net.notfab.hubbasics.commands.HologramsCmd;
 import net.notfab.hubbasics.commands.HubCommand;
 import net.notfab.hubbasics.commands.SetHubCommand;
+import net.notfab.hubbasics.commands.SetWarpCommand;
+import net.notfab.hubbasics.commands.WarpCommand;
+import net.notfab.hubbasics.commands.WarpsCommand;
 
 public class CommandManager {
 
@@ -32,10 +37,18 @@ public class CommandManager {
 
     public CommandManager() {
         this.commands = new ArrayList<>();
+    }
+
+    public void registerCommands() {
         registerCommand(new HatCommand(), HubBasics.getInstance());
         registerCommand(new HologramsCmd(), HubBasics.getInstance());
         registerCommand(new HubCommand(), HubBasics.getInstance());
         registerCommand(new SetHubCommand(), HubBasics.getInstance());
+        registerCommand(new HBReloadCommand(), HubBasics.getInstance());
+        registerCommand(new WarpCommand(), HubBasics.getInstance());
+        registerCommand(new SetWarpCommand(), HubBasics.getInstance());
+        registerCommand(new DelWarpCommand(), HubBasics.getInstance());
+        registerCommand(new WarpsCommand(), HubBasics.getInstance());
     }
 
     /**

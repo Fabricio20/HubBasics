@@ -12,24 +12,70 @@ package net.notfab.hubbasics.nms;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 
 import net.md_5.bungee.api.ChatColor;
+import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 
 import lombok.Getter;
 
+/**
+ * Simple class for working with NMS (Network Management System) versions for Minecraft
+ */
 public class NMSVersion {
+    /**
+     * All unsupported NMS versions
+     */
+    public static final String UNSUPPORTED = "Unsupported";
+    /**
+     * NMS Version 1.7 R1
+     * Does NOT support these modules: HOLOGRAMS, BOSSBAR_MESSAGES
+     */
     public static final String V1_7_R1 = "v1_7_R1";
+    /**
+     * NMS Version 1.7 R2
+     * Does NOT support these modules: HOLOGRAMS, BOSSBAR_MESSAGES
+     */
     public static final String V1_7_R2 = "v1_7_R2";
+    /**
+     * NMS Version 1.7 R3
+     * Does NOT support these modules: HOLOGRAMS, BOSSBAR_MESSAGES
+     */
     public static final String V1_7_R3 = "v1_7_R3";
+    /**
+     * NMS Version 1.7 R4
+     * Does NOT support these modules: HOLOGRAMS, BOSSBAR_MESSAGES
+     */
     public static final String V1_7_R4 = "v1_7_R4";
+    /**
+     * NMS Version 1.8 R1
+     * Does NOT support these modules: BOSSBAR_MESSAGES
+     */
     public static final String V1_8_R1 = "v1_8_R1";
+    /**
+     * NMS Version 1.8 R2
+     * Does NOT support these modules: BOSSBAR_MESSAGES
+     */
     public static final String V1_8_R2 = "v1_8_R2";
+    /**
+     * NMS Version 1.8 R3
+     * Does NOT support these modules: BOSSBAR_MESSAGES
+     */
     public static final String V1_8_R3 = "v1_8_R3";
+    /**
+     * NMS Version 1.9 R1
+     */
     public static final String V1_9_R1 = "v1_9_R1";
+    /**
+     * NMS Version 1.9 R2
+     */
     public static final String V1_9_R2 = "v1_9_R2";
+    /**
+     * NMS Version 1.10 R1
+     */
     public static final String V1_10_R1 = "v1_10_R1";
 
     private Map<Integer, String> versionMap;
@@ -88,13 +134,9 @@ public class NMSVersion {
     }
 
     public int getVersionID(String version) {
-        try {
-            return this.versionMap.entrySet().parallelStream()
-                    .filter(e -> e.getValue().equalsIgnoreCase(version))
-                    .map(e -> e.getKey()).collect(Collectors.toList()).get(0);
-        } catch (NullPointerException e) {
-            return 0;
-        }
+        return this.versionMap.entrySet().parallelStream()
+                .filter(e -> e.getValue().equalsIgnoreCase(version))
+                .map(Entry::getKey).findFirst().orElse(0);
     }
 
     public boolean runningNewerThan(String version) {

@@ -13,11 +13,12 @@ package net.notfab.hubbasics.plugin.settings;
 import lombok.Getter;
 
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
+import net.notfab.hubbasics.modules.GraphicalMenus;
 import net.notfab.hubbasics.modules.JoinItems;
+import net.notfab.hubbasics.utils.ConfigDefaults;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.LinkedList;
 
 import org.apache.commons.lang.WordUtils;
 
@@ -40,26 +41,26 @@ public enum ConfigurationKey {
     CONNECT_MESSAGES_FIRST_CONNECT("FirstJoin", false, "&9Welcome to the server, &f<displayname>&9!", ModuleEnum.CONNECTION_MESSAGES),
 
     FIXED_WEATHER_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.FIXED_WEATHER),
-    FIXED_WEATHER_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.FIXED_WEATHER),
+    FIXED_WEATHER_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.FIXED_WEATHER),
 
     KEEP_FOOD_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.KEEP_FOOD),
-    KEEP_FOOD_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_FOOD),
+    KEEP_FOOD_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.KEEP_FOOD),
 
     KEEP_HEALTH_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.KEEP_HEALTH),
-    KEEP_HEALTH_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.KEEP_HEALTH),
+    KEEP_HEALTH_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.KEEP_HEALTH),
 
     ANTI_VOID_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.ANTI_VOID),
-    ANTI_VOID_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.ANTI_VOID),
-    ANTI_VOID_MESSAGE("Message", false, "&e<displayname> &9You got teleported to the spawn.", ModuleEnum.ANTI_VOID),
+    ANTI_VOID_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.ANTI_VOID),
+    ANTI_VOID_MESSAGE("Message", false, "&9You got teleported to the spawn.", ModuleEnum.ANTI_VOID),
 
     JUMP_PADS_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.JUMP_PADS),
-    JUMP_PADS_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.JUMP_PADS),
+    JUMP_PADS_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.JUMP_PADS),
     JUMP_PADS_FORCE("Force", false, 5, ModuleEnum.JUMP_PADS),
     JUMP_PADS_MATERIAL("Material", false, "REDSTONE_BLOCK", ModuleEnum.JUMP_PADS),
     JUMP_PADS_REQUIRE_PRESSUREPLATE("RequirePressurePlate", false, false, ModuleEnum.JUMP_PADS),
 
     DOUBLE_JUMP_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.DOUBLE_JUMP),
-    DOUBLE_JUMP_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.DOUBLE_JUMP),
+    DOUBLE_JUMP_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.DOUBLE_JUMP),
     DOUBLE_JUMP_FORCE("Force", false, 0.3, ModuleEnum.DOUBLE_JUMP),
     DOUBLE_JUMP_SOUND("Sound", false, "ENTITY_BAT_TAKEOFF", ModuleEnum.DOUBLE_JUMP),
 
@@ -80,7 +81,7 @@ public enum ConfigurationKey {
     BOSSBAR_MESSAGES_TIMING("Timing", false, 15, ModuleEnum.BOSSBAR_MESSAGES),
 
     JOIN_TELEPORT_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.JOIN_TELEPORT),
-    JOIN_TELEPORT_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.JOIN_TELEPORT),
+    JOIN_TELEPORT_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.JOIN_TELEPORT),
     JOIN_TELEPORT_LOCATION_X("X", false, 0, ModuleEnum.JOIN_TELEPORT),
     JOIN_TELEPORT_LOCATION_Y("Y", false, 0, ModuleEnum.JOIN_TELEPORT),
     JOIN_TELEPORT_LOCATION_Z("Z", false, 0, ModuleEnum.JOIN_TELEPORT),
@@ -89,9 +90,17 @@ public enum ConfigurationKey {
     JOIN_TELEPORT_LOCATION_WORLD("World", false, "world", ModuleEnum.JOIN_TELEPORT),
 
     JOIN_ITEMS_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.JOIN_ITEMS),
-    JOIN_ITEMS_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, Arrays.asList("world", "world_the_end"), ModuleEnum.JOIN_ITEMS),
+    JOIN_ITEMS_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.JOIN_ITEMS),
     JOIN_ITEMS_CLEAR_ON_CONNECT("ClearOnConnect", false, true, ModuleEnum.JOIN_ITEMS),
-    JOIN_ITEMS_ITEMS("Items", false, JoinItems.getDefaultItemSection(), ModuleEnum.JOIN_ITEMS);
+    JOIN_ITEMS_ITEMS("Items", false, ConfigDefaults.getJoinItemsDefault(), ModuleEnum.JOIN_ITEMS),
+    JOIN_ITEMS_ADD_ON_DEATH("AddOnDeath", false, true, ModuleEnum.JOIN_ITEMS),
+
+    GRAPHICAL_MENUS_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.GRAPHICAL_MENUS),
+    GRAPHICAL_MENUS_MENUS("Menus", false, ConfigDefaults.getGraphicalMenusDefault(), ModuleEnum.GRAPHICAL_MENUS),
+
+    WARPS_LOAD(ModuleSetting.LOAD, false, false, ModuleEnum.WARPS),
+    WARPS_ENABLED(ModuleSetting.ENABLED_WORLD_LIST, false, ConfigDefaults.getWorlds(), ModuleEnum.WARPS),
+    WARPS_WARPS("Warps", false, null, ModuleEnum.WARPS);
 
     /**
      * This is the path the option will have in the config.yml file
@@ -103,8 +112,8 @@ public enum ConfigurationKey {
      * The config section will look like this;
      * <p>
      * key_path:
-     * global: value // This is the global value if there is no specific setting for the given world
-     * world_name: value // This value will be used if the key is accessed and a world with the name "world_name" is given
+     *   Global: The is the global value if there is no specific setting for the given world/no world is given when fetching information
+     *   World_Name: The value will be used if the key is accessed and a world with the name "World_Name" is given
      */
     @Getter private boolean perWorldAllowed;
 
@@ -120,6 +129,11 @@ public enum ConfigurationKey {
      */
     @Getter private ModuleEnum attachedModule;
 
+    /**
+     * A lot of modules have the same settings, so instead of repeating the path and inputting the key every time
+     * it is needed in the module inheritor, this way the module will know by itself which key is related to which
+     * setting.
+     */
     @Getter private ModuleSetting moduleSetting;
 
     ConfigurationKey(String path, Boolean worldDependant, Object defaultValue) {
@@ -144,15 +158,12 @@ public enum ConfigurationKey {
     }
 
     public static ConfigurationKey getKey(ModuleEnum module, ModuleSetting setting) {
-        List<ConfigurationKey> keyList = Arrays.stream(ConfigurationKey.values()).filter(key -> key.getAttachedModule() != null && key.getModuleSetting() != null)
-                .filter(key -> key.getModuleSetting() == setting && key.getAttachedModule() == module).collect(Collectors.toList());
-
-        if (keyList.size() == 0) return null;
-        else return keyList.get(0);
+        return Arrays.stream(ConfigurationKey.values()).filter(key -> key.getAttachedModule() != null && key.getModuleSetting() != null)
+                .filter(key -> key.getModuleSetting() == setting && key.getAttachedModule() == module).findFirst().orElse(null);
     }
 
     /**
-     * Same as getPath
+     * Same as getValue
      *
      * @return The path in config.yml
      */

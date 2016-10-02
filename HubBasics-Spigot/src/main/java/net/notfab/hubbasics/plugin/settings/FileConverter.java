@@ -16,30 +16,24 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableList;
 
-import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.lang.WordUtils;
-import org.bukkit.Bukkit;
 
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.objects.SimpleConfig;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
-import net.notfab.hubbasics.plugin.messages.HubBasicsMessage;
 import net.notfab.hubbasics.plugin.utils.HubBasicsFile;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 public class FileConverter {
     public static void convert() {
-        HubBasicsFile.MESSAGES.reloadConfig();
-        HubBasicsFile.CONFIGURATION.reloadConfig();
-        HubBasicsFile.HOLOGRAMS.reloadConfig();
+        HubBasicsFile.reloadConfigs();
         CONVERSIONS.stream().forEach(Conversion::convert);
-        HubBasicsFile.MESSAGES.saveConfig();
-        HubBasicsFile.CONFIGURATION.saveConfig();
-        HubBasicsFile.HOLOGRAMS.saveConfig();
+        HubBasicsFile.saveConfigs();
     }
 
     private static final List<Conversion> CONVERSIONS = ImmutableList.<Conversion>builder()
@@ -89,6 +83,16 @@ public class FileConverter {
             .build();
 
     /**
+     * Simple interface for conversion classes
+     */
+    private interface Conversion {
+        /**
+         * Method called when plugin performs conversion process
+         */
+        void convert();
+    }
+
+    /**
      * Replaces parts of a variable stored in given file
      */
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -101,17 +105,17 @@ public class FileConverter {
         @Override
         public void convert() {
             if (!file.contains(path)) {
-                HMessenger.sendDebugMessage("Replace failed, path empty.");
+                HMessenger.sendDebugMessage("Replace failed, value empty.");
                 return;
             }
 
             file.set(path, file.getString(path).replace(from, to));
-            HMessenger.sendDebugMessage("Replaced \"" + from + "\" with \"" + to + "\" in file " + file.getName() + ", path \"" + path + "\".");
+            HMessenger.sendDebugMessage("Replaced \"" + from + "\" with \"" + to + "\" in file " + file.getName() + ", value \"" + path + "\".");
         }
     }
 
     /**
-     * Moves a section from given path to given path in given file
+     * Moves a section from given value to given value in given file
      */
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     private static class PathConversion implements Conversion {
@@ -122,13 +126,15 @@ public class FileConverter {
         @Override
         public void convert() {
             if (!file.contains(from)) {
-                HMessenger.sendDebugMessage("Move failed, from-path empty.");
+                HMessenger.sendDebugMessage("Move failed, from-value empty.");
                 return;
             }
 
             file.set(to, file.get(from));
             file.set(from, null);
             HMessenger.sendDebugMessage("Moved section \"" + from + "\" to \"" + to + "\" in file " + file.getName() + "\".");
+
+            // TODO: http://pastebin.com/jkTH8U04
         }
     }
 
@@ -143,7 +149,7 @@ public class FileConverter {
         @Override
         public void convert() {
             if (!file.contains(path)) {
-                HMessenger.sendDebugMessage("Remove failed, path empty.");
+                HMessenger.sendDebugMessage("Remove failed, value empty.");
                 return;
             }
 
@@ -163,15 +169,5 @@ public class FileConverter {
         public void convert() {
             runnable.run();
         }
-    }
-
-    /**
-     * Simple interface for conversion classes
-     */
-    private interface Conversion {
-        /**
-         * Method called when plugin performs conversion process
-         */
-        void convert();
     }
 }

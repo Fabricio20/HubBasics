@@ -10,6 +10,8 @@ package net.notfab.hubbasics.plugin.utils;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import java.util.Arrays;
+
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.objects.SimpleConfig;
 
@@ -20,5 +22,17 @@ public class HubBasicsFile {
 
     private static SimpleConfig get(String string) {
         return HubBasics.getInstance().getConfigManager().getNewConfig(string + ".yml");
+    }
+
+    public static void reloadConfigs() {
+        Arrays.stream(values()).forEach(SimpleConfig::reloadConfig);
+    }
+
+    public static void saveConfigs() {
+        Arrays.stream(values()).forEach(SimpleConfig::saveConfig);
+    }
+
+    public static SimpleConfig[] values() {
+        return new SimpleConfig[] {CONFIGURATION, HOLOGRAMS, MESSAGES};
     }
 }

@@ -10,33 +10,16 @@ package net.notfab.hubbasics.modules;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.bukkit.configuration.serialization.ConfigurationSerialization;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.jsoup.helper.Validate;
 
-import net.md_5.bungee.api.ChatColor;
-import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.plugin.messages.HMessenger;
@@ -49,13 +32,13 @@ public class JoinItems extends Module {
 
     public JoinItems() {
         super(ModuleEnum.JOIN_ITEMS);
-        this.items = new ArrayList<>();
+        this.items = new LinkedList<>();
     }
 
     @Override
     public void onEnable() {
         List<Map<?, ?>> mapList = getConfig().getMapList(ConfigurationKey.JOIN_ITEMS_ITEMS);
-        mapList.parallelStream().forEach(map -> this.items.add(ItemUtils.deserialize((Map<String, Object>) map)));
+        mapList.parallelStream().forEach(map -> this.addItem(ItemUtils.deserialize((Map<String, Object>) map).assembleItem()));
         HMessenger.sendDebugMessage("JoinItems Module > Deserialized " + this.items.size() + " items successfully.");
     }
 
@@ -64,6 +47,32 @@ public class JoinItems extends Module {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+        if (!isEnabledInWorld(event.getPlayer().getWorld())) return;
+        if (getBoolean(ConfigurationKey.JOIN_ITEMS_CLEAR_ON_CONNECT)) {
+            event.getPlayer().getInventory().clear();
+            event.getPlayer().updateInventory();
+            this.items.stream().filter(item -> item != null).forEach(item -> event.getPlayer().getInventory().addItem(item));
+            event.getPlayer().updateInventory();
+        } else {
+            required:
+            for (ItemStack item : this.items) {
+                inventory:
+                for (ItemStack invItem : event.getPlayer().getInventory().getContents()) {
+                    if (invItem == null) continue inventory;
+                    ItemStack clone = new ItemStack(invItem);
+                    clone.setAmount(item.getAmount());
+                    if (item.equals(clone)) continue required;
+                }
+
+                event.getPlayer().getInventory().addItem(item);
+            }
+            event.getPlayer().updateInventory();
+        }
+    }
+
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent event) {
+        if (!getBoolean(ConfigurationKey.JOIN_ITEMS_ADD_ON_DEATH)) return;
         if (!isEnabledInWorld(event.getPlayer().getWorld())) return;
         if (getBoolean(ConfigurationKey.JOIN_ITEMS_CLEAR_ON_CONNECT)) {
             event.getPlayer().getInventory().clear();
@@ -87,28 +96,8 @@ public class JoinItems extends Module {
         }
     }
 
-    public static List<Map<String, Object>> getDefaultItemSection() {
-        ItemStack item1 = new ItemStack(Material.DIAMOND_SWORD);
-        item1.addEnchantment(Enchantment.DAMAGE_ALL, 2);
-        ItemMeta meta1 = item1.getItemMeta();
-        meta1.setDisplayName(ChatColor.RED + "This is just an example");
-        item1.setItemMeta(meta1);
-
-        ItemStack item2 = new ItemStack(Material.GOLD_AXE);
-        item2.addEnchantment(Enchantment.DURABILITY, 1);
-        ItemMeta meta2 = item2.getItemMeta();
-        meta2.setDisplayName(ChatColor.GREEN + "Please edit the config.yml");
-        item2.setItemMeta(meta2);
-
-        ItemStack item3 = new ItemStack(Material.POTION);
-        PotionMeta meta3 = (PotionMeta) item3.getItemMeta();
-        meta3.setDisplayName(ChatColor.DARK_AQUA + "Items use the built in Bukkit ItemStack serialization!");
-        meta3.addCustomEffect(new PotionEffect(PotionEffectType.ABSORPTION, 1, 1), true);
-        meta3.setLore(ImmutableList.<String>builder().add(ChatColor.GRAY + "Yay, you can even add lore!").add(ChatColor.GREEN + "Make it fancy :)").build());
-        item3.setItemMeta(meta3);
-
-        return ImmutableList.<Map<String, Object>>builder().add(ItemUtils.serialize(item1), ItemUtils.serialize(item2), ItemUtils.serialize(item3)).build();
+    public void addItem(ItemStack item) {
+        Validate.notNull(item, "Item can't be null");
+        this.items.add(item);
     }
-
-
 }

@@ -19,6 +19,7 @@ import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 
 import lombok.Getter;
+
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.abstracts.module.Module;
@@ -32,21 +33,22 @@ import net.notfab.hubbasics.modules.ConnectionMessages;
 import net.notfab.hubbasics.modules.CustomHolograms;
 import net.notfab.hubbasics.modules.DoubleJump;
 import net.notfab.hubbasics.modules.FixedWeather;
+import net.notfab.hubbasics.modules.GraphicalMenus;
 import net.notfab.hubbasics.modules.JoinItems;
 import net.notfab.hubbasics.modules.JoinTeleport;
 import net.notfab.hubbasics.modules.JumpPads;
 import net.notfab.hubbasics.modules.KeepFood;
 import net.notfab.hubbasics.modules.KeepHealth;
-import net.notfab.hubbasics.nms.NMSVersion;
+import net.notfab.hubbasics.modules.Warps;
 
 public class ModuleManager {
 
     @Getter private HashMap<ModuleEnum, Module> moduleMap;
-    @Getter private List<ModuleEnum> disabled;
+    @Getter private List<ModuleEnum> disabledModules;
 
     public ModuleManager() {
         this.moduleMap = new HashMap<>();
-        this.disabled = new ArrayList<>();
+        this.disabledModules = new ArrayList<>();
     }
 
     public void onEnable() {
@@ -64,19 +66,23 @@ public class ModuleManager {
         registerModule(new JoinTeleport());
         registerModule(new JoinItems());
         registerModule(new BossBarMessages());
+        registerModule(new GraphicalMenus());
+        registerModule(new Warps());
 
         registerListeners();
 
-        if (this.disabled.size() > 0) {
+        if (this.disabledModules.size() > 0) {
             Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "HubBasics > Detected NMS version doesn't support the following module(s):");
-            this.disabled.stream().forEach(module -> Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "  - " + WordUtils.capitalizeFully(module.name(), new char[] {'_'})));
+            this.disabledModules.stream().forEach(module -> Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "  - " + WordUtils.capitalizeFully(module.name(), new char[]{'_'})));
         }
 
-        this.moduleMap.values().parallelStream().filter(Module::performLoading).forEach(Module::onEnableInternal);
+        /* Please don't use parallel here, makes debugging super annoying */
+        this.moduleMap.values().stream().filter(Module::performLoading).forEach(Module::onEnableInternal);
     }
 
     public void onDisable() {
-        this.moduleMap.values().parallelStream().filter(Module::performLoading).forEach(Module::onDisableInternal);
+        /* Please don't use parallel here, makes debugging super annoying */
+        this.moduleMap.values().stream().filter(Module::performLoading).forEach(Module::onDisableInternal);
     }
 
     private void registerListeners() {
@@ -92,7 +98,7 @@ public class ModuleManager {
             this.moduleMap.put(module.getModuleEnum(), module);
         } else {
             if (!Arrays.asList(module.getModuleEnum().getVersions()).contains(HubBasics.getInstance().getNmsVersion().getVersionString())) {
-               this.disabled.add(module.getModuleEnum());
+                this.disabledModules.add(module.getModuleEnum());
             } else {
                 this.moduleMap.put(module.getModuleEnum(), module);
             }

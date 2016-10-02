@@ -54,15 +54,6 @@ public class CustomHolograms extends Module {
     @Override
     public void onDisable() {}
 
-    /*
-     * Configuration setup:
-     *
-     * hologram:
-     *   <hologram ID>:
-     *     location: (JSONObject with x,y,z,w)
-     *     lines: (JSONArray with JSONObjects)
-     */
-
     /**
      * @return All holograms stored in file
      */

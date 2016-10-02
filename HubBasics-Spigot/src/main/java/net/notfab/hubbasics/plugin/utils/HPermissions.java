@@ -19,4 +19,9 @@ public class HPermissions {
 	public static final Permission HOLOGRAMS_COMMAND = new Permission("hubbasics.commands.holograms");
 	public static final Permission HUB_COMMAND = new Permission("hubbasics.commands.hub");
 	public static final Permission SETHUB_COMMAND = new Permission("hubbasics.commands.sethub");
+	public static final Permission RELOAD_COMMAND = new Permission("hubbasics.commands.reload");
+	public static final Permission WARP_COMMAND = new Permission("hubbasics.commands.warp");
+	public static final Permission SETWARP_COMMAND = new Permission("hubbasics.commands.setwarp");
+    public static final Permission DELWARP_COMMAND = new Permission("hubbasics.commands.delwarp");
+    public static final Permission WARPS_COMMAND = new Permission("hubbasics.commands.warps");
 }

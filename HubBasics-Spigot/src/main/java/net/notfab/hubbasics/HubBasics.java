@@ -22,10 +22,12 @@ import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.messages.MessageManager;
 import net.notfab.hubbasics.plugin.settings.FileConverter;
 import net.notfab.hubbasics.plugin.settings.HConfiguration;
+import net.notfab.hubbasics.plugin.utils.HubBasicsFile;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.io.IOException;
 
 public class HubBasics extends JavaPlugin {
@@ -45,31 +47,40 @@ public class HubBasics extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+
+        /*
+         * Please don't call methods that rely on other classes
+         * in constructors because now I have to deal with 1
+         * million null-pointers.
+         */
+
         this.nmsVersion = new NMSVersion();
         this.configManager = new SimpleConfigManager(this);
         this.pluginConfiguration = new HConfiguration();
         this.messageManager = new MessageManager();
+        this.customItemManager = new CustomItemManager();
+        this.moduleManager = new ModuleManager();
+        this.updateManager = new UpdateManager();
+        this.commandManager = new CommandManager();
 
         FileConverter.convert();
         this.getMessageManager().loadMessages();
         this.getPluginConfiguration().loadConfig();
 
-        this.moduleManager = new ModuleManager();
-        this.getModuleManager().onEnable();
-
         try {
-            metrics = new MetricsLite(this);
-            metrics.start();
+            this.metrics = new MetricsLite(this);
+            this.getMetrics().start();
         } catch (IOException ex) {
             HMessenger.printStackTrace(ex);
         }
-
-        this.updateManager = new UpdateManager();
-        this.commandManager = new CommandManager();
-        this.customItemManager = new CustomItemManager();
-
+        
+        this.getModuleManager().onEnable();
+        this.getCommandManager().registerCommands();
         Bukkit.getPluginManager().registerEvents(this.getCustomItemManager(), this);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        HubBasicsFile.saveConfigs();
+        /* Doing this last makes it easier for the user to see the message */
+        if(this.getUpdateManager().hasUpdate()) HMessenger.notifyUpdate();
     }
 
     @Override
@@ -77,5 +88,4 @@ public class HubBasics extends JavaPlugin {
         this.moduleManager.onDisable();
         instance = null;
     }
-
 }

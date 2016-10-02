@@ -28,9 +28,13 @@ public enum ModuleEnum {
 	AUTOMATED_BROADCASTS,
 	BOSSBAR_MESSAGES(NMSVersion.V1_9_R1, NMSVersion.V1_9_R2, NMSVersion.V1_10_R1),
 	JOIN_TELEPORT,
-	SERVER_SELECTOR,
-	JOIN_ITEMS;
+    GRAPHICAL_MENUS,
+	JOIN_ITEMS,
+	WARPS;
 
+	/**
+	 * Supported versions. See {@link NMSVersion}.
+	 */
 	@Getter private String[] versions;
 
 	ModuleEnum(String... versions) {

@@ -10,18 +10,17 @@ package net.notfab.hubbasics.plugin.settings;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.HubBasics;
+import net.notfab.hubbasics.objects.CommandItem;
 import net.notfab.hubbasics.objects.SimpleConfig;
-import net.notfab.hubbasics.plugin.messages.HMessenger;
 import net.notfab.hubbasics.plugin.utils.HubBasicsFile;
+import net.notfab.hubbasics.utils.ItemUtils;
 
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +34,10 @@ public class HConfiguration {
     @Getter private SimpleConfig rawConfig;
 
     private final String globalSetting = ".default";
+
+    /*
+     * TODO: Improve usage of built-in Bukkit serialization API
+     */
 
     /**
      * YAML configuration wrapper with world configuration support.
@@ -90,8 +93,24 @@ public class HConfiguration {
         return this.rawConfig.get(this.getGlobalPath(key), def);
     }
 
+    /* HubBasics objects */
+
+    public CommandItem getConfigurationItem(ConfigurationKey key) {
+        return ItemUtils.deserialize(this.getConfigurationSection(key).getValues(true));
+    }
+
+    public List<CommandItem> getConfigurationItemList(ConfigurationKey key) {
+        return this.getMapList(key).parallelStream().map(map -> ItemUtils.deserialize((Map<String, Object>) map)).collect(Collectors.toList());
+    }
+
+    /* Java/Bukkit objects */
+
     public String getString(ConfigurationKey key) {
         return this.rawConfig.getString(this.getGlobalPath(key));
+    }
+
+    public String getColoredString(ConfigurationKey key) {
+        return ChatColor.translateAlternateColorCodes('&', this.rawConfig.getString(this.getGlobalPath(key)));
     }
 
     public String getString(ConfigurationKey key, World world) {

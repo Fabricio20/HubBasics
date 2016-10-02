@@ -64,7 +64,7 @@ public class HubCommand extends HCommand {
 		}
 	}
 	
-	public void sendToServer(Player player, String server) {
+	private void sendToServer(Player player, String server) {
 		ByteArrayDataOutput out = ByteStreams.newDataOutput();
 		out.writeUTF("Connect");
 		out.writeUTF(server);

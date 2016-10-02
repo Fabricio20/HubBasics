@@ -19,6 +19,7 @@ import java.util.UUID;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -31,18 +32,19 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import net.notfab.hubbasics.HubBasics;
 import net.notfab.hubbasics.nms.nbt.NBTItem;
+import net.notfab.hubbasics.utils.ItemUtils;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class CustomItem {
+public class CustomItem implements ConfigurationSerializable {
 
     @Getter @Setter private String name;
     @Getter @Setter private Material material;
     @Getter @Setter private List<String> lore;
-    @Getter @Setter private ItemAction itemActionHandler;
+    @Getter @Setter private ItemInteractionHandler itemInteractionHandler;
     @Getter @Setter private Integer amount;
-    @Getter @Setter private int metaData;
+    @Getter @Setter private byte damage;
     @Getter @Setter private Boolean unbreakable;
     @Getter @Setter private String skullOwner;
 
@@ -50,18 +52,18 @@ public class CustomItem {
     @Getter private Set<ItemFlag> itemFlags = new HashSet<>();
     @Getter private UUID uniqueId;
 
-    public static abstract class ItemAction {
-        public abstract Boolean onClick(Player player, ItemStack stack, InventoryAction action, Inventory inv);
+    public static abstract class ItemInteractionHandler {
+        public abstract Boolean onInventoryClick(Player player, ItemStack stack, InventoryAction action, Inventory inv);
 
         public abstract Boolean onInteract(Player player, ItemStack stack, Action action, Block block);
 
         public abstract Boolean onDrop(Player player, ItemStack stack);
     }
 
-    public CustomItem(Material mat, Integer amount, int metaData) {
+    public CustomItem(Material mat, Integer amount, byte damage) {
         this.material = mat;
         this.amount = amount;
-        this.metaData = metaData;
+        this.damage = damage;
         this.uniqueId = UUID.randomUUID();
     }
 
@@ -69,7 +71,7 @@ public class CustomItem {
     public CustomItem(ItemStack stack) {
         this.material = stack.getType();
         this.amount = stack.getAmount();
-        this.metaData = stack.getData().getData();
+        this.damage = stack.getData().getData();
         this.uniqueId = UUID.randomUUID();
 
         if(stack.hasItemMeta()) {
@@ -99,7 +101,7 @@ public class CustomItem {
     }
 
     public ItemStack assembleItem() {
-        ItemStack stack = new ItemStack(material, amount, (byte) metaData);
+        ItemStack stack = new ItemStack(material, amount, damage);
         ItemMeta meta = stack.getItemMeta();
 
         if(this.name != null) meta.setDisplayName(this.name);
@@ -119,5 +121,10 @@ public class CustomItem {
         item.setString("UUID", this.uniqueId.toString());
         HubBasics.getInstance().getCustomItemManager().addItem(this.getUniqueId(), this);
         return item.getItem();
+    }
+
+    @Override
+    public Map<String, Object> serialize() {
+        return ItemUtils.serialize(this);
     }
 }

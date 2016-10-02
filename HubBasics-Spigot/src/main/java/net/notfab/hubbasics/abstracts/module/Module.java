@@ -30,7 +30,6 @@ public abstract class Module implements Listener {
 
     public Module(ModuleEnum moduleEnum) {
         this.moduleEnum = moduleEnum;
-
         this.loadKey = ConfigurationKey.getKey(this.getModuleEnum(), ModuleSetting.LOAD);
 
         ConfigurationKey enabledList = ConfigurationKey.getKey(this.getModuleEnum(), ModuleSetting.ENABLED_WORLD_LIST);

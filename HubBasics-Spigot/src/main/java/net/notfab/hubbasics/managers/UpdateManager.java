@@ -10,25 +10,22 @@ package net.notfab.hubbasics.managers;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import lombok.Getter;
-import net.notfab.hubbasics.HubBasics;
-import net.notfab.hubbasics.plugin.messages.HMessenger;
+import java.io.IOException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.io.IOException;
+import net.notfab.hubbasics.HubBasics;
+import net.notfab.hubbasics.plugin.messages.HMessenger;
 
 public class UpdateManager {
 
     private final String version;
-    @Getter private Boolean hasUpdate;
-
     public UpdateManager() {
         version = HubBasics.getInstance().getDescription().getVersion();
-        this.hasUpdate = hasUpdate();
-        if(this.getHasUpdate()) HMessenger.notifyUpdate();
+
     }
 
     public boolean hasUpdate() {

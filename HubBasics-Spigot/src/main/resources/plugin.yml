@@ -15,3 +15,13 @@ commands:
   sethub:
     description: Set hub location
     aliases: [setlobby]
+  warp:
+    description: Go to a warp
+  setwarp:
+    description: Set a warp to current location
+  delwarp:
+    description: Delete a warp
+  warps:
+    description: List all warps
+  hbreload:
+    description: Reloads the plugin and its configuration files

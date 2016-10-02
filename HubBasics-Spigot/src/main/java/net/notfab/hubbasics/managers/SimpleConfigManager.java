@@ -40,11 +40,13 @@ public class SimpleConfigManager {
 	/**
 	 * Scans given file for tabs, very useful when loading YAML configuration.
 	 * Any configuration loaded using the API in this class is automatically scanned.
-	 * Please note that this only works for files within the HubBasics plugin folder.
+	 * Please note that this only works for files within the plugin folder of plugin
+	 * given in constructor.
+	 *
 	 * @param filePath Path of file
      */
 	public void scan(String filePath) {
-		File file = new File(HubBasics.getInstance().getDataFolder(), filePath);
+		File file = new File(plugin.getDataFolder(), filePath);
 		if (!file.exists()) return;
 		Scanner scanner = null;
 		int lineNumber = 0;
@@ -76,8 +78,8 @@ public class SimpleConfigManager {
 	 * @return - New SimpleConfig
 	 */
 	public SimpleConfig getNewConfig(String filePath, String[] header) {
-		scan(filePath);
 		if (this.configs.containsKey(filePath)) return this.configs.get(filePath);
+		scan(filePath);
 		File file = this.getConfigFile(filePath);
 		if (!file.exists()) {
 			this.prepareFile(filePath);
@@ -132,9 +134,7 @@ public class SimpleConfigManager {
 	 */
 	public void prepareFile(String filePath, String resource) {
 		File file = this.getConfigFile(filePath);
-		if (file.exists()) {
-			return;
-		}
+		if (file.exists()) return;
 		try {
 			file.getParentFile().mkdirs();
 			file.createNewFile();
@@ -162,9 +162,7 @@ public class SimpleConfigManager {
 	 * @param header - Header lines
 	 */
 	public void setHeader(File file, String[] header) {
-		if (!file.exists()) {
-			return;
-		}
+		if (!file.exists()) return;
 		try {
 			String currentLine;
 			StringBuilder config = new StringBuilder("");
@@ -208,9 +206,7 @@ public class SimpleConfigManager {
 	 * @return - File as Input Stream
 	 */
 	public InputStream getConfigContent(File file) {
-		if (!file.exists()) {
-			return null;
-		}
+		if (!file.exists()) return null;
 		try {
 			int commentNum = 0;
 			String addLine;
@@ -246,9 +242,7 @@ public class SimpleConfigManager {
 	 * @return - Comments number
 	 */
 	private int getCommentsNum(File file) {
-		if (!file.exists()) {
-			return 0;
-		}
+		if (!file.exists()) return 0;
 		try {
 			int comments = 0;
 			String currentLine;

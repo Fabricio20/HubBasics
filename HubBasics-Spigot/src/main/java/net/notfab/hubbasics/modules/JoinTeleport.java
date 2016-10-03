@@ -12,10 +12,8 @@ package net.notfab.hubbasics.modules;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.abstracts.module.Module;
@@ -39,7 +37,7 @@ public class JoinTeleport extends Module {
         float yaw = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_YAW).floatValue();
         float pitch = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_PITCH).floatValue();
         String world = getString(ConfigurationKey.JOIN_TELEPORT_LOCATION_WORLD);
-        if (!Bukkit.getWorlds().contains(world)) 
+        if (!Bukkit.getWorlds().contains(world))
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "YOU HAVE SPECIFIED A WORLD THAT DOES NOT EXIST IN THE CONFIGURATION FILE FOR JOIN_TELEPORT!");
         this.location = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
     }

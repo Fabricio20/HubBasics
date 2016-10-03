@@ -15,14 +15,17 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
+import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.abstracts.module.Module;
 import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import net.notfab.hubbasics.plugin.settings.ConfigurationKey;
 
-public class JoinTeleport extends Module {
+import lombok.Getter;
 
-    private Location location;
+public class JoinTeleport extends Module {
+    @Getter private Location location;
 
     public JoinTeleport() {
         super(ModuleEnum.JOIN_TELEPORT);
@@ -33,10 +36,12 @@ public class JoinTeleport extends Module {
         double x = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_X);
         double y = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_Y);
         double z = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_Z);
-        double yaw = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_YAW);
-        double pitch = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_PITCH);
-        World world = Bukkit.getWorld(getString(ConfigurationKey.JOIN_TELEPORT_LOCATION_WORLD));
-        this.location = new Location(world, x, y, z, (float) yaw, (float) pitch);
+        float yaw = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_YAW).floatValue();
+        float pitch = getDouble(ConfigurationKey.JOIN_TELEPORT_LOCATION_PITCH).floatValue();
+        String world = getString(ConfigurationKey.JOIN_TELEPORT_LOCATION_WORLD);
+        if (!Bukkit.getWorlds().contains(world)) 
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "YOU HAVE SPECIFIED A WORLD THAT DOES NOT EXIST IN THE CONFIGURATION FILE FOR JOIN_TELEPORT!");
+        this.location = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
     }
 
     @Override
@@ -46,6 +51,6 @@ public class JoinTeleport extends Module {
 
     @EventHandler
     public void onPlayerConnect(PlayerJoinEvent event) {
-        if (isEnabledInWorld(event.getPlayer().getWorld())) event.getPlayer().teleport(this.location);
+        if (isEnabledInWorld(event.getPlayer().getWorld())) event.getPlayer().teleport(this.getLocation());
     }
 }

@@ -113,16 +113,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-                <archive>
-                    <manifest>
-                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                    </manifest>
-                    <manifestEntries>
-                        <Specification-Title>${project.name}</Specification-Title>
-                        <Specification-Version>${project.version}-${build.number}</Specification-Version>
-                        <Implementation-Version>${build.number}</Implementation-Version>
-                    </manifestEntries>
-                </archive>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -161,16 +151,6 @@
                                 </excludes>
                             </artifactSet>
                         </configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <Specification-Title>${project.name}</Specification-Title>
-                                <Specification-Version>${project.version}-${build.number}</Specification-Version>
-                                <Implementation-Version>${build.number}</Implementation-Version>
-                            </manifestEntries>
-                        </archive>
                     </execution>
                 </executions>
             </plugin>

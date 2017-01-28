@@ -23,7 +23,8 @@ import net.notfab.hubbasics.abstracts.module.ModuleEnum;
 import lombok.Getter;
 
 /**
- * Simple class for working with NMS (Network Management System) versions for Minecraft
+ * Simple class for working with NMS (Net.Minecraft.Server - reference to the package)
+ * versions for Minecraft.
  */
 public class NMSVersion {
     /**
@@ -78,8 +79,11 @@ public class NMSVersion {
      */
     public static final String V1_10_R1 = "v1_10_R1";
 
+    public static final String V1_11_R1 = "v1_11_R1";
+
     private Map<Integer, String> versionMap;
-    @Getter private int versionID;
+    @Getter
+    private int versionID;
 
     public NMSVersion() {
         this.versionMap = new HashMap<>();
@@ -93,22 +97,22 @@ public class NMSVersion {
             this.versionID = 0;
             Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "----------------------------------------------------------");
             Bukkit.getConsoleSender().sendMessage("");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "YOU ARE RUNNING AN UNSUPPORTED VERSION OF CRAFTBUKKIT!");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "YOU ARE RUNNING AN UNSUPPORTED VERSION OF SPIGOT!");
             Bukkit.getConsoleSender().sendMessage("");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "HubBasics functionality will at best be limited. Please don't come");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "complaining to us, the developers of HubBasics, when something breaks,");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "because running an unsupported version will cause exactly this. We do");
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "in no way accept responsibility for ANY damage caused to a server running");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "an unsupported version of CraftBukkit. It is recommended that you change to");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "a supported version of CraftBukkit. Supported versions are 1.7*, 1.8*, 1.9,");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "1.10. Versions marked with an asterisk (*) may have decreased functionality.");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "an unsupported version of Spigot. It is recommended that you change to");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "a supported version of Spigot. Supported versions are 1.7*, 1.8*, 1.9,");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "1.10, 1.11. Versions marked with an asterisk (*) may have limited functionality.");
             Bukkit.getConsoleSender().sendMessage("");
             Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "----------------------------------------------------------");
         }
     }
 
     private void loadVersions() {
-        registerVersion("Unsupported");
+        registerVersion(UNSUPPORTED);
         registerVersion(V1_7_R1);
         registerVersion(V1_7_R2);
         registerVersion(V1_7_R3);
@@ -119,6 +123,7 @@ public class NMSVersion {
         registerVersion(V1_9_R1);
         registerVersion(V1_9_R2);
         registerVersion(V1_10_R1);
+        registerVersion(V1_11_R1);
     }
 
     private void registerVersion(String string) {

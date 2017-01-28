@@ -6,175 +6,175 @@
 	~ https://creativecommons.org/licenses/by-nc-sa/4.0/ -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>net.notfab</groupId>
-	<artifactId>HubBasics</artifactId>
-	<version>5.0d_${build.number}</version>
+    <groupId>net.notfab</groupId>
+    <artifactId>HubBasics</artifactId>
+    <version>5.0d_${build.number}</version>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<build.number>666</build.number>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <build.number>666</build.number>
+    </properties>
 
-	<repositories>
-		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-			<id>dmulloy2-repo</id>
-			<url>http://repo.dmulloy2.net/content/groups/public</url>
-		</repository>
-		<repository>
-			<id>vault-repo</id>
-			<url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>http://repo.dmulloy2.net/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
+        </repository>
+    </repositories>
 
-	<dependencies>
-		<!--Spigot API -->
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.10.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Minecraft API -->
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>1.10.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- ProtocolLib -->
-		<dependency>
-			<groupId>com.comphenix.protocol</groupId>
-			<artifactId>ProtocolLib</artifactId>
-			<version>3.6.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Jedis API -->
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.7.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.10</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Apache Commons -->
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.4</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- jsoup HTML parser library @ http://jsoup.org/ -->
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.8.3</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- JSON -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20151123</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Commons Pool V2 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-			<version>2.4.2</version>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <!--Spigot API -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.11.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Minecraft API -->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.11.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- ProtocolLib -->
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>3.6.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Jedis API -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Apache Commons -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- jsoup HTML parser library @ http://jsoup.org/ -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.8.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- JSON -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20151123</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Commons Pool V2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.4.2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
-	<!-- Build Stuff -->
+    <!-- Build Stuff -->
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-							<Specification-Title>${project.name}</Specification-Title>
-							<Specification-Version>${project.version}-${build.number}</Specification-Version>
-							<Implementation-Version>${build.number}</Implementation-Version>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-							<Specification-Title>${project.name}</Specification-Title>
-							<Specification-Version>${project.version}-${build.number}</Specification-Version>
-							<Implementation-Version>${build.number}</Implementation-Version>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.4.3</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<archive>
-								<manifest>
-									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-								</manifest>
-								<manifestEntries>
-									<Specification-Title>${project.name}</Specification-Title>
-									<Specification-Version>${project.version}-${build.number}</Specification-Version>
-									<Implementation-Version>${build.number}</Implementation-Version>
-								</manifestEntries>
-							</archive>
-							<artifactSet>
-								<excludes>
-									<exclude>spigot</exclude>
-									<exclude>bukkit</exclude>
-									<exclude>protocol</exclude>
-									<exclude>permissions</exclude>
-									<exclude>vault</exclude>
-								</excludes>
-							</artifactSet>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+                <archive>
+                    <manifest>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                    </manifest>
+                    <manifestEntries>
+                        <Specification-Title>${project.name}</Specification-Title>
+                        <Specification-Version>${project.version}-${build.number}</Specification-Version>
+                        <Implementation-Version>${build.number}</Implementation-Version>
+                    </manifestEntries>
+                </archive>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Specification-Title>${project.name}</Specification-Title>
+                            <Specification-Version>${project.version}-${build.number}</Specification-Version>
+                            <Implementation-Version>${build.number}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>spigot-api</exclude>
+                                    <exclude>craftbukkit</exclude>
+                                    <exclude>ProtocolLib</exclude>
+                                    <exclude>permissions</exclude>
+                                    <exclude>vault</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Specification-Title>${project.name}</Specification-Title>
+                                <Specification-Version>${project.version}-${build.number}</Specification-Version>
+                                <Implementation-Version>${build.number}</Implementation-Version>
+                            </manifestEntries>
+                        </archive>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

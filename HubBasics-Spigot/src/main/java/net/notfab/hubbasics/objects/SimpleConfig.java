@@ -32,13 +32,12 @@ public class SimpleConfig {
     private FileConfiguration config;
 
     @SuppressWarnings("deprecation")
-    public SimpleConfig(InputStream configStream, File configFile,
-                        int comments, JavaPlugin plugin) {
+    public SimpleConfig(InputStream configStream, File configFile, int comments, JavaPlugin plugin) {
         this.comments = comments;
         this.manager = new SimpleConfigManager(plugin);
 
         this.file = configFile;
-        this.config = YamlConfiguration.loadConfiguration(configStream);
+        this.config = YamlConfiguration.loadConfiguration(configFile);
     }
 
     public String getName() {
@@ -541,8 +540,7 @@ public class SimpleConfig {
 
     @SuppressWarnings("deprecation")
     public void reloadConfig() {
-        this.config = YamlConfiguration.loadConfiguration(manager
-                .getConfigContent(file));
+        this.config = YamlConfiguration.loadConfiguration(file);
     }
 
     public void saveConfig() {

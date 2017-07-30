@@ -10,17 +10,13 @@ package net.notfab.hubbasics.nms;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import lombok.Getter;
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
-
-import org.bukkit.Bukkit;
-
-import net.md_5.bungee.api.ChatColor;
-import net.notfab.hubbasics.abstracts.module.ModuleEnum;
-
-import lombok.Getter;
 
 /**
  * Simple class for working with NMS (Net.Minecraft.Server - reference to the package)
@@ -81,6 +77,8 @@ public class NMSVersion {
 
     public static final String V1_11_R1 = "v1_11_R1";
 
+    public static final String V1_12_R1 = "v1_12_R1";
+
     private Map<Integer, String> versionMap;
     @Getter
     private int versionID;
@@ -124,6 +122,7 @@ public class NMSVersion {
         registerVersion(V1_9_R2);
         registerVersion(V1_10_R1);
         registerVersion(V1_11_R1);
+        registerVersion(V1_12_R1);
     }
 
     private void registerVersion(String string) {

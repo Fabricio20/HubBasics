@@ -2,6 +2,7 @@
 *.iml
 .classpath
 .project
+.settings/*
 .settings/
 target/
 HubBasics-Spigot/*.iml

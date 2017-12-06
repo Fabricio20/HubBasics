@@ -6,3 +6,4 @@
 .settings/
 target/
 HubBasics-Spigot/*.iml
+dependency-reduced-pom.xml

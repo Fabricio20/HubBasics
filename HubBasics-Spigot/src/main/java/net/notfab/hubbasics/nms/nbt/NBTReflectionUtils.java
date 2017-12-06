@@ -21,8 +21,7 @@ public class NBTReflectionUtils {
     @SuppressWarnings("rawtypes")
     private static Class getCraftItemstack() {
         try {
-            Class c = Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNmsVersion().getVersionString() + ".inventory.CraftItemStack");
-            return c;
+            return Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNmsVersion().getVersionString() + ".inventory.CraftItemStack");
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -57,8 +56,7 @@ public class NBTReflectionUtils {
         Class cis = getCraftItemstack();
         try {
             Method method = cis.getMethod("asNMSCopy", ItemStack.class);
-            Object answer = method.invoke(cis, item);
-            return answer;
+            return method.invoke(cis, item);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -84,8 +82,7 @@ public class NBTReflectionUtils {
         java.lang.reflect.Method method;
         try {
             method = c.getMethod("getTag");
-            Object answer = method.invoke(nmsitem);
-            return answer;
+            return method.invoke(nmsitem);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

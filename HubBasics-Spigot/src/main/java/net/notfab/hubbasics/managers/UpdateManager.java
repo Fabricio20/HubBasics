@@ -25,12 +25,11 @@ public class UpdateManager {
     private final String version;
     public UpdateManager() {
         version = HubBasics.getInstance().getDescription().getVersion();
-
     }
 
     public boolean hasUpdate() {
         try {
-            Document doc = Jsoup.connect("http://notfab.net/_Updater").cookie("Software", "HubBasics").get();
+            Document doc = Jsoup.connect("https://notfab.net/_Updater").cookie("Software", "HubBasics").get();
             if(doc != null) {
                 try {
                     JSONObject o = new JSONObject(doc.text());

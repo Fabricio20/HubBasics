@@ -73,7 +73,7 @@ public class ModuleManager {
 
         if (this.disabledModules.size() > 0) {
             Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "HubBasics > Detected NMS version doesn't support the following module(s):");
-            this.disabledModules.stream().forEach(module -> Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "  - " + WordUtils.capitalizeFully(module.name(), new char[]{'_'})));
+            this.disabledModules.forEach(module -> Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "  - " + WordUtils.capitalizeFully(module.name(), new char[]{'_'})));
         }
 
         /* Please don't use parallel here, makes debugging super annoying */

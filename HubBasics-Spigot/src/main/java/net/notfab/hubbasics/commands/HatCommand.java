@@ -43,7 +43,7 @@ public class HatCommand extends HCommand {
             } else {
                 HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
             }
-        } else if (args.length == 2) {
+        } else {
             if (!args[0].matches("[0-9]+")) {
                 HMessenger.sendErrorMessage(player, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;
@@ -76,7 +76,7 @@ public class HatCommand extends HCommand {
             }
             target.getInventory().setHelmet(new ItemStack(id));
             HMessenger.sendMessage(sender, HubBasicsMessage.HAT_CHANGED.getMessage());
-        } else if (args.length == 3) {
+        } else {
             if (!args[0].matches("[0-9]+")) {
                 HMessenger.sendErrorMessage(sender, HubBasicsMessage.COMMAND_ERROR_NOTNUMBER.getMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED));
                 return;

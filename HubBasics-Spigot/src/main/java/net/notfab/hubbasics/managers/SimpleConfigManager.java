@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class SimpleConfigManager {
 
 	private JavaPlugin plugin;
@@ -57,7 +58,7 @@ public class SimpleConfigManager {
 			while (scanner.hasNextLine()) {
 				line = scanner.nextLine();
 				lineNumber++;
-				if (line.indexOf("\t") != -1) {
+				if (line.contains("\t")) {
 					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " ------------------------------------------------------ ");
 					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "HubBasics > Tab found in file \"" + filePath + "\" on line #" + lineNumber + "!");
 					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " ------------------------------------------------------ ");
@@ -81,7 +82,7 @@ public class SimpleConfigManager {
 		if (this.configs.containsKey(filePath)) return this.configs.get(filePath);
 		scan(filePath);
 		File file = this.getConfigFile(filePath);
-		if (!file.exists()) {
+		if (file != null && !file.exists()) {
 			this.prepareFile(filePath);
 			if (header != null && header.length != 0) {
 				this.setHeader(file, header);
@@ -134,7 +135,8 @@ public class SimpleConfigManager {
 	 */
 	public void prepareFile(String filePath, String resource) {
 		File file = this.getConfigFile(filePath);
-		if (file.exists()) return;
+		if (file != null && file.exists()) return;
+		if(file == null) return;
 		try {
 			file.getParentFile().mkdirs();
 			file.createNewFile();
@@ -168,7 +170,7 @@ public class SimpleConfigManager {
 			StringBuilder config = new StringBuilder("");
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			while ((currentLine = reader.readLine()) != null) {
-				config.append(currentLine + "\n");
+				config.append(currentLine).append("\n");
 			}
 			reader.close();
 			config.append("# +----------------------------------------------------+ #\n");
@@ -176,9 +178,9 @@ public class SimpleConfigManager {
 				if (line.length() > 50) {
 					continue;
 				}
-				int lenght = (50 - line.length()) / 2;
+				int length = (50 - line.length()) / 2;
 				StringBuilder finalLine = new StringBuilder(line);
-				for (int i = 0; i < lenght; i++) {
+				for (int i = 0; i < length; i++) {
 					finalLine.append(" ");
 					finalLine.reverse();
 					finalLine.append(" ");
@@ -187,7 +189,7 @@ public class SimpleConfigManager {
 				if (line.length() % 2 != 0) {
 					finalLine.append(" ");
 				}
-				config.append("# < " + finalLine.toString() + " > #\n");
+				config.append("# < ").append(finalLine.toString()).append(" > #\n");
 			}
 			config.append("# +----------------------------------------------------+ #");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -218,10 +220,10 @@ public class SimpleConfigManager {
 				if (currentLine.startsWith("#")) {
 					addLine = currentLine.replaceFirst("#", pluginName
 							+ "_COMMENT_" + commentNum + ":");
-					whole.append(addLine + "\n");
+					whole.append(addLine).append("\n");
 					commentNum++;
 				} else {
-					whole.append(currentLine + "\n");
+					whole.append(currentLine).append("\n");
 				}
 			}
 			String config = whole.toString();
@@ -285,11 +287,11 @@ public class SimpleConfigManager {
 					 * to 1 it's the end of header
 					 */
 					if (headerLine == 0) {
-						config.append(comment + "\n");
+						config.append(comment).append("\n");
 						lastLine = 0;
 						headerLine = 1;
-					} else if (headerLine == 1) {
-						config.append(comment + "\n\n");
+					} else {
+						config.append(comment).append("\n\n");
 						lastLine = 0;
 						headerLine = 0;
 					}
@@ -306,14 +308,14 @@ public class SimpleConfigManager {
 						normalComment = comment;
 					}
 					if (lastLine == 0) {
-						config.append(normalComment + "\n");
+						config.append(normalComment).append("\n");
 					} else if (lastLine == 1) {
-						config.append("\n" + normalComment + "\n");
+						config.append("\n").append(normalComment).append("\n");
 					}
 					lastLine = 0;
 				}
 			} else {
-				config.append(line + "\n");
+				config.append(line).append("\n");
 				lastLine = 1;
 			}
 		}

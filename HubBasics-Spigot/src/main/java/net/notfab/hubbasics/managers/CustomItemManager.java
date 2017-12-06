@@ -32,6 +32,7 @@ import net.notfab.hubbasics.objects.CustomItem;
 
 @SuppressWarnings("deprecation")
 public class CustomItemManager implements Listener {
+
     private final String UUID_TAG = "UUID";
     private Map<UUID, CustomItem> customItems = new HashMap<>();
 
@@ -42,7 +43,6 @@ public class CustomItemManager implements Listener {
     public void removeItem(UUID uid) {
         this.customItems.remove(uid);
     }
-    
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {

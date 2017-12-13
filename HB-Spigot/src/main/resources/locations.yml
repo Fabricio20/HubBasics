@@ -6,3 +6,31 @@ Default:
   Z: 0
   Yaw: 0.0
   Pitch: 0.0
+main: net.notfab.hubbasics.spigot.HubBasics
+version: 5.0-DEVELOPMENT
+name: HubBasics
+authors: [Fabricio20, Mister_2]
+softdepend: [Multiverse-Core]
+description: >
+             HubBasics is a plugin containing settings, options and features you as a server owner might desire
+commands:
+  holograms:
+    description: Manage holograms
+  hat:
+    description: Changes your hat
+  hub:
+    description: Go to hub
+    aliases: [lobby]
+  sethub:
+    description: Set hub location
+    aliases: [setlobby]
+  warp:
+    description: Go to a warp
+  setwarp:
+    description: Set a warp to current location
+  delwarp:
+    description: Delete a warp
+  warps:
+    description: List all warps
+  hbreload:
+    description: Reloads the plugin and its configuration files

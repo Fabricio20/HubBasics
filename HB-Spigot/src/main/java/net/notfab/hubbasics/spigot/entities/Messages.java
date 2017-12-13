@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.spigot.entities;
 
-import net.notfab.hubbasics.spigot.plugin.utils.HubBasicsFile;
+import net.notfab.hubbasics.spigot.HubBasics;
+import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import org.bukkit.entity.Player;
 
 /**
@@ -17,7 +18,8 @@ import org.bukkit.entity.Player;
 public class Messages {
 
     public static String get(String name) {
-        return HubBasicsFile.MESSAGES.getString(name, "<Internal Error - Unknown Message>");
+        SimpleConfig config = HubBasics.getInstance().getConfigManager().getNewConfig("messages.yml");
+        return config.getString(name, "<Internal Error - Unknown Message>");
     }
 
     public static String get(Player player, String name) {

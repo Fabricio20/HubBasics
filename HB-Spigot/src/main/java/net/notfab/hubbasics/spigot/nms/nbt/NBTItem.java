@@ -10,11 +10,9 @@ package net.notfab.hubbasics.spigot.nms.nbt;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import org.bukkit.inventory.ItemStack;
-
 public class NBTItem {
 
-    private ItemStack bukkititem;
+    /*private ItemStack bukkititem;
 
     public NBTItem(ItemStack Item) {
         bukkititem = Item.clone();
@@ -58,5 +56,5 @@ public class NBTItem {
 
     public Boolean hasKey(String key) {
         return NBTReflectionUtils.hasKey(bukkititem, key);
-    }
+    }*/
 }

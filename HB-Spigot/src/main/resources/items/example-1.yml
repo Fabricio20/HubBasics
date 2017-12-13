@@ -1,0 +1,13 @@
+Material: WOOL
+Durability: 1
+Amount: 2
+Unbreakable: true
+Name: ok
+Description:
+  - &cThis is a
+  - &9description
+  - &6with colors
+Enchantments:
+  - DAMAGE_ALL:10
+Flags:
+  - HIDE_ENCHANTS

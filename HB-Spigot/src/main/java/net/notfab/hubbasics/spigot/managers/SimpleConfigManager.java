@@ -12,13 +12,17 @@ package net.notfab.hubbasics.spigot.managers;
 
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
-
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -34,7 +38,44 @@ public class SimpleConfigManager {
 	public SimpleConfigManager(JavaPlugin plugin) {
 		this.plugin = plugin;
 		this.configs = new HashMap<>();
+		this.prepareHubBasics();
 	}
+
+	public void prepareHubBasics() {
+	    File folder = plugin.getDataFolder();
+	    if(!folder.exists())
+	        folder.mkdirs();
+	    if(!new File(folder, "items/").exists()) {
+            new File(folder, "items/").mkdirs();
+	        List<String> lines = getResource("items/example-1.yml");
+	        if(lines != null) {
+                try {
+                    FileWriter fw = new FileWriter("items/example-1.yml");
+                    lines.forEach(line -> {
+                        try {
+                            fw.write(line);
+                        } catch (IOException ignored) {}
+                    });
+                    fw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private List<String> getResource(String fileName) {
+        Path path;
+        List<String> lines;
+        try {
+            path = Paths.get(this.getClass().getResource("/" + fileName).toURI());
+            lines = Files.readAllLines(path);
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lines;
+    }
 
 	/**
 	 * Scans given file for tabs, very useful when loading YAML configuration.

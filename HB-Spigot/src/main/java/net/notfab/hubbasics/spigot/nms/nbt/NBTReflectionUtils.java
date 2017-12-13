@@ -10,15 +10,9 @@ package net.notfab.hubbasics.spigot.nms.nbt;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
-import java.lang.reflect.Method;
-
-import org.bukkit.inventory.ItemStack;
-
-import net.notfab.hubbasics.spigot.HubBasics;
-
 public class NBTReflectionUtils {
 
-    @SuppressWarnings("rawtypes")
+    /*@SuppressWarnings("rawtypes")
     private static Class getCraftItemstack() {
         try {
             return Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNmsVersion().getVersionString() + ".inventory.CraftItemStack");
@@ -232,5 +226,5 @@ public class NBTReflectionUtils {
             ex.printStackTrace();
             return null;
         }
-    }
+    }*/
 }

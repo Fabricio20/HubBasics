@@ -348,7 +348,8 @@ public class SimpleConfigManager {
 	 * @param resource - Resource from .jar
 	 * @param file     - File to write
 	 */
-	private void copyResource(InputStream resource, File file) {
+	private void
+	copyResource(InputStream resource, File file) {
 		try {
 			OutputStream out = new FileOutputStream(file);
 			int lenght;

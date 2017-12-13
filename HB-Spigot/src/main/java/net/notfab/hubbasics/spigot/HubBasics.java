@@ -11,11 +11,7 @@ package net.notfab.hubbasics.spigot;
  */
 
 import lombok.Getter;
-import net.notfab.hubbasics.spigot.managers.CommandManager;
-import net.notfab.hubbasics.spigot.managers.CustomItemManager;
-import net.notfab.hubbasics.spigot.managers.ModuleManager;
-import net.notfab.hubbasics.spigot.managers.SimpleConfigManager;
-import net.notfab.hubbasics.spigot.managers.UpdateManager;
+import net.notfab.hubbasics.spigot.managers.*;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
 import net.notfab.hubbasics.spigot.objects.MetricsLite;
 import net.notfab.hubbasics.spigot.plugin.messages.HMessenger;
@@ -33,14 +29,16 @@ public class HubBasics extends JavaPlugin {
 
     @Getter private static HubBasics instance;
 
-    @Getter private CommandManager commandManager;
-    @Getter private HConfiguration pluginConfiguration;
+    @Getter private NMSVersion nmsVersion;
     @Getter private SimpleConfigManager configManager;
+    @Getter private HConfiguration pluginConfiguration;
+    @Getter private Messenger messenger;
+
+    @Getter private CommandManager commandManager;
     @Getter private MessageManager messageManager;
     @Getter private ModuleManager moduleManager;
     @Getter private MetricsLite metrics;
     @Getter private UpdateManager updateManager;
-    @Getter private NMSVersion nmsVersion;
     @Getter private CustomItemManager customItemManager;
 
     @Override
@@ -56,6 +54,8 @@ public class HubBasics extends JavaPlugin {
         this.nmsVersion = new NMSVersion();
         this.configManager = new SimpleConfigManager(this);
         this.pluginConfiguration = new HConfiguration();
+        this.messenger = new Messenger();
+
         this.messageManager = new MessageManager();
         this.customItemManager = new CustomItemManager();
         this.moduleManager = new ModuleManager();
@@ -64,7 +64,7 @@ public class HubBasics extends JavaPlugin {
 
         FileConverter.convert();
         this.getMessageManager().loadMessages();
-        this.getPluginConfiguration().loadConfig();
+        this.getPluginConfiguration().reloadConfigs();
 
         try {
             this.metrics = new MetricsLite(this);

@@ -1,0 +1,4 @@
+VOID_MESSAGE: Teleporting you back...
+JOIN_MESSAGE: Welcome to the server ${Player}!
+FIRST_JOIN: Welcome ${Player}, we hope you have fun.
+QUIT_MESSAGE: Goodbye ${Player}.

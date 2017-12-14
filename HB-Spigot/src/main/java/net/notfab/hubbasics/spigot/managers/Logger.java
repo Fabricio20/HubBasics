@@ -1,9 +1,9 @@
 package net.notfab.hubbasics.spigot.managers;
 
+import ch.qos.logback.classic.Level;
+import lombok.Getter;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import org.slf4j.LoggerFactory;
-
-import java.util.logging.Level;
 
 /**
  * Copyright (c) HubBasics 2018.
@@ -19,9 +19,11 @@ import java.util.logging.Level;
 public class Logger extends Manager {
 
     private final org.slf4j.Logger LOGGER;
+    @Getter private Level level;
 
     public Logger() {
         this.LOGGER = LoggerFactory.getLogger(HubBasics.getClass());
+        this.level = Level.INFO;
         this.LOGGER.info("[Logger] Started.");
     }
 

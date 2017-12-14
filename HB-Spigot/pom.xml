@@ -40,27 +40,6 @@
             <version>1.12.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Apache Commons -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.4</version>
-            <scope>compile</scope>
-        </dependency>
-        <!-- jsoup HTML parser library @ http://jsoup.org/ -->
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.10.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <!-- Commons Pool V2 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>2.4.2</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>

@@ -33,7 +33,7 @@ public class HubBasics extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        this.loggerManager = new Logger(this);
+        this.loggerManager = new Logger();
         this.configManager = new SimpleConfigManager(this);
         this.messenger = new Messenger();
         this.commandFramework = new CommandFramework();

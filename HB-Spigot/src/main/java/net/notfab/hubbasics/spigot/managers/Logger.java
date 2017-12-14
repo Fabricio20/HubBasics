@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.spigot.managers;
 
-import net.notfab.hubbasics.spigot.HubBasics;
+import net.notfab.hubbasics.spigot.entities.Manager;
+import org.slf4j.LoggerFactory;
 
 import java.util.logging.Level;
 
@@ -15,45 +16,58 @@ import java.util.logging.Level;
  * <p>
  * File Created by Fabricio20 on 13/12/2017.
  */
-public class Logger {
+public class Logger extends Manager {
 
-    private HubBasics hubBasics;
+    private final org.slf4j.Logger LOGGER;
 
-    public Logger(HubBasics hubBasics) {
-        this.hubBasics = hubBasics;
+    public Logger() {
+        this.LOGGER = LoggerFactory.getLogger(HubBasics.getClass());
+        this.LOGGER.info("[Logger] Started.");
     }
 
-    public void info(String message) {
-        hubBasics.getLogger().log(Level.INFO, message);
+    @Override
+    public void onDisable() {
+        this.LOGGER.info("[Logger] Shutting down.");
     }
 
-    public void info(String message, Throwable throwable) {
-        hubBasics.getLogger().log(Level.INFO, message, throwable);
+    public void trace(String msg) {
+        LOGGER.trace(msg);
     }
 
-    public void warn(String message) {
-        hubBasics.getLogger().log(Level.WARNING, message);
+    public void trace(String msg, Throwable t) {
+        LOGGER.trace(msg, t);
     }
 
-    public void warn(String message, Throwable throwable) {
-        hubBasics.getLogger().log(Level.WARNING, message, throwable);
+    public void debug(String msg) {
+        LOGGER.debug(msg);
     }
 
-    public void error(String message) {
-        hubBasics.getLogger().log(Level.SEVERE, message);
+    public void debug(String msg, Throwable t) {
+        LOGGER.debug(msg, t);
     }
 
-    public void error(String message, Throwable throwable) {
-        hubBasics.getLogger().log(Level.SEVERE, message, throwable);
+    public void info(String msg) {
+        LOGGER.info(msg);
     }
 
-    public void debug(String message) {
-        System.out.println("[HubBasics] " + message);
+    public void info(String msg, Throwable t) {
+        LOGGER.info(msg, t);
     }
 
-    public void debug(String message, Throwable throwable) {
-        System.out.println("[HubBasics] " + message);
-        throwable.printStackTrace();
+    public void warn(String msg) {
+        LOGGER.warn(msg);
+    }
+
+    public void warn(String msg, Throwable t) {
+        LOGGER.warn(msg, t);
+    }
+
+    public void error(String msg) {
+        LOGGER.error(msg);
+    }
+
+    public void error(String msg, Throwable t) {
+        LOGGER.error(msg, t);
     }
 
 }

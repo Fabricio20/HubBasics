@@ -1,11 +1,11 @@
 package net.notfab.hubbasics.spigot.entities;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.json.JSONObject;
 
 /**
  * Copyright (c) HubBasics 2018.
@@ -20,15 +20,21 @@ import org.json.JSONObject;
  */
 public class HLocation {
 
-    @Getter private String server;
+    @Getter private final String id;
+    @Getter @Setter private String server;
     private String world;
-    @Getter private Double X;
-    @Getter private Double Y;
-    @Getter private Double Z;
-    @Getter private Float Yaw;
-    @Getter private Float Pitch;
+    @Getter @Setter private Double X;
+    @Getter @Setter private Double Y;
+    @Getter @Setter private Double Z;
+    @Getter @Setter private Float Yaw;
+    @Getter @Setter private Float Pitch;
 
-    public HLocation(Location location) {
+    public HLocation(String id) {
+        this.id = id;
+    }
+
+    public HLocation(String id, Location location) {
+        this.id = id;
         this.server = null;
         this.world = location.getWorld().getName();
         this.X = location.getX();
@@ -38,40 +44,30 @@ public class HLocation {
         this.Pitch = location.getPitch();
     }
 
-    public HLocation(World world, Double x, Double y, Double z, Float yaw, Float pitch) {
-        this.server = null;
-        this.world = world.getName();
-        this.X = x;
-        this.Y = y;
-        this.Z = z;
-        this.Yaw = yaw;
-        this.Pitch = pitch;
-    }
-
-    public HLocation(String server, String world, Double x, Double y, Double z, Float yaw, Float pitch) {
-        this.server = server;
-        this.world = world;
-        this.X = x;
-        this.Y = y;
-        this.Z = z;
-        this.Yaw = yaw;
-        this.Pitch = pitch;
-    }
-
     public World getWorld() {
         return Bukkit.getWorld(this.world);
     }
 
-    public JSONObject toJSON() {
-        return new JSONObject().put("server", server).put("world", world).put("x", X).put("y", Y).put("z", Z).put("yaw", Yaw).put("pitch", Pitch);
+    public void setWorld(World world) {
+        this.world = world.getName();
     }
 
     public void teleport(Player player) {
-        //TODO
+        if(this.server != null) {
+            //TODO
+        } else {
+            player.teleport(this.toBukkitLocation());
+        }
     }
 
     public Location toBukkitLocation() {
-        return new Location(Bukkit.getWorld(world), X, Y, Z, Yaw, Pitch);
+        if(getWorld() == null) return Bukkit.getWorlds().get(0).getSpawnLocation();
+        Double X = (this.X == null) ? getWorld().getSpawnLocation().getX() : this.X;
+        Double Y = (this.Y == null) ? getWorld().getSpawnLocation().getY() : this.Y;
+        Double Z = (this.Z == null) ? getWorld().getSpawnLocation().getZ() : this.Z;
+        Float Yaw = (this.Yaw == null) ? getWorld().getSpawnLocation().getYaw() : this.Yaw;
+        Float Pitch = (this.Pitch == null) ? getWorld().getSpawnLocation().getPitch() : this.Pitch;
+        return new Location(getWorld(), X, Y, Z, Yaw, Pitch);
     }
 
 }

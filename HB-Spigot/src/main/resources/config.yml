@@ -1,89 +1,19 @@
-ADVANCED_MOTD:
+# ------------------------------------------------------------------------------------------------------------------- #
+# Welcome to the configuration file for HubBasics.                                                                    #
+#                                                                                                                     #
+# - The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0       #
+# International. Please read the information linked below before you attempt to use this project or it's contents to  #
+# make sure you are abiding by it's terms.                                                                            #
+# - https://creativecommons.org/licenses/by-nc-sa/4.0/                                                                #
+#                                                                                                                     #
+# It's still YAML, so make sure you are not using tabs as it can invalidate the configuration.                        #
+# When in doubt, paste this config on a parser like http://www.yamllint.com                                           #
+#                                                                                                                     #
+#
+# ------------------------------------------------------------------------------------------------------------------- #
+Updater:
   Enabled: true
-  Motds:
-    - This is a default motd
-    - Please change it
-    - In the HubBasics
-    - Config file
-  Switchrate: 2
-ANTI_VOID:
+  NotifyAdmins: true
+Logger:
   Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-  Location: Default
-AUTOMATED_BROADCASTS:
-  Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-  Messages:
-    - This is the first broadcast message
-    - This is the second one
-  Random: true
-  Switchrate: 30
-BOSSBAR_MESSAGES:
-  Enabled: true
-    Worlds:
-      - world
-      - world_the_end
-      - world_nether
-    Messages:
-      - This is the first bossbar message
-      - This is the second one
-    Random: true
-    Switchrate: 30
-    Color: BLUE
-    Style: SOLID
-CONNECTION_MESSAGES:
-  Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-DOUBLE_JUMP:
-  Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-  Sound: ENTITY_BAT_TAKEOFF
-  Force: 0.3
-  Effect: null
-FIXED_WEATHER:
-  Enabled: false
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-JOIN_TELEPORT:
-  Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-  Location: Default
-JUMP_PADS:
-  Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-  Sound: ENTITY_BAT_TAKEOFF
-  Force: 5.0
-  Material: IRON_BLOCK
-  PressurePlate: true
-KEEP_FOOD:
-  Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
-KEEP_HEALTH:
-  Enabled: true
-  Worlds:
-    - world
-    - world_the_end
-    - world_nether
+  Level: DEBUG

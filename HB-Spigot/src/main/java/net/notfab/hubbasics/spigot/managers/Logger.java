@@ -48,11 +48,12 @@ public class Logger {
     }
 
     public void debug(String message) {
-        hubBasics.getLogger().log(Level.FINEST, message);
+        System.out.println("[HubBasics] " + message);
     }
 
     public void debug(String message, Throwable throwable) {
-        hubBasics.getLogger().log(Level.FINEST, message, throwable);
+        System.out.println("[HubBasics] " + message);
+        throwable.printStackTrace();
     }
 
 }

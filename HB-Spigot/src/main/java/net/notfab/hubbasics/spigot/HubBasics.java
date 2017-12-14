@@ -11,10 +11,8 @@ package net.notfab.hubbasics.spigot;
  */
 
 import lombok.Getter;
-import net.notfab.hubbasics.spigot.managers.ItemManager;
-import net.notfab.hubbasics.spigot.managers.Logger;
-import net.notfab.hubbasics.spigot.managers.Messenger;
-import net.notfab.hubbasics.spigot.managers.SimpleConfigManager;
+import net.notfab.hubbasics.spigot.managers.*;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class HubBasics extends JavaPlugin {
@@ -24,6 +22,7 @@ public class HubBasics extends JavaPlugin {
     @Getter private Logger loggerManager;
     @Getter private SimpleConfigManager configManager;
     @Getter private Messenger messenger;
+    @Getter private CommandFramework commandFramework;
     @Getter private ItemManager itemManager;
 
     @Override
@@ -33,9 +32,10 @@ public class HubBasics extends JavaPlugin {
         this.loggerManager = new Logger(this);
         this.configManager = new SimpleConfigManager(this);
         this.messenger = new Messenger();
+        this.commandFramework = new CommandFramework();
         this.itemManager = new ItemManager();
 
-        //Bukkit.getPluginManager().registerEvents(this.getCustomItemManager(), this);
+        Bukkit.getPluginManager().registerEvents(this.commandFramework, this);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 

@@ -56,6 +56,7 @@ public class ItemManager extends Manager {
                 Logger.debug("Loaded item " + item.getId());
             }
         });
+        Logger.info("[ItemManager] Loaded " + this.items.size() + " items.");
     }
 
     public CustomItem get(String id) {
@@ -63,7 +64,7 @@ public class ItemManager extends Manager {
     }
 
     private Result read(SimpleConfig config) {
-        CustomItem item = new CustomItem(config.getName());
+        CustomItem item = new CustomItem(config.getName().replace(".yml", ""));
         if(config.contains("Material")) {
             Material material = FinderUtil.findOneMaterial(config.getString("Material"));
             if(material == null)

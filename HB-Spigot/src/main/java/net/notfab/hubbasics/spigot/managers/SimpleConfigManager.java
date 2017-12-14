@@ -16,15 +16,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class SimpleConfigManager {
@@ -48,31 +41,38 @@ public class SimpleConfigManager {
 	    if(!new File(folder, "items/").exists()) {
             new File(folder, "items/").mkdirs();
 	        List<String> lines = getResource("items/example-1.yml");
-	        if(lines != null) {
+	        this.writeToFile(lines, new File(folder, "items/example-1.yml"));
+        }
+    }
+
+    private void writeToFile(List<String> lines, File file) {
+        try {
+            if(!file.exists())
+                file.createNewFile();
+            FileWriter fw = new FileWriter(file.getPath());
+            lines.forEach(line -> {
                 try {
-                    FileWriter fw = new FileWriter("items/example-1.yml");
-                    lines.forEach(line -> {
-                        try {
-                            fw.write(line);
-                        } catch (IOException ignored) {}
-                    });
-                    fw.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+                    fw.write(line + "\n");
+                } catch (IOException ignored) {}
+            });
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
     private List<String> getResource(String fileName) {
-        Path path;
-        List<String> lines;
+	    InputStream stream = this.getClass().getResourceAsStream("/" + fileName);
+        List<String> lines = new ArrayList<>();
+	    if(stream == null) return lines;
+        BufferedReader in = new BufferedReader(new InputStreamReader(stream));
+        String line;
         try {
-            path = Paths.get(this.getClass().getResource("/" + fileName).toURI());
-            lines = Files.readAllLines(path);
-        } catch (URISyntaxException | IOException e) {
+            while((line = in.readLine()) != null) {
+                lines.add(line);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
         return lines;
     }

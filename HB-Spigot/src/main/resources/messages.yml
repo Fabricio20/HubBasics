@@ -10,11 +10,16 @@
 # When in doubt, paste this config on a parser like http://www.yamllint.com                                           #
 # ------------------------------------------------------------------------------------------------------------------- #
 NO_PERMISSION: '&cYou do not have permission to use this command, if you believe that this is in error, please contact the server administrators.'
+INTERNAL_ERROR: '&cAn error ocurred while performing this command, if you believe that this is in error, please submit a bug report.'
 UNKNOWN_SUBCOMMAND: '&cSubcommand not found.'
 PLUGIN_RELOADED: '&b[&aHubBasics&b] &ePlugin reloaded.'
+WARP_EXISTS: '&cA warp with this name already exists'
+WARP_CREATED: '&aWarp created.'
+WARP_DELETED: '&aWarp deleted.'
 INVALID_MATERIAL: '&cMaterial was not found.'
 INVALID_SIZE: '&cInvalid chest size.'
 INVALID_SOUND: '&cInvalid sound.'
 INVALID_MENU: '&cThe configured menu is invalid'
 INVALID_WORLD: '&cThe specified world is invalid'
+INVALID_WARP: '&cThe specified warp is invalid'
 ITEM_NOT_FOUND: '&cItem not found.'

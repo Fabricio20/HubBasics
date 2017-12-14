@@ -20,5 +20,4 @@ public abstract class Manager {
     public Logger Logger = HubBasics.getLoggerManager();
 
     public abstract void onDisable();
-
 }

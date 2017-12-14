@@ -111,7 +111,11 @@ public class CustomItem {
             } else if(operator.equalsIgnoreCase("msg")) {
                 HubBasics.getInstance().getMessenger().send(player, command);
             } else if(operator.equalsIgnoreCase("warp")) {
-                //TODO
+                HLocation location = HubBasics.getInstance().getLocationManager().get(command);
+                if(location == null)
+                    HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "INVALID_WARP"));
+                else
+                    location.teleport(player);
             } else if(operator.equalsIgnoreCase("server")) {
                 //TODO
             } else if(operator.equalsIgnoreCase("open")) {

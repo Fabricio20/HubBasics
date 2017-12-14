@@ -6,6 +6,7 @@ import net.notfab.hubbasics.spigot.entities.Result;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 
 import java.io.File;
@@ -52,6 +53,10 @@ public class LocationManager extends Manager {
         Logger.info("[LocationManager] Loaded " + this.locationMap.size() + " warps.");
     }
 
+    public HLocation get(String id) {
+        return this.locationMap.get(id);
+    }
+
     private Result read(SimpleConfig config) {
         HLocation location = new HLocation(config.getName().replace(".yml", ""));
         if(config.contains("World")) {
@@ -80,6 +85,28 @@ public class LocationManager extends Manager {
             location.setServer(config.getString("Server"));
         }
         return new Result(true, location);
+    }
+
+    public Result create(String name, Location location) {
+        SimpleConfig config = HubBasics.getConfigManager().getNewConfig("warps/" + name + ".yml");
+        config.set("World", location.getWorld().getName());
+        config.set("X", location.getX());
+        config.set("Y", location.getY());
+        config.set("Z", location.getZ());
+        config.set("Yaw", location.getYaw());
+        config.set("Pitch", location.getPitch());
+        config.saveConfig();
+        this.locationMap.put(name, new HLocation(name, location));
+        return new Result(new HLocation(name, location));
+    }
+
+    public boolean delete(HLocation warp) {
+        this.locationMap.remove(warp.getId());
+        File file = new File(HubBasics.getDataFolder(), "warps/" + warp.getId() + ".yml");
+        if(file.exists()) {
+            return file.delete();
+        }
+        return false;
     }
 
 }

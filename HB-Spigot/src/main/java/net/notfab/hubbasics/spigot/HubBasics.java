@@ -29,6 +29,7 @@ public class HubBasics extends JavaPlugin {
     @Getter private NMSVersion NMS;
     @Getter private ItemManager itemManager;
     @Getter private MenuManager menuManager;
+    @Getter private LocationManager locationManager;
 
     @Override
     public void onEnable() {
@@ -42,6 +43,7 @@ public class HubBasics extends JavaPlugin {
         this.NMS = new NMSVersion();
         this.itemManager = new ItemManager();
         this.menuManager = new MenuManager();
+        this.locationManager = new LocationManager();
 
         Bukkit.getPluginManager().registerEvents(this.commandFramework, this);
         Bukkit.getPluginManager().registerEvents(new ItemListener(), this);

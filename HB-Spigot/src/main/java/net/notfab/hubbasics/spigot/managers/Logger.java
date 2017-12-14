@@ -2,7 +2,9 @@ package net.notfab.hubbasics.spigot.managers;
 
 import ch.qos.logback.classic.Level;
 import lombok.Getter;
+import lombok.Setter;
 import net.notfab.hubbasics.spigot.entities.Manager;
+import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -18,13 +20,12 @@ import org.slf4j.LoggerFactory;
  */
 public class Logger extends Manager {
 
-    private final org.slf4j.Logger LOGGER;
-    @Getter private Level level;
+    private final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(HubBasics.getClass());
+    @Getter @Setter private Level level = Level.INFO;
+    @Getter @Setter private boolean enabled = true;
 
     public Logger() {
-        this.LOGGER = LoggerFactory.getLogger(HubBasics.getClass());
-        this.level = Level.INFO;
-        this.LOGGER.info("[Logger] Started.");
+        this.info("[Logger] Started.");
     }
 
     @Override

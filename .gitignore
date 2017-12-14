@@ -1,5 +1,7 @@
 *.iml
 target/
+*/target
 .idea/
 *.xml
 !pom.xml
+!HB-Spigot/src/main/resources/logback.xml

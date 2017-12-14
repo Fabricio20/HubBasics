@@ -10,7 +10,9 @@ package net.notfab.hubbasics.spigot.managers;
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+import ch.qos.logback.classic.Level;
 import net.md_5.bungee.api.ChatColor;
+import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -57,6 +59,21 @@ public class SimpleConfigManager {
             new File(folder, "menus/").mkdirs();
             List<String> lines = getResource("menus/example-menu.yml");
             this.writeToFile(lines, new File(folder, "menus/example-menu.yml"));
+        }
+    }
+
+    public void setupLogger() {
+        SimpleConfig config = this.getNewConfig("config.yml");
+        if(config.contains("Logger")) {
+            if(config.contains("Logger.Enabled"))
+                HubBasics.getInstance().getLoggerManager().setEnabled(config.getBoolean("Logger.Enabled"));
+            if(config.contains("Logger.Level")) {
+                try {
+                    HubBasics.getInstance().getLoggerManager().setLevel(Level.valueOf(config.getString("Logger.Level")));
+                } catch (IllegalArgumentException ex) {
+                    HubBasics.getInstance().getLoggerManager().error("Invalid logger Level found on config file", ex);
+                }
+            }
         }
     }
 

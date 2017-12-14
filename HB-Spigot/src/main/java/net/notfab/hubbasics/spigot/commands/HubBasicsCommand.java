@@ -1,7 +1,7 @@
 package net.notfab.hubbasics.spigot.commands;
 
 import net.notfab.hubbasics.spigot.entities.Command;
-import net.notfab.hubbasics.spigot.entities.Messages;
+import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.entity.Player;
 
 /**

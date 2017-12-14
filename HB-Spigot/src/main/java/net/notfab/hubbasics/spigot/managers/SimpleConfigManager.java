@@ -43,6 +43,14 @@ public class SimpleConfigManager {
 	        List<String> lines = getResource("items/example-1.yml");
 	        this.writeToFile(lines, new File(folder, "items/example-1.yml"));
         }
+        if(!new File(folder, "config.yml").exists()) {
+            List<String> lines = getResource("config.yml");
+            this.writeToFile(lines, new File(folder, "config.yml"));
+        }
+        if(!new File(folder, "messages.yml").exists()) {
+            List<String> lines = getResource("messages.yml");
+            this.writeToFile(lines, new File(folder, "messages.yml"));
+        }
     }
 
     private void writeToFile(List<String> lines, File file) {

@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.spigot.entities;
+package net.notfab.hubbasics.spigot.utils;
 
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;

@@ -3,7 +3,7 @@ package net.notfab.hubbasics.spigot.managers;
 import net.notfab.hubbasics.spigot.commands.HubBasicsCommand;
 import net.notfab.hubbasics.spigot.entities.Command;
 import net.notfab.hubbasics.spigot.entities.Manager;
-import net.notfab.hubbasics.spigot.entities.Messages;
+import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

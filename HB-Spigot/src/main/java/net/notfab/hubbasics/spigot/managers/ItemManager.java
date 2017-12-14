@@ -2,7 +2,7 @@ package net.notfab.hubbasics.spigot.managers;
 
 import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.Manager;
-import net.notfab.hubbasics.spigot.entities.Messages;
+import net.notfab.hubbasics.spigot.utils.Messages;
 import net.notfab.hubbasics.spigot.entities.Result;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;

@@ -35,7 +35,7 @@ public class ItemManager extends Manager {
 
     @Override
     public void onDisable() {
-
+        this.items.clear();
     }
 
     public void onEnable() {
@@ -66,7 +66,7 @@ public class ItemManager extends Manager {
     private Result read(SimpleConfig config) {
         CustomItem item = new CustomItem(config.getName().replace(".yml", ""));
         if(config.contains("Material")) {
-            Material material = FinderUtil.findOneMaterial(config.getString("Material"));
+            Material material = FinderUtil.findMaterial(config.getString("Material"));
             if(material == null)
                 return new Result(false, "INVALID_MATERIAL");
             item.setMaterial(material);
@@ -98,7 +98,7 @@ public class ItemManager extends Manager {
                 try {
                     String name = text.split(":")[0];
                     Integer level = Integer.parseInt(text.split(":")[1]);
-                    Enchantment enchantment = FinderUtil.findOneEnchantment(name);
+                    Enchantment enchantment = FinderUtil.findEnchantment(name);
                     if(enchantment == null)
                         return;
                     item.addEnchantment(enchantment, level);
@@ -110,6 +110,24 @@ public class ItemManager extends Manager {
         }
         if(config.contains("Durability")) {
             item.setDurability(Integer.valueOf(config.getInt("Durability")).shortValue());
+        }
+        if(config.contains("AllowDrop")) {
+            item.setAllowDrop(config.getBoolean("AllowDrop"));
+        }
+        if(config.contains("AllowMove")) {
+            item.setAllowMove(config.getBoolean("AllowMove"));
+        }
+        if(config.contains("Slot")) {
+            item.setSlot(config.getInt("Slot"));
+        }
+        if(config.contains("Commands")) {
+            item.setCommands(config.getStringList("Commands"));
+        }
+        if(config.contains("RunCommands")) {
+            item.setRunOnOffhand(config.getBoolean("RunCommands.AllowOffhand", false));
+            item.setRunOnInventory(config.getBoolean("RunCommands.Inventory", false));
+            item.setRunOnLeftClick(config.getBoolean("RunCommands.LeftClick", false));
+            item.setRunOnRightClick(config.getBoolean("RunCommands.RightClick", false));
         }
         return new Result(item);
     }

@@ -38,11 +38,6 @@ public class SimpleConfigManager {
 	    File folder = plugin.getDataFolder();
 	    if(!folder.exists())
 	        folder.mkdirs();
-	    if(!new File(folder, "items/").exists()) {
-            new File(folder, "items/").mkdirs();
-	        List<String> lines = getResource("items/example-1.yml");
-	        this.writeToFile(lines, new File(folder, "items/example-1.yml"));
-        }
         if(!new File(folder, "config.yml").exists()) {
             List<String> lines = getResource("config.yml");
             this.writeToFile(lines, new File(folder, "config.yml"));
@@ -50,6 +45,16 @@ public class SimpleConfigManager {
         if(!new File(folder, "messages.yml").exists()) {
             List<String> lines = getResource("messages.yml");
             this.writeToFile(lines, new File(folder, "messages.yml"));
+        }
+	    if(!new File(folder, "items/").exists()) {
+            new File(folder, "items/").mkdirs();
+	        List<String> lines = getResource("items/example-1.yml");
+	        this.writeToFile(lines, new File(folder, "items/example-1.yml"));
+        }
+        if(!new File(folder, "menus/").exists()) {
+            new File(folder, "menus/").mkdirs();
+            List<String> lines = getResource("menus/example-menu.yml");
+            this.writeToFile(lines, new File(folder, "menus/example-menu.yml"));
         }
     }
 

@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.spigot.utils;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 
 import java.util.ArrayList;
@@ -21,12 +22,12 @@ import java.util.List;
 @SuppressWarnings("Duplicates")
 public class FinderUtil {
 
-    public static Material findOneMaterial(String rawQuery) {
-        List<Material> found = findMaterial(rawQuery);
+    public static Material findMaterial(String rawQuery) {
+        List<Material> found = findMaterials(rawQuery);
         return found.isEmpty() ? null : found.get(0);
     }
 
-    public static List<Material> findMaterial(String rawQuery) {
+    public static List<Material> findMaterials(String rawQuery) {
         List<Material> exact = new ArrayList<>();
         List<Material> wrongcase = new ArrayList<>();
         List<Material> startswith = new ArrayList<>();
@@ -51,12 +52,12 @@ public class FinderUtil {
         return contains;
     }
 
-    public static Enchantment findOneEnchantment(String rawQuery) {
-        List<Enchantment> found = findEnchantment(rawQuery);
+    public static Enchantment findEnchantment(String rawQuery) {
+        List<Enchantment> found = findEnchantments(rawQuery);
         return found.isEmpty() ? null : found.get(0);
     }
 
-    public static List<Enchantment> findEnchantment(String rawQuery) {
+    public static List<Enchantment> findEnchantments(String rawQuery) {
         List<Enchantment> exact = new ArrayList<>();
         List<Enchantment> wrongcase = new ArrayList<>();
         List<Enchantment> startswith = new ArrayList<>();
@@ -71,6 +72,36 @@ public class FinderUtil {
                 startswith.add(enchantment);
             else if(name.toLowerCase().contains(rawQuery) && startswith.isEmpty())
                 contains.add(enchantment);
+        });
+        if(!exact.isEmpty())
+            return exact;
+        if(!wrongcase.isEmpty())
+            return wrongcase;
+        if(!startswith.isEmpty())
+            return startswith;
+        return contains;
+    }
+
+    public static Sound findSound(String rawQuery) {
+        List<Sound> found = findSounds(rawQuery);
+        return found.isEmpty() ? null : found.get(0);
+    }
+
+    public static List<Sound> findSounds(String rawQuery) {
+        List<Sound> exact = new ArrayList<>();
+        List<Sound> wrongcase = new ArrayList<>();
+        List<Sound> startswith = new ArrayList<>();
+        List<Sound> contains = new ArrayList<>();
+        Arrays.asList(Sound.values()).forEach(sound -> {
+            String name = sound.name();
+            if(name.equals(rawQuery))
+                exact.add(sound);
+            else if(name.equalsIgnoreCase(rawQuery) && exact.isEmpty())
+                wrongcase.add(sound);
+            else if(name.toLowerCase().startsWith(rawQuery.toLowerCase()) && wrongcase.isEmpty())
+                startswith.add(sound);
+            else if(name.toLowerCase().contains(rawQuery) && startswith.isEmpty())
+                contains.add(sound);
         });
         if(!exact.isEmpty())
             return exact;

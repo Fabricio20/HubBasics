@@ -2,7 +2,10 @@ package net.notfab.hubbasics.spigot.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.notfab.hubbasics.spigot.HubBasics;
+import net.notfab.hubbasics.spigot.nms.nbt.NBTItem;
 import net.notfab.hubbasics.spigot.utils.PlaceHolderUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -43,6 +46,16 @@ public class CustomItem {
     @Getter @Setter private List<ItemFlag> itemFlags = new ArrayList<>();
     @Getter @Setter private short durability = 0;
 
+    @Getter @Setter private List<String> commands = new ArrayList<>();
+    @Getter @Setter private Boolean allowDrop = true;
+    @Getter @Setter private Boolean allowMove = true;
+    @Getter @Setter private Integer slot = -1; // -1 is add instead of set
+
+    @Getter @Setter private Boolean runOnInventory = false; // Run commands on Inventory click
+    @Getter @Setter private Boolean runOnRightClick = false; // Run commands on Right click
+    @Getter @Setter private Boolean runOnLeftClick = false; // Run commands on Left click
+    @Getter @Setter private Boolean runOnOffhand = false; // Run commands on offhand?
+
     public void addEnchantment(Enchantment enchantment, int level) {
         this.enchantments.put(enchantment, level);
     }
@@ -64,7 +77,44 @@ public class CustomItem {
 
         stack.setItemMeta(meta);
         stack.setDurability(this.durability);
-        return stack;
+
+
+        NBTItem item = new NBTItem(stack);
+        item.setString("HubBasics", this.getId());
+
+        return item.getItem();
+    }
+
+    public void onCommand(Player player) {
+        this.commands.forEach(rawCommand -> {
+            String command = rawCommand.contains(":") ? rawCommand.split(":")[1] : rawCommand;
+            command = PlaceHolderUtil.replace(player, command);
+            if(rawCommand.startsWith("op")) {
+                Boolean op = player.isOp();
+                player.setOp(true);
+                try {
+                    player.chat("/" + command);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
+                    player.setOp(op);
+                }
+            } else if(rawCommand.startsWith("console")) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+            } else if(rawCommand.startsWith("msg")) {
+                HubBasics.getInstance().getMessenger().send(player, command);
+            } else if(rawCommand.startsWith("warp")) {
+                //TODO
+            } else if(rawCommand.startsWith("server")) {
+                //TODO
+            } else if(rawCommand.startsWith("open")) {
+                //TODO
+            } else if(rawCommand.startsWith("item")) {
+                //TODO
+            } else {
+                player.chat("/" + command);
+            }
+        });
     }
 
 }

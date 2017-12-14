@@ -1,0 +1,33 @@
+#
+# Size of the menu, max is 54 (Double Chest)
+#
+Size: 27
+#
+# Name/title of the menu
+#
+Name: '&9HubBasics'
+#
+# The command that opens this menu.
+#
+Command: 'hub-menu'
+#
+# The permission required to open this menu.
+#
+Permission: hubbasics.menu.example
+#
+# Sound to play when opening the menu.
+#
+Sound: BLOCK_NOTE_PLING
+#
+# List of items IDs (HubBasics)
+#
+# ItemID is the ID of your pre-configured HubBasics Item, to get it, configure an item on the "items" folder
+# and then grab the filename and remove the .yml.
+#
+# The slot for placement will be the one configured on the item file.
+#
+# Example:
+# For the "example-1.yml" item, the id is "example-1".
+#
+Items:
+  - example-1

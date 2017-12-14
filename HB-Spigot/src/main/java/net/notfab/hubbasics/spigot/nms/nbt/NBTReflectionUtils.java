@@ -1,21 +1,28 @@
 package net.notfab.hubbasics.spigot.nms.nbt;
 
-/*
- * Copyright (c) 2018.
- *
+import net.notfab.hubbasics.spigot.HubBasics;
+import org.bukkit.inventory.ItemStack;
+
+import java.lang.reflect.Method;
+
+/**
+ * Copyright (c) HubBasics 2018.
+ * <p>
  * The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
  * Please read the information linked below before you attempt to use this project or it's contents to make sure you are abiding
  * by it's terms.
- *
+ * <p>
  * https://creativecommons.org/licenses/by-nc-sa/4.0/
+ * <p>
+ * File Created by Fabricio20 on 13/12/2017.
  */
+@SuppressWarnings("ConstantConditions")
+class NBTReflectionUtils {
 
-public class NBTReflectionUtils {
-
-    /*@SuppressWarnings("rawtypes")
+    @SuppressWarnings("rawtypes")
     private static Class getCraftItemstack() {
         try {
-            return Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNmsVersion().getVersionString() + ".inventory.CraftItemStack");
+            return Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNMS().getVersionString() + ".inventory.CraftItemStack");
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -25,7 +32,7 @@ public class NBTReflectionUtils {
     @SuppressWarnings("rawtypes")
     private static Object getNewNBTTag() {
         try {
-            Class c = Class.forName("net.minecraft.server." + HubBasics.getInstance().getNmsVersion().getVersionString() + ".NBTTagCompound");
+            Class c = Class.forName("net.minecraft.server." + HubBasics.getInstance().getNMS().getVersionString() + ".NBTTagCompound");
             return c.newInstance();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -226,5 +233,5 @@ public class NBTReflectionUtils {
             ex.printStackTrace();
             return null;
         }
-    }*/
+    }
 }

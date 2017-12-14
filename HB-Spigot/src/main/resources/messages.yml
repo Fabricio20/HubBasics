@@ -13,4 +13,6 @@ NO_PERMISSION: '&cYou do not have permission to use this command, if you believe
 UNKNOWN_SUBCOMMAND: '&cSubcommand not found.'
 PLUGIN_RELOADED: '&b[&aHubBasics&b] &ePlugin reloaded.'
 INVALID_MATERIAL: '&cMaterial was not found.'
+INVALID_SIZE: '&cInvalid chest size.'
+INVALID_SOUND: '&cInvalid sound.'
 ITEM_NOT_FOUND: '&cItem not found.'

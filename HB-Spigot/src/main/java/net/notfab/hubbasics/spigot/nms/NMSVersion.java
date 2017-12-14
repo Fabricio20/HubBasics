@@ -23,6 +23,7 @@ import java.util.Map.Entry;
  * versions for Minecraft.
  */
 public class NMSVersion {
+
     /**
      * All unsupported NMS versions
      */
@@ -74,14 +75,17 @@ public class NMSVersion {
      * NMS Version 1.10 R1
      */
     public static final String V1_10_R1 = "v1_10_R1";
-
+    /**
+     * NMS Version 1.11 R1
+     */
     public static final String V1_11_R1 = "v1_11_R1";
-
+    /**
+     * NMS Version 1.12 R1
+     */
     public static final String V1_12_R1 = "v1_12_R1";
 
     private Map<Integer, String> versionMap;
-    @Getter
-    private int versionID;
+    @Getter private int versionID;
 
     public NMSVersion() {
         this.versionMap = new HashMap<>();
@@ -89,7 +93,7 @@ public class NMSVersion {
 
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         String version = packageName.substring(packageName.lastIndexOf('.') + 1);
-        if (this.versionMap.containsValue(version)) {
+        if(this.versionMap.containsValue(version)) {
             this.versionID = getVersionID(version);
         } else {
             this.versionID = 0;
@@ -133,11 +137,11 @@ public class NMSVersion {
         return this.getVersionString(this.getVersionID());
     }
 
-    public String getVersionString(int id) {
+    private String getVersionString(int id) {
         return this.versionMap.get(id);
     }
 
-    public int getVersionID(String version) {
+    private int getVersionID(String version) {
         return this.versionMap.entrySet().parallelStream()
                 .filter(e -> e.getValue().equalsIgnoreCase(version))
                 .map(Entry::getKey).findFirst().orElse(0);

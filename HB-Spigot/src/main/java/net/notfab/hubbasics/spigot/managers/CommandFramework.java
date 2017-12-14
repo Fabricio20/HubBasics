@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.spigot.managers;
 
 import net.notfab.hubbasics.spigot.commands.HubBasicsCommand;
+import net.notfab.hubbasics.spigot.commands.WarpCommand;
 import net.notfab.hubbasics.spigot.entities.Command;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.utils.Messages;
@@ -32,6 +33,7 @@ public class CommandFramework extends Manager implements Listener {
     public CommandFramework() {
         this.commandList = new ArrayList<>();
         this.addCommand(new HubBasicsCommand());
+        this.addCommand(new WarpCommand());
         Logger.info("[CommandFramework] Loaded " + commandList.size() + " commands.");
     }
 

@@ -60,6 +60,9 @@ public class SimpleConfigManager {
             List<String> lines = getResource("menus/example-menu.yml");
             this.writeToFile(lines, new File(folder, "menus/example-menu.yml"));
         }
+        if(!new File(folder, "warps/").exists()) {
+            new File(folder, "warps/").mkdirs();
+        }
     }
 
     public void setupLogger() {

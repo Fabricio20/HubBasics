@@ -54,6 +54,7 @@ public class Menu {
         this.items.forEach(id -> {
             CustomItem item = HubBasics.getInstance().getItemManager().get(id);
             if(item == null) return;
+            if(item.getPermission() != null && !player.hasPermission(item.getPermission())) return;
             if(item.getSlot() == -1 || item.getSlot() >= this.size) {
                 inventory.addItem(item.toItemStack(player));
             } else {

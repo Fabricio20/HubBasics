@@ -5,11 +5,11 @@ Material: WOOL
 #
 # The durability of the item or MetaData (Wool:1 means 1 is the metadata so it's orange wool)
 #
-Durability: 1
+Durability: 3
 #
 # The amount of items
 #
-Amount: 2
+Amount: 1
 #
 # If the item has the Unbreakable status.
 #
@@ -17,29 +17,14 @@ Unbreakable: false
 #
 # Item Name
 #
-Name: '&aSuper Name'
+Name: '&aMenu Opener'
 #
 # Description, also known as Lore
 #
 Description:
-  - '&cThis is a'
-  - '&9description'
-  - '&6with colors'
-#
-# Enchantments in the following form
-# NAME:LEVEL
-#
-Enchantments:
-  - DAMAGE_ALL:10
-#
-# ItemFlags from Bukkit
-#
-Flags:
-  - HIDE_ENCHANTS
-#
-# Permission to use/receive (hand) and see (in menus) this item.
-#
-Permission: hubbasics.items.menu
+  - '&eMy purpose is to open'
+  - '&ethe example menu'
+  - '&7>Via right click'
 #
 # If the player should be allowed to drop this item.
 #
@@ -52,7 +37,7 @@ AllowMove: false
 # Slot where the item will be placed (Chest or JoinItems).
 # If this is set to -1 the item will be ADDED instead of placed (Avoids deleting other items on the same slot).
 #
-Slot: 5
+Slot: -1
 #
 # Where the commands should be ran
 #
@@ -63,18 +48,12 @@ Slot: 5
 #
 RunCommands:
   AllowOffhand: false
-  Inventory: true
+  Inventory: false
   LeftClick: false
   RightClick: true
 #
 # List of commands to execute.
 #
 Commands:
-  - 'me hi' # Executes a command as the player
-  - 'op:say Hi' # Executes a command as OP
-  - 'console:say Hello' # Executes a command as the console
-  - 'msg:CUSTOM_MESSAGE' # Sends a message to the player
-  - 'warp:Default'  # Warps to a HubBasics location
-  - 'server:Lobby'  # Teleports to another Bungee server
-  - 'open:MenuName' # Opens a Menu
-  - 'item:ItemName' # Spawns a HubBasics Item
+  - 'msg:&eOpening menu...' # Sends a message to the player
+  - 'open:example-menu' # Opens a Menu

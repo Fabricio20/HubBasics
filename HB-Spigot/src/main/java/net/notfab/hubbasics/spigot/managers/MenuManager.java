@@ -78,7 +78,7 @@ public class MenuManager extends Manager {
             menu.setName(ChatColor.translateAlternateColorCodes('&', config.getString("Name")));
         }
         if(config.contains("Command")) {
-            HubBasics.getCommandFramework().addCommand(new Command(config.getString("command")) {
+            HubBasics.getCommandFramework().addCommand(new Command(config.getString("Command")) {
                 @Override
                 public void onCommand(Player player, String[] args) {
                     Menu m = HubBasics.getMenuManager().get(menu.getId());

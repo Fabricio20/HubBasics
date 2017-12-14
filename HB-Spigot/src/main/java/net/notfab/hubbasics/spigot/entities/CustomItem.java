@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.nms.nbt.NBTItem;
+import net.notfab.hubbasics.spigot.utils.Messages;
 import net.notfab.hubbasics.spigot.utils.PlaceHolderUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -45,6 +46,7 @@ public class CustomItem {
     @Getter @Setter private boolean unbreakable = false;
     @Getter @Setter private List<ItemFlag> itemFlags = new ArrayList<>();
     @Getter @Setter private short durability = 0;
+    @Getter @Setter private String permission = null;
 
     @Getter @Setter private List<String> commands = new ArrayList<>();
     @Getter @Setter private Boolean allowDrop = true;
@@ -86,10 +88,15 @@ public class CustomItem {
     }
 
     public void onCommand(Player player) {
+        if(this.permission != null && !player.hasPermission(this.permission)) {
+            HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "NO_PERMISSION"));
+            return;
+        }
         this.commands.forEach(rawCommand -> {
+            String operator = rawCommand.contains(":") ? rawCommand.split(":")[0] : "nolmao";
             String command = rawCommand.contains(":") ? rawCommand.split(":")[1] : rawCommand;
             command = PlaceHolderUtil.replace(player, command);
-            if(rawCommand.startsWith("op")) {
+            if(operator.equalsIgnoreCase("op")) {
                 Boolean op = player.isOp();
                 player.setOp(true);
                 try {
@@ -99,17 +106,21 @@ public class CustomItem {
                 } finally {
                     player.setOp(op);
                 }
-            } else if(rawCommand.startsWith("console")) {
+            } else if(operator.equalsIgnoreCase("console")) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-            } else if(rawCommand.startsWith("msg")) {
+            } else if(operator.equalsIgnoreCase("msg")) {
                 HubBasics.getInstance().getMessenger().send(player, command);
-            } else if(rawCommand.startsWith("warp")) {
+            } else if(operator.equalsIgnoreCase("warp")) {
                 //TODO
-            } else if(rawCommand.startsWith("server")) {
+            } else if(operator.equalsIgnoreCase("server")) {
                 //TODO
-            } else if(rawCommand.startsWith("open")) {
-                //TODO
-            } else if(rawCommand.startsWith("item")) {
+            } else if(operator.equalsIgnoreCase("open")) {
+                Menu menu = HubBasics.getInstance().getMenuManager().get(command);
+                if(menu == null)
+                    HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "INVALID_MENU"));
+                else
+                    menu.open(player);
+            } else if(operator.equalsIgnoreCase("item")) {
                 //TODO
             } else {
                 player.chat("/" + command);

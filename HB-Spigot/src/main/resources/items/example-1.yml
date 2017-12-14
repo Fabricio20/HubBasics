@@ -1,12 +1,12 @@
 Material: WOOL
 Durability: 1
 Amount: 2
-Unbreakable: true
-Name: ok
+Unbreakable: false
+Name: '&aSuper Name'
 Description:
-  - &cThis is a
-  - &9description
-  - &6with colors
+  - '&cThis is a'
+  - '&9description'
+  - '&6with colors'
 Enchantments:
   - DAMAGE_ALL:10
 Flags:

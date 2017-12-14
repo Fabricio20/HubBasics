@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.spigot.commands;
 
 import net.notfab.hubbasics.spigot.entities.Command;
+import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.entity.Player;
 
@@ -24,20 +25,33 @@ public class HubBasicsCommand extends Command {
         // -- Docs
         this.addUsage("/hb &areload", "Reloads the plugin");
         this.addUsage("/hb &aupdate", "Checks for updates");
+        this.addUsage("/hb &aitem &e<name>", "Spawns the item with the given name");
     }
 
     @Override
     public void onCommand(Player player, String[] args) {
         if(args.length == 0) {
             HubBasics.getMessenger().send(player, getHelp());
-        } else {
+        } else if(args.length == 1) {
             if(args[0].equalsIgnoreCase("reload")) {
                 // Perform reload
                 HubBasics.getMessenger().send(player, Messages.get(player, "PLUGIN_RELOADED"));
             } else if(args[0].equalsIgnoreCase("update")) {
                 // Update
             } else {
-                // Not found
+                HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));
+            }
+        } else if(args.length == 2) {
+            if(args[0].equalsIgnoreCase("item")) {
+                String name = args[1];
+                CustomItem item = HubBasics.getItemManager().get(name);
+                if(item == null) {
+                    HubBasics.getMessenger().send(player, Messages.get(player, "ITEM_NOT_FOUND"));
+                    return;
+                }
+                player.getInventory().addItem(item.toItemStack(player));
+            } else {
+                HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));
             }
         }
     }

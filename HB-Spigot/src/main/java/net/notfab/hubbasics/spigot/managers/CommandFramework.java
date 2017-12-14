@@ -48,17 +48,17 @@ public class CommandFramework extends Manager implements Listener {
     public void handleCommand(PlayerCommandPreprocessEvent event) {
         if(!event.getMessage().startsWith("/")) return;
         String[] split = event.getMessage().split("\\s+");
-        String name = split[0];
+        String name = split[0].replaceFirst("/", "");
         String[] args = split.length == 1 ? new String[0] : Arrays.copyOfRange(split, 1, split.length);
         Player player = event.getPlayer();
         this.commandList.forEach(command -> {
             if(!command.getNames().contains(name.toLowerCase())) return;
-            if(command.getRequiredPermissions().stream().filter(player::hasPermission).collect(Collectors.toList()).size() > 0) {
+            event.setCancelled(true);
+            if(command.getRequiredPermissions().stream().filter(perm -> !player.hasPermission(perm)).collect(Collectors.toList()).size() > 0) {
                 HubBasics.getMessenger().send(player, Messages.get(player, "NO_PERMISSION"));
                 return;
             }
             command.onCommand(player, args);
-            event.setCancelled(true);
         });
     }
 

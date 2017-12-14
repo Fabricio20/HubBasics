@@ -50,6 +50,8 @@ public class SimpleConfigManager {
             new File(folder, "items/").mkdirs();
 	        List<String> lines = getResource("items/example-1.yml");
 	        this.writeToFile(lines, new File(folder, "items/example-1.yml"));
+	        lines = getResource("items/menu-opener.yml");
+            this.writeToFile(lines, new File(folder, "items/menu-opener.yml"));
         }
         if(!new File(folder, "menus/").exists()) {
             new File(folder, "menus/").mkdirs();

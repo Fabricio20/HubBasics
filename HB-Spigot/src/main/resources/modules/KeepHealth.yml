@@ -1,0 +1,17 @@
+#
+# KeepHealth per-world configuration.
+# Example:
+#
+# world:
+#   Enabled: true
+#   Health: 20
+#   MaxHealth: 20
+#
+# Enabled (boolean) is the status for this world, usually true (if you set false, why create a section anyway?).
+# Health (double) is the amount of health to set, normally it's 20 (Full HP bar).
+# MaxHealth (double) is the maximum health a player can have. (Normally 20).
+#
+world:
+  Enabled: true
+  Health: 20
+  MaxHealth: 20

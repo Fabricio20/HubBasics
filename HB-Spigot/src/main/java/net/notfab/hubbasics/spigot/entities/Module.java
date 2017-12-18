@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.managers.Logger;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.Listener;
 
 /**
@@ -35,6 +36,10 @@ public abstract class Module implements Listener {
 
     public SimpleConfig getConfig() {
         return HubBasics.getConfigManager().getNewConfig("modules/" + this.module.name() + ".yml");
+    }
+
+    public ConfigurationSection getWorldConfiguration(String world) {
+        return getConfig().contains(world.toLowerCase()) ? getConfig().getConfigurationSection(world.toLowerCase()) : null;
     }
 
 }

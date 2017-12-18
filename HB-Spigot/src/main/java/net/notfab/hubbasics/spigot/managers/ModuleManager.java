@@ -4,6 +4,7 @@ import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.modules.JoinItems;
+import net.notfab.hubbasics.spigot.modules.KeepFood;
 import net.notfab.hubbasics.spigot.modules.KeepHealth;
 import org.bukkit.Bukkit;
 
@@ -21,6 +22,7 @@ public class ModuleManager extends Manager {
     public ModuleManager() {
         this.modules.put(EnumModules.JoinItems, new JoinItems());
         this.modules.put(EnumModules.KeepHealth, new KeepHealth());
+        this.modules.put(EnumModules.KeepFood, new KeepFood());
     }
 
     public void onEnable() {

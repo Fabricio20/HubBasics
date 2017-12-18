@@ -6,6 +6,6 @@ package net.notfab.hubbasics.spigot.entities;
  */
 public enum EnumModules {
 
-    KeepHealth, JoinItems
+    KeepHealth, KeepFood, JoinItems
 
 }

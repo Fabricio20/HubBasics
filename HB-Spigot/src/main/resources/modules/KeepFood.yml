@@ -1,0 +1,14 @@
+#
+# KeepFood per-world configuration.
+# Example:
+#
+# world:
+#   Enabled: true
+#   Food: 20
+#
+# Enabled (boolean) is the status for this world, usually true (if you set false, why create a section anyway?).
+# Food (integer) is the amount of food to set, normally it's 20 (Full bar).
+#
+world:
+  Enabled: true
+  Food: 20

@@ -14,7 +14,7 @@ public class WarpCommand extends Command {
     public WarpCommand() {
         super("hb-warp", "hbwarp");
         // -- Perms
-        this.addRequiredPermission("hubbasics.admin.warp");
+        this.addPermission("hubbasics.admin.warp");
         // -- Docs
         this.addUsage("/hb-warp &alist", "Lists all existing warps");
         this.addUsage("/hb-warp &acreate &e<name>", "Creates a new warp");
@@ -23,7 +23,7 @@ public class WarpCommand extends Command {
     }
 
     @Override
-    public void onCommand(Player player, String[] args) {
+    public void execute(Player player, String[] args) {
         if(args.length == 0) {
             HubBasics.getMessenger().send(player, getHelp());
         } else if(args.length == 1) {

@@ -30,6 +30,7 @@ public class HubBasics extends JavaPlugin {
     @Getter private ItemManager itemManager;
     @Getter private MenuManager menuManager;
     @Getter private LocationManager locationManager;
+    @Getter private ModuleManager moduleManager;
 
     @Override
     public void onEnable() {
@@ -44,8 +45,8 @@ public class HubBasics extends JavaPlugin {
         this.itemManager = new ItemManager();
         this.menuManager = new MenuManager();
         this.locationManager = new LocationManager();
+        this.moduleManager = new ModuleManager();
 
-        Bukkit.getPluginManager().registerEvents(this.commandFramework, this);
         Bukkit.getPluginManager().registerEvents(new ItemListener(), this);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }

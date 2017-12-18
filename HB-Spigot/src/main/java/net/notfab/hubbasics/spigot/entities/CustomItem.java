@@ -89,7 +89,7 @@ public class CustomItem {
 
     public void onCommand(Player player) {
         if(this.permission != null && !player.hasPermission(this.permission)) {
-            HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "NO_PERMISSION"));
+            HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "NO_PERMISSION_ITEM"));
             return;
         }
         this.commands.forEach(rawCommand -> {

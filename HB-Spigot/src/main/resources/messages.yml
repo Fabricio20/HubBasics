@@ -10,7 +10,10 @@
 # When in doubt, paste this config on a parser like http://www.yamllint.com                                           #
 # ------------------------------------------------------------------------------------------------------------------- #
 NO_PERMISSION: '&cYou do not have permission to use this command, if you believe that this is in error, please contact the server administrators.'
+NO_PERMISSION_MENU: '&cYou do not have permission to open this menu.'
+NO_PERMISSION_ITEM: '&cYou do not have permission to use this item.'
 INTERNAL_ERROR: '&cAn error ocurred while performing this command, if you believe that this is in error, please submit a bug report.'
+COMMAND_NO_CONSOLE: '&cThis command cannot be executed from the console.'
 UNKNOWN_SUBCOMMAND: '&cSubcommand not found.'
 PLUGIN_RELOADED: '&b[&aHubBasics&b] &ePlugin reloaded.'
 WARP_EXISTS: '&cA warp with this name already exists'

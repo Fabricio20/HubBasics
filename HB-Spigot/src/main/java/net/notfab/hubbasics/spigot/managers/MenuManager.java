@@ -9,6 +9,8 @@ import net.notfab.hubbasics.spigot.utils.FinderUtil;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -78,9 +80,14 @@ public class MenuManager extends Manager {
             menu.setName(ChatColor.translateAlternateColorCodes('&', config.getString("Name")));
         }
         if(config.contains("Command")) {
-            HubBasics.getCommandFramework().addCommand(new Command(config.getString("Command")) {
+            HubBasics.getCommandFramework().register(new Command(config.getString("Command")) {
                 @Override
-                public void onCommand(Player player, String[] args) {
+                public void execute(CommandSender sender, String[] args) {
+                    if(sender instanceof ConsoleCommandSender) {
+                        HubBasics.getMessenger().send(sender, Messages.get(sender, "COMMAND_NO_CONSOLE"));
+                        return;
+                    }
+                    Player player = (Player) sender;
                     Menu m = HubBasics.getMenuManager().get(menu.getId());
                     if(m != null)
                         m.open(player);

@@ -21,15 +21,16 @@ public class HubBasicsCommand extends Command {
     public HubBasicsCommand() {
         super("hb");
         // -- Perms
-        this.addRequiredPermission("hubbasics.admin");
+        this.addPermission("hubbasics.admin");
         // -- Docs
+        this.setDescription("HubBasics' main command");
         this.addUsage("/hb &areload", "Reloads the plugin");
         this.addUsage("/hb &aupdate", "Checks for updates");
         this.addUsage("/hb &aitem &e<name>", "Spawns the item with the given name");
     }
 
     @Override
-    public void onCommand(Player player, String[] args) {
+    protected void execute(Player player, String[] args) {
         if(args.length == 0) {
             HubBasics.getMessenger().send(player, getHelp());
         } else if(args.length == 1) {

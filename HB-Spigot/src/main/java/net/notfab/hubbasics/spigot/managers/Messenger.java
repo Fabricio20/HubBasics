@@ -2,6 +2,7 @@ package net.notfab.hubbasics.spigot.managers;
 
 import org.bukkit.ChatColor;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
@@ -19,8 +20,8 @@ import java.util.Arrays;
  */
 public class Messenger {
 
-    public void send(Player player, String... messages) {
-        Arrays.asList(messages).forEach(message -> player.sendMessage(ChatColor.translateAlternateColorCodes('&', message)));
+    public void send(CommandSender sender, String... messages) {
+        Arrays.asList(messages).forEach(message -> sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message)));
     }
 
     public void send(World world, String... messages) {

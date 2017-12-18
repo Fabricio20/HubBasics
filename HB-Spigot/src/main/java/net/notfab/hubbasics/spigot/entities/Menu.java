@@ -46,7 +46,7 @@ public class Menu {
 
     public void open(Player player) {
         if(this.permission != null && !player.hasPermission(this.permission)) {
-            HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "NO_PERMISSION"));
+            HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "NO_PERMISSION_MENU"));
             return;
         }
         Inventory inventory = Bukkit.createInventory(null, size, this.name);

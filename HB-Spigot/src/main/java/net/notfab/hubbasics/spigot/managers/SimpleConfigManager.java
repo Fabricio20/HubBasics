@@ -13,6 +13,7 @@ package net.notfab.hubbasics.spigot.managers;
 import ch.qos.logback.classic.Level;
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.spigot.HubBasics;
+import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,7 +40,7 @@ public class SimpleConfigManager {
 	public void prepareHubBasics() {
 	    File folder = plugin.getDataFolder();
 	    if(!folder.exists())
-	        folder.mkdirs();
+            folder.mkdirs();
         if(!new File(folder, "config.yml").exists()) {
             List<String> lines = getResource("config.yml");
             this.writeToFile(lines, new File(folder, "config.yml"));
@@ -62,6 +63,13 @@ public class SimpleConfigManager {
         }
         if(!new File(folder, "warps/").exists()) {
             new File(folder, "warps/").mkdirs();
+        }
+        if(!new File(folder, "modules/").exists()) {
+            new File(folder, "modules/").mkdirs();
+            Arrays.asList(EnumModules.values()).forEach(item -> {
+                List<String> lines = getResource("modules/" + item.name() + ".yml");
+                this.writeToFile(lines, new File(folder, "modules/" + item.name() + ".yml"));
+            });
         }
     }
 

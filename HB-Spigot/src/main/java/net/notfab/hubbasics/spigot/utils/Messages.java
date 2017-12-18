@@ -2,6 +2,7 @@ package net.notfab.hubbasics.spigot.utils;
 
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -24,9 +25,14 @@ public class Messages {
 
     public static String get(Player player, String name) {
         String message = get(name);
-        message = message.replace("${Player}", player.getName());
-        message = message.replace("${UUID}", player.getUniqueId().toString());
         message = message.replace("${World}", player.getWorld().getName());
+        message = message.replace("${UUID}", player.getUniqueId().toString());
+        return message;
+    }
+
+    public static String get(CommandSender sender, String name) {
+        String message = get(name);
+        message = message.replace("${Name}", sender.getName());
         return message;
     }
 

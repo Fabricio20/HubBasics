@@ -1,0 +1,23 @@
+#
+# Global, non-replaceable switch for this module.
+#
+Enabled: true
+#
+# JoinItems, on a per-world configuration basis.
+# Make a section with the world name and add the settings below it.
+# NOTE: world names ARE case sensitive. Make sure to use the correct name.
+# See an example below for the world called 'world'.
+#
+#  world:
+#    Enabled: true
+#    ClearInventory: true
+#    WorldChange: true
+#    Items:
+#      - menu-opener
+#
+world:
+  Enabled: true
+  ClearInventory: false
+  WorldChange: true
+  Items:
+    - menu-opener

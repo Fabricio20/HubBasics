@@ -6,6 +6,8 @@ import ch.qos.logback.core.LayoutBase;
 import org.bukkit.ChatColor;
 import org.fusesource.jansi.Ansi;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
 

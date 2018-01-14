@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.managers.Logger;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.Listener;
 
@@ -40,6 +41,11 @@ public abstract class Module implements Listener {
 
     public ConfigurationSection getWorldConfiguration(String world) {
         return getConfig().contains(world.toLowerCase()) ? getConfig().getConfigurationSection(world.toLowerCase()) : null;
+    }
+
+    public boolean isEnabledInWorld(World world) {
+        ConfigurationSection section = getWorldConfiguration(world.getName());
+        return getConfig().getBoolean("Enabled", true) && (section != null && section.getBoolean("Enabled", false));
     }
 
 }

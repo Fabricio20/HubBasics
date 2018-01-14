@@ -1,0 +1,21 @@
+#
+# Global, non-replaceable switch for this module.
+#
+Enabled: true
+#
+# AntiVoid per-world configuration.
+# Example:
+#
+# world:
+#   Enabled: true
+#   Sound: BLOCK_ANVIL_LAND
+#   Force: 1.0
+#
+# Enabled (boolean) is the status for this world, usually true (if you set false, why create a section anyway?).
+# Sound (sound) is the name of the sound that should be played when a player double-jumps.
+# Force (double) is the multiplier of the jump force.
+#
+world:
+  Enabled: true
+  Sound: BLOCK_ANVIL_LAND
+  Force: 1.0

@@ -51,6 +51,7 @@ public class LocationManager extends Manager {
     }
 
     public HLocation get(String id) {
+        if(id == null) return null;
         return this.locationMap.get(id);
     }
 

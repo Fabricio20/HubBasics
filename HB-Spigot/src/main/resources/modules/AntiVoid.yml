@@ -3,16 +3,16 @@
 #
 Enabled: true
 #
-# KeepFood per-world configuration.
+# AntiVoid per-world configuration.
 # Example:
 #
 # world:
 #   Enabled: true
-#   Food: 20
+#   Warp: default
 #
 # Enabled (boolean) is the status for this world, usually true (if you set false, why create a section anyway?).
-# Food (integer) is the amount of food to set, normally it's 20 (Full bar).
+# Warp (Location name) is the name of the hubbasics warp (/hbwarp) the player will teleport to.
 #
 world:
   Enabled: true
-  Food: 20
+  Warp: default

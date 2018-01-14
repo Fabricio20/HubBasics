@@ -1,4 +1,8 @@
 #
+# Global, non-replaceable switch for this module.
+#
+Enabled: true
+#
 # KeepHealth per-world configuration.
 # Example:
 #

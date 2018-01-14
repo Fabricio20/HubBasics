@@ -66,9 +66,9 @@ public class SimpleConfigManager {
         }
         if(!new File(folder, "modules/").exists()) {
             new File(folder, "modules/").mkdirs();
-            Arrays.asList(EnumModules.values()).forEach(item -> {
-                List<String> lines = getResource("modules/" + item.name() + ".yml");
-                this.writeToFile(lines, new File(folder, "modules/" + item.name() + ".yml"));
+            Arrays.asList(EnumModules.values()).forEach(module -> {
+                List<String> lines = getResource("modules/" + module.name() + ".yml");
+                this.writeToFile(lines, new File(folder, "modules/" + module.name() + ".yml"));
             });
         }
     }

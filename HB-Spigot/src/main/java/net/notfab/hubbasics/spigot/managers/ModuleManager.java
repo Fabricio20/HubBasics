@@ -3,6 +3,7 @@ package net.notfab.hubbasics.spigot.managers;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.entities.Module;
+import net.notfab.hubbasics.spigot.modules.AntiVoid;
 import net.notfab.hubbasics.spigot.modules.JoinItems;
 import net.notfab.hubbasics.spigot.modules.KeepFood;
 import net.notfab.hubbasics.spigot.modules.KeepHealth;
@@ -23,6 +24,7 @@ public class ModuleManager extends Manager {
         this.modules.put(EnumModules.JoinItems, new JoinItems());
         this.modules.put(EnumModules.KeepHealth, new KeepHealth());
         this.modules.put(EnumModules.KeepFood, new KeepFood());
+        this.modules.put(EnumModules.AntiVoid, new AntiVoid());
     }
 
     public void onEnable() {

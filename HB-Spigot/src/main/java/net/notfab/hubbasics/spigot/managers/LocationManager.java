@@ -10,10 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Copyright (C) Fabricio20 2017 - All Rights Reserved.
@@ -109,4 +106,7 @@ public class LocationManager extends Manager {
         return false;
     }
 
+    public Set<String> list() {
+        return this.locationMap.keySet();
+    }
 }

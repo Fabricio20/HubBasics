@@ -28,7 +28,7 @@ public class WarpCommand extends Command {
             HubBasics.getMessenger().send(player, getHelp());
         } else if(args.length == 1) {
             if(args[0].equalsIgnoreCase("list")) {
-
+                HubBasics.getMessenger().send(player, HubBasics.getLocationManager().list().toString());
             } else {
                 HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));
             }

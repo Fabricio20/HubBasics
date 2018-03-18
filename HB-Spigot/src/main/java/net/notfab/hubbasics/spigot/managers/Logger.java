@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class Logger extends Manager {
 
     private final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(HubBasics.getClass());
-    @Getter @Setter private Level level = Level.INFO;
+    @Getter @Setter private Level level = Level.DEBUG;
     @Getter @Setter private boolean enabled = true;
 
     public Logger() {

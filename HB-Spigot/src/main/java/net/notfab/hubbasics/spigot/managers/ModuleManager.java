@@ -23,6 +23,7 @@ public class ModuleManager extends Manager {
         this.modules.put(EnumModules.KeepFood, new KeepFood());
         this.modules.put(EnumModules.AntiVoid, new AntiVoid());
         this.modules.put(EnumModules.DoubleJump, new DoubleJump());
+        this.onEnable();
     }
 
     public void onEnable() {

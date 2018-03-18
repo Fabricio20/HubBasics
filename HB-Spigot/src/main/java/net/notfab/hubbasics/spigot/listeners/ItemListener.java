@@ -30,9 +30,10 @@ import java.util.List;
 @SuppressWarnings("Duplicates")
 public class ItemListener implements Listener {
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onItemMove(InventoryClickEvent event) {
         ItemStack currentItem = event.getCurrentItem();
+        if(currentItem == null) return;
         NBTItem nbtItem = new NBTItem(currentItem);
         if(!nbtItem.hasKey("HubBasics")) return;
 

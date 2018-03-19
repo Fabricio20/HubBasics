@@ -36,6 +36,9 @@ public class HubBasicsCommand extends Command {
         } else if(args.length == 1) {
             if(args[0].equalsIgnoreCase("reload")) {
                 // Perform reload
+                HubBasics.getModuleManager().onDisable();
+                HubBasics.getConfigManager().reload();
+                HubBasics.getModuleManager().onEnable();
                 HubBasics.getMessenger().send(player, Messages.get(player, "PLUGIN_RELOADED"));
             } else if(args[0].equalsIgnoreCase("update")) {
                 // Update

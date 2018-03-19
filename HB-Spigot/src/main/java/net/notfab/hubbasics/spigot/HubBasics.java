@@ -23,6 +23,7 @@ public class HubBasics extends JavaPlugin {
     @Getter private static HubBasics instance;
 
     @Getter private Logger loggerManager;
+    @Getter private TaskManager taskManager;
     @Getter private SimpleConfigManager configManager;
     @Getter private Messenger messenger;
     @Getter private CommandFramework commandFramework;
@@ -37,6 +38,7 @@ public class HubBasics extends JavaPlugin {
         instance = this;
 
         this.loggerManager = new Logger();
+        this.taskManager = new TaskManager();
         this.configManager = new SimpleConfigManager(this);
         this.configManager.setupLogger();
         this.messenger = new Messenger();

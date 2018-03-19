@@ -2,8 +2,11 @@ package net.notfab.hubbasics.spigot.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 
 /**
  * Copyright (c) HubBasics 2018.
@@ -22,5 +25,9 @@ public class BossBarMessage {
     @Getter private String message;
     @Getter private BarStyle style;
     @Getter private BarColor color;
+
+    public BossBar toBossBar() {
+        return Bukkit.createBossBar(ChatColor.translateAlternateColorCodes('&', message), color, style);
+    }
 
 }

@@ -1,0 +1,39 @@
+#
+# Global, non-replaceable switch for this module.
+#
+Enabled: true
+#
+# BossAnnouncer per-world configuration.
+# Example:
+#
+# world:
+#   Enabled: true
+#   Time: 100
+#   Messages:
+#     Hello:
+#       Style: SOLID
+#       Color: GREEN
+#       Message: "Hello &a${Player.Name}"
+#     HubBasics:
+#       Style: SOLID
+#       COLOR: BLUE
+#       Message: "&eServer &dPowered &aby &9HubBasics"
+#
+# Enabled (boolean) is the status for this world, usually true (if you set false, why create a section anyway?).
+# Time (int) is the amount of ticks to wait before changing.
+#   - Ticks = Seconds * 20
+#   - (1 Second has 20 ticks)
+# Messages is a section containing all messages that are available for that world.
+#
+world:
+  Enabled: true
+  Time: 100
+  Messages:
+    Hello:
+      Style: SOLID
+      Color: GREEN
+      Message: "Hello &a${Player.Name}"
+    HubBasics:
+      Style: SOLID
+      COLOR: BLUE
+      Message: "&eServer &dPowered &aby &9HubBasics"

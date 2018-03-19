@@ -66,11 +66,13 @@ public class SimpleConfigManager {
         }
         if(!new File(folder, "modules/").exists()) {
             new File(folder, "modules/").mkdirs();
-            Arrays.asList(EnumModules.values()).forEach(module -> {
-                List<String> lines = getResource("modules/" + module.name() + ".yml");
-                this.writeToFile(lines, new File(folder, "modules/" + module.name() + ".yml"));
-            });
         }
+        Arrays.asList(EnumModules.values()).forEach(module -> {
+            File file = new File(folder, "modules/" + module.name() + ".yml");
+            if(file.exists()) return;
+            List<String> lines = getResource("modules/" + module.name() + ".yml");
+            this.writeToFile(lines, file);
+        });
     }
 
     public void setupLogger() {
@@ -118,6 +120,10 @@ public class SimpleConfigManager {
             e.printStackTrace();
         }
         return lines;
+    }
+
+    public void reload() {
+	    this.configs.clear();
     }
 
 	/**

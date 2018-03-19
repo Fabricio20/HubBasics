@@ -1,5 +1,6 @@
 package net.notfab.hubbasics.spigot.utils;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 /**
@@ -16,7 +17,11 @@ import org.bukkit.entity.Player;
 public class PlaceHolderUtil {
 
     public static String replace(Player player, String text) {
-        return text;
+        text = text.replace("${Player.Name}", player.getName());
+        text = text.replace("${Player.DisplayName}", player.getDisplayName());
+        text = text.replace("${Player.UUID}", player.getUniqueId().toString());
+        text = text.replace("${Player.World}", player.getWorld().getName());
+        return ChatColor.translateAlternateColorCodes('&', text);
     }
 
 }

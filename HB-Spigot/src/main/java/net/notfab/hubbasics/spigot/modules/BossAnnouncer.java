@@ -82,8 +82,7 @@ public class BossAnnouncer extends Module {
             BossBarMessage bbm = this.getBossBar(world.getName(), getPointer(world.getName()));
 
             if(bbm != null) {
-                BossBar bossBar = bbm.toBossBar();
-                world.getPlayers().forEach(player -> this.setBossBar(player, bossBar));
+                world.getPlayers().forEach(player -> this.setBossBar(player, bbm.toBossBar(player)));
             }
             this.setPointer(world.getName(), getPointer(world.getName()) + 1);
         });
@@ -99,7 +98,7 @@ public class BossAnnouncer extends Module {
         World world = event.getPlayer().getWorld();
         BossBarMessage bbm = getBossBar(world.getName(), getPointer(world.getName()));
         if(bbm != null) {
-            this.setBossBar(event.getPlayer(), bbm.toBossBar());
+            this.setBossBar(event.getPlayer(), bbm.toBossBar(event.getPlayer()));
         }
     }
 
@@ -108,7 +107,7 @@ public class BossAnnouncer extends Module {
         World world = event.getPlayer().getWorld();
         BossBarMessage bbm = getBossBar(world.getName(), getPointer(world.getName()));
         if(bbm != null) {
-            this.setBossBar(event.getPlayer(), bbm.toBossBar());
+            this.setBossBar(event.getPlayer(), bbm.toBossBar(event.getPlayer()));
         }
     }
 

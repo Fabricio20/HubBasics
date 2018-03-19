@@ -52,11 +52,13 @@ public class BossAnnouncer extends Module {
                     style = BarStyle.valueOf(msgsSection.getString("Style", "SOLID"));
                 } catch (IllegalArgumentException ex) {
                     style = BarStyle.SOLID;
+                    Logger.warn("Invalid style for message '" + key + "' of world '" + world.getName() + "'.");
                 }
                 try {
                     color = BarColor.valueOf(msgsSection.getString("Color", "BLUE"));
                 } catch (IllegalArgumentException ex) {
                     color = BarColor.BLUE;
+                    Logger.warn("Invalid color for message '" + key + "' of world '" + world.getName() + "'.");
                 }
                 messages.add(new BossBarMessage(message, style, color));
             });

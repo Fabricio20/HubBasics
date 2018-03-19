@@ -21,14 +21,15 @@ import org.bukkit.event.Listener;
  */
 public abstract class Module implements Listener {
 
-    public HubBasics HubBasics = net.notfab.hubbasics.spigot.HubBasics.getInstance();
-    public Logger Logger = HubBasics.getLoggerManager();
+    protected HubBasics HubBasics = net.notfab.hubbasics.spigot.HubBasics.getInstance();
+    protected final Logger Logger;
     @Getter private final EnumModules module;
     @Getter private final String minimumVersion;
 
     public Module(EnumModules module, String version) {
         this.module = module;
         this.minimumVersion = version;
+        this.Logger = HubBasics.getLoggerManager().getLogger(module);
     }
 
     public abstract void onEnable();

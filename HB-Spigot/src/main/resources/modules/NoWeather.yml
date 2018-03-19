@@ -1,0 +1,19 @@
+#
+# Global, non-replaceable switch for this module.
+#
+Enabled: true
+#
+# NoWeather per-world configuration.
+# Example:
+#
+# world:
+#   Enabled: true
+#
+# Enabled (boolean) is the status for this world, usually true (if you set false, why create a section anyway?).
+# True means there will rain/snow control on this world.
+#
+# State is the allowed state, either CLEAR or DOWNFALL.
+#
+world:
+  Enabled: true
+  State: CLEAR

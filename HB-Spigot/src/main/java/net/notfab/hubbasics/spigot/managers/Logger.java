@@ -3,6 +3,7 @@ package net.notfab.hubbasics.spigot.managers;
 import ch.qos.logback.classic.Level;
 import lombok.Getter;
 import lombok.Setter;
+import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import org.slf4j.LoggerFactory;
@@ -23,8 +24,10 @@ public class Logger extends Manager {
     private final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(HubBasics.getClass());
     @Getter @Setter private Level level = Level.DEBUG;
     @Getter @Setter private boolean enabled = true;
+    @Getter private final String prefix;
 
-    public Logger() {
+    public Logger(String prefix) {
+        this.prefix = prefix == null ? "" : prefix;
         this.info("[Logger] Started.");
     }
 
@@ -34,43 +37,67 @@ public class Logger extends Manager {
     }
 
     public void trace(String msg) {
-        LOGGER.trace(msg);
+        if(this.level.isGreaterOrEqual(Level.TRACE)) {
+            LOGGER.trace(this.prefix + msg);
+        }
     }
 
     public void trace(String msg, Throwable t) {
-        LOGGER.trace(msg, t);
+        if(this.level.isGreaterOrEqual(Level.TRACE)) {
+            LOGGER.trace(this.prefix + msg, t);
+        }
     }
 
     public void debug(String msg) {
-        LOGGER.debug(msg);
+        if(this.level.isGreaterOrEqual(Level.DEBUG)) {
+            LOGGER.debug(this.prefix + msg);
+        }
     }
 
     public void debug(String msg, Throwable t) {
-        LOGGER.debug(msg, t);
+        if(this.level.isGreaterOrEqual(Level.DEBUG)) {
+            LOGGER.debug(this.prefix + msg, t);
+        }
     }
 
     public void info(String msg) {
-        LOGGER.info(msg);
+        if(this.level.isGreaterOrEqual(Level.INFO)) {
+            LOGGER.info(this.prefix + msg);
+        }
     }
 
     public void info(String msg, Throwable t) {
-        LOGGER.info(msg, t);
+        if(this.level.isGreaterOrEqual(Level.INFO)) {
+            LOGGER.info(this.prefix + msg, t);
+        }
     }
 
     public void warn(String msg) {
-        LOGGER.warn(msg);
+        if(this.level.isGreaterOrEqual(Level.WARN)) {
+            LOGGER.warn(this.prefix + msg);
+        }
     }
 
     public void warn(String msg, Throwable t) {
-        LOGGER.warn(msg, t);
+        if(this.level.isGreaterOrEqual(Level.WARN)) {
+            LOGGER.warn(this.prefix + msg, t);
+        }
     }
 
     public void error(String msg) {
-        LOGGER.error(msg);
+        if(this.level.isGreaterOrEqual(Level.ERROR)) {
+            LOGGER.error(this.prefix + msg);
+        }
     }
 
     public void error(String msg, Throwable t) {
-        LOGGER.error(msg, t);
+        if(this.level.isGreaterOrEqual(Level.ERROR)) {
+            LOGGER.error(this.prefix + msg, t);
+        }
+    }
+
+    public Logger getLogger(EnumModules module) {
+        return new Logger("&2[&a" + module.name() + "&2] &r");
     }
 
 }

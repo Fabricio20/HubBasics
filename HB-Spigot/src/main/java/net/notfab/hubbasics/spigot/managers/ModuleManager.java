@@ -5,6 +5,7 @@ import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.modules.*;
 import org.bukkit.Bukkit;
+import org.bukkit.event.HandlerList;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class ModuleManager extends Manager {
         this.modules.put(EnumModules.AntiVoid, new AntiVoid());
         this.modules.put(EnumModules.DoubleJump, new DoubleJump());
         this.modules.put(EnumModules.BossAnnouncer, new BossAnnouncer());
+        this.modules.put(EnumModules.NoWeather, new NoWeather());
         this.onEnable();
     }
 
@@ -43,8 +45,10 @@ public class ModuleManager extends Manager {
 
     @Override
     public void onDisable() {
-        this.modules.forEach(((enumModules, module) ->  module.onDisable()));
-        // Cannot unregister listeners, thanks Bukkit.
+        this.modules.forEach(((enumModules, module) -> {
+            module.onDisable();
+            HandlerList.unregisterAll(module);
+        }));
     }
 
 }

@@ -37,7 +37,7 @@ public class HubBasics extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        this.loggerManager = new Logger();
+        this.loggerManager = new Logger(null);
         this.taskManager = new TaskManager();
         this.configManager = new SimpleConfigManager(this);
         this.configManager.setupLogger();

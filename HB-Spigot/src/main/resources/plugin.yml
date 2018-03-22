@@ -2,7 +2,7 @@ main: net.notfab.hubbasics.spigot.HubBasics
 version: 6.0-DEVELOPMENT
 name: HubBasics
 authors: [Fabricio20]
-softdepend: [Multiverse-Core]
+softdepend: [Multiverse-Core, PlaceholderAPI]
 description: >
              HubBasics is a plugin containing settings, options and features you as a server owner might desire.
 commands:

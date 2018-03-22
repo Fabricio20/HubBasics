@@ -1,5 +1,7 @@
 package net.notfab.hubbasics.spigot.utils;
 
+import net.notfab.hubbasics.spigot.entities.depends.DependPlaceHolderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -16,7 +18,18 @@ import org.bukkit.entity.Player;
  */
 public class PlaceHolderUtil {
 
+    private static DependPlaceHolderAPI dependPlaceHolderAPI;
+
+    static {
+        if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            dependPlaceHolderAPI = new DependPlaceHolderAPI();
+        }
+    }
+
     public static String replace(Player player, String text) {
+        if(dependPlaceHolderAPI != null) {
+            text = dependPlaceHolderAPI.setPlaceHolders(player, text);
+        }
         text = text.replace("${Player.Name}", player.getName());
         text = text.replace("${Player.DisplayName}", player.getDisplayName());
         text = text.replace("${Player.UUID}", player.getUniqueId().toString());

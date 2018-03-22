@@ -1,5 +1,6 @@
 package net.notfab.hubbasics.spigot.managers;
 
+import net.notfab.hubbasics.spigot.commands.HologramsCommand;
 import net.notfab.hubbasics.spigot.commands.HubBasicsCommand;
 import net.notfab.hubbasics.spigot.commands.WarpCommand;
 import net.notfab.hubbasics.spigot.entities.Command;
@@ -31,6 +32,7 @@ public class CommandFramework extends Manager {
         this.commandList = new CopyOnWriteArrayList<>();
         this.register(new HubBasicsCommand());
         this.register(new WarpCommand());
+        this.register(new HologramsCommand());
         Logger.info("[CommandFramework] Loaded " + commandList.size() + " commands.");
     }
 

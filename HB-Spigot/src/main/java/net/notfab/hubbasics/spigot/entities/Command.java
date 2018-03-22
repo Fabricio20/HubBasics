@@ -80,4 +80,12 @@ public class Command extends BukkitCommand {
         return this.help.toArray(new String[this.help.size()]);
     }
 
+    protected String argsToString(String[] args, int i) {
+        String s = "";
+        for(int d = i; d < args.length; d++) {
+            s += " " + args[d];
+        }
+        return s.trim();
+    }
+
 }

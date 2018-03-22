@@ -24,15 +24,23 @@ public class Messages {
     }
 
     public static String get(Player player, String name) {
-        String message = get(name);
-        message = message.replace("${World}", player.getWorld().getName());
-        message = message.replace("${UUID}", player.getUniqueId().toString());
-        return message;
+        return PlaceHolderUtil.replace(player, get(name));
     }
 
     public static String get(CommandSender sender, String name) {
         String message = get(name);
         message = message.replace("${Name}", sender.getName());
+        return message;
+    }
+
+    public static String get(Player player, String name, String... args) {
+        return PlaceHolderUtil.replace(player, replaceArgs(get(name), args));
+    }
+
+    private static String replaceArgs(String message, String... args) {
+        for(int i = 0; i < args.length; i++) {
+            message = message.replace("{" + i + "}", args[i]);
+        }
         return message;
     }
 

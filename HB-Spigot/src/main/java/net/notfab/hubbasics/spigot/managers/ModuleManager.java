@@ -26,6 +26,7 @@ public class ModuleManager extends Manager {
         this.modules.put(EnumModules.DoubleJump, new DoubleJump());
         this.modules.put(EnumModules.BossAnnouncer, new BossAnnouncer());
         this.modules.put(EnumModules.NoWeather, new NoWeather());
+        this.modules.put(EnumModules.Holograms, new Holograms());
         this.onEnable();
     }
 

@@ -6,6 +6,7 @@ import net.notfab.hubbasics.spigot.nms.NMSVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,6 +24,7 @@ public class JumpPads extends Module {
     private Map<String, Double> padPower = new HashMap<>();
     private Map<String, Boolean> requirePressurePlate = new HashMap<>();
     private Map<String, Material> plateTypes = new HashMap<>();
+    private Map<String, Sound> soundMap = new HashMap<>();
 
     public JumpPads() {
         super(EnumModules.JumpPads, NMSVersion.V1_7_R1);
@@ -62,6 +64,16 @@ public class JumpPads extends Module {
                     plateTypes.put(world.getName(), material);
                 }
                 requirePressurePlate.put(world.getName(), pp.getBoolean("Required", false));
+            }
+            if(section.contains("Sound") && section.isString("Sound")) {
+                Sound sound;
+                try {
+                    sound = Sound.valueOf(section.getString("Sound"));
+                } catch (IllegalArgumentException ex) {
+                    Logger.warn("Invalid Sound for jump pad", ex);
+                    return;
+                }
+                soundMap.put(world.getName(), sound);
             }
         });
     }

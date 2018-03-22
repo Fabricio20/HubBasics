@@ -3,6 +3,7 @@ package net.notfab.hubbasics.spigot.modules;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.particle.ParticleEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,6 +26,7 @@ public class JumpPads extends Module {
     private Map<String, Boolean> requirePressurePlate = new HashMap<>();
     private Map<String, Material> plateTypes = new HashMap<>();
     private Map<String, Sound> soundMap = new HashMap<>();
+    private Map<String, ParticleEffect> effectMap = new HashMap<>();
 
     public JumpPads() {
         super(EnumModules.JumpPads, NMSVersion.V1_7_R1);
@@ -75,6 +77,12 @@ public class JumpPads extends Module {
                 }
                 soundMap.put(world.getName(), sound);
             }
+            if(section.contains("Effect") && section.isString("Effect")) {
+                ParticleEffect effect = ParticleEffect.fromName(section.getString("Effect"));
+                if(effect != null) {
+                    effectMap.put(world.getName(), effect);
+                }
+            }
         });
     }
 
@@ -102,6 +110,14 @@ public class JumpPads extends Module {
         return this.plateTypes.getOrDefault(player.getWorld().getName(), Material.GOLD_PLATE);
     }
 
+    private Sound getSound(Player player) {
+        return this.soundMap.getOrDefault(player.getWorld().getName(), null);
+    }
+
+    private ParticleEffect getEffect(Player player) {
+        return this.effectMap.getOrDefault(player.getWorld().getName(), null);
+    }
+
     // ----------------------------------------------------------
 
     @EventHandler
@@ -112,6 +128,12 @@ public class JumpPads extends Module {
         Location loc =  player.getLocation().subtract(0, 1, 0);
         if (loc.getBlock().getType() == getMaterial(player)) {
             player.setVelocity(calculateVector(player));
+            if(getSound(player) != null) {
+                player.playSound(player.getLocation(), getSound(player), 1, 1);
+            }
+            if(getEffect(player) != null) {
+                getEffect(player).display(1, 1, 1, 1, 40, player.getLocation(), player);
+            }
         }
     }
 
@@ -124,6 +146,12 @@ public class JumpPads extends Module {
                 Location loc = event.getClickedBlock().getLocation().subtract(0, 1, 0);
                 if (loc.getWorld().getBlockAt(loc).getType() == getMaterial(player)) {
                     player.setVelocity(calculateVector(player));
+                    if(getSound(player) != null) {
+                        player.playSound(player.getLocation(), getSound(player), 1, 1);
+                    }
+                    if(getEffect(player) != null) {
+                        getEffect(player).display(1, 1, 1, 1, 40, player.getLocation(), player);
+                    }
                     event.setCancelled(true);
                 }
             }

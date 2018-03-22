@@ -1,0 +1,24 @@
+#
+# Global, non-replaceable switch for this module.
+#
+Enabled: true
+#
+# AntiVoid per-world configuration.
+# Example:
+#
+# world:
+#   Sound: BLOCK_ANVIL
+#   Effect: EFFECT
+#
+# Enabled (boolean) is the status for this world, usually true (if you set false, why create a section anyway?).
+# Warp (Location name) is the name of the hubbasics warp (/hbwarp) the player will teleport to.
+#
+world:
+  Enabled: true
+  Power: 1
+  Material: REDSTONE_BLOCK
+  PressurePlate:
+    Required: false
+    Type: GOLD_PLATE
+  Sound: BLOCK_ANVIL_LAND
+  Effect: CLOUD

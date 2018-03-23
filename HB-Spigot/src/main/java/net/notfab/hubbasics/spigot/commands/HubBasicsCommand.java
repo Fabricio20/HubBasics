@@ -3,6 +3,7 @@ package net.notfab.hubbasics.spigot.commands;
 import net.notfab.hubbasics.spigot.entities.Command;
 import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.utils.Messages;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 /**
@@ -41,7 +42,24 @@ public class HubBasicsCommand extends Command {
                 HubBasics.getModuleManager().onEnable();
                 HubBasics.getMessenger().send(player, Messages.get(player, "PLUGIN_RELOADED"));
             } else if(args[0].equalsIgnoreCase("update")) {
-                // Update
+                HubBasics.getUpdateManager().run();
+                if(HubBasics.getUpdateManager().isUpdateAvailable()) {
+                    Bukkit.getOnlinePlayers().stream()
+                            .filter(p -> p.hasPermission("hubbasics.update") || p.hasPermission("hubbasics.admin"))
+                            .forEach(p -> {
+                                HubBasics.getMessenger().send(p, "&9[&aHubBasics&9] &eThere is an update available.");
+                                HubBasics.getMessenger()
+                                        .send(p, "&9[&aHubBasics&9] &eCurrent: &a" +
+                                                HubBasics.getUpdateManager().getBuild() +
+                                                " &9/ &eLatest: &a" + HubBasics.getUpdateManager().getLatest());
+                            });
+                } else {
+                    Bukkit.getOnlinePlayers().stream()
+                            .filter(p -> p.hasPermission("hubbasics.update") || p.hasPermission("hubbasics.admin"))
+                            .forEach(p -> {
+                                HubBasics.getMessenger().send(p, "&9[&aHubBasics&9] &eNo updates found.");
+                            });
+                }
             } else {
                 HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));
             }

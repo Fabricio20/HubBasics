@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <build.number>666</build.number>
+        <build.date>180323</build.date>
     </properties>
 
     <repositories>
@@ -72,8 +72,10 @@
                         </manifest>
                         <manifestEntries>
                             <Specification-Title>${project.name}</Specification-Title>
-                            <Specification-Version>${project.version}-${build.number}</Specification-Version>
-                            <Implementation-Version>${build.number}</Implementation-Version>
+                            <Specification-Version>${project.version}</Specification-Version>
+                            <Implementation-Version>${build.date}</Implementation-Version>
+                            <HubBasics-Version>6.0-DEV-${build.date}</HubBasics-Version>
+                            <HubBasics-Build>${build.date}</HubBasics-Build>
                         </manifestEntries>
                     </archive>
                 </configuration>

@@ -4,8 +4,11 @@ import lombok.Getter;
 import net.notfab.hubbasics.spigot.listeners.ItemListener;
 import net.notfab.hubbasics.spigot.managers.*;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import okhttp3.OkHttpClient;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Copyright (c) HubBasics 2018.
@@ -25,6 +28,8 @@ public class HubBasics extends JavaPlugin {
     @Getter private Logger loggerManager;
     @Getter private TaskManager taskManager;
     @Getter private SimpleConfigManager configManager;
+    @Getter private OkHttpClient httpClient;
+    @Getter private UpdateManager updateManager;
     @Getter private Messenger messenger;
     @Getter private CommandFramework commandFramework;
     @Getter private NMSVersion NMS;
@@ -41,6 +46,11 @@ public class HubBasics extends JavaPlugin {
         this.taskManager = new TaskManager();
         this.configManager = new SimpleConfigManager(this);
         this.configManager.setupLogger();
+        this.httpClient = new OkHttpClient.Builder()
+                .followSslRedirects(true)
+                .connectTimeout(3, TimeUnit.SECONDS)
+                .build();
+        this.updateManager = new UpdateManager();
         this.messenger = new Messenger();
         this.commandFramework = new CommandFramework();
         this.NMS = new NMSVersion();

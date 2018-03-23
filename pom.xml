@@ -7,7 +7,7 @@
     <groupId>net.notfab</groupId>
     <artifactId>HubBasics</artifactId>
     <packaging>pom</packaging>
-    <version>5.0-DEVELOPMENT</version>
+    <version>6.0-DEVELOPMENT</version>
     <modules>
         <module>HB-Spigot</module>
     </modules>

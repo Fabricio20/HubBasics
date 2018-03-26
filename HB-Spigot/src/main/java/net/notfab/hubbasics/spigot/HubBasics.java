@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.spigot;
 
 import lombok.Getter;
+import net.notfab.hubbasics.spigot.entities.Metrics;
 import net.notfab.hubbasics.spigot.listeners.ItemListener;
 import net.notfab.hubbasics.spigot.managers.*;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
@@ -29,8 +30,9 @@ public class HubBasics extends JavaPlugin {
     @Getter private TaskManager taskManager;
     @Getter private SimpleConfigManager configManager;
     @Getter private OkHttpClient httpClient;
-    @Getter private UpdateManager updateManager;
     @Getter private Messenger messenger;
+    @Getter private UpdateManager updateManager;
+    @Getter private Metrics metrics;
     @Getter private CommandFramework commandFramework;
     @Getter private NMSVersion NMS;
     @Getter private ItemManager itemManager;
@@ -50,8 +52,9 @@ public class HubBasics extends JavaPlugin {
                 .followSslRedirects(true)
                 .connectTimeout(3, TimeUnit.SECONDS)
                 .build();
-        this.updateManager = new UpdateManager();
         this.messenger = new Messenger();
+        this.updateManager = new UpdateManager();
+        this.metrics = new Metrics(this);
         this.commandFramework = new CommandFramework();
         this.NMS = new NMSVersion();
         this.itemManager = new ItemManager();

@@ -122,7 +122,6 @@ public class Metrics {
         }
 
         //HubBasics
-        this.addCustomChart(new SimplePie("hubbasics_release", () -> HubBasics.getInstance().getUpdateManager().getVersion()));
         this.addCustomChart(new AdvancedBarChart("hubbasics_features", () -> {
             Map<String, int[]> map = new HashMap<>();
             Arrays.asList(EnumModules.values()).forEach(module -> {
@@ -180,7 +179,7 @@ public class Metrics {
         JSONObject data = new JSONObject();
 
         String pluginName = plugin.getDescription().getName();
-        String pluginVersion = plugin.getDescription().getVersion();
+        String pluginVersion = HubBasics.getInstance().getUpdateManager().getVersion();
 
         data.put("pluginName", pluginName); // Append the name of the plugin
         data.put("pluginVersion", pluginVersion); // Append the version of the plugin

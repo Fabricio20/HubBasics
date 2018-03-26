@@ -49,4 +49,7 @@ public abstract class Module implements Listener {
         return getConfig().getBoolean("Enabled", true) && (section != null && section.getBoolean("Enabled", false));
     }
 
+    public Boolean isEnabled() {
+        return getConfig().getBoolean("Enabled", true);
+    }
 }

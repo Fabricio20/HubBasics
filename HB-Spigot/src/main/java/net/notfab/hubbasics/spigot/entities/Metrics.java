@@ -18,13 +18,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
@@ -128,7 +122,18 @@ public class Metrics {
         }
 
         //HubBasics
-        this.addCustomChart(new SimplePie("HubBasics Release", () -> HubBasics.getInstance().getUpdateManager().getVersion()));
+        this.addCustomChart(new SimplePie("hubbasics_release", () -> HubBasics.getInstance().getUpdateManager().getVersion()));
+        this.addCustomChart(new AdvancedBarChart("hubbasics_features", () -> {
+            Map<String, int[]> map = new HashMap<>();
+            Arrays.asList(EnumModules.values()).forEach(module -> {
+                if(HubBasics.getInstance().getModuleManager().isEnabled(module)) {
+                    map.put(module.name(), new int[]{1, 0}); // Enabled, Disabled
+                } else {
+                    map.put(module.name(), new int[]{0, 1}); // Enabled, Disabled
+                }
+            });
+            return map;
+        }));
     }
 
     /**

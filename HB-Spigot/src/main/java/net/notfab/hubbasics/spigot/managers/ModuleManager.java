@@ -53,4 +53,12 @@ public class ModuleManager extends Manager {
         }));
     }
 
+    public Module getModule(EnumModules module) {
+        return this.modules.get(module);
+    }
+
+    public Boolean isEnabled(EnumModules module) {
+        return getModule(module) != null ? getModule(module).isEnabled() : false;
+    }
+
 }

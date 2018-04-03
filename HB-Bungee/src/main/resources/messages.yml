@@ -1,0 +1,13 @@
+# ------------------------------------------------------------------------------------------------------------------- #
+# Welcome to the translation file for HubBasics.                                                                      #
+#                                                                                                                     #
+# - The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0       #
+# International. Please read the information linked below before you attempt to use this project or it's contents to  #
+# make sure you are abiding by it's terms.                                                                            #
+# - https://creativecommons.org/licenses/by-nc-sa/4.0/                                                                #
+#                                                                                                                     #
+# It's still YAML, so make sure you are not using tabs as it can invalidate the configuration.                        #
+# When in doubt, paste this config on a parser like http://www.yamllint.com                                           #
+# ------------------------------------------------------------------------------------------------------------------- #
+LOBBY_ALREADY_CONNECTED: '&cYou are already connected to the lobby.'
+COMMAND_PLAYER: '&cThis command can only be ran by players.'

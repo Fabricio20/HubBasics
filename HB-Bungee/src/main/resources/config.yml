@@ -1,0 +1,4 @@
+# Lobby Server
+# Either a string with the name or a list
+# of strings for HubBasics to balance from.
+Lobby: Lobby

@@ -104,12 +104,12 @@ public class SimpleConfigManager {
 		scan(filePath);
 		File file = this.getConfigFile(filePath);
 		if (file != null && !file.exists()) {
-			this.prepareFile(filePath);
+			this.prepareFile(filePath, file.getName());
 			if (header != null && header.length != 0) {
 				this.setHeader(file, header);
 			}
 		}
-		SimpleConfig config = new SimpleConfig(this.getConfigContent(filePath), file, this.getCommentsNum(file), plugin);
+		SimpleConfig config = new SimpleConfig(this.getConfigContent(filePath), file, this.getCommentsNum(file), this);
 		this.configs.put(filePath, config);
 		return config;
 	}
@@ -157,10 +157,14 @@ public class SimpleConfigManager {
 	public void prepareFile(String filePath, String resource) {
         if(!plugin.getDataFolder().exists())
             plugin.getDataFolder().mkdir();
-        File file = new File(filePath);
+        File file = new File(plugin.getDataFolder(), filePath);
         if(!file.exists()) {
-            try (InputStream in = this.getClass().getResourceAsStream(resource)) {
-                Files.copy(in, file.toPath());
+            try (InputStream in = this.getClass().getResourceAsStream("/" + resource)) {
+            	if(in == null) {
+            		file.createNewFile();
+				} else {
+					Files.copy(in, file.toPath());
+				}
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -16,7 +16,7 @@ public class LobbyCommand extends Command {
     private net.notfab.hubbasics.bungee.HubBasics HubBasics = net.notfab.hubbasics.bungee.HubBasics.getInstance();
 
     public LobbyCommand() {
-        super("lobby");
+        super("lobby", null, "hub");
     }
 
     @Override

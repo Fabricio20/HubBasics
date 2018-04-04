@@ -33,9 +33,9 @@ public class SimpleConfig {
     private Configuration config;
 
     @SuppressWarnings("deprecation")
-    public SimpleConfig(InputStream configStream, File configFile, int comments, Plugin plugin) {
+    public SimpleConfig(InputStream configStream, File configFile, int comments, SimpleConfigManager manager) {
         this.comments = comments;
-        this.manager = new SimpleConfigManager(plugin);
+        this.manager = manager;
 
         this.file = configFile;
         this.reloadConfig();

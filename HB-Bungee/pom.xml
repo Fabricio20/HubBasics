@@ -5,7 +5,7 @@
     <parent>
         <artifactId>HubBasics</artifactId>
         <groupId>net.notfab</groupId>
-        <version>6.0-DEVELOPMENT</version>
+        <version>6.0-DEV</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>HB-Bungee</artifactId>
@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <build.date>180403</build.date>
+        <build.date>180404</build.date>
     </properties>
 
     <repositories>
@@ -42,6 +42,7 @@
     </dependencies>
 
     <build>
+        <finalName>HubBasics-Bungee-${parent.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

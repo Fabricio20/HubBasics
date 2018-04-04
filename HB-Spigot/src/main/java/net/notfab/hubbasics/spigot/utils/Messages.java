@@ -2,6 +2,7 @@ package net.notfab.hubbasics.spigot.utils;
 
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -30,7 +31,7 @@ public class Messages {
     public static String get(CommandSender sender, String name) {
         String message = get(name);
         message = message.replace("${Name}", sender.getName());
-        return message;
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 
     public static String get(Player player, String name, String... args) {

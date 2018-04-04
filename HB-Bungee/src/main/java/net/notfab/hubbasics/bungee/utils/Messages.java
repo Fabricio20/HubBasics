@@ -1,6 +1,7 @@
 package net.notfab.hubbasics.bungee.utils;
 
 
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.notfab.hubbasics.bungee.HubBasics;
@@ -31,7 +32,7 @@ public class Messages {
     public static String get(CommandSender sender, String name) {
         String message = get(name);
         message = message.replace("${Name}", sender.getName());
-        return message;
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 
     public static String get(ProxiedPlayer player, String name, String... args) {

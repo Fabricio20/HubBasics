@@ -1,0 +1,27 @@
+#
+# Global, non-replaceable switch for this module.
+# !! DO NOT TOUCH Version !!
+# !! It's only used to keep track of changes between releases !!
+#
+Enabled: true
+Version: 1.0
+#
+# JoinMessages per-world configuration.
+# Example:
+#
+# Join: 'Join message'
+# Leave: null
+# Worlds:
+#   worldName: 'World change message'
+#
+# Join is the global join message, use null for no join message.
+# Leave is the global quit message, use null for no quit message.
+#
+# Worlds is a section with the world name and the message to send when a player
+# enters that world. This is only fired on WorldChange, not join.
+#
+Join: '&6[&2+&6] &9${Player.Name} &6has joined the server.'
+Leave: null
+Worlds:
+  world: '&9${Player.Name} &6has joined &aworld&6.'
+  world_nether: '&9${Player.Name} &6has joined &cnether&6.'

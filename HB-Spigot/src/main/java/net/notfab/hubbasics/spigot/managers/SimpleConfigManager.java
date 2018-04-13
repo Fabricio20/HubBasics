@@ -27,6 +27,9 @@ public class SimpleConfigManager {
 
 	private JavaPlugin plugin;
 	private Map<String, SimpleConfig> configs;
+	private Logger Logger = new Logger("ConfigManager");
+
+	private List<String> outdatedConfigs = new ArrayList<>();
 
 	/**
 	 * Manage custom configurations and files
@@ -69,11 +72,29 @@ public class SimpleConfigManager {
         }
         Arrays.asList(EnumModules.values()).forEach(module -> {
             File file = new File(folder, "modules/" + module.name() + ".yml");
-            if(file.exists()) return;
+            if(file.exists()) {
+                this.checkVersion("modules/" + module.name() + ".yml");
+                return;
+            }
             List<String> lines = getResource("modules/" + module.name() + ".yml");
             this.writeToFile(lines, file);
         });
+        if(!this.outdatedConfigs.isEmpty()) {
+            Logger.warn("You have outdated configs! No support will be provided for outdated configs.");
+            Logger.warn("Consider deleting the above-mentioned files and letting HubBasics remake them.");
+        }
     }
+
+    private void checkVersion(String fileName) {
+		File folder = plugin.getDataFolder();
+		File file = new File(folder, fileName);
+		SimpleConfig onDisk = getNewConfig(file.getPath());
+		SimpleConfig onResources = new SimpleConfig(getRawResource(fileName), file, 0, HubBasics.getInstance());
+		if(onDisk.getDouble("Version", 1.0) < onResources.getDouble("Version", 1.0)) {
+		    this.outdatedConfigs.add(fileName);
+		    Logger.warn("Detected outdated config &7" + fileName);
+        }
+	}
 
     public void setupLogger() {
         SimpleConfig config = this.getNewConfig("config.yml");
@@ -82,7 +103,8 @@ public class SimpleConfigManager {
                 HubBasics.getInstance().getLoggerManager().setEnabled(config.getBoolean("Logger.Enabled"));
             if(config.contains("Logger.Level")) {
                 try {
-                    HubBasics.getInstance().getLoggerManager().setLevel(Level.valueOf(config.getString("Logger.Level")));
+                    net.notfab.hubbasics.spigot.managers
+                            .Logger.setLevel(Level.valueOf(config.getString("Logger.Level")));
                 } catch (IllegalArgumentException ex) {
                     HubBasics.getInstance().getLoggerManager().error("Invalid logger Level found on config file", ex);
                 }
@@ -120,6 +142,10 @@ public class SimpleConfigManager {
             e.printStackTrace();
         }
         return lines;
+    }
+
+    private InputStream getRawResource(String fileName) {
+        return this.getClass().getResourceAsStream("/" + fileName);
     }
 
     public void reload() {

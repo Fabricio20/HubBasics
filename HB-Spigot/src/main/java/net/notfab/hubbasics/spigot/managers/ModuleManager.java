@@ -28,6 +28,7 @@ public class ModuleManager extends Manager {
         this.modules.put(EnumModules.NoWeather, new NoWeather());
         this.modules.put(EnumModules.Holograms, new Holograms());
         this.modules.put(EnumModules.JumpPads, new JumpPads());
+        this.modules.put(EnumModules.JoinMessages, new JoinMessages());
         this.onEnable();
     }
 

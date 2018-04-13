@@ -27,6 +27,7 @@ public class PlaceHolderUtil {
     }
 
     public static String replace(Player player, String text) {
+        if(text == null) return null;
         if(dependPlaceHolderAPI != null) {
             text = dependPlaceHolderAPI.setPlaceHolders(player, text);
         }

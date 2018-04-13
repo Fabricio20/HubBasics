@@ -1,7 +1,10 @@
 #
 # Global, non-replaceable switch for this module.
+# !! DO NOT TOUCH Version !!
+# !! It's only used to keep track of changes between releases !!
 #
 Enabled: true
+Version: 1.0
 #
 # JoinItems, on a per-world configuration basis.
 # Make a section with the world name and add the settings below it.

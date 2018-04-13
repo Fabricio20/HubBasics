@@ -1,7 +1,10 @@
 #
 # Global, non-replaceable switch for this module.
+# !! DO NOT TOUCH Version !!
+# !! It's only used to keep track of changes between releases !!
 #
 Enabled: true
+Version: 1.0
 #
 # Holograms configuration file.
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

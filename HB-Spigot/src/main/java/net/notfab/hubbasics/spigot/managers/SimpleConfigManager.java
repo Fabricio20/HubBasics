@@ -47,10 +47,14 @@ public class SimpleConfigManager {
         if(!new File(folder, "config.yml").exists()) {
             List<String> lines = getResource("config.yml");
             this.writeToFile(lines, new File(folder, "config.yml"));
+        } else {
+            this.checkVersion("config.yml");
         }
         if(!new File(folder, "messages.yml").exists()) {
             List<String> lines = getResource("messages.yml");
             this.writeToFile(lines, new File(folder, "messages.yml"));
+        } else {
+            this.checkVersion("messages.yml");
         }
 	    if(!new File(folder, "items/").exists()) {
             new File(folder, "items/").mkdirs();

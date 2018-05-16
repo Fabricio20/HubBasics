@@ -22,13 +22,21 @@ import org.slf4j.LoggerFactory;
 public class Logger extends Manager {
 
     private final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(HubBasics.getClass());
-    @Getter @Setter private static Level level = Level.DEBUG;
+    private static Level level = Level.DEBUG;
     @Getter @Setter private boolean enabled = true;
     @Getter private final String prefix;
 
     public Logger(String prefix) {
         this.prefix = prefix == null ? "" : prefix;
         this.info("[Logger] Started.");
+    }
+
+    public static Level getLevel() {
+        return level;
+    }
+
+    static void setLevel(Level l) {
+        level = l;
     }
 
     @Override

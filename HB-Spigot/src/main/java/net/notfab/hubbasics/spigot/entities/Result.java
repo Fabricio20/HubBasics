@@ -40,6 +40,7 @@ public class Result {
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T getExtra(int extra) {
         return (T) this.data.get(extra);
     }

@@ -26,14 +26,13 @@ import java.util.Set;
 public class SimpleConfig {
 
     private int comments;
-    private SimpleConfigManager manager;
+    private SimpleConfigManager manager = SimpleConfigManager.getInstance();
 
     private File file;
     private FileConfiguration config;
 
     public SimpleConfig(InputStream configStream, File configFile, int comments, JavaPlugin plugin) {
         this.comments = comments;
-        this.manager = new SimpleConfigManager(plugin);
 
         this.file = configFile;
         this.config = YamlConfiguration.loadConfiguration(configFile);

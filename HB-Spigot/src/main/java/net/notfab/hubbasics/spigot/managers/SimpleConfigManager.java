@@ -11,6 +11,7 @@ package net.notfab.hubbasics.spigot.managers;
  */
 
 import ch.qos.logback.classic.Level;
+import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
@@ -25,6 +26,7 @@ import java.util.*;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class SimpleConfigManager {
 
+	@Getter private static SimpleConfigManager Instance;
 	private JavaPlugin plugin;
 	private Map<String, SimpleConfig> configs;
 	private Logger Logger = new Logger("ConfigManager");
@@ -37,6 +39,7 @@ public class SimpleConfigManager {
 	public SimpleConfigManager(JavaPlugin plugin) {
 		this.plugin = plugin;
 		this.configs = new HashMap<>();
+		Instance = this;
 		this.prepareHubBasics();
 	}
 

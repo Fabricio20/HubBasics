@@ -23,6 +23,7 @@ public class JumpPads extends Module {
 
     private Map<String, Material> worldMaterials = new HashMap<>();
     private Map<String, Double> padPower = new HashMap<>();
+    private Map<String, Double> verticalPower = new HashMap<>();
     private Map<String, Boolean> requirePressurePlate = new HashMap<>();
     private Map<String, Material> plateTypes = new HashMap<>();
     private Map<String, Sound> soundMap = new HashMap<>();
@@ -51,6 +52,9 @@ public class JumpPads extends Module {
             }
             if(section.contains("Power") && section.isDouble("Power")) {
                 padPower.put(world.getName(), section.getDouble("Power"));
+            }
+            if(section.contains("VerticalPower") && section.isDouble("VerticalPower")) {
+                verticalPower.put(world.getName(), section.getDouble("VerticalPower"));
             }
             if(section.contains("PressurePlate")) {
                 ConfigurationSection pp = section.getConfigurationSection("PressurePlate");
@@ -90,12 +94,17 @@ public class JumpPads extends Module {
     public void onDisable() {
         this.worldMaterials.clear();
         this.padPower.clear();
+        this.verticalPower.clear();
         this.requirePressurePlate.clear();
         this.plateTypes.clear();
     }
 
     private Double getPower(Player player) {
         return padPower.getOrDefault(player.getWorld().getName(), 2.0);
+    }
+
+    private Double getVerticalPower(Player player) {
+        return verticalPower.getOrDefault(player.getWorld().getName(), 1.0);
     }
 
     private boolean needsPressurePlate(Player player) {
@@ -161,7 +170,7 @@ public class JumpPads extends Module {
     private Vector calculateVector(Player player) {
         double radians = Math.toRadians(player.getLocation().getYaw());
         double x = -Math.sin(radians) * getPower(player);
-        double y = getPower(player)/6;
+        double y = getVerticalPower(player);
         double z = Math.cos(radians) * getPower(player);
         return new Vector(x, y, z);
     }

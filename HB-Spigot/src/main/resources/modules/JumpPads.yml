@@ -18,7 +18,8 @@ Version: 1.0
 #
 world:
   Enabled: true
-  Power: 1
+  Power: 2
+  VerticalPower: 1
   Material: REDSTONE_BLOCK
   PressurePlate:
     Required: false

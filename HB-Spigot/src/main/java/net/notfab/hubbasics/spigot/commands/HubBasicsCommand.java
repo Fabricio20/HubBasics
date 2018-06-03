@@ -39,6 +39,8 @@ public class HubBasicsCommand extends Command {
                 // Perform reload
                 HubBasics.getModuleManager().onDisable();
                 HubBasics.getConfigManager().reload();
+                HubBasics.getItemManager().onDisable();
+                HubBasics.getItemManager().onEnable();
                 HubBasics.getModuleManager().onEnable();
                 HubBasics.getMessenger().send(player, Messages.get(player, "PLUGIN_RELOADED"));
             } else if(args[0].equalsIgnoreCase("update")) {

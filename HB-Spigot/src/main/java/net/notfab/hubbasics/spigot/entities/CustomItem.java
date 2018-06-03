@@ -73,7 +73,6 @@ public class CustomItem {
         this.description.forEach(text -> lore.add(PlaceHolderUtil.replace(player, text)));
         meta.setLore(lore);
 
-        meta.setUnbreakable(this.unbreakable);
         this.enchantments.forEach((enchantment, level) -> meta.addEnchant(enchantment, level, true));
         this.itemFlags.forEach(meta::addItemFlags);
 
@@ -83,6 +82,7 @@ public class CustomItem {
 
         NBTItem item = new NBTItem(stack);
         item.setString("HubBasics", this.getId());
+        item.setBoolean("Unbreakable", this.unbreakable); // 1.10 Hack
 
         return item.getItem();
     }

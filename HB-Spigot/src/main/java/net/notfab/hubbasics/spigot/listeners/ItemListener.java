@@ -33,7 +33,7 @@ public class ItemListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onItemMove(InventoryClickEvent event) {
         ItemStack currentItem = event.getCurrentItem();
-        if(currentItem == null) return;
+        if(currentItem == null || currentItem.getType() == Material.AIR) return;
         NBTItem nbtItem = new NBTItem(currentItem);
         if(!nbtItem.hasKey("HubBasics")) return;
 
@@ -52,6 +52,7 @@ public class ItemListener implements Listener {
     @EventHandler
     public void onItemDrop(PlayerDropItemEvent event) {
         ItemStack currentItem = event.getItemDrop().getItemStack();
+        if(currentItem == null || currentItem.getType() == Material.AIR) return;
         NBTItem nbtItem = new NBTItem(currentItem);
         if(!nbtItem.hasKey("HubBasics")) return;
 

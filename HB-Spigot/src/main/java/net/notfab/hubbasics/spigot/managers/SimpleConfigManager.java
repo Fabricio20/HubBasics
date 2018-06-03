@@ -173,12 +173,10 @@ public class SimpleConfigManager {
     public void scan(String filePath) {
         File file = new File(plugin.getDataFolder(), filePath);
         if (!file.exists()) return;
-        Scanner scanner = null;
         int lineNumber = 0;
         String line;
 
-        try {
-            scanner = new Scanner(file);
+        try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 lineNumber++;
@@ -191,8 +189,6 @@ public class SimpleConfigManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (scanner != null) scanner.close();
         }
     }
 
@@ -291,7 +287,7 @@ public class SimpleConfigManager {
         if (!file.exists()) return;
         try {
             String currentLine;
-            StringBuilder config = new StringBuilder("");
+            StringBuilder config = new StringBuilder();
             BufferedReader reader = new BufferedReader(new FileReader(file));
             while ((currentLine = reader.readLine()) != null) {
                 config.append(currentLine).append("\n");
@@ -338,7 +334,7 @@ public class SimpleConfigManager {
             String addLine;
             String currentLine;
             String pluginName = this.getPluginName();
-            StringBuilder whole = new StringBuilder("");
+            StringBuilder whole = new StringBuilder();
             BufferedReader reader = new BufferedReader(new FileReader(file));
             while ((currentLine = reader.readLine()) != null) {
                 if (currentLine.startsWith("#")) {
@@ -400,7 +396,7 @@ public class SimpleConfigManager {
         int lastLine = 0;
         int headerLine = 0;
         String[] lines = configString.split("\n");
-        StringBuilder config = new StringBuilder("");
+        StringBuilder config = new StringBuilder();
         for (String line : lines) {
             if (line.startsWith(this.getPluginName() + "_COMMENT")) {
                 String comment = "#"

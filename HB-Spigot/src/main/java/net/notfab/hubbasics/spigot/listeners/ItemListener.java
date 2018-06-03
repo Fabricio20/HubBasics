@@ -73,7 +73,7 @@ public class ItemListener implements Listener {
         ItemStack offHand = event.getPlayer().getInventory().getItemInOffHand();
         if(offHand != null) items.add(offHand);
 
-        items.forEach(itemStack -> {
+        items.stream().filter(item -> item.getType() != Material.AIR).forEach(itemStack -> {
             NBTItem nbtItem = new NBTItem(itemStack);
             if(!nbtItem.hasKey("HubBasics")) return;
 
@@ -102,7 +102,7 @@ public class ItemListener implements Listener {
         ItemStack offHand = event.getPlayer().getInventory().getItemInOffHand();
         if(offHand != null) items.add(offHand);
 
-        items.forEach(itemStack -> {
+        items.stream().filter(item -> item.getType() != Material.AIR).forEach(itemStack -> {
             NBTItem nbtItem = new NBTItem(itemStack);
             if(!nbtItem.hasKey("HubBasics")) return;
 

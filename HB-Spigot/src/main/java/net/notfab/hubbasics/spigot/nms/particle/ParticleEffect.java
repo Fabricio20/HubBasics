@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <b>ParticleEffect Library</b>
@@ -1402,7 +1404,12 @@ public enum ParticleEffect {
                 return;
             }
             try {
-                version = Integer.parseInt(Character.toString(ParticleReflectionUtils.PackageType.getServerVersion().charAt(3)));
+                Pattern pattern = Pattern.compile("v(\\d)_(\\d{1,2})", Pattern.CASE_INSENSITIVE);
+                Matcher matcher = pattern.matcher(ParticleReflectionUtils.PackageType.getServerVersion());
+                if(!matcher.find()) {
+                    throw new VersionIncompatibleException("Your current bukkit version seems to be incompatible with this library", new IllegalArgumentException("Cannot parse version"));
+                }
+                version = Integer.parseInt(matcher.group(2));
                 if (version > 7) {
                     enumParticle = ParticleReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("EnumParticle");
                 }

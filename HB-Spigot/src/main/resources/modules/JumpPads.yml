@@ -24,5 +24,6 @@ world:
   PressurePlate:
     Required: false
     Type: GOLD_PLATE
+    NoBlockRequired: false
   Sound: BLOCK_ANVIL_LAND
   Effect: CLOUD

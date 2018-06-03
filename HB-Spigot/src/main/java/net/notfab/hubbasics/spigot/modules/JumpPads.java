@@ -26,6 +26,7 @@ public class JumpPads extends Module {
     private Map<String, Double> verticalPower = new HashMap<>();
     private Map<String, Boolean> requirePressurePlate = new HashMap<>();
     private Map<String, Material> plateTypes = new HashMap<>();
+    private Map<String, Boolean> noBlockRequired = new HashMap<>();
     private Map<String, Sound> soundMap = new HashMap<>();
     private Map<String, ParticleEffect> effectMap = new HashMap<>();
 
@@ -70,6 +71,7 @@ public class JumpPads extends Module {
                     plateTypes.put(world.getName(), material);
                 }
                 requirePressurePlate.put(world.getName(), pp.getBoolean("Required", false));
+                noBlockRequired.put(world.getName(), pp.getBoolean("NoBlockRequired", false));
             }
             if(section.contains("Sound") && section.isString("Sound")) {
                 Sound sound;
@@ -97,6 +99,7 @@ public class JumpPads extends Module {
         this.verticalPower.clear();
         this.requirePressurePlate.clear();
         this.plateTypes.clear();
+        this.noBlockRequired.clear();
     }
 
     private Double getPower(Player player) {
@@ -119,6 +122,10 @@ public class JumpPads extends Module {
         return this.plateTypes.getOrDefault(player.getWorld().getName(), Material.GOLD_PLATE);
     }
 
+    private boolean isBlockRequired(Player player) {
+        return !this.noBlockRequired.getOrDefault(player.getWorld().getName(), false);
+    }
+
     private Sound getSound(Player player) {
         return this.soundMap.getOrDefault(player.getWorld().getName(), null);
     }
@@ -131,7 +138,7 @@ public class JumpPads extends Module {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if(needsPressurePlate(event.getPlayer())) return;
+        if(needsPressurePlate(event.getPlayer()) || !isBlockRequired(event.getPlayer())) return;
         Player player = event.getPlayer();
         if (!isEnabledInWorld(player.getWorld())) return;
         Location loc =  player.getLocation().subtract(0, 1, 0);
@@ -152,8 +159,12 @@ public class JumpPads extends Module {
         Player player = event.getPlayer();
         if(event.getAction() == Action.PHYSICAL && !event.isCancelled() && isEnabledInWorld(player.getWorld())) {
             if(event.getClickedBlock().getType() == getPlateType(player)) {
-                Location loc = event.getClickedBlock().getLocation().subtract(0, 1, 0);
-                if (loc.getWorld().getBlockAt(loc).getType() == getMaterial(player)) {
+                boolean apply = true;
+                if(isBlockRequired(player)) {
+                    Location loc = event.getClickedBlock().getLocation().subtract(0, 1, 0);
+                    apply = loc.getWorld().getBlockAt(loc).getType() == getMaterial(player);
+                }
+                if(apply) {
                     player.setVelocity(calculateVector(player));
                     if(getSound(player) != null) {
                         player.playSound(player.getLocation(), getSound(player), 1, 1);

@@ -23,7 +23,7 @@ world:
   Material: REDSTONE_BLOCK
   PressurePlate:
     Required: false
-    Type: GOLD_PLATE
+    Type: OAK_PRESSURE_PLATE
     NoBlockRequired: false
   Sound: BLOCK_ANVIL_LAND
   Effect: CLOUD

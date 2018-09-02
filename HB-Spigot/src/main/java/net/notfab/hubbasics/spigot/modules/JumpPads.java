@@ -119,7 +119,7 @@ public class JumpPads extends Module {
     }
 
     private Material getPlateType(Player player) {
-        return this.plateTypes.getOrDefault(player.getWorld().getName(), Material.GOLD_PLATE);
+        return this.plateTypes.getOrDefault(player.getWorld().getName(), null);
     }
 
     private boolean isBlockRequired(Player player) {

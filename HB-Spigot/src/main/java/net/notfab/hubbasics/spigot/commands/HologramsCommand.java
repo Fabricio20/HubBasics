@@ -10,8 +10,6 @@ import java.util.Set;
 
 public class HologramsCommand extends Command {
 
-    private Holograms holograms = Holograms.getInstance();
-
     public HologramsCommand() {
         super("hb-holo");
         // -- Perms
@@ -27,7 +25,7 @@ public class HologramsCommand extends Command {
 
     @Override
     protected void execute(Player player, String[] args) {
-        if(holograms == null) {
+        if(Holograms.getInstance() == null) {
             HubBasics.getMessenger().send(player, "MODULE_NOT_ENABLED");
             return;
         }
@@ -40,7 +38,7 @@ public class HologramsCommand extends Command {
                         HubBasics.getMessenger().send(player, getHelp());
                     } else {
                         String text = ChatColor.translateAlternateColorCodes('&', argsToString(args, 1));
-                        String id = this.holograms.createHologram(player.getLocation(), text) + "";
+                        String id = Holograms.getInstance().createHologram(player.getLocation(), text) + "";
                         String holoID = ChatColor.DARK_GREEN + id + ChatColor.GREEN;
                         HubBasics.getMessenger().send(player, Messages.get(player, "HOLOGRAM_CREATED", holoID));
                     }
@@ -53,10 +51,10 @@ public class HologramsCommand extends Command {
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
-                        if (!this.holograms.hologramExists(index)) {
+                        if (!Holograms.getInstance().hologramExists(index)) {
                             HubBasics.getMessenger().send(player, "HOLOGRAM_DOES_NOT_EXIST");
                         } else {
-                            this.holograms.resetLines(index);
+                            Holograms.getInstance().resetLines(index);
                             String holoID = ChatColor.DARK_GREEN + "" + index + ChatColor.GREEN;
                             HubBasics.getMessenger().send(player, Messages.get(player, "HOLOGRAM_RESET", holoID));
                         }
@@ -70,10 +68,10 @@ public class HologramsCommand extends Command {
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
-                        if (!this.holograms.hologramExists(index)) {
+                        if (!Holograms.getInstance().hologramExists(index)) {
                             HubBasics.getMessenger().send(player, "HOLOGRAM_DOES_NOT_EXIST");
                         } else {
-                            this.holograms.addLines(index, ChatColor.translateAlternateColorCodes('&', argsToString(args, 2)));
+                            Holograms.getInstance().addLines(index, ChatColor.translateAlternateColorCodes('&', argsToString(args, 2)));
                             String holoID = ChatColor.DARK_GREEN + "" + index + ChatColor.GREEN;
                             HubBasics.getMessenger().send(player, "HOLOGRAM_ADDED_LINE", holoID);
                         }
@@ -87,17 +85,17 @@ public class HologramsCommand extends Command {
                     } else {
                         Integer index = Integer.parseInt(args[1]);
 
-                        if (!this.holograms.hologramExists(index)) {
+                        if (!Holograms.getInstance().hologramExists(index)) {
                             HubBasics.getMessenger().send(player, "HOLOGRAM_DOES_NOT_EXIST");
                         } else {
-                            this.holograms.deleteHologram(index);
+                            Holograms.getInstance().deleteHologram(index);
                             String holoID = ChatColor.DARK_GREEN + "" + index + ChatColor.GREEN;
                             HubBasics.getMessenger().send(player, "HOLOGRAM_DELETED", holoID);
                         }
                     }
                     return;
                 case "LIST":
-                    Set<Integer> ids = this.holograms.getHolograms();
+                    Set<Integer> ids = Holograms.getInstance().getHolograms();
                     StringBuilder builder = new StringBuilder();
                     for (int id : ids) builder.append(ChatColor.GREEN).append(", ").append(ChatColor.DARK_GREEN).append(id);
                     String list = builder.toString()

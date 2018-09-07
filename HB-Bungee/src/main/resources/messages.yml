@@ -11,3 +11,4 @@
 # ------------------------------------------------------------------------------------------------------------------- #
 LOBBY_ALREADY_CONNECTED: '&cYou are already connected to the lobby.'
 COMMAND_PLAYER: '&cThis command can only be ran by players.'
+LOBBY_NOT_DEFINED: '&cNo lobby defined, please define it in config.yml.'

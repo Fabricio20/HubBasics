@@ -29,6 +29,8 @@ public class LobbyCommand extends Command {
             } else {
                 player.sendMessage(new TextComponent(Messages.get(player, "LOBBY_ALREADY_CONNECTED")));
             }
+        } else if(commandSender instanceof ProxiedPlayer) {
+            commandSender.sendMessage(new TextComponent(Messages.get(commandSender, "LOBBY_NOT_DEFINED")));
         } else {
             commandSender.sendMessage(new TextComponent(Messages.get(commandSender, "COMMAND_PLAYER")));
         }

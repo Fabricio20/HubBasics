@@ -51,11 +51,19 @@ public class JumpPads extends Module {
                 }
                 worldMaterials.put(world.getName(), material);
             }
-            if (section.contains("Power") && section.isDouble("Power")) {
-                padPower.put(world.getName(), section.getDouble("Power"));
+            if (section.contains("Power")) {
+                if (section.isDouble("Power")) {
+                    padPower.put(world.getName(), section.getDouble("Power"));
+                } else {
+                    padPower.put(world.getName(), (double) section.getInt("Power"));
+                }
             }
-            if (section.contains("VerticalPower") && section.isDouble("VerticalPower")) {
-                verticalPower.put(world.getName(), section.getDouble("VerticalPower"));
+            if (section.contains("VerticalPower")) {
+                if (section.isDouble("VerticalPower")) {
+                    verticalPower.put(world.getName(), section.getDouble("VerticalPower"));
+                } else {
+                    verticalPower.put(world.getName(), (double) section.getInt("VerticalPower"));
+                }
             }
             if (section.contains("PressurePlate")) {
                 ConfigurationSection pp = section.getConfigurationSection("PressurePlate");

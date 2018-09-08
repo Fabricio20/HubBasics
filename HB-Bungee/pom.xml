@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <build.date>180908</build.date>
+        <build.date>180909</build.date>
     </properties>
 
     <repositories>
@@ -42,7 +42,7 @@
     </dependencies>
 
     <build>
-        <finalName>HubBasics-Bungee-${parent.version}</finalName>
+        <finalName>HubBasics-Bungee</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

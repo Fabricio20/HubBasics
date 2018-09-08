@@ -26,7 +26,7 @@ public class HologramsCommand extends Command {
     @Override
     protected void execute(Player player, String[] args) {
         if(Holograms.getInstance() == null) {
-            HubBasics.getMessenger().send(player, "MODULE_NOT_ENABLED");
+            HubBasics.getMessenger().send(player, Messages.get(player, "MODULE_NOT_ENABLED"));
             return;
         }
         if (args.length == 0) {

@@ -81,7 +81,6 @@ public class CustomItem {
         stack.setItemMeta(meta);
         stack.setDurability(this.durability);
 
-
         NBTItem item = new NBTItem(stack);
         item.setString("HubBasics", this.getId());
         item.setBoolean("Unbreakable", this.unbreakable); // 1.10 Hack
@@ -120,8 +119,8 @@ public class CustomItem {
                     location.teleport(player);
             } else if(operator.equalsIgnoreCase("server")) {
                 ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF("Connect");
                 out.writeUTF(command);
-                out.writeUTF("pvp");
                 player.sendPluginMessage(HubBasics.getInstance(), "BungeeCord", out.toByteArray());
             } else if(operator.equalsIgnoreCase("open")) {
                 Menu menu = HubBasics.getInstance().getMenuManager().get(command);

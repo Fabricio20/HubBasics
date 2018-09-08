@@ -1,5 +1,7 @@
 package net.notfab.hubbasics.spigot.entities;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import lombok.Getter;
 import lombok.Setter;
 import net.notfab.hubbasics.spigot.HubBasics;
@@ -117,7 +119,10 @@ public class CustomItem {
                 else
                     location.teleport(player);
             } else if(operator.equalsIgnoreCase("server")) {
-                //TODO
+                ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF(command);
+                out.writeUTF("pvp");
+                player.sendPluginMessage(HubBasics.getInstance(), "BungeeCord", out.toByteArray());
             } else if(operator.equalsIgnoreCase("open")) {
                 Menu menu = HubBasics.getInstance().getMenuManager().get(command);
                 if(menu == null)

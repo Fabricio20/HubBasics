@@ -1,9 +1,9 @@
 package net.notfab.hubbasics.spigot.entities.npc;
 
 import lombok.Getter;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import net.notfab.spigot.simpleconfig.Section;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Location;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
@@ -46,17 +46,17 @@ public abstract class NPC {
     }
 
     public void saveYAML(SimpleConfig config) {
-        ConfigurationSection section = config.getConfigurationSection(this.uniqueId.toString());
+        Section section = config.getSection(this.uniqueId.toString());
         if(section == null) {
             config.createSection(this.uniqueId.toString());
-            section = config.getConfigurationSection(this.uniqueId.toString());
+            section = config.getSection(this.uniqueId.toString());
         }
         // --
-        ConfigurationSection finalSection = section;
+        Section finalSection = section;
         finalSection.set("Name", this.name);
         finalSection.set("EntityType", this.entityType.name());
         this.attributes.forEach(finalSection::set);
-        config.saveConfig();
+        config.save();
     }
 
 }

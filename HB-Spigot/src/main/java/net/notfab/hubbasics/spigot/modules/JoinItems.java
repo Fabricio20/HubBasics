@@ -4,7 +4,7 @@ import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerChangedWorldEvent;

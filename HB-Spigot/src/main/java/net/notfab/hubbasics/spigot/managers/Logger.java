@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Manager;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import org.slf4j.LoggerFactory;
 
 /**

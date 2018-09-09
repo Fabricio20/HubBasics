@@ -3,9 +3,9 @@ package net.notfab.hubbasics.spigot.modules;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.Bukkit;
 import org.bukkit.WeatherType;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
@@ -23,7 +23,7 @@ public class NoWeather extends Module {
     @Override
     public void onEnable() {
         Bukkit.getWorlds().forEach(world -> {
-            ConfigurationSection section = getConfig().getConfigurationSection(world.getName());
+            Section section = getConfig().getSection(world.getName());
             if(section == null) return;
             if(!section.getBoolean("Enabled", false)) return;
             WeatherType type;

@@ -1,17 +1,6 @@
 package net.notfab.hubbasics.spigot;
 
-import lombok.Getter;
-import net.notfab.hubbasics.spigot.entities.Metrics;
-import net.notfab.hubbasics.spigot.listeners.ItemListener;
-import net.notfab.hubbasics.spigot.managers.*;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
-import okhttp3.OkHttpClient;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.concurrent.TimeUnit;
-
-/**
+/*
  * Copyright (c) HubBasics 2018.
  * <p>
  * The contents of this project are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
@@ -22,6 +11,20 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * File Created by Fabricio20 on 13/12/2017.
  */
+
+import lombok.Getter;
+import net.notfab.hubbasics.spigot.entities.Metrics;
+import net.notfab.hubbasics.spigot.listeners.ItemListener;
+import net.notfab.hubbasics.spigot.managers.*;
+import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.spigot.simpleconfig.SimpleConfigManager;
+import net.notfab.spigot.simpleconfig.spigot.SpigotConfigManager;
+import okhttp3.OkHttpClient;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.concurrent.TimeUnit;
+
 public class HubBasics extends JavaPlugin {
 
     @Getter private static HubBasics instance;
@@ -29,6 +32,7 @@ public class HubBasics extends JavaPlugin {
     @Getter private Logger loggerManager;
     @Getter private TaskManager taskManager;
     @Getter private SimpleConfigManager configManager;
+    @Getter private ConfigHandler configHandler;
     @Getter private OkHttpClient httpClient;
     @Getter private Messenger messenger;
     @Getter private UpdateManager updateManager;
@@ -43,11 +47,11 @@ public class HubBasics extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-
         this.loggerManager = new Logger(null);
         this.taskManager = new TaskManager();
-        this.configManager = new SimpleConfigManager(this);
-        this.configManager.setupLogger();
+        this.configManager = new SpigotConfigManager(this);
+        this.configHandler = new ConfigHandler(this);
+        Bukkit.getPluginManager().registerEvents(this.configHandler, this);
         this.httpClient = new OkHttpClient.Builder()
                 .followSslRedirects(true)
                 .connectTimeout(3, TimeUnit.SECONDS)
@@ -62,7 +66,6 @@ public class HubBasics extends JavaPlugin {
         this.locationManager = new LocationManager();
         this.moduleManager = new ModuleManager();
 
-        Bukkit.getPluginManager().registerEvents(new ItemListener(), this);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 

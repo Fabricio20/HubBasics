@@ -4,12 +4,11 @@ import lombok.Getter;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -46,8 +45,8 @@ public class Holograms extends Module {
      * @return All holograms stored in file
      */
     public Set<Integer> getHolograms() {
-        if (file.getConfigurationSection("hologram") != null) {
-            return file.getConfigurationSection("hologram").getKeys(false)
+        if (file.getSection("hologram") != null) {
+            return file.getSection("hologram").getKeys()
                     .stream().map(Integer::parseInt)
                     .collect(Collectors.toSet());
         } else {
@@ -62,7 +61,7 @@ public class Holograms extends Module {
      * @return Exists
      */
     public boolean hologramExists(int hologram) {
-        return this.file.getConfigurationSection("hologram." + hologram) != null;
+        return this.file.getSection("hologram." + hologram) != null;
     }
 
     /**
@@ -74,7 +73,7 @@ public class Holograms extends Module {
      */
     public int createHologram(Location loc, String... lines) {
         int index = 0;
-        while (file.getConfigurationSection("hologram." + (index = index + 1)) != null) ;
+        while (file.getSection("hologram." + (index = index + 1)) != null) ;
 
         JSONObject object = new JSONObject();
         object.put("x", loc.getX());
@@ -85,7 +84,7 @@ public class Holograms extends Module {
 
         JSONArray array = spawnLines(loc, lines);
         file.set("hologram." + index + ".lines", array.toString());
-        file.saveConfig();
+        file.save();
         return index;
     }
 
@@ -97,7 +96,7 @@ public class Holograms extends Module {
     public void deleteHologram(int hologram) {
         deleteSpawnedLines(hologram);
         file.set("hologram." + hologram, null);
-        file.saveConfig();
+        file.save();
     }
 
     /**
@@ -157,7 +156,7 @@ public class Holograms extends Module {
 
         deleteSpawnedLines(hologram);
         file.set("hologram." + hologram + ".lines", spawnLines(getLocation(hologram), strings).toString());
-        file.saveConfig();
+        file.save();
     }
 
     private JSONArray spawnLines(Location loc, String[] lines) {
@@ -206,7 +205,7 @@ public class Holograms extends Module {
         deleteSpawnedLines(hologram);
         JSONArray array = new JSONArray();
         file.set("hologram." + hologram + ".lines", array.toString());
-        file.saveConfig();
+        file.save();
     }
 
 }

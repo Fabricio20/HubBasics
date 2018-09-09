@@ -4,12 +4,12 @@ import net.notfab.hubbasics.spigot.entities.BossBarMessage;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -35,14 +35,14 @@ public class BossAnnouncer extends Module {
     @Override
     public void onEnable() {
         Bukkit.getWorlds().forEach(world -> {
-            ConfigurationSection section = getConfig().getConfigurationSection(world.getName());
+            Section section = getConfig().getSection(world.getName());
             if(section == null) return;
             if(!section.getBoolean("Enabled", false)) return;
             if(!section.contains("Messages")) return;
             List<BossBarMessage> messages = new ArrayList<>();
-            ConfigurationSection msgsSection = section.getConfigurationSection("Messages");
-            msgsSection.getKeys(false).forEach(key -> {
-                ConfigurationSection sx = msgsSection.getConfigurationSection(key);
+            Section msgsSection = section.getSection("Messages");
+            msgsSection.getKeys().forEach(key -> {
+                Section sx = msgsSection.getSection(key);
                 if(sx == null) return;
                 String message = sx.getString("Message", null);
                 if(message == null) return;

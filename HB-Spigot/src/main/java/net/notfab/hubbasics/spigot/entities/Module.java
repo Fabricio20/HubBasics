@@ -3,9 +3,9 @@ package net.notfab.hubbasics.spigot.entities;
 import lombok.Getter;
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.managers.Logger;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import net.notfab.spigot.simpleconfig.Section;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.Listener;
 
 /**
@@ -40,12 +40,12 @@ public abstract class Module implements Listener {
         return HubBasics.getConfigManager().getNewConfig("modules/" + this.module.name() + ".yml");
     }
 
-    public ConfigurationSection getWorldConfiguration(String world) {
-        return getConfig().contains(world.toLowerCase()) ? getConfig().getConfigurationSection(world.toLowerCase()) : null;
+    public Section getWorldConfiguration(String world) {
+        return getConfig().contains(world.toLowerCase()) ? getConfig().getSection(world.toLowerCase()) : null;
     }
 
     public boolean isEnabledInWorld(World world) {
-        ConfigurationSection section = getWorldConfiguration(world.getName());
+        Section section = getWorldConfiguration(world.getName());
         return getConfig().getBoolean("Enabled", true) && (section != null && section.getBoolean("Enabled", false));
     }
 

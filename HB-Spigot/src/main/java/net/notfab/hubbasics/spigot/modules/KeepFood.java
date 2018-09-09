@@ -3,10 +3,8 @@ package net.notfab.hubbasics.spigot.modules;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.World;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 
@@ -29,7 +27,7 @@ public class KeepFood extends Module {
     @EventHandler
     public void onFoodChange(FoodLevelChangeEvent event) {
         World world = event.getEntity().getWorld();
-        ConfigurationSection worldConfiguration = getWorldConfiguration(world.getName());
+        Section worldConfiguration = getWorldConfiguration(world.getName());
         if(worldConfiguration != null && worldConfiguration.getBoolean("Enabled", false)) {
             int food = worldConfiguration.getInt("Food", 20);
             if(food > 0 && food <= 20)

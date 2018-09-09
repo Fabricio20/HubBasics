@@ -38,7 +38,7 @@ public class HubBasicsCommand extends Command {
             if(args[0].equalsIgnoreCase("reload")) {
                 // Perform reload
                 HubBasics.getModuleManager().onDisable();
-                HubBasics.getConfigManager().reload();
+                HubBasics.getConfigManager().onDisable();
                 HubBasics.getItemManager().onDisable();
                 HubBasics.getItemManager().onEnable();
                 HubBasics.getModuleManager().onEnable();

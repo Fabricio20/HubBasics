@@ -1,7 +1,7 @@
 package net.notfab.hubbasics.spigot.utils;
 
 import net.notfab.hubbasics.spigot.HubBasics;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

@@ -5,9 +5,8 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-import net.notfab.hubbasics.bungee.HubBasics;
-import net.notfab.hubbasics.bungee.entities.SimpleConfig;
 import net.notfab.hubbasics.bungee.utils.Messages;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 
 import java.util.List;
 

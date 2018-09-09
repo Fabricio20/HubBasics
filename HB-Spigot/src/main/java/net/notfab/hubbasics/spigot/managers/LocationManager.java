@@ -3,8 +3,8 @@ package net.notfab.hubbasics.spigot.managers;
 import net.notfab.hubbasics.spigot.entities.HLocation;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.entities.Result;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import net.notfab.hubbasics.spigot.utils.Messages;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -93,7 +93,7 @@ public class LocationManager extends Manager {
         config.set("Z", location.getZ());
         config.set("Yaw", location.getYaw());
         config.set("Pitch", location.getPitch());
-        config.saveConfig();
+        config.save();
         this.locationMap.put(name, new HLocation(name, location));
         return new Result(new HLocation(name, location));
     }

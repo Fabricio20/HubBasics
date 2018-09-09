@@ -49,7 +49,7 @@ public class ItemListener implements Listener {
             event.setCancelled(true); // Call setCancelled only when needed to not conflict with other plugins
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onItemDrop(PlayerDropItemEvent event) {
         ItemStack currentItem = event.getItemDrop().getItemStack();
         if(currentItem == null || currentItem.getType() == Material.AIR) return;
@@ -65,7 +65,7 @@ public class ItemListener implements Listener {
             event.setCancelled(true); // Call setCancelled only when needed to not conflict with other plugins
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onLeftClick(PlayerInteractEvent event) {
         if(!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)) return;
         List<ItemStack> items = new ArrayList<>();
@@ -94,7 +94,7 @@ public class ItemListener implements Listener {
         });
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onRightClick(PlayerInteractEvent event) {
         if(!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
         List<ItemStack> items = new ArrayList<>();

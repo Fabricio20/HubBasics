@@ -4,8 +4,8 @@ import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.HLocation;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,7 +32,7 @@ public class AntiVoid extends Module {
         World world = event.getEntity().getWorld();
         if(event.getCause() != EntityDamageEvent.DamageCause.VOID) return;
         if(event.getEntityType() != EntityType.PLAYER) return;
-        ConfigurationSection worldConfiguration = getWorldConfiguration(world.getName());
+        Section worldConfiguration = getWorldConfiguration(world.getName());
         if(worldConfiguration != null && worldConfiguration.getBoolean("Enabled", false)) {
             HLocation location = HubBasics.getLocationManager().get(worldConfiguration.getString("Warp", null));
             if(location == null) {

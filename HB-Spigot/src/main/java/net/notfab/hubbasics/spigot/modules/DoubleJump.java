@@ -4,11 +4,10 @@ import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
+import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -49,7 +48,7 @@ public class DoubleJump extends Module {
         if(player.getGameMode() == GameMode.CREATIVE) return;
         if(!isEnabledInWorld(player.getWorld())) return;
 
-        ConfigurationSection section = getWorldConfiguration(player.getWorld().getName());
+        Section section = getWorldConfiguration(player.getWorld().getName());
 
         event.setCancelled(true);
         player.setAllowFlight(false);

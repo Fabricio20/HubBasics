@@ -3,9 +3,9 @@ package net.notfab.hubbasics.spigot.modules;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,7 +31,7 @@ public class KeepHealth extends Module {
     public void onDamage(EntityDamageEvent event) {
         if(event.getEntityType() != EntityType.PLAYER) return;
         World world = event.getEntity().getWorld();
-        ConfigurationSection worldConfiguration = getWorldConfiguration(world.getName());
+        Section worldConfiguration = getWorldConfiguration(world.getName());
         if(worldConfiguration != null && worldConfiguration.getBoolean("Enabled", false)) {
             double maxHealth = getWorldConfiguration(world.getName()).getDouble("MaxHealth", 20.0);
             double health = getWorldConfiguration(world.getName()).getDouble("Health", 20.0);

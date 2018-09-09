@@ -5,8 +5,8 @@ import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
 import net.notfab.hubbasics.spigot.utils.ParticleEffect;
+import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.*;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
@@ -37,7 +37,7 @@ public class JumpPads extends Module {
     @Override
     public void onEnable() {
         Bukkit.getWorlds().forEach(world -> {
-            ConfigurationSection section = getConfig().getConfigurationSection(world.getName());
+            Section section = getConfig().getSection(world.getName());
             if (section == null) return;
             if (!section.getBoolean("Enabled", false)) return;
 
@@ -52,26 +52,26 @@ public class JumpPads extends Module {
                 worldMaterials.put(world.getName(), material);
             }
             if (section.contains("Power")) {
-                if (section.isDouble("Power")) {
+                if (section.get("Power") instanceof Double) {
                     padPower.put(world.getName(), section.getDouble("Power"));
                 } else {
                     padPower.put(world.getName(), (double) section.getInt("Power"));
                 }
             }
             if (section.contains("VerticalPower")) {
-                if (section.isDouble("VerticalPower")) {
+                if (section.get("VerticalPower") instanceof Double) {
                     verticalPower.put(world.getName(), section.getDouble("VerticalPower"));
                 } else {
                     verticalPower.put(world.getName(), (double) section.getInt("VerticalPower"));
                 }
             }
             if (section.contains("PressurePlate")) {
-                ConfigurationSection pp = section.getConfigurationSection("PressurePlate");
+                Section pp = section.getSection("PressurePlate");
                 if (pp == null) return;
                 if (pp.contains("Type")) {
                     Material material;
                     try {
-                        material = Material.getMaterial(pp.getString("Type"));
+                        material = FinderUtil.findMaterial(pp.getString("Type"));
                     } catch (IllegalArgumentException ex) {
                         Logger.warn("Invalid Material for pad plate", ex);
                         return;
@@ -81,7 +81,7 @@ public class JumpPads extends Module {
                 requirePressurePlate.put(world.getName(), pp.getBoolean("Required", false));
                 noBlockRequired.put(world.getName(), pp.getBoolean("NoBlockRequired", false));
             }
-            if (section.contains("Sound") && section.isString("Sound")) {
+            if (section.contains("Sound") && (section.get("Sound") instanceof String)) {
                 Sound sound;
                 try {
                     sound = Sound.valueOf(section.getString("Sound"));
@@ -91,7 +91,7 @@ public class JumpPads extends Module {
                 }
                 soundMap.put(world.getName(), sound);
             }
-            if (section.contains("Effect") && section.isString("Effect")) {
+            if (section.contains("Effect") && (section.get("Effect") instanceof String)) {
                 Particle particle = FinderUtil.findParticle(section.getString("Effect"));
                 if (particle != null) {
                     effectMap.put(world.getName(), particle);

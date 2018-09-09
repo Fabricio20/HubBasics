@@ -4,7 +4,8 @@ import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.notfab.hubbasics.bungee.commands.LobbyCommand;
 import net.notfab.hubbasics.bungee.managers.Logger;
-import net.notfab.hubbasics.bungee.managers.SimpleConfigManager;
+import net.notfab.spigot.simpleconfig.SimpleConfigManager;
+import net.notfab.spigot.simpleconfig.bungee.BungeeConfigManager;
 
 public class HubBasics extends Plugin {
 
@@ -16,7 +17,7 @@ public class HubBasics extends Plugin {
     public void onEnable() {
         Instance = this;
         this.loggerManager = new Logger(null);
-        this.configManager = new SimpleConfigManager(this);
+        this.configManager = new BungeeConfigManager(this);
         getProxy().getPluginManager().registerCommand(this, new LobbyCommand());
     }
 

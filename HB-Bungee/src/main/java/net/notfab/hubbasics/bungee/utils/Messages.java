@@ -5,7 +5,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.notfab.hubbasics.bungee.HubBasics;
-import net.notfab.hubbasics.bungee.entities.SimpleConfig;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 
 /**
  * Copyright (c) HubBasics 2018.

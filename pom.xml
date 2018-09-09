@@ -17,8 +17,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <build.date>180909</build.date>
+        <build.date>180910</build.date>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>NotFab (Hosted)</id>
+            <url>https://maven.notfab.net/Hosted</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- Jedis API -->
@@ -62,6 +69,13 @@
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>3.10.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- SimpleConfig -->
+        <dependency>
+            <groupId>net.notfab.spigot</groupId>
+            <artifactId>SimpleConfig</artifactId>
+            <version>1.3.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

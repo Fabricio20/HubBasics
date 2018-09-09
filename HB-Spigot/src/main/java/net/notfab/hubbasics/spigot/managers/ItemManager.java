@@ -2,13 +2,18 @@ package net.notfab.hubbasics.spigot.managers;
 
 import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.Manager;
+import net.notfab.hubbasics.spigot.listeners.ItemListener;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import net.notfab.hubbasics.spigot.entities.Result;
-import net.notfab.hubbasics.spigot.objects.SimpleConfig;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 
 import java.io.File;
@@ -28,6 +33,7 @@ import java.util.*;
 public class ItemManager extends Manager {
 
     private Map<String, CustomItem> items = new HashMap<>();
+    private ItemListener itemListener = new ItemListener();
 
     public ItemManager() {
         this.onEnable();
@@ -36,10 +42,14 @@ public class ItemManager extends Manager {
     @Override
     public void onDisable() {
         this.items.clear();
+        InventoryClickEvent.getHandlerList().unregister(itemListener);
+        PlayerDropItemEvent.getHandlerList().unregister(itemListener);
+        PlayerInteractEvent.getHandlerList().unregister(itemListener);
     }
 
     public void onEnable() {
         this.items.clear();
+        Bukkit.getPluginManager().registerEvents(this.itemListener, HubBasics);
         File folder = new File(HubBasics.getDataFolder(), "items/");
         if(!folder.exists()) return;
         File[] listFiles = folder.listFiles();

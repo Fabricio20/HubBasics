@@ -1,5 +1,7 @@
 # HubBasics
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d7256999ec854b8b928f0e4deef6e929)](https://app.codacy.com/app/Fabricio20/HubBasics?utm_source=github.com&utm_medium=referral&utm_content=Fabricio20/HubBasics&utm_campaign=Badge_Grade_Settings)
+
 As the name suggests, this plugin is intended for hubs. It gives you the settings and options you as a server owner might desire, and
 a few more. Having a million different plugins just for one of their features not only makes your server a complete mess of different
 message formats and duplicate features, it makes your server slower. HubBasics has taken all these features and moshed them together

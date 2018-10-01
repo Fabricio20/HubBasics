@@ -5,7 +5,7 @@ a few more. Having a million different plugins just for one of their features no
 message formats and duplicate features, it makes your server slower. HubBasics has taken all these features and moshed them together
 into 1 plugin.
 
-A complete rewrite is in progress, and will be released soon as version 7.0. You can find the spigot page for HubBasics [HERE](https://www.spigotmc.org/resources/hubbasics.2654/) 
+The rewrite ha sbeen completed as of Oct 1st, 2018. The rewrite  branch has been force-pushed to master. 
 
 ##### Copyright (c) 2017-2018.
 

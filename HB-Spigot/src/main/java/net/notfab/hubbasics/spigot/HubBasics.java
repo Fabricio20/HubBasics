@@ -66,7 +66,7 @@ public class HubBasics extends JavaPlugin {
         this.locationManager = new LocationManager();
         this.moduleManager = new ModuleManager();
 
-		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
     @Override

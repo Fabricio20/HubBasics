@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <build.date>180910</build.date>
+        <build.date>181024</build.date>
     </properties>
 
     <repositories>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.8</version>
+            <version>1.2.3</version>
             <scope>compile</scope>
         </dependency>
         <!-- Manifests -->
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>net.notfab.spigot</groupId>
             <artifactId>SimpleConfig</artifactId>
-            <version>1.3.2</version>
+            <version>1.4.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

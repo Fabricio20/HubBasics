@@ -29,6 +29,7 @@ public class ModuleManager extends Manager {
         this.modules.put(EnumModules.Holograms, new Holograms());
         this.modules.put(EnumModules.JumpPads, new JumpPads());
         this.modules.put(EnumModules.JoinMessages, new JoinMessages());
+        this.modules.put(EnumModules.Lobby, new Lobby());
         this.onEnable();
     }
 

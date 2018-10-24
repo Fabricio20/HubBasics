@@ -1,8 +1,6 @@
 package net.notfab.hubbasics.spigot.utils;
 
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 
 import java.util.ArrayList;
@@ -141,6 +139,36 @@ public class FinderUtil {
         if (!startswith.isEmpty())
             return startswith;
         return contains;
+    }
+
+    public static List<World> findWorlds(String rawQuery) {
+        List<World> exact = new ArrayList<>();
+        List<World> wrongcase = new ArrayList<>();
+        List<World> startswith = new ArrayList<>();
+        List<World> contains = new ArrayList<>();
+        Bukkit.getWorlds().forEach(world -> {
+            String name = world.getName();
+            if (name.equals(rawQuery))
+                exact.add(world);
+            else if (name.equalsIgnoreCase(rawQuery) && exact.isEmpty())
+                wrongcase.add(world);
+            else if (name.toLowerCase().startsWith(rawQuery.toLowerCase()) && wrongcase.isEmpty())
+                startswith.add(world);
+            else if (name.toLowerCase().contains(rawQuery) && startswith.isEmpty())
+                contains.add(world);
+        });
+        if (!exact.isEmpty())
+            return exact;
+        if (!wrongcase.isEmpty())
+            return wrongcase;
+        if (!startswith.isEmpty())
+            return startswith;
+        return contains;
+    }
+
+    public static World findWorld(String rawQuery) {
+        List<World> found = findWorlds(rawQuery);
+        return found.isEmpty() ? null : found.get(0);
     }
 
 }

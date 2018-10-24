@@ -2,8 +2,12 @@ package net.notfab.hubbasics.spigot.commands;
 
 import net.notfab.hubbasics.spigot.entities.Command;
 import net.notfab.hubbasics.spigot.entities.CustomItem;
+import net.notfab.hubbasics.spigot.entities.EnumModules;
+import net.notfab.hubbasics.spigot.modules.Lobby;
 import net.notfab.hubbasics.spigot.utils.Messages;
+import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 /**
@@ -27,6 +31,7 @@ public class HubBasicsCommand extends Command {
         this.setDescription("HubBasics' main command");
         this.addUsage("/hb &areload", "Reloads the plugin");
         this.addUsage("/hb &aupdate", "Checks for updates");
+        this.addUsage("/hb &asethub", "Defines the new hub location");
         this.addUsage("/hb &aitem &e<name>", "Spawns the item with the given name");
     }
 
@@ -62,6 +67,18 @@ public class HubBasicsCommand extends Command {
                                 HubBasics.getMessenger().send(p, "&9[&aHubBasics&9] &eNo updates found.");
                             });
                 }
+            } else if(args[0].equalsIgnoreCase("sethub")) {
+                SimpleConfig config = HubBasics.getConfigManager().getNewConfig("modules/Lobby.yml");
+                Location location = player.getLocation();
+                config.set("Location.World", location.getWorld().getName());
+                config.set("Location.X", location.getX());
+                config.set("Location.Y", location.getY());
+                config.set("Location.Z", location.getZ());
+                config.set("Location.Yaw", location.getYaw());
+                config.set("Location.Pitch", location.getPitch());
+                config.save();
+                ((Lobby) HubBasics.getModuleManager().getModule(EnumModules.Lobby)).reloadLocation(config);
+                HubBasics.getMessenger().send(player, Messages.get(player, "LOBBY_DEFINED"));
             } else {
                 HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));
             }

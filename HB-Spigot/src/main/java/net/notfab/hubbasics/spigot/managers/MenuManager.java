@@ -42,15 +42,15 @@ public class MenuManager extends Manager {
     public void onEnable() {
         this.menuMap.clear();
         File folder = new File(HubBasics.getDataFolder(), "menus/");
-        if(!folder.exists()) return;
+        if (!folder.exists()) return;
         File[] listFiles = folder.listFiles();
-        if(listFiles == null) return;
+        if (listFiles == null) return;
         List<File> files = Arrays.asList(listFiles);
         files.forEach(file -> {
             SimpleConfig config = HubBasics.getConfigManager().getNewConfig("menus/" + file.getName());
             Result result = this.read(config);
-            if(!result.isSuccess()) {
-                Logger.warn("[MenuManager] Error while loading menu: " + Messages.get(result.getExtra(0)));
+            if (!result.isSuccess()) {
+                Logger.warn("[MenuManager] Error while loading menu: " + config.getName() + " - " + Messages.get(result.getExtra(0)));
             } else {
                 Menu menu = result.getExtra(0);
                 this.menuMap.put(menu.getId(), menu);
@@ -71,42 +71,42 @@ public class MenuManager extends Manager {
 
     private Result read(SimpleConfig config) {
         Menu menu = new Menu(config.getName().replace(".yml", ""));
-        if(config.contains("Size")) {
+        if (config.contains("Size")) {
             int size = config.getInt("Size");
-            if(size <= 0 || size > 54 || (size % 9 != 0)) return new Result(false, "INVALID_SIZE");
+            if (size <= 0 || size > 54 || (size % 9 != 0)) return new Result(false, "INVALID_SIZE");
             menu.setSize(size);
         }
-        if(config.contains("Name")) {
+        if (config.contains("Name")) {
             menu.setName(ChatColor.translateAlternateColorCodes('&', config.getString("Name")));
         }
-        if(config.contains("Command")) {
+        if (config.contains("Command")) {
             HubBasics.getCommandFramework().register(new Command(config.getString("Command")) {
                 @Override
                 public void execute(CommandSender sender, String[] args) {
-                    if(sender instanceof ConsoleCommandSender) {
+                    if (sender instanceof ConsoleCommandSender) {
                         HubBasics.getMessenger().send(sender, Messages.get(sender, "COMMAND_NO_CONSOLE"));
                         return;
                     }
                     Player player = (Player) sender;
                     Menu m = HubBasics.getMenuManager().get(menu.getId());
-                    if(m != null)
+                    if (m != null)
                         m.open(player);
                     else
                         HubBasics.getMessenger().send(player, "Something happened while executing that HubBasics command.");
                 }
             });
         }
-        if(config.contains("Permission")) {
+        if (config.contains("Permission")) {
             menu.setPermission(config.getString("Permission"));
         }
-        if(config.contains("Sound")) {
+        if (config.contains("Sound")) {
             Sound sound = FinderUtil.findSound(config.getString("Sound"));
-            if(sound == null) return new Result(false, "INVALID_SOUND");
+            if (sound == null) return new Result(false, "INVALID_SOUND");
             menu.setSound(sound);
         }
-        if(config.contains("Items")) {
+        if (config.contains("Items")) {
             config.getStringList("Items").forEach(item -> {
-                if(HubBasics.getItemManager().get(item) == null) return;
+                if (HubBasics.getItemManager().get(item) == null) return;
                 menu.addItem(item);
             });
         }

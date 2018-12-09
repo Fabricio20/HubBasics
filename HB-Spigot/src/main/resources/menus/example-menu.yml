@@ -17,7 +17,7 @@ Permission: hubbasics.menu.example
 #
 # Sound to play when opening the menu.
 #
-Sound: BLOCK_NOTE_PLING
+Sound: BLOCK_NOTE_BLOCK_PLING
 #
 # List of items IDs (HubBasics)
 #

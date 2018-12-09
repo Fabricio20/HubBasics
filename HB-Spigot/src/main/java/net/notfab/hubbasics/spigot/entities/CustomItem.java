@@ -98,7 +98,7 @@ public class CustomItem {
             String command = rawCommand.contains(":") ? rawCommand.split(":")[1] : rawCommand;
             command = PlaceHolderUtil.replace(player, command);
             if(operator.equalsIgnoreCase("op")) {
-                Boolean op = player.isOp();
+                boolean op = player.isOp();
                 player.setOp(true);
                 try {
                     player.chat("/" + command);

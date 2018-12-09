@@ -44,61 +44,61 @@ public class Logger extends Manager {
     }
 
     public void trace(String msg) {
-        if(level.isGreaterOrEqual(Level.TRACE)) {
+        if (level.levelInt <= Level.TRACE.levelInt) {
             LOGGER.trace(this.prefix + msg);
         }
     }
 
     public void trace(String msg, Throwable t) {
-        if(level.isGreaterOrEqual(Level.TRACE)) {
+        if (level.levelInt <= Level.TRACE.levelInt) {
             LOGGER.trace(this.prefix + msg, t);
         }
     }
 
     public void debug(String msg) {
-        if(level.isGreaterOrEqual(Level.DEBUG)) {
+        if (level.levelInt <= Level.DEBUG.levelInt) {
             LOGGER.debug(this.prefix + msg);
         }
     }
 
     public void debug(String msg, Throwable t) {
-        if(level.isGreaterOrEqual(Level.DEBUG)) {
+        if (level.levelInt <= Level.DEBUG.levelInt) {
             LOGGER.debug(this.prefix + msg, t);
         }
     }
 
     public void info(String msg) {
-        if(level.isGreaterOrEqual(Level.INFO)) {
+        if (level.levelInt <= Level.INFO.levelInt) {
             LOGGER.info(this.prefix + msg);
         }
     }
 
     public void info(String msg, Throwable t) {
-        if(level.isGreaterOrEqual(Level.INFO)) {
+        if (level.levelInt <= Level.INFO.levelInt) {
             LOGGER.info(this.prefix + msg, t);
         }
     }
 
     public void warn(String msg) {
-        if(level.isGreaterOrEqual(Level.WARN)) {
+        if (level.levelInt <= Level.WARN.levelInt) {
             LOGGER.warn(this.prefix + msg);
         }
     }
 
     public void warn(String msg, Throwable t) {
-        if(level.isGreaterOrEqual(Level.WARN)) {
+        if (level.levelInt <= Level.WARN.levelInt) {
             LOGGER.warn(this.prefix + msg, t);
         }
     }
 
     public void error(String msg) {
-        if(level.isGreaterOrEqual(Level.ERROR)) {
+        if (level.levelInt <= Level.ERROR.levelInt) {
             LOGGER.error(this.prefix + msg);
         }
     }
 
     public void error(String msg, Throwable t) {
-        if(level.isGreaterOrEqual(Level.ERROR)) {
+        if (level.levelInt <= Level.ERROR.levelInt) {
             LOGGER.error(this.prefix + msg, t);
         }
     }

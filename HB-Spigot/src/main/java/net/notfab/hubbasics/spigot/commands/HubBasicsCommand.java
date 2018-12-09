@@ -4,6 +4,7 @@ import net.notfab.hubbasics.spigot.entities.Command;
 import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -27,22 +28,24 @@ public class HubBasicsCommand extends Command {
         this.setDescription("HubBasics' main command");
         this.addUsage("/hb &areload", "Reloads the plugin");
         this.addUsage("/hb &aupdate", "Checks for updates");
-        this.addUsage("/hb &aitem &e<name>", "Spawns the item with the given name");
+        this.addUsage("/hb &aitem &e<name>", "Spawns the item with the given name (Player Only)");
     }
 
     @Override
-    protected void execute(Player player, String[] args) {
+    protected void execute(CommandSender sender, String[] args) {
         if(args.length == 0) {
-            HubBasics.getMessenger().send(player, getHelp());
+            HubBasics.getMessenger().send(sender, getHelp());
         } else if(args.length == 1) {
             if(args[0].equalsIgnoreCase("reload")) {
-                // Perform reload
+                // Disable
                 HubBasics.getModuleManager().onDisable();
                 HubBasics.getConfigManager().onDisable();
                 HubBasics.getItemManager().onDisable();
+                // Enable
                 HubBasics.getItemManager().onEnable();
                 HubBasics.getModuleManager().onEnable();
-                HubBasics.getMessenger().send(player, Messages.get(player, "PLUGIN_RELOADED"));
+                // Message
+                HubBasics.getMessenger().send(sender, Messages.get(sender, "PLUGIN_RELOADED"));
             } else if(args[0].equalsIgnoreCase("update")) {
                 HubBasics.getUpdateManager().run();
                 if(HubBasics.getUpdateManager().isUpdateAvailable()) {
@@ -63,10 +66,11 @@ public class HubBasicsCommand extends Command {
                             });
                 }
             } else {
-                HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));
+                HubBasics.getMessenger().send(sender, Messages.get(sender, "UNKNOWN_SUBCOMMAND"));
             }
         } else if(args.length == 2) {
-            if(args[0].equalsIgnoreCase("item")) {
+            if(args[0].equalsIgnoreCase("item") && (sender instanceof Player)) {
+                Player player = (Player) sender;
                 String name = args[1];
                 CustomItem item = HubBasics.getItemManager().get(name);
                 if(item == null) {
@@ -75,7 +79,7 @@ public class HubBasicsCommand extends Command {
                 }
                 player.getInventory().addItem(item.toItemStack(player));
             } else {
-                HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));
+                HubBasics.getMessenger().send(sender, Messages.get(sender, "UNKNOWN_SUBCOMMAND"));
             }
         }
     }

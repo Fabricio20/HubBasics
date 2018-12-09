@@ -36,13 +36,13 @@ public class Command extends BukkitCommand {
     public Command(String... names) {
         super(names[0]);
         if(names.length > 1)
-            this.setAliases(Arrays.asList(names).subList(1, names.length - 1));
+            this.setAliases(Arrays.asList(names).subList(1, names.length));
         this.help.add(ChatColor.translateAlternateColorCodes('&', "&9=======[ Usage ]======="));
     }
 
     protected void execute(CommandSender sender, String[] args) {}
     protected void execute(Player player, String[] args) {}
-    protected void execute(ConsoleCommandSender ender, String[] args) {}
+    protected void execute(ConsoleCommandSender sender, String[] args) {}
 
     @Override
     public boolean execute(CommandSender sender, String name, String[] args) {

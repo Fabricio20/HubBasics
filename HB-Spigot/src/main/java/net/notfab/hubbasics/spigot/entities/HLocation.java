@@ -1,7 +1,10 @@
 package net.notfab.hubbasics.spigot.entities;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import lombok.Getter;
 import lombok.Setter;
+import net.notfab.hubbasics.spigot.HubBasics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -20,14 +23,34 @@ import org.bukkit.entity.Player;
  */
 public class HLocation {
 
-    @Getter private final String id;
-    @Getter @Setter private String server;
+    @Getter
+    private final String id;
+
+    @Getter
+    @Setter
+    private String server;
+
     private String world;
-    @Getter @Setter private Double X;
-    @Getter @Setter private Double Y;
-    @Getter @Setter private Double Z;
-    @Getter @Setter private Float Yaw;
-    @Getter @Setter private Float Pitch;
+
+    @Getter
+    @Setter
+    private Double X;
+
+    @Getter
+    @Setter
+    private Double Y;
+
+    @Getter
+    @Setter
+    private Double Z;
+
+    @Getter
+    @Setter
+    private Float Yaw;
+
+    @Getter
+    @Setter
+    private Float Pitch;
 
     public HLocation(String id) {
         this.id = id;
@@ -53,20 +76,23 @@ public class HLocation {
     }
 
     public void teleport(Player player) {
-        if(this.server != null) {
-            //TODO
+        if (this.server != null) {
+            ByteArrayDataOutput out = ByteStreams.newDataOutput();
+            out.writeUTF("Connect");
+            out.writeUTF(this.server);
+            player.sendPluginMessage(HubBasics.getInstance(), "BungeeCord", out.toByteArray());
         } else {
             player.teleport(this.toBukkitLocation());
         }
     }
 
     public Location toBukkitLocation() {
-        if(getWorld() == null) return Bukkit.getWorlds().get(0).getSpawnLocation();
-        Double X = (this.X == null) ? getWorld().getSpawnLocation().getX() : this.X;
-        Double Y = (this.Y == null) ? getWorld().getSpawnLocation().getY() : this.Y;
-        Double Z = (this.Z == null) ? getWorld().getSpawnLocation().getZ() : this.Z;
-        Float Yaw = (this.Yaw == null) ? getWorld().getSpawnLocation().getYaw() : this.Yaw;
-        Float Pitch = (this.Pitch == null) ? getWorld().getSpawnLocation().getPitch() : this.Pitch;
+        if (getWorld() == null) return Bukkit.getWorlds().get(0).getSpawnLocation();
+        double X = (this.X == null) ? getWorld().getSpawnLocation().getX() : this.X;
+        double Y = (this.Y == null) ? getWorld().getSpawnLocation().getY() : this.Y;
+        double Z = (this.Z == null) ? getWorld().getSpawnLocation().getZ() : this.Z;
+        float Yaw = (this.Yaw == null) ? getWorld().getSpawnLocation().getYaw() : this.Yaw;
+        float Pitch = (this.Pitch == null) ? getWorld().getSpawnLocation().getPitch() : this.Pitch;
         return new Location(getWorld(), X, Y, Z, Yaw, Pitch);
     }
 

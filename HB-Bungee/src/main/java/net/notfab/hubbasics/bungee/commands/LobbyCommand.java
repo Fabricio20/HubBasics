@@ -1,5 +1,7 @@
 package net.notfab.hubbasics.bungee.commands;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -26,7 +28,10 @@ public class LobbyCommand extends Command {
             if(!player.getServer().getInfo().getName().equals(serverInfo.getName())) {
                 player.connect(getLobby());
             } else {
-                player.sendMessage(new TextComponent(Messages.get(player, "LOBBY_ALREADY_CONNECTED")));
+                ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF("HubBasics");
+                out.writeUTF("Lobby");
+                player.sendData("BungeeCord", out.toByteArray());
             }
         } else if(commandSender instanceof ProxiedPlayer) {
             commandSender.sendMessage(new TextComponent(Messages.get(commandSender, "LOBBY_NOT_DEFINED")));
@@ -37,7 +42,7 @@ public class LobbyCommand extends Command {
 
     public ServerInfo getLobby() {
         SimpleConfig config = HubBasics.getConfigManager().getNewConfig("config.yml");
-        Boolean isList = config.get("Lobby") instanceof List;
+        boolean isList = config.get("Lobby") instanceof List;
         if(isList) {
             int lowest = Integer.MAX_VALUE -1;
             final ServerInfo[] serverInfo = {null};

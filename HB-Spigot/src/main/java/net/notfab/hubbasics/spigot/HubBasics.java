@@ -14,7 +14,7 @@ package net.notfab.hubbasics.spigot;
 
 import lombok.Getter;
 import net.notfab.hubbasics.spigot.entities.Metrics;
-import net.notfab.hubbasics.spigot.listeners.ItemListener;
+import net.notfab.hubbasics.spigot.listeners.BungeeListener;
 import net.notfab.hubbasics.spigot.managers.*;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
 import net.notfab.spigot.simpleconfig.SimpleConfigManager;
@@ -67,6 +67,7 @@ public class HubBasics extends JavaPlugin {
         this.moduleManager = new ModuleManager();
 
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+		getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new BungeeListener());
     }
 
     @Override

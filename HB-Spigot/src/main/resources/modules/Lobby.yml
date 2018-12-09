@@ -1,0 +1,14 @@
+#
+# Global, non-replaceable switch for this module.
+# !! DO NOT TOUCH Version !!
+# !! It's only used to keep track of changes between releases !!
+#
+Enabled: true
+Version: 1.0
+#
+# Lobby module configuration. (This one is NOT per world).
+#
+# If the player should be teleported upon login.
+TpOnLogin: false
+# Nname of the hubbasics warp (/hbwarp) the player will teleport to.
+Location: default

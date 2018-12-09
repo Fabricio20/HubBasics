@@ -1,9 +1,11 @@
 package net.notfab.hubbasics.spigot.utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -141,6 +143,36 @@ public class FinderUtil {
         if (!startswith.isEmpty())
             return startswith;
         return contains;
+    }
+
+    public static List<Player> findPlayers(String rawQuery) {
+        List<Player> exact = new ArrayList<>();
+        List<Player> wrongcase = new ArrayList<>();
+        List<Player> startswith = new ArrayList<>();
+        List<Player> contains = new ArrayList<>();
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            String name = player.getName();
+            if (name.equals(rawQuery))
+                exact.add(player);
+            else if (name.equalsIgnoreCase(rawQuery) && exact.isEmpty())
+                wrongcase.add(player);
+            else if (name.toLowerCase().startsWith(rawQuery.toLowerCase()) && wrongcase.isEmpty())
+                startswith.add(player);
+            else if (name.toLowerCase().contains(rawQuery) && startswith.isEmpty())
+                contains.add(player);
+        });
+        if (!exact.isEmpty())
+            return exact;
+        if (!wrongcase.isEmpty())
+            return wrongcase;
+        if (!startswith.isEmpty())
+            return startswith;
+        return contains;
+    }
+
+    public static Player findPlayer(String rawQuery) {
+        List<Player> found = findPlayers(rawQuery);
+        return found.isEmpty() ? null : found.get(0);
     }
 
 }

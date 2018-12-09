@@ -47,6 +47,7 @@ public class LocationManager extends Manager {
                 Logger.debug("Loaded warp " + location.getId());
             }
         });
+        this.locationMap.put("default", new HLocation("default", Bukkit.getWorlds().get(0).getSpawnLocation()));
         Logger.info("[LocationManager] Loaded " + this.locationMap.size() + " warp(s).");
     }
 

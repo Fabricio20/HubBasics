@@ -47,7 +47,7 @@ public class LocationManager extends Manager {
                 Logger.debug("Loaded warp " + location.getId());
             }
         });
-        Logger.info("[LocationManager] Loaded " + this.locationMap.size() + " warps.");
+        Logger.info("[LocationManager] Loaded " + this.locationMap.size() + " warp(s).");
     }
 
     public HLocation get(String id) {

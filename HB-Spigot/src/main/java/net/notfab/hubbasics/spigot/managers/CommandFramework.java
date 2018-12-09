@@ -33,7 +33,7 @@ public class CommandFramework extends Manager {
         this.register(new HubBasicsCommand());
         this.register(new WarpCommand());
         this.register(new HologramsCommand());
-        Logger.info("[CommandFramework] Loaded " + commandList.size() + " commands.");
+        Logger.info("[CommandFramework] Loaded " + commandList.size() + " command(s).");
     }
 
     @Override

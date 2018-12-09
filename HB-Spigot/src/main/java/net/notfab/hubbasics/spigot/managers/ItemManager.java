@@ -59,14 +59,14 @@ public class ItemManager extends Manager {
             SimpleConfig config = HubBasics.getConfigManager().getNewConfig("items/" + file.getName());
             Result result = this.read(config);
             if(!result.isSuccess()) {
-                Logger.warn("Error while loading custom item: " + Messages.get(result.getExtra(0)));
+                Logger.warn("Error while loading custom item: " + config.getName() + " - " + Messages.get(result.getExtra(0)));
             } else {
                 CustomItem item = result.getExtra(0);
                 this.items.put(item.getId(), item);
                 Logger.debug("Loaded item " + item.getId());
             }
         });
-        Logger.info("[ItemManager] Loaded " + this.items.size() + " items.");
+        Logger.info("[ItemManager] Loaded " + this.items.size() + " item(s).");
     }
 
     public CustomItem get(String id) {
@@ -107,7 +107,7 @@ public class ItemManager extends Manager {
             enchantments.forEach(text -> {
                 try {
                     String name = text.split(":")[0];
-                    Integer level = Integer.parseInt(text.split(":")[1]);
+                    int level = Integer.parseInt(text.split(":")[1]);
                     Enchantment enchantment = FinderUtil.findEnchantment(name);
                     if(enchantment == null)
                         return;

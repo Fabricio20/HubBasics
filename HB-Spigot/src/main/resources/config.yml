@@ -17,4 +17,4 @@ Updater:
   NotifyAdmins: true
 Logger:
   Enabled: true
-  Level: DEBUG
+  Level: INFO

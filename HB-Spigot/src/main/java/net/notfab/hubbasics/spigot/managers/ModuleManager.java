@@ -9,6 +9,7 @@ import org.bukkit.event.HandlerList;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Copyright (C) Fabricio20 2017 - All Rights Reserved.
@@ -33,6 +34,7 @@ public class ModuleManager extends Manager {
     }
 
     public void onEnable() {
+        AtomicInteger loaded = new AtomicInteger();
         this.modules.forEach((enumModule, module) -> {
             if(!module.getConfig().getBoolean("Enabled", true)) return;
             if(!HubBasics.getNMS().runningNewerThan(module.getMinimumVersion())) {
@@ -41,9 +43,11 @@ public class ModuleManager extends Manager {
             } else {
                 module.onEnable();
                 Bukkit.getPluginManager().registerEvents(module, HubBasics);
+                loaded.getAndIncrement();
                 Logger.debug("[ModuleManager] " + enumModule.name() + " is now enabled.");
             }
         });
+        Logger.info("[ModuleManager] Loaded " + loaded.get() + " module(s).");
     }
 
     @Override

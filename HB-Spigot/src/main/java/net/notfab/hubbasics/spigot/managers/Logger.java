@@ -27,7 +27,6 @@ public class Logger extends Manager {
 
     public Logger(String prefix) {
         this.prefix = prefix == null ? "" : prefix;
-        this.info("[Logger] Started.");
     }
 
     public static Level getLevel() {

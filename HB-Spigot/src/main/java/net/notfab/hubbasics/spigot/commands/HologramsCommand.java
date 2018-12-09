@@ -17,7 +17,7 @@ public class HologramsCommand extends Command {
         // -- Docs
         this.setDescription("Hologram management");
         this.addUsage("/hb-holo &acreate &e<text>", "Creates a hologram with the specified text");
-        this.addUsage("/hb-holo &areset &e<id>", "Resets a hologram to it's default state");
+        this.addUsage("/hb-holo &areset &e<id>", "Deletes all lines from a hologram");
         this.addUsage("/hb-holo &aaddline &e<id> &e<text>", "Adds a line to an existing hologram");
         this.addUsage("/hb-holo &adelete &e<id>", "Deletes an hologram");
         this.addUsage("/hb-holo &alist", "Lists all available holograms and their ids");
@@ -100,7 +100,7 @@ public class HologramsCommand extends Command {
                         builder.append(ChatColor.GREEN).append(", ").append(ChatColor.DARK_GREEN).append(id);
                     String list = builder.toString()
                             .length() == 0 ? ChatColor.GREEN + Messages.get(player, "HOLOGRAM_EMPTY") : builder.toString().substring(4) + ".";
-                    player.sendMessage(ChatColor.GREEN + Messages.get("HOLOGRAM_LIST") + ": " + list);
+                    player.sendMessage(ChatColor.GREEN + Messages.get(player, "HOLOGRAM_LIST") + ": " + list);
                     return;
                 default:
                     HubBasics.getMessenger().send(player, Messages.get(player, "UNKNOWN_SUBCOMMAND"));

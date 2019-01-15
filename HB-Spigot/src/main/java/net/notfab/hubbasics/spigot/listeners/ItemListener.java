@@ -94,7 +94,7 @@ public class ItemListener implements Listener {
         });
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         if(!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
         List<ItemStack> items = new ArrayList<>();

@@ -28,7 +28,7 @@ public class KeepFood extends Module {
     public void onFoodChange(FoodLevelChangeEvent event) {
         World world = event.getEntity().getWorld();
         Section worldConfiguration = getWorldConfiguration(world.getName());
-        if(worldConfiguration != null && worldConfiguration.getBoolean("Enabled", false)) {
+        if(worldConfiguration != null && isEnabledInWorld(world)) {
             int food = worldConfiguration.getInt("Food", 20);
             if(food > 0 && food <= 20)
                 event.setFoodLevel(food);

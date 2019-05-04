@@ -32,7 +32,7 @@ public class KeepHealth extends Module {
         if(event.getEntityType() != EntityType.PLAYER) return;
         World world = event.getEntity().getWorld();
         Section worldConfiguration = getWorldConfiguration(world.getName());
-        if(worldConfiguration != null && worldConfiguration.getBoolean("Enabled", false)) {
+        if(worldConfiguration != null && isEnabledInWorld(world)) {
             double maxHealth = getWorldConfiguration(world.getName()).getDouble("MaxHealth", 20.0);
             double health = getWorldConfiguration(world.getName()).getDouble("Health", 20.0);
             ((Player) event.getEntity()).getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);

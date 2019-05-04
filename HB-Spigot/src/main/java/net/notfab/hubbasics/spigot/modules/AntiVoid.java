@@ -33,7 +33,7 @@ public class AntiVoid extends Module {
         if(event.getCause() != EntityDamageEvent.DamageCause.VOID) return;
         if(event.getEntityType() != EntityType.PLAYER) return;
         Section worldConfiguration = getWorldConfiguration(world.getName());
-        if(worldConfiguration != null && worldConfiguration.getBoolean("Enabled", false)) {
+        if (worldConfiguration != null && isEnabledInWorld(world)) {
             HLocation location = HubBasics.getLocationManager().get(worldConfiguration.getString("Warp", null));
             if(location == null) {
                 event.getEntity().teleport(event.getEntity().getWorld().getSpawnLocation());

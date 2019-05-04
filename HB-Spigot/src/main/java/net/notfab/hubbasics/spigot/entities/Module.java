@@ -40,11 +40,17 @@ public abstract class Module implements Listener {
         return HubBasics.getConfigManager().getNewConfig("modules/" + this.module.name() + ".yml");
     }
 
-    public Section getWorldConfiguration(String world) {
-        return getConfig().contains(world.toLowerCase()) ? getConfig().getSection(world.toLowerCase()) : null;
+    protected Section getWorldConfiguration(String world) {
+        if (getConfig().contains(world)) {
+            return getConfig().getSection(world);
+        } else if (getConfig().contains(world.toLowerCase())) {
+            return getConfig().getSection(world.toLowerCase());
+        } else {
+            return null;
+        }
     }
 
-    public boolean isEnabledInWorld(World world) {
+    protected boolean isEnabledInWorld(World world) {
         Section section = getWorldConfiguration(world.getName());
         return getConfig().getBoolean("Enabled", true) && (section != null && section.getBoolean("Enabled", false));
     }

@@ -3,6 +3,7 @@ package net.notfab.hubbasics.spigot.utils;
 import net.notfab.hubbasics.spigot.entities.depends.DependPlaceHolderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -26,15 +27,23 @@ public class PlaceHolderUtil {
         }
     }
 
-    public static String replace(Player player, String text) {
+    public static String replace(CommandSender sender, String text) {
         if(text == null) return null;
-        if(dependPlaceHolderAPI != null) {
-            text = dependPlaceHolderAPI.setPlaceHolders(player, text);
+
+        text = text.replace("${Player.Name}", sender.getName());
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            if(dependPlaceHolderAPI != null) {
+                text = dependPlaceHolderAPI.setPlaceHolders(player, text);
+            }
+            text = text.replace("${Player.DisplayName}", player.getDisplayName());
+            text = text.replace("${Player.UUID}", player.getUniqueId().toString());
+            text = text.replace("${Player.World}", player.getWorld().getName());
+        } else {
+            text = text.replace("${Player.DisplayName}", sender.getName());
+            text = text.replace("${Player.UUID}", "CONSOLE");
+            text = text.replace("${Player.World}", sender.getServer().getName());
         }
-        text = text.replace("${Player.Name}", player.getName());
-        text = text.replace("${Player.DisplayName}", player.getDisplayName());
-        text = text.replace("${Player.UUID}", player.getUniqueId().toString());
-        text = text.replace("${Player.World}", player.getWorld().getName());
         return ChatColor.translateAlternateColorCodes('&', text);
     }
 

@@ -24,18 +24,12 @@ public class Messages {
         return config.getString(name, "<Internal Error - Unknown Message>");
     }
 
-    public static String get(Player player, String name) {
-        return PlaceHolderUtil.replace(player, get(name));
-    }
-
     public static String get(CommandSender sender, String name) {
-        String message = get(name);
-        message = message.replace("${Name}", sender.getName());
-        return ChatColor.translateAlternateColorCodes('&', message);
+        return PlaceHolderUtil.replace(sender, get(name));
     }
 
-    public static String get(Player player, String name, String... args) {
-        return PlaceHolderUtil.replace(player, replaceArgs(get(name), args));
+    public static String get(CommandSender sender, String name, String... args) {
+        return PlaceHolderUtil.replace(sender, replaceArgs(get(name), args));
     }
 
     private static String replaceArgs(String message, String... args) {

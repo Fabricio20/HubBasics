@@ -3,9 +3,12 @@ package net.notfab.hubbasics.bungee;
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.notfab.hubbasics.bungee.commands.LobbyCommand;
+import net.notfab.hubbasics.bungee.managers.ConfigHandler;
 import net.notfab.hubbasics.bungee.managers.Logger;
 import net.notfab.spigot.simpleconfig.SimpleConfigManager;
 import net.notfab.spigot.simpleconfig.bungee.BungeeConfigManager;
+
+import java.io.File;
 
 public class HubBasics extends Plugin {
 
@@ -18,6 +21,7 @@ public class HubBasics extends Plugin {
         Instance = this;
         this.loggerManager = new Logger(null);
         this.configManager = new BungeeConfigManager(this);
+        new ConfigHandler(getDataFolder());
         getProxy().getPluginManager().registerCommand(this, new LobbyCommand());
     }
 

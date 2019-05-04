@@ -1,3 +1,7 @@
+# Welcome to HubBasics Bungee Config
+#
+# There is basically not a lot to do here, this plugin just adds a /lobby command
+# that works globally.
 #
 # Lobby Server
 # Either a string with the name of a server (that is configured on BungeeCord)

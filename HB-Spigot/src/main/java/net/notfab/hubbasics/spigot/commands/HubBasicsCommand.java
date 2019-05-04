@@ -27,7 +27,7 @@ public class HubBasicsCommand extends Command {
         // -- Docs
         this.setDescription("HubBasics' main command");
         this.addUsage("/hb &areload", "Reloads the plugin");
-        this.addUsage("/hb &aupdate", "Checks for updates");
+        this.addUsage("/hb &aversion", "Shows the plugin's version");
         this.addUsage("/hb &aitem &e<name>", "Spawns the item with the given name (Player Only)");
     }
 
@@ -46,25 +46,8 @@ public class HubBasicsCommand extends Command {
                 HubBasics.getModuleManager().onEnable();
                 // Message
                 HubBasics.getMessenger().send(sender, Messages.get(sender, "PLUGIN_RELOADED"));
-            } else if(args[0].equalsIgnoreCase("update")) {
-                HubBasics.getUpdateManager().run();
-                if(HubBasics.getUpdateManager().isUpdateAvailable()) {
-                    Bukkit.getOnlinePlayers().stream()
-                            .filter(p -> p.hasPermission("hubbasics.update") || p.hasPermission("hubbasics.admin"))
-                            .forEach(p -> {
-                                HubBasics.getMessenger().send(p, "&9[&aHubBasics&9] &eThere is an update available.");
-                                HubBasics.getMessenger()
-                                        .send(p, "&9[&aHubBasics&9] &eCurrent: &a" +
-                                                HubBasics.getUpdateManager().getBuild() +
-                                                " &9/ &eLatest: &a" + HubBasics.getUpdateManager().getLatest());
-                            });
-                } else {
-                    Bukkit.getOnlinePlayers().stream()
-                            .filter(p -> p.hasPermission("hubbasics.update") || p.hasPermission("hubbasics.admin"))
-                            .forEach(p -> {
-                                HubBasics.getMessenger().send(p, "&9[&aHubBasics&9] &eNo updates found.");
-                            });
-                }
+            } else if(args[0].equalsIgnoreCase("version")) {
+                HubBasics.getMessenger().send(sender, Messages.get(sender, "PLUGIN_VERSION", HubBasics.getUpdateManager().getBuild()));
             } else {
                 HubBasics.getMessenger().send(sender, Messages.get(sender, "UNKNOWN_SUBCOMMAND"));
             }

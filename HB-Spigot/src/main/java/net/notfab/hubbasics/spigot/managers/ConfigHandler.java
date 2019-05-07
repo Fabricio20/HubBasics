@@ -28,7 +28,8 @@ import java.util.List;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class ConfigHandler implements Listener {
 
-    @Getter private static ConfigHandler Instance;
+    @Getter
+    private static ConfigHandler Instance;
     private Logger Logger = new Logger("ConfigHandler");
     private JavaPlugin plugin;
 
@@ -45,6 +46,9 @@ public class ConfigHandler implements Listener {
     @EventHandler
     public void onLoad(ConfigLoadEvent event) {
         SimpleConfig config = event.getConfig();
+        if (!config.getFile().getPath().contains("HubBasics")) {
+            return;
+        }
         SimpleConfig resources = getResource(config);
         if (config.contains("Version") && resources != null && resources.contains("Version")) {
             Double version = config.getDouble("Version", 1.0);

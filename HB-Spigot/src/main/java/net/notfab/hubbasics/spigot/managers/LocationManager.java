@@ -78,7 +78,7 @@ public class LocationManager extends Manager {
         }
         if(config.contains("Pitch")) {
             Double d = config.getDouble("Pitch");
-            location.setYaw(d.floatValue());
+            location.setPitch(d.floatValue());
         }
         if(config.contains("Server")) {
             location.setServer(config.getString("Server"));

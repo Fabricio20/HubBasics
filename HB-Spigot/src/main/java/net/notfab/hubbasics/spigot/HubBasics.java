@@ -13,6 +13,7 @@ package net.notfab.hubbasics.spigot;
  */
 
 import lombok.Getter;
+import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Metrics;
 import net.notfab.hubbasics.spigot.listeners.BungeeListener;
 import net.notfab.hubbasics.spigot.managers.*;
@@ -73,6 +74,7 @@ public class HubBasics extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
+        this.moduleManager.getModule(EnumModules.BossAnnouncer).onDisable();
     }
 
 }

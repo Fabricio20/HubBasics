@@ -7,7 +7,7 @@
     <groupId>net.notfab</groupId>
     <artifactId>HubBasics</artifactId>
     <packaging>pom</packaging>
-    <version>6.9.2</version>
+    <version>6.9.3</version>
     <modules>
         <module>HB-Spigot</module>
         <module>HB-Bungee</module>

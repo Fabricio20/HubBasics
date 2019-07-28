@@ -10,7 +10,7 @@ Version: 1.0
 # It's still YAML, so make sure you are not using tabs as it can invalidate the configuration.                        #
 # When in doubt, paste this config on a parser like http://www.yamllint.com                                           #
 #                                                                                                                     #
-#
+# Actual configuration files are available in modules/ folder.
 # ------------------------------------------------------------------------------------------------------------------- #
 Updater:
   Enabled: true

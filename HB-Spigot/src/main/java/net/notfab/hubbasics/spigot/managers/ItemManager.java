@@ -62,7 +62,7 @@ public class ItemManager extends Manager {
                 Logger.warn("Error while loading custom item: " + config.getName() + " - " + Messages.get(result.getExtra(0)));
             } else {
                 CustomItem item = result.getExtra(0);
-                this.items.put(item.getId(), item);
+                this.items.put(item.getId().toLowerCase(), item);
                 Logger.debug("Loaded item " + item.getId());
             }
         });
@@ -70,7 +70,7 @@ public class ItemManager extends Manager {
     }
 
     public CustomItem get(String id) {
-        return this.items.get(id);
+        return this.items.get(id.toLowerCase());
     }
 
     private Result read(SimpleConfig config) {

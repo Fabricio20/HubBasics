@@ -7,6 +7,9 @@ import java.util.List;
 public class ConfigHandler {
 
     public ConfigHandler(File folder) {
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
         File configFile = new File(folder, "config.yml");
         if (!configFile.exists()) {
             List<String> lines = getResource("config.yml");

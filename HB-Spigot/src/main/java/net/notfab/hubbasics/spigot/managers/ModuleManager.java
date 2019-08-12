@@ -31,14 +31,15 @@ public class ModuleManager extends Manager {
         this.modules.put(EnumModules.JumpPads, new JumpPads());
         this.modules.put(EnumModules.JoinMessages, new JoinMessages());
         this.modules.put(EnumModules.Lobby, new LobbyModule());
+        this.modules.put(EnumModules.JoinTP, new JoinTP());
         this.onEnable();
     }
 
     public void onEnable() {
         AtomicInteger loaded = new AtomicInteger();
         this.modules.forEach((enumModule, module) -> {
-            if(!module.getConfig().getBoolean("Enabled", true)) return;
-            if(!HubBasics.getNMS().runningNewerThan(module.getMinimumVersion())) {
+            if (!module.getConfig().getBoolean("Enabled", true)) return;
+            if (!HubBasics.getNMS().runningNewerThan(module.getMinimumVersion())) {
                 Logger.warn("[ModuleManager] The " + enumModule.name() + " module requires at least version " +
                         module.getMinimumVersion() + ", which means it will not be enabled.");
             } else {

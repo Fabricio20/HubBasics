@@ -1,0 +1,32 @@
+#
+# Global, non-replaceable switch for this module.
+# !! DO NOT TOUCH Version !!
+# !! It's only used to keep track of changes between releases !!
+#
+Enabled: true
+Version: 1.0
+#
+# JoinTP, on a per-world configuration basis.
+# Make a section with the world name and add the settings below it.
+# NOTE: world names ARE case sensitive. Make sure to use the correct name.
+# See an example below for the world called 'world'.
+#
+#  world:
+#    Enabled: true
+#    Location: default
+#    WorldChange: true
+#
+# Location is an HB-Warp name. (/hb-warp)
+# WorldChange tells if we should tp the player to this location upon changing worlds.
+#
+# If global is enabled, all other configurations are ignored. Global WILL teleport from ANY world the player
+# may be in.
+#
+Global:
+  Enabled: false
+  WorldChange: false
+  Location: default
+world:
+  Enabled: false
+  WorldChange: false
+  Location: default

@@ -43,7 +43,7 @@ public class LocationManager extends Manager {
                 Logger.warn("Error while loading warp: " + Messages.get(result.getExtra(0)));
             } else {
                 HLocation location = result.getExtra(0);
-                this.locationMap.put(location.getId(), location);
+                this.locationMap.put(location.getId().toLowerCase(), location);
                 Logger.debug("Loaded warp " + location.getId());
             }
         });
@@ -53,7 +53,7 @@ public class LocationManager extends Manager {
 
     public HLocation get(String id) {
         if(id == null) return null;
-        return this.locationMap.get(id);
+        return this.locationMap.get(id.toLowerCase());
     }
 
     private Result read(SimpleConfig config) {
@@ -95,12 +95,12 @@ public class LocationManager extends Manager {
         config.set("Yaw", location.getYaw());
         config.set("Pitch", location.getPitch());
         config.save();
-        this.locationMap.put(name, new HLocation(name, location));
+        this.locationMap.put(name.toLowerCase(), new HLocation(name, location));
         return new Result(new HLocation(name, location));
     }
 
     public boolean delete(HLocation warp) {
-        this.locationMap.remove(warp.getId());
+        this.locationMap.remove(warp.getId().toLowerCase());
         File file = new File(HubBasics.getDataFolder(), "warps/" + warp.getId() + ".yml");
         if(file.exists()) {
             return file.delete();
@@ -111,4 +111,5 @@ public class LocationManager extends Manager {
     public Set<String> list() {
         return this.locationMap.keySet();
     }
+
 }

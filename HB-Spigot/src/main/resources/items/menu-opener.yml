@@ -1,7 +1,7 @@
 #
 # Name of the base item material
 #
-Material: WOOL
+Material: COMPASS
 #
 # The durability of the item or MetaData (Wool:1 means 1 is the metadata so it's orange wool)
 #

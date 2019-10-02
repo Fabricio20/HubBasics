@@ -38,12 +38,14 @@ public class HubBasicsCommand extends Command {
         } else if(args.length == 1) {
             if(args[0].equalsIgnoreCase("reload")) {
                 // Disable
-                HubBasics.getModuleManager().onDisable();
                 HubBasics.getConfigManager().onDisable();
+                HubBasics.getModuleManager().onDisable();
                 HubBasics.getItemManager().onDisable();
+                HubBasics.getMenuManager().onDisable();
                 // Enable
-                HubBasics.getItemManager().onEnable();
                 HubBasics.getModuleManager().onEnable();
+                HubBasics.getItemManager().onEnable();
+                HubBasics.getMenuManager().onEnable();
                 // Message
                 HubBasics.getMessenger().send(sender, Messages.get(sender, "PLUGIN_RELOADED"));
             } else if(args[0].equalsIgnoreCase("version")) {

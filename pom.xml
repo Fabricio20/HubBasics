@@ -28,14 +28,6 @@
     </repositories>
 
     <dependencies>
-        <!-- Jedis API -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>3.0.1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
         <!-- JSON -->
         <dependency>
             <groupId>org.json</groupId>
@@ -47,7 +39,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
+            <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
         <!-- Logback -->
@@ -68,7 +60,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>3.14.2</version>
+            <version>4.2.2</version>
             <scope>compile</scope>
         </dependency>
         <!-- SimpleConfig -->

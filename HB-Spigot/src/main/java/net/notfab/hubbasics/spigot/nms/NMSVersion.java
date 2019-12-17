@@ -93,14 +93,21 @@ public class NMSVersion {
      * NMS Version 1.13 R2
      */
     public static final String V1_13_R2 = "v1_13_R2";
-    
+
     /**
      * NMS Version 1.14 R1
      */
     public static final String V1_14_R1 = "v1_14_R1";
 
+    /**
+     * NMS Version 1.15 R1
+     */
+    public static final String V1_15_R1 = "v1_15_R1";
+
     private Map<Integer, String> versionMap;
-    @Getter private int versionID;
+
+    @Getter
+    private int versionID;
 
     public NMSVersion() {
         this.versionMap = new HashMap<>();
@@ -108,7 +115,7 @@ public class NMSVersion {
 
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         String version = packageName.substring(packageName.lastIndexOf('.') + 1);
-        if(this.versionMap.containsValue(version)) {
+        if (this.versionMap.containsValue(version)) {
             this.versionID = getVersionID(version);
         } else {
             this.versionID = 0;
@@ -146,6 +153,7 @@ public class NMSVersion {
         registerVersion(V1_13_R1);
         registerVersion(V1_13_R2);
         registerVersion(V1_14_R1);
+        registerVersion(V1_15_R1);
     }
 
     private void registerVersion(String string) {
@@ -153,7 +161,7 @@ public class NMSVersion {
     }
 
     public String getVersionString() {
-        if(this.getVersionID() == 0) {
+        if (this.getVersionID() == 0) {
             String packageName = Bukkit.getServer().getClass().getPackage().getName();
             return packageName.substring(packageName.lastIndexOf('.') + 1);
         } else {

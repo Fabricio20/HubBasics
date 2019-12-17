@@ -78,7 +78,7 @@ public class JoinItems extends Module {
     }
 
     @EventHandler
-    public void onJoin(PlayerChangedWorldEvent event) {
+    public void onWorldChange(PlayerChangedWorldEvent event) {
         if(!this.worlds.contains(event.getPlayer().getWorld().getName())) return;
         if(!this.items.containsKey(event.getPlayer().getWorld().getName())) return;
         if(!this.worldChange.get(event.getPlayer().getWorld().getName())) return;

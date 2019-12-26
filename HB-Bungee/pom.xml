@@ -5,7 +5,7 @@
     <parent>
         <artifactId>HubBasics</artifactId>
         <groupId>net.notfab</groupId>
-        <version>6.9.7</version>
+        <version>6.9.8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>HB-Bungee</artifactId>
@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <build.date>191216</build.date>
+        <build.date>191226</build.date>
     </properties>
 
     <repositories>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.13-SNAPSHOT</version>
+            <version>1.15-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>

@@ -1,3 +1,8 @@
 language: java
+os: linux
 
-script: "chmod +x gradlew && ./gradlew build"
+install: skip
+
+script:
+  - chmod +x gradlew
+  - ./gradlew build

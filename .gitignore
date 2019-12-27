@@ -1,7 +1,20 @@
-*.iml
+# Ignore anything that isn't code or resources
+Runtime/
 target/
-*/target
 .idea/
-*.xml
-!pom.xml
-!HB-Spigot/src/main/resources/logback.xml
+*.iml
+.classpath
+.project
+.settings/
+.gradle/
+build/
+dependency-reduced-pom.xml
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Not Ignored
+!/src/main/resources/*
+!gradle/wrapper/*

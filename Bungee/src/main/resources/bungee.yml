@@ -1,0 +1,4 @@
+name: HubBasics
+main: net.notfab.hubbasics.bungee.HubBasics
+version: '6.10'
+author: Fabricio20

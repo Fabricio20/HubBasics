@@ -1,0 +1,4 @@
+rootProject.name = 'HubBasics'
+
+include 'Bungee'
+include 'Spigot'

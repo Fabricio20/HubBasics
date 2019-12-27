@@ -1,0 +1,15 @@
+allprojects {
+    group 'net.notfab.hubbasics'
+    version = '6.10'
+    wrapper {
+        gradleVersion = '6.0.1'
+    }
+    ext.getGitHash = { ->
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-parse', '--short', 'HEAD'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    }
+}

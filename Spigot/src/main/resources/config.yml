@@ -1,0 +1,17 @@
+Version: 1.0
+# ------------------------------------------------------------------------------------------------------------------- #
+# Welcome to the configuration file for HubBasics.                                                                    #
+#                                                                                                                     #
+# - The contents of this project are licensed under a GNU Lesser General Public License v3.0. Please read the         #
+# information linked below before you attempt to use this project or it's contents to make sure you are abiding       #
+# by it's terms.                                                                                                      #
+# - https://choosealicense.com/licenses/lgpl-3.0/                                                                     #
+#                                                                                                                     #
+# It's still YAML, so make sure you are not using tabs as it can invalidate the configuration.                        #
+# When in doubt, paste this config on a parser like http://www.yamllint.com                                           #
+#                                                                                                                     #
+# Actual configuration files are available in modules/ folder.
+# ------------------------------------------------------------------------------------------------------------------- #
+Logger:
+  Enabled: true
+  Level: INFO

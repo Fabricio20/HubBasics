@@ -21,6 +21,7 @@ shadowJar {
 
 repositories {
     mavenLocal()
+    maven { url "https://repository.jboss.org" }
     maven { url "https://jcenter.bintray.com" }
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
     maven { url "https://maven.notfab.net/Hosted" }

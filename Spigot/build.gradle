@@ -32,7 +32,7 @@ dependencies {
     compile group: 'net.notfab.spigot', name: 'SimpleConfig', version: '1.4.1'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile group: 'org.json', name: 'json', version: '20190722'
-    compile group: 'org.bstats', name: 'bstats-bukkit', version: '1.5'
+    compile group: 'org.bstats', name: 'bstats-bukkit', version: '1.6'
 
     compileOnly group: 'me.clip', name: 'placeholderapi', version: '2.10.4'
     compileOnly group: 'org.spigotmc', name: 'spigot', version: '1.15-R0.1-SNAPSHOT'

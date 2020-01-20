@@ -73,6 +73,9 @@ public class ItemManager extends Manager {
         if (config.contains("Amount")) {
             item.setAmount(config.getInt("Amount"));
         }
+        if (config.contains("Permission")) {
+            item.setPermission(config.getString("Permission"));
+        }
         if (config.contains("Name")) {
             item.setName(ChatColor.translateAlternateColorCodes('&', config.getString("Name")));
         }

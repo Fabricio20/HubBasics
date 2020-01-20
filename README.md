@@ -1,4 +1,4 @@
-# HubBasics [![Build Status](https://travis-ci.com/Fabricio20/HubBasics.svg?branch=master)](https://travis-ci.com/Fabricio20/HubBasics) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/99121b8cf6c44a239f16d51420cff7c4)](https://www.codacy.com/app/Fabricio20/HubBasics?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Fabricio20/HubBasics&amp;utm_campaign=Badge_Grade)
+# HubBasics [![Build Status](https://ci.notfab.net/job/SpigotMC/job/HubBasics/badge/icon)](https://ci.notfab.net/job/SpigotMC/job/HubBasics/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/99121b8cf6c44a239f16d51420cff7c4)](https://www.codacy.com/app/Fabricio20/HubBasics?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Fabricio20/HubBasics&amp;utm_campaign=Badge_Grade)
 
 As the name suggests, this plugin is intended for hubs. It gives you the settings and options you as a server owner might desire, and
 a few more. Having a million different plugins just for one of their features not only makes your server a complete mess of different

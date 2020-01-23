@@ -66,7 +66,7 @@ public class JoinMessages extends Module {
     public void onChange(PlayerChangedWorldEvent event) {
         if (this.worldMessages.containsKey(event.getPlayer().getWorld().getName())) {
             HubBasics.getMessenger().send(event.getPlayer().getWorld(),
-                    this.worldMessages.get(event.getPlayer().getWorld().getName()));
+                    PlaceHolderUtil.replace(event.getPlayer(), this.worldMessages.get(event.getPlayer().getWorld().getName())));
         }
     }
 

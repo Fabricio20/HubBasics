@@ -1,9 +1,9 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -24,7 +24,7 @@ public class JoinItems extends Module {
     private Map<String, Boolean> worldChange = new HashMap<>();
 
     public JoinItems() {
-        super(EnumModules.JoinItems, NMSVersion.V1_7_R1);
+        super(EnumModules.JoinItems, CraftBukkitVersion.v1_7_X);
     }
 
     @Override

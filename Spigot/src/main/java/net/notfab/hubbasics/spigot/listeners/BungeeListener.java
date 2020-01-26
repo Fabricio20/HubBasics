@@ -5,7 +5,7 @@ import com.google.common.io.ByteStreams;
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.HLocation;
-import net.notfab.hubbasics.spigot.modules.LobbyModule;
+import net.notfab.hubbasics.spigot.modules.v1_7.LobbyModule;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.jetbrains.annotations.NotNull;

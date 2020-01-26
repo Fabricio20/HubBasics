@@ -1,9 +1,9 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.HLocation;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -26,7 +26,7 @@ public class JoinTP extends Module {
     private String globalTarget = null;
 
     public JoinTP() {
-        super(EnumModules.JoinTP, NMSVersion.V1_7_R1);
+        super(EnumModules.JoinTP, CraftBukkitVersion.v1_7_X);
     }
 
     @Override

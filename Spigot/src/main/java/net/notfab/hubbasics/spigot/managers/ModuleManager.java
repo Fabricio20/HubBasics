@@ -3,7 +3,7 @@ package net.notfab.hubbasics.spigot.managers;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.modules.*;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 
@@ -13,21 +13,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ModuleManager extends Manager {
 
+    private static final HBLogger logger = HBLogger.getLogger(ModuleManager.class);
     private Map<EnumModules, Module> modules = new HashMap<>();
 
-    public ModuleManager() {
-        this.modules.put(EnumModules.JoinItems, new JoinItems());
-        this.modules.put(EnumModules.KeepHealth, new KeepHealth());
-        this.modules.put(EnumModules.KeepFood, new KeepFood());
-        this.modules.put(EnumModules.AntiVoid, new AntiVoid());
-        this.modules.put(EnumModules.DoubleJump, new DoubleJump());
-        this.modules.put(EnumModules.BossAnnouncer, new BossAnnouncer());
-        this.modules.put(EnumModules.NoWeather, new NoWeather());
-        this.modules.put(EnumModules.Holograms, new Holograms());
-        this.modules.put(EnumModules.JumpPads, new JumpPads());
-        this.modules.put(EnumModules.JoinMessages, new JoinMessages());
-        this.modules.put(EnumModules.Lobby, new LobbyModule());
-        this.modules.put(EnumModules.JoinTP, new JoinTP());
+    public ModuleManager(CraftBukkitVersion version) {
+        ModuleRegistry registry = new ModuleRegistry();
+
+        for (EnumModules moduleName : EnumModules.values()) {
+            Module module = registry.findModule(moduleName, version);
+            if (module == null) {
+                logger.warn("The " + moduleName.name() + " module requires at least version " +
+                        moduleName.getMinimumVersion().getName() + ", which means it will not be enabled.");
+                continue;
+            }
+            this.modules.put(moduleName, module);
+        }
+
         this.onEnable();
     }
 
@@ -35,17 +36,17 @@ public class ModuleManager extends Manager {
         AtomicInteger loaded = new AtomicInteger();
         this.modules.forEach((enumModule, module) -> {
             if (!module.getConfig().getBoolean("Enabled", true)) return;
-            if (!HubBasics.getNMS().runningNewerThan(module.getMinimumVersion())) {
-                Logger.warn("[ModuleManager] The " + enumModule.name() + " module requires at least version " +
-                        module.getMinimumVersion() + ", which means it will not be enabled.");
-            } else {
+            try {
                 module.onEnable();
                 Bukkit.getPluginManager().registerEvents(module, HubBasics);
-                loaded.getAndIncrement();
-                Logger.debug("[ModuleManager] " + enumModule.name() + " is now enabled.");
+            } catch (Exception ex) {
+                logger.error("Failed to start module " + enumModule.name(), ex);
+                return;
             }
+            loaded.getAndIncrement();
+            logger.debug(enumModule.name() + " is now enabled.");
         });
-        Logger.info("[ModuleManager] Loaded " + loaded.get() + " module(s).");
+        logger.info("Loaded " + loaded.get() + "/" + EnumModules.values().length + " module(s).");
     }
 
     @Override

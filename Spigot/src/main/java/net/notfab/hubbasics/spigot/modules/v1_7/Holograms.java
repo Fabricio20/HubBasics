@@ -1,9 +1,9 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import lombok.Getter;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -28,7 +28,7 @@ public class Holograms extends Module {
     private SimpleConfig file = getConfig();
 
     public Holograms() {
-        super(EnumModules.Holograms, NMSVersion.V1_7_R1);
+        super(EnumModules.Holograms, CraftBukkitVersion.v1_7_X);
     }
 
     @Override

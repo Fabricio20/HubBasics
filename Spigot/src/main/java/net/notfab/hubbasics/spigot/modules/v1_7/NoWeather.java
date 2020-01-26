@@ -1,8 +1,8 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.Bukkit;
 import org.bukkit.WeatherType;
@@ -17,7 +17,7 @@ public class NoWeather extends Module {
     private Map<String, WeatherType> worldStates = new HashMap<>();
 
     public NoWeather() {
-        super(EnumModules.NoWeather, NMSVersion.V1_7_R1);
+        super(EnumModules.NoWeather, CraftBukkitVersion.v1_7_X);
     }
 
     @Override

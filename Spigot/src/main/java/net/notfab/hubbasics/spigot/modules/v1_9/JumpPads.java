@@ -1,8 +1,8 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_9;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
 import net.notfab.hubbasics.spigot.utils.ParticleEffect;
 import net.notfab.spigot.simpleconfig.Section;
@@ -31,7 +31,7 @@ public class JumpPads extends Module {
     private ParticleEffect particleEffect = ParticleEffect.getInstance();
 
     public JumpPads() {
-        super(EnumModules.JumpPads, NMSVersion.V1_7_R1);
+        super(EnumModules.JumpPads, CraftBukkitVersion.v1_9_X);
     }
 
     @Override

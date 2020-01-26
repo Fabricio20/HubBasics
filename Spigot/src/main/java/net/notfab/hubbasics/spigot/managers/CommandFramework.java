@@ -14,6 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CommandFramework extends Manager {
 
+    private static final HBLogger logger = HBLogger.getLogger(CommandFramework.class);
     private List<Command> commandList;
 
     public CommandFramework() {
@@ -21,7 +22,7 @@ public class CommandFramework extends Manager {
         this.register(new HubBasicsCommand());
         this.register(new WarpCommand());
         this.register(new HologramsCommand());
-        Logger.info("[CommandFramework] Loaded " + commandList.size() + " command(s).");
+        logger.info("Loaded " + commandList.size() + " command(s).");
     }
 
     @Override
@@ -41,7 +42,7 @@ public class CommandFramework extends Manager {
             commandMap.register(command.getName(), command);
             this.commandList.add(command);
         } catch (NoSuchFieldException | IllegalAccessException ex) {
-            Logger.error("Error while registering command", ex);
+            logger.error("Error while registering command", ex);
         }
     }
 
@@ -54,7 +55,7 @@ public class CommandFramework extends Manager {
             command.unregister(commandMap);
             this.commandList.remove(command);
         } catch (NoSuchFieldException | IllegalAccessException ex) {
-            Logger.error("Error while unregistering command", ex);
+            logger.error("Error while unregistering command", ex);
         }
     }
 

@@ -21,6 +21,7 @@ import java.util.Map;
 
 public class MenuManager extends Manager {
 
+    private static final HBLogger logger = HBLogger.getLogger(MenuManager.class);
     private Map<String, Menu> menuMap;
 
     public MenuManager() {
@@ -39,14 +40,14 @@ public class MenuManager extends Manager {
             SimpleConfig config = HubBasics.getConfigManager().getNewConfig("menus/" + file.getName());
             Result result = this.read(config);
             if (!result.isSuccess()) {
-                Logger.warn("[MenuManager] Error while loading menu: " + config.getName() + " - " + Messages.get(result.getExtra(0)));
+                logger.warn("Error while loading menu: " + config.getName() + " - " + Messages.get(result.getExtra(0)));
             } else {
                 Menu menu = result.getExtra(0);
                 this.menuMap.put(menu.getId(), menu);
-                Logger.debug("[MenuManager] Loaded menu " + menu.getId());
+                logger.debug("Loaded menu " + menu.getId());
             }
         });
-        Logger.info("[MenuManager] Loaded " + this.menuMap.size() + " menu(s).");
+        logger.info("Loaded " + this.menuMap.size() + " menu(s).");
     }
 
     @Override

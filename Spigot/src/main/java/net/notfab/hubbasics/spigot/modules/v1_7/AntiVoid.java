@@ -1,9 +1,9 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.HLocation;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 public class AntiVoid extends Module {
 
     public AntiVoid() {
-        super(EnumModules.AntiVoid, NMSVersion.V1_7_R1);
+        super(EnumModules.AntiVoid, CraftBukkitVersion.v1_7_X);
     }
 
     @Override
@@ -42,4 +42,5 @@ public class AntiVoid extends Module {
             }
         }
     }
+
 }

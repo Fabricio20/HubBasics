@@ -1,7 +1,7 @@
 package net.notfab.hubbasics.spigot.commands;
 
 import net.notfab.hubbasics.spigot.entities.Command;
-import net.notfab.hubbasics.spigot.modules.Holograms;
+import net.notfab.hubbasics.spigot.modules.v1_7.Holograms;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

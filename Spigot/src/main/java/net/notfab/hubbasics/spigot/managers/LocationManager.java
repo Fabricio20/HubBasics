@@ -14,6 +14,7 @@ import java.util.*;
 
 public class LocationManager extends Manager {
 
+    private static final HBLogger logger = HBLogger.getLogger(LocationManager.class);
     private Map<String, HLocation> locationMap = new HashMap<>();
 
     public LocationManager() {
@@ -36,15 +37,15 @@ public class LocationManager extends Manager {
             SimpleConfig config = HubBasics.getConfigManager().getNewConfig("warps/" + file.getName());
             Result result = this.read(config);
             if (!result.isSuccess()) {
-                Logger.warn("Error while loading warp: " + Messages.get(result.getExtra(0)));
+                logger.warn("Error while loading warp: " + Messages.get(result.getExtra(0)));
             } else {
                 HLocation location = result.getExtra(0);
                 this.locationMap.put(location.getId().toLowerCase(), location);
-                Logger.debug("Loaded warp " + location.getId());
+                logger.debug("Loaded warp " + location.getId());
             }
         });
         this.locationMap.put("default", new HLocation("default", Bukkit.getWorlds().get(0).getSpawnLocation()));
-        Logger.info("[LocationManager] Loaded " + this.locationMap.size() + " warp(s).");
+        logger.info("Loaded " + this.locationMap.size() + " warp(s).");
     }
 
     public HLocation get(String id) {

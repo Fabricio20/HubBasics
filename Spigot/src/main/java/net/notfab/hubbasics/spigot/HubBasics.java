@@ -1,7 +1,6 @@
 package net.notfab.hubbasics.spigot;
 
 import lombok.Getter;
-import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.listeners.BungeeListener;
 import net.notfab.hubbasics.spigot.managers.*;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
@@ -17,7 +16,7 @@ public class HubBasics extends JavaPlugin {
     @Getter
     private static HubBasics instance;
 
-    private Logger loggerManager;
+    private HBLogger loggerManager;
     private TaskManager taskManager;
     private SimpleConfigManager configManager;
     private ConfigHandler configHandler;
@@ -33,19 +32,24 @@ public class HubBasics extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        this.loggerManager = new Logger(null);
+        this.loggerManager = new HBLogger(null);
+        HBLogger.setUnderlying(this.getLogger());
         this.taskManager = new TaskManager();
         this.configManager = new SpigotConfigManager(this);
         this.configHandler = new ConfigHandler(this);
         Bukkit.getPluginManager().registerEvents(this.configHandler, this);
         this.messenger = new Messenger();
-        this.metrics = new Metrics(this);
+        if (System.getenv("HubBasics.Spigot") == null) {
+            this.metrics = new Metrics(this);
+        } else {
+            loggerManager.info("Running in Development mode, Metrics disabled.");
+        }
         this.commandFramework = new CommandFramework();
         this.NMS = new NMSVersion();
         this.itemManager = new ItemManager();
         this.menuManager = new MenuManager();
         this.locationManager = new LocationManager();
-        this.moduleManager = new ModuleManager();
+        this.moduleManager = new ModuleManager(this.NMS.getRunningVersion());
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new BungeeListener());
@@ -54,7 +58,7 @@ public class HubBasics extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
-        this.moduleManager.getModule(EnumModules.BossAnnouncer).onDisable();
+        this.moduleManager.onDisable();
     }
 
 }

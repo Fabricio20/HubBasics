@@ -3,7 +3,7 @@ package net.notfab.hubbasics.spigot.commands;
 import net.notfab.hubbasics.spigot.entities.Command;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.HLocation;
-import net.notfab.hubbasics.spigot.modules.LobbyModule;
+import net.notfab.hubbasics.spigot.modules.v1_7.LobbyModule;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.command.CommandSender;

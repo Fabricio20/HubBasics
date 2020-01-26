@@ -1,8 +1,9 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_10;
 
 import net.notfab.hubbasics.spigot.entities.BossBarMessage;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.hubbasics.spigot.nms.NMSVersion;
 import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.Bukkit;
@@ -28,7 +29,7 @@ public class BossAnnouncer extends Module {
     private List<ScheduledFuture> runners = new ArrayList<>();
 
     public BossAnnouncer() {
-        super(EnumModules.BossAnnouncer, NMSVersion.V1_10_R1);
+        super(EnumModules.BossAnnouncer, CraftBukkitVersion.v1_10_X);
     }
 
     @Override

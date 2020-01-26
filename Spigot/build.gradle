@@ -30,12 +30,42 @@ repositories {
 
 dependencies {
     compile group: 'net.notfab.spigot', name: 'SimpleConfig', version: '1.4.1'
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile group: 'org.json', name: 'json', version: '20190722'
     compile group: 'org.bstats', name: 'bstats-bukkit', version: '1.5'
 
     compileOnly group: 'me.clip', name: 'placeholderapi', version: '2.10.4'
     compileOnly group: 'org.spigotmc', name: 'spigot', version: '1.15-R0.1-SNAPSHOT'
+    //compileOnly group: 'org.spigotmc', name: 'spigot', version: '1.8.8-R0.1-SNAPSHOT'
     compileOnly group: 'org.jetbrains', name: 'annotations', version: '18.0.0'
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task copyFiles(dependsOn: shadowJar) {
+    String path = System.getenv("HubBasics.Spigot")
+    if (path == null) {
+        return
+    }
+    File jarFile = new File(path)
+    copy {
+        outputs.upToDateWhen { false }
+        from 'build/libs/HubBasics-Spigot.jar'
+        into new File(jarFile.getParentFile(), "plugins").getAbsolutePath()
+    }
+}
+
+task runSpigot(type: JavaExec, dependsOn: copyFiles) {
+    String path = System.getenv("HubBasics.Spigot")
+    if (path == null) {
+        return
+    }
+    File jarFile = new File(path)
+    workingDir = jarFile.getParentFile().getAbsolutePath()
+    jvmArgs = [
+            "-DIReallyKnowWhatIAmDoingISwear"
+    ]
+    main = "-jar";
+    args = [
+            jarFile.getAbsolutePath()
+    ]
+    debug = true
 }

@@ -1,8 +1,8 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
 import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.GameMode;
@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 public class DoubleJump extends Module {
 
     public DoubleJump() {
-        super(EnumModules.DoubleJump, NMSVersion.V1_7_R1);
+        super(EnumModules.DoubleJump, CraftBukkitVersion.v1_7_X);
     }
 
     @Override

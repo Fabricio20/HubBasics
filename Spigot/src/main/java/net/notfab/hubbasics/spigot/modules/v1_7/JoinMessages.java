@@ -1,8 +1,8 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.hubbasics.spigot.utils.PlaceHolderUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -20,7 +20,7 @@ public class JoinMessages extends Module {
     private Map<String, String> worldMessages = new HashMap<>();
 
     public JoinMessages() {
-        super(EnumModules.JoinMessages, NMSVersion.V1_7_R1);
+        super(EnumModules.JoinMessages, CraftBukkitVersion.v1_7_X);
     }
 
     @Override

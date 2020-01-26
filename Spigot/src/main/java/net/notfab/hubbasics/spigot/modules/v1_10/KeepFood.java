@@ -1,8 +1,8 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_10;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
@@ -11,7 +11,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 public class KeepFood extends Module {
 
     public KeepFood() {
-        super(EnumModules.KeepFood, NMSVersion.V1_10_R1);
+        super(EnumModules.KeepFood, CraftBukkitVersion.v1_10_X);
     }
 
     @Override

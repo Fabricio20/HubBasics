@@ -1,6 +1,5 @@
 package net.notfab.hubbasics.spigot.managers;
 
-import ch.qos.logback.classic.Level;
 import lombok.Getter;
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
@@ -14,6 +13,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class ConfigHandler implements Listener {
@@ -21,7 +21,7 @@ public class ConfigHandler implements Listener {
     @Getter
     private static ConfigHandler Instance;
 
-    private Logger Logger = new Logger("ConfigHandler");
+    private static final HBLogger logger = HBLogger.getLogger("ConfigHandler");
     private JavaPlugin plugin;
 
     /**
@@ -45,8 +45,8 @@ public class ConfigHandler implements Listener {
             Double version = config.getDouble("Version", 1.0);
             Double latest = resources.getDouble("Version", 1.0);
             if (latest > version) {
-                Logger.warn("Detected an outdated config - &7" + config.getName());
-                Logger.warn("You have outdated configs! No support will be provided for outdated configs.");
+                logger.warn("Detected an outdated config - &7" + config.getName());
+                logger.warn("You have outdated configs! No support will be provided for outdated configs.");
             }
         }
     }
@@ -57,13 +57,13 @@ public class ConfigHandler implements Listener {
         SimpleConfig config = HubBasics.getInstance().getConfigManager().getNewConfig("config.yml");
         if (config.contains("Logger")) {
             if (config.contains("Logger.Enabled"))
-                HubBasics.getInstance().getLoggerManager().setEnabled(config.getBoolean("Logger.Enabled"));
+                HBLogger.setEnabled(config.getBoolean("Logger.Enabled"));
             if (config.contains("Logger.Level")) {
                 try {
-                    net.notfab.hubbasics.spigot.managers
-                            .Logger.setLevel(Level.valueOf(config.getString("Logger.Level")));
+                    Level level = Level.parse(config.getString("Logger.Level"));
+                    HBLogger.setLevel(level);
                 } catch (IllegalArgumentException ex) {
-                    HubBasics.getInstance().getLoggerManager().error("Invalid logger Level found on config file", ex);
+                    logger.error("Invalid logger Level found on config file", ex);
                 }
             }
         }

@@ -21,6 +21,7 @@ import java.util.*;
 
 public class ItemManager extends Manager {
 
+    private static final HBLogger logger = HBLogger.getLogger(ItemManager.class);
     private Map<String, CustomItem> items = new HashMap<>();
     private ItemListener itemListener = new ItemListener();
 
@@ -48,14 +49,14 @@ public class ItemManager extends Manager {
             SimpleConfig config = HubBasics.getConfigManager().getNewConfig("items/" + file.getName());
             Result result = this.read(config);
             if (!result.isSuccess()) {
-                Logger.warn("Error while loading custom item: " + config.getName() + " - " + Messages.get(result.getExtra(0)));
+                logger.warn("Error while loading custom item: " + config.getName() + " - " + Messages.get(result.getExtra(0)));
             } else {
                 CustomItem item = result.getExtra(0);
                 this.items.put(item.getId().toLowerCase(), item);
-                Logger.debug("Loaded item " + item.getId());
+                logger.debug("Loaded item " + item.getId());
             }
         });
-        Logger.info("[ItemManager] Loaded " + this.items.size() + " item(s).");
+        logger.info("Loaded " + this.items.size() + " item(s).");
     }
 
     public CustomItem get(String id) {

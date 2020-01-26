@@ -2,7 +2,7 @@ package net.notfab.hubbasics.spigot.entities;
 
 import lombok.Getter;
 import net.notfab.hubbasics.spigot.HubBasics;
-import net.notfab.hubbasics.spigot.managers.Logger;
+import net.notfab.hubbasics.spigot.managers.HBLogger;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +18,7 @@ import java.util.List;
 public class Command extends BukkitCommand {
 
     protected HubBasics HubBasics = net.notfab.hubbasics.spigot.HubBasics.getInstance();
-    protected Logger logger = HubBasics.getLoggerManager();
+    protected HBLogger logger = HubBasics.getLoggerManager();
 
     @Getter
     private List<String> permissions = new ArrayList<>();

@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.spigot.modules;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import net.notfab.hubbasics.spigot.commands.SetLobbyCommand;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.HLocation;
 import net.notfab.hubbasics.spigot.entities.Module;
-import net.notfab.hubbasics.spigot.nms.NMSVersion;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -25,7 +25,7 @@ public class LobbyModule extends Module {
     private SetLobbyCommand setLobbyCommand = new SetLobbyCommand();
 
     public LobbyModule() {
-        super(EnumModules.Lobby, NMSVersion.V1_7_R1);
+        super(EnumModules.Lobby, CraftBukkitVersion.v1_7_X);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class LobbyModule extends Module {
         String locationName = getConfig().getString("Location", "default");
         this.location = HubBasics.getLocationManager().get(locationName);
         if (this.location == null) {
-            logger.warn("[LobbyModule] Invalid spawn teleport location.");
+            logger.warn("Invalid spawn teleport location.");
         }
         this.tpOnLogin = getConfig().getBoolean("TpOnLogin", false);
         HubBasics.getCommandFramework().register(command);

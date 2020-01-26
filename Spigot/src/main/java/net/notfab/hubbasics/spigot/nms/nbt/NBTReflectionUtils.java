@@ -11,7 +11,7 @@ class NBTReflectionUtils {
     @SuppressWarnings("rawtypes")
     private static Class getCraftItemstack() {
         try {
-            return Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNMS().getVersionString() + ".inventory.CraftItemStack");
+            return Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNMS().getRunningNMS() + ".inventory.CraftItemStack");
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -21,7 +21,7 @@ class NBTReflectionUtils {
     @SuppressWarnings("rawtypes")
     private static Object getNewNBTTag() {
         try {
-            Class c = Class.forName("net.minecraft.server." + HubBasics.getInstance().getNMS().getVersionString() + ".NBTTagCompound");
+            Class c = Class.forName("net.minecraft.server." + HubBasics.getInstance().getNMS().getRunningNMS() + ".NBTTagCompound");
             return c.newInstance();
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -2,7 +2,8 @@ package net.notfab.hubbasics.spigot.entities;
 
 import lombok.Getter;
 import net.notfab.hubbasics.spigot.HubBasics;
-import net.notfab.hubbasics.spigot.managers.Logger;
+import net.notfab.hubbasics.spigot.managers.HBLogger;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.spigot.simpleconfig.Section;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.World;
@@ -11,15 +12,15 @@ import org.bukkit.event.Listener;
 public abstract class Module implements Listener {
 
     protected final HubBasics HubBasics = net.notfab.hubbasics.spigot.HubBasics.getInstance();
-    protected final Logger logger;
+    protected final HBLogger logger;
 
     @Getter
     private final EnumModules module;
 
     @Getter
-    private final String minimumVersion;
+    private final CraftBukkitVersion minimumVersion;
 
-    public Module(EnumModules module, String version) {
+    public Module(EnumModules module, CraftBukkitVersion version) {
         this.module = module;
         this.minimumVersion = version;
         this.logger = HubBasics.getLoggerManager().getLogger(module);

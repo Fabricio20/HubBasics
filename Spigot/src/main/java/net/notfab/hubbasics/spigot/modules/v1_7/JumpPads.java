@@ -1,10 +1,10 @@
-package net.notfab.hubbasics.spigot.modules.v1_9;
+package net.notfab.hubbasics.spigot.modules.v1_7;
 
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
-import net.notfab.hubbasics.spigot.utils.ParticleEffect;
+import net.notfab.hubbasics.spigot.utils.ReflectionUtils;
 import net.notfab.spigot.simpleconfig.Section;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,16 +27,18 @@ public class JumpPads extends Module {
     private Map<String, Material> plateTypes = new HashMap<>();
     private Map<String, Boolean> noBlockRequired = new HashMap<>();
     private Map<String, Sound> soundMap = new HashMap<>();
-    private Map<String, Particle> effectMap = new HashMap<>();
+    private Map<String, Effect> effectMap = new HashMap<>();
 
-    private ParticleEffect particleEffect = ParticleEffect.getInstance();
+    private Method playEffectMethod;
 
     public JumpPads() {
-        super(EnumModules.JumpPads, CraftBukkitVersion.v1_9_X);
+        super(EnumModules.JumpPads, CraftBukkitVersion.v1_7_X);
     }
 
     @Override
     public void onEnable() {
+        this.playEffectMethod = ReflectionUtils.findMethod(Player.Spigot.class, "playEffect",
+                Location.class, Effect.class);
         Bukkit.getWorlds().forEach(world -> {
             Section section = getConfig().getSection(world.getName());
             if (section == null) return;
@@ -88,10 +91,10 @@ public class JumpPads extends Module {
                 }
             }
             if (section.contains("Effect") && (section.get("Effect") instanceof String)) {
-                Particle particle = FinderUtil.findParticle(section.getString("Effect"));
-                if (particle != null) {
-                    this.effectMap.put(world.getName(), particle);
-                } else {
+                try {
+                    this.effectMap.put(world.getName().toLowerCase(),
+                            Effect.valueOf(section.getString("Effect")));
+                } catch (IllegalArgumentException ex) {
                     logger.warn("Invalid Particle Effect [" + section.getString("Effect") + "] for Jump Pad");
                 }
             }
@@ -133,11 +136,11 @@ public class JumpPads extends Module {
     }
 
     private Sound getSound(Player player) {
-        return this.soundMap.getOrDefault(player.getWorld().getName(), null);
+        return this.soundMap.get(player.getWorld().getName().toLowerCase());
     }
 
-    private Particle getEffect(Player player) {
-        return this.effectMap.getOrDefault(player.getWorld().getName(), null);
+    private Effect getEffect(Player player) {
+        return this.effectMap.get(player.getWorld().getName().toLowerCase());
     }
 
     // ----------------------------------------------------------
@@ -154,7 +157,9 @@ public class JumpPads extends Module {
                 player.playSound(player.getLocation(), getSound(player), 1, 1);
             }
             if (getEffect(player) != null) {
-                particleEffect.display(getEffect(player), player.getLocation(), 1, 1, 1, 1, 40);
+                Effect effect = this.getEffect(player);
+                ReflectionUtils.invokeMethod(player.spigot(), this.playEffectMethod, player.getLocation(),
+                        getEffect(player), effect.getId(), 0, 1, 1, 1, 1, 40, 3);
             }
         }
     }
@@ -176,7 +181,9 @@ public class JumpPads extends Module {
                         player.playSound(player.getLocation(), getSound(player), 1, 1);
                     }
                     if (getEffect(player) != null) {
-                        particleEffect.display(getEffect(player), player.getLocation(), 1, 1, 1, 1, 40);
+                        Effect effect = this.getEffect(player);
+                        ReflectionUtils.invokeMethod(player.spigot(), this.playEffectMethod, player.getLocation(),
+                                getEffect(player), effect.getId(), 0, 1, 1, 1, 1, 40, 3);
                     }
                     event.setCancelled(true);
                 }

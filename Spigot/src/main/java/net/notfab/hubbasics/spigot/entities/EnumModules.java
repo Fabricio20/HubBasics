@@ -16,8 +16,7 @@ public enum EnumModules {
     JoinMessages(CraftBukkitVersion.v1_7_X),
     Lobby(CraftBukkitVersion.v1_7_X),
     JoinTP(CraftBukkitVersion.v1_7_X),
-
-    JumpPads(CraftBukkitVersion.v1_9_X),
+    JumpPads(CraftBukkitVersion.v1_7_X),
 
     BossAnnouncer(CraftBukkitVersion.v1_10_X);
 

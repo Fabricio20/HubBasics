@@ -140,7 +140,7 @@ public class ReflectionUtils {
      * @param <T>        - Return type if any.
      * @return Result if any.
      */
-    public static <T> T invokeMethod(@NotNull Object clazz, @NotNull String methodName, Object... params) {
+    public static <T> T invokeMethod(Object clazz, @NotNull String methodName, Object... params) {
         String clazzName = clazz.getClass().getName();
         Class<?>[] classes = Arrays.stream(params)
                 .map(c -> (Class<?>) c.getClass())
@@ -163,7 +163,7 @@ public class ReflectionUtils {
      * @return Result if any.
      */
     @SuppressWarnings("unchecked")
-    public static <T> T invokeMethod(@NotNull Object clazz, @NotNull Method method, Object... params) {
+    public static <T> T invokeMethod(Object clazz, @NotNull Method method, Object... params) {
         boolean accessible = method.isAccessible();
         if (!accessible) {
             method.setAccessible(true);

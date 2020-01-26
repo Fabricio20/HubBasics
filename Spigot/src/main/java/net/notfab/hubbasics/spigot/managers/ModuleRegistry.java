@@ -24,6 +24,7 @@ class ModuleRegistry {
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.NoWeather());
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.KeepHealth());
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.KeepFood());
+        this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.JumpPads());
 
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_9.JumpPads());
 

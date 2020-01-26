@@ -1,8 +1,0 @@
-language: java
-os: linux
-
-install: skip
-
-script:
-  - chmod +x gradlew
-  - ./gradlew build

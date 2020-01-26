@@ -32,7 +32,7 @@ repositories {
 dependencies {
     compile group: 'net.notfab.spigot', name: 'SimpleConfig', version: '1.4.1'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    compile group: 'org.bstats', name: 'bstats-bungeecord', version: '1.5'
+    compile group: 'org.bstats', name: 'bstats-bungeecord', version: '1.7'
 
     compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.15-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.13'

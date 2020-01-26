@@ -27,7 +27,7 @@ public class HubBasics extends Plugin {
         this.configManager = new BungeeConfigManager(this);
         new ConfigHandler(getDataFolder());
         if (System.getenv("HubBasics.Develop") == null) {
-            this.metrics = new Metrics(this);
+            this.metrics = new Metrics(this, 2353);
         }
         getProxy().getPluginManager().registerCommand(this, new LobbyCommand());
     }

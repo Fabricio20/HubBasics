@@ -40,7 +40,7 @@ public class HubBasics extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(this.configHandler, this);
         this.messenger = new Messenger();
         if (System.getenv("HubBasics.Spigot") == null) {
-            this.metrics = new Metrics(this);
+            this.metrics = new Metrics(this, 2353);
         } else {
             loggerManager.info("Running in Development mode, Metrics disabled.");
         }

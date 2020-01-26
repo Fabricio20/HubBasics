@@ -1,4 +1,4 @@
-package net.notfab.hubbasics.spigot.listeners;
+package net.notfab.hubbasics.spigot.listeners.v1_9;
 
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.entities.CustomItem;

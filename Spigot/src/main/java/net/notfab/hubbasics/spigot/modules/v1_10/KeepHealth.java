@@ -21,8 +21,8 @@ public class KeepHealth extends Module {
         super(EnumModules.KeepHealth, CraftBukkitVersion.v1_10_X);
     }
 
-    private Map<String, Double> worldHealthMap = new HashMap<>();
-    private Map<String, Double> worldMaxHealthMap = new HashMap<>();
+    private final Map<String, Double> worldHealthMap = new HashMap<>();
+    private final Map<String, Double> worldMaxHealthMap = new HashMap<>();
 
     @Override
     public void onEnable() {

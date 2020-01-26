@@ -3,7 +3,7 @@ package net.notfab.hubbasics.spigot.managers;
 import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.entities.Result;
-import net.notfab.hubbasics.spigot.listeners.ItemListener;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
@@ -11,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -22,10 +23,15 @@ import java.util.*;
 public class ItemManager extends Manager {
 
     private static final HBLogger logger = HBLogger.getLogger(ItemManager.class);
-    private Map<String, CustomItem> items = new HashMap<>();
-    private ItemListener itemListener = new ItemListener();
+    private final Map<String, CustomItem> items = new HashMap<>();
+    private final Listener itemListener;
 
-    public ItemManager() {
+    public ItemManager(CraftBukkitVersion version) {
+        if (version.isOlder(CraftBukkitVersion.v1_9_X)) {
+            this.itemListener = new net.notfab.hubbasics.spigot.listeners.v1_7.ItemListener();
+        } else {
+            this.itemListener = new net.notfab.hubbasics.spigot.listeners.v1_9.ItemListener();
+        }
         this.onEnable();
     }
 

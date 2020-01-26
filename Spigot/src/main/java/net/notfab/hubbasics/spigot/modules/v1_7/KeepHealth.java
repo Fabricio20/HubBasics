@@ -22,12 +22,12 @@ public class KeepHealth extends Module {
     }
 
     private Method maxHealthMethod;
-    private Map<String, Double> worldHealthMap = new HashMap<>();
-    private Map<String, Double> worldMaxHealthMap = new HashMap<>();
+    private final Map<String, Double> worldHealthMap = new HashMap<>();
+    private final Map<String, Double> worldMaxHealthMap = new HashMap<>();
 
     @Override
     public void onEnable() {
-        this.maxHealthMethod = ReflectionUtils.findMethod(Player.class, "setMaxHealth", 0d);
+        this.maxHealthMethod = ReflectionUtils.findMethod(Player.class, "setMaxHealth", double.class);
         Bukkit.getWorlds().stream().filter(this::isEnabledInWorld).forEach((world) -> {
             Section config = this.getWorldConfiguration(world.getName());
             double health = config.getDouble("Health", 20.0);

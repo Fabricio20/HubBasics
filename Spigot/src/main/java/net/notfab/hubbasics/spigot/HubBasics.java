@@ -46,7 +46,7 @@ public class HubBasics extends JavaPlugin {
         }
         this.commandFramework = new CommandFramework();
         this.NMS = new NMSVersion();
-        this.itemManager = new ItemManager();
+        this.itemManager = new ItemManager(this.NMS.getRunningVersion());
         this.menuManager = new MenuManager();
         this.locationManager = new LocationManager();
         this.moduleManager = new ModuleManager(this.NMS.getRunningVersion());

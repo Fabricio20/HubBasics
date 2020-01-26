@@ -48,6 +48,10 @@ public enum CraftBukkitVersion {
         this.nmsNames = nmsNames;
     }
 
+    public boolean isOlder(CraftBukkitVersion other) {
+        return this.getVersion() < other.getVersion();
+    }
+
     public boolean isNewer(CraftBukkitVersion other) {
         return this.getVersion() >= other.getVersion();
     }

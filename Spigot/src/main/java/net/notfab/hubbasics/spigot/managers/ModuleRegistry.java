@@ -23,12 +23,12 @@ class ModuleRegistry {
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.LobbyModule());
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.NoWeather());
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.KeepHealth());
+        this.addModule(new net.notfab.hubbasics.spigot.modules.v1_7.KeepFood());
 
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_9.JumpPads());
 
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_10.KeepHealth());
         this.addModule(new net.notfab.hubbasics.spigot.modules.v1_10.BossAnnouncer());
-        this.addModule(new net.notfab.hubbasics.spigot.modules.v1_10.KeepFood());
     }
 
     private void addModule(Module module) {

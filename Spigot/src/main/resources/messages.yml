@@ -1,4 +1,4 @@
-Version: 1.0
+Version: 1.1
 # ------------------------------------------------------------------------------------------------------------------- #
 # Welcome to the translation file for HubBasics.                                                                      #
 #                                                                                                                     #
@@ -27,7 +27,7 @@ INVALID_SIZE: '&cInvalid chest size.'
 INVALID_SOUND: '&cInvalid sound.'
 INVALID_MENU: '&cThe configured menu is invalid'
 INVALID_WORLD: '&cThe specified world is invalid'
-INVALID_WARP: '&cThe specified warp is invalid'
+INVALID_WARP: '&cThe specified warp is invalid, try creating it with /hb-warp create <name>'
 INVALID_PLAYER: '&cNo player found with that name.'
 ITEM_NOT_FOUND: '&cItem not found.'
 NOT_A_NUMBER: '&cThat is not a number.'

@@ -11,6 +11,7 @@ import net.notfab.hubbasics.bungee.utils.Messages;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class LobbyCommand extends Command {
 
@@ -45,15 +46,15 @@ public class LobbyCommand extends Command {
         boolean isList = config.get("Lobby") instanceof List;
         if (isList) {
             int lowest = Integer.MAX_VALUE - 1;
-            final ServerInfo[] serverInfo = {null};
+            AtomicReference<ServerInfo> serverInfo = new AtomicReference<>();
             List<String> lobbies = config.getStringList("Lobby");
             lobbies.forEach(lobby -> {
                 ServerInfo info = HubBasics.getProxy().getServerInfo(lobby);
                 if (info.getPlayers().size() < lowest) {
-                    serverInfo[0] = info;
+                    serverInfo.set(info);
                 }
             });
-            return serverInfo[0];
+            return serverInfo.get();
         } else {
             String name = config.getString("Lobby");
             return HubBasics.getProxy().getServerInfo(name);

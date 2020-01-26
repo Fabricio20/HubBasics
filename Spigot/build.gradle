@@ -40,6 +40,13 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.13'
 }
 
+task prepareRelease {
+    ant.replaceregexp(match: '\\$\\{VERSION\\}', replace: version, flags: 'gi', byline: true) {
+        fileset(dir: 'src/main/resources', includes: 'plugin.yml')
+    }
+}
+build.dependsOn prepareRelease
+
 task copyFiles(dependsOn: shadowJar) {
     String path = System.getenv("HubBasics.Spigot")
     if (path == null) {

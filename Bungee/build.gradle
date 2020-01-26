@@ -31,9 +31,45 @@ repositories {
 
 dependencies {
     compile group: 'net.notfab.spigot', name: 'SimpleConfig', version: '1.4.1'
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile group: 'org.bstats', name: 'bstats-bungeecord', version: '1.7'
 
     compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.15-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.13'
+}
+
+task prepareRelease {
+    ant.replaceregexp(match: '\\$\\{VERSION\\}', replace: version, flags: 'gi', byline: true) {
+        fileset(dir: 'src/main/resources', includes: 'bungee.yml')
+    }
+}
+build.dependsOn prepareRelease
+
+task copyFiles(dependsOn: shadowJar) {
+    String path = System.getenv("HubBasics.Bungee")
+    if (path == null) {
+        return
+    }
+    File jarFile = new File(path)
+    copy {
+        outputs.upToDateWhen { false }
+        from 'build/libs/HubBasics-Bungee.jar'
+        into new File(jarFile.getParentFile(), "plugins").getAbsolutePath()
+    }
+}
+
+task runBungee(type: JavaExec, dependsOn: copyFiles) {
+    String path = System.getenv("HubBasics.Bungee")
+    if (path == null) {
+        return
+    }
+    File jarFile = new File(path)
+    workingDir = jarFile.getParentFile().getAbsolutePath()
+    jvmArgs = [
+            "-DIReallyKnowWhatIAmDoingISwear"
+    ]
+    main = "-jar";
+    args = [
+            jarFile.getAbsolutePath()
+    ]
+    debug = true
 }

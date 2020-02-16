@@ -4,11 +4,14 @@ import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
+import net.notfab.hubbasics.spigot.nms.nbt.NBTItem;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,6 +69,7 @@ public class JoinItems extends Module {
             CustomItem item = HubBasics.getItemManager().get(id);
             if (item == null) return;
             if (item.getPermission() != null && !event.getPlayer().hasPermission(item.getPermission())) return;
+            this.removeItem(item, event.getPlayer().getInventory());
             if (item.getSlot() == null || item.getSlot() == -1) {
                 event.getPlayer().getInventory().addItem(item.toItemStack(event.getPlayer()));
             } else {
@@ -86,12 +90,27 @@ public class JoinItems extends Module {
             CustomItem item = HubBasics.getItemManager().get(id);
             if (item == null) return;
             if (item.getPermission() != null && !event.getPlayer().hasPermission(item.getPermission())) return;
+            this.removeItem(item, event.getPlayer().getInventory());
             if (item.getSlot() == null || item.getSlot() == -1) {
                 event.getPlayer().getInventory().addItem(item.toItemStack(event.getPlayer()));
             } else {
                 event.getPlayer().getInventory().setItem(item.getSlot(), item.toItemStack(event.getPlayer()));
             }
         });
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void removeItem(CustomItem item, Inventory inventory) {
+        for (ItemStack content : inventory.getContents()) {
+            if (content == null || (content.getType() != item.getMaterial())) {
+                continue;
+            }
+            NBTItem nbtItem = new NBTItem(content);
+            if (nbtItem.hasKey("HubBasics")
+                    && item.getId().equalsIgnoreCase(nbtItem.getString("HubBasics"))) {
+                inventory.remove(content);
+            }
+        }
     }
 
 }

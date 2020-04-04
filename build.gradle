@@ -1,8 +1,8 @@
 allprojects {
     group 'net.notfab.hubbasics'
-    version = '6.11.3'
+    version = '6.11.4'
     wrapper {
-        gradleVersion = '6.0.1'
+        gradleVersion = '6.3'
     }
     ext.getGitHash = { ->
         def stdout = new ByteArrayOutputStream()

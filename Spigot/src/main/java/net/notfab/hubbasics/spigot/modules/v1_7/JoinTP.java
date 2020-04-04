@@ -8,7 +8,7 @@ import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,16 +55,16 @@ public class JoinTP extends Module {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
+    public void onJoin(PlayerSpawnLocationEvent event) {
         if (globalTP) {
             HLocation location = HubBasics.getLocationManager().get(globalTarget);
-            location.teleport(event.getPlayer());
+            event.setSpawnLocation(location.toBukkitLocation());
         } else {
             if (!worlds.contains(event.getPlayer().getWorld().getName())) {
                 return;
             }
             HLocation location = HubBasics.getLocationManager().get(worldLocations.get(event.getPlayer().getWorld().getName()));
-            location.teleport(event.getPlayer());
+            event.setSpawnLocation(location.toBukkitLocation());
         }
     }
 

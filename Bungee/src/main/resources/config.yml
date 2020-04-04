@@ -6,4 +6,12 @@
 # Lobby Server
 # Either a string with the name of a server (that is configured on BungeeCord)
 # or a list of strings for HubBasics to balance between.
+#
+# Example:
+#
+#Lobby:
+#  - hub1
+#  - hub2
 Lobby: Lobby
+# Sends players to the lobby when they join (or fallback).
+LobbyOnJoin: false

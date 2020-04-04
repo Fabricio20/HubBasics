@@ -3,6 +3,7 @@ package net.notfab.hubbasics.bungee;
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.notfab.hubbasics.bungee.commands.LobbyCommand;
+import net.notfab.hubbasics.bungee.listeners.JoinListener;
 import net.notfab.hubbasics.bungee.managers.ConfigHandler;
 import net.notfab.hubbasics.bungee.managers.HBLogger;
 import net.notfab.spigot.simpleconfig.SimpleConfigManager;
@@ -35,12 +36,20 @@ public class HubBasics extends Plugin {
         } else {
             loggerManager.info("Running in Development mode, Metrics disabled.");
         }
-        getProxy().getPluginManager().registerCommand(this, new LobbyCommand());
+        JoinListener listener = new JoinListener(this);
+        listener.setup(this);
+        if (listener.isEnabled()) {
+            this.getProxy().getPluginManager().registerListener(this, new JoinListener(this));
+        }
+        LobbyCommand command = new LobbyCommand(this);
+        command.setup(this);
+        getProxy().getPluginManager().registerCommand(this, command);
     }
 
     @Override
     public void onDisable() {
         this.loggerManager.onDisable();
+        getProxy().getPluginManager().unregisterListeners(this);
         getProxy().getPluginManager().unregisterCommands(this);
     }
 

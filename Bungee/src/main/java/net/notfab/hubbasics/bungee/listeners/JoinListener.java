@@ -1,42 +1,42 @@
-package net.notfab.hubbasics.bungee.commands;
+package net.notfab.hubbasics.bungee.listeners;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.chat.TextComponent;
+import lombok.Getter;
 import net.md_5.bungee.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.event.EventHandler;
 import net.notfab.hubbasics.bungee.HubBasics;
 import net.notfab.hubbasics.bungee.Module;
-import net.notfab.hubbasics.bungee.managers.HBLogger;
-import net.notfab.hubbasics.bungee.utils.Messages;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.logging.Logger;
 
-public class LobbyCommand extends Command implements Module {
+public class JoinListener implements Listener, Module {
 
-    private static final HBLogger logger = HBLogger.getLogger("HubBasics");
+    private static final Logger logger = Logger.getLogger("HubBasics");
     private HubBasics hubBasics;
 
+    @Getter
+    private boolean enabled = false;
     private List<String> servers = new ArrayList<>();
 
-    public LobbyCommand(HubBasics hubBasics) {
-        super("lobby", null, "hub");
+    public JoinListener(HubBasics hubBasics) {
         this.hubBasics = hubBasics;
     }
 
     @Override
     public void setup(HubBasics hubBasics) {
         SimpleConfig config = hubBasics.getConfigManager().getNewConfig("config.yml");
+        this.enabled = config.getBoolean("LobbyOnJoin");
+        // List of servers
         boolean isList = config.get("Lobby") instanceof List;
         if (isList) {
             for (String server : config.getStringList("Lobby")) {
                 if (hubBasics.getProxy().getServerInfo(server) == null) {
-                    logger.warn("Unknown Server: " + server);
+                    logger.warning("Unknown Server: " + server);
                     continue;
                 }
                 this.servers.add(server);
@@ -44,30 +44,23 @@ public class LobbyCommand extends Command implements Module {
         } else {
             String server = config.getString("Lobby");
             if (hubBasics.getProxy().getServerInfo(server) == null) {
-                logger.warn("Unknown Server: " + server);
+                logger.warning("Unknown Server: " + server);
                 return;
             }
             this.servers.add(server);
         }
     }
 
-    @Override
-    public void execute(CommandSender commandSender, String[] strings) {
-        ServerInfo serverInfo = this.getLobby();
-        if (serverInfo != null && commandSender instanceof ProxiedPlayer) {
-            ProxiedPlayer player = (ProxiedPlayer) commandSender;
-            if (!player.getServer().getInfo().getName().equals(serverInfo.getName())) {
-                player.connect(getLobby());
+    @EventHandler
+    public void onJoin(ServerConnectEvent event) {
+        if (event.getReason() == ServerConnectEvent.Reason.JOIN_PROXY
+                || event.getReason() == ServerConnectEvent.Reason.LOBBY_FALLBACK) {
+            ServerInfo serverInfo = this.getLobby();
+            if (serverInfo != null) {
+                event.setTarget(serverInfo);
             } else {
-                ByteArrayDataOutput out = ByteStreams.newDataOutput();
-                out.writeUTF("HubBasics");
-                out.writeUTF("Lobby");
-                player.sendData("BungeeCord", out.toByteArray());
+                logger.warning("No available lobby servers!");
             }
-        } else if (serverInfo == null) {
-            commandSender.sendMessage(new TextComponent(Messages.get(commandSender, "LOBBY_NOT_DEFINED")));
-        } else {
-            commandSender.sendMessage(new TextComponent(Messages.get(commandSender, "COMMAND_PLAYER")));
         }
     }
 
@@ -85,5 +78,4 @@ public class LobbyCommand extends Command implements Module {
         });
         return serverInfo.get();
     }
-
 }

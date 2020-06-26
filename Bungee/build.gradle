@@ -33,7 +33,7 @@ dependencies {
     compile group: 'net.notfab.spigot', name: 'SimpleConfig', version: '1.4.1'
     compile group: 'org.bstats', name: 'bstats-bungeecord', version: '1.7'
 
-    compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.15-SNAPSHOT'
+    compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.16-R0.2-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.13'
 }
 

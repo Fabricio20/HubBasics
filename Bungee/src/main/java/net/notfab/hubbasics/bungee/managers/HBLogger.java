@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.api.ChatColor;
 
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ public class HBLogger {
     @Getter
     private final String prefix;
 
-    private static final Map<ChatColor, String> replacements = new EnumMap<>(ChatColor.class);
+    private static final Map<ChatColor, String> replacements = new HashMap<>();
 
     public HBLogger(String prefix) {
         this.prefix = prefix == null ? "" : prefix;

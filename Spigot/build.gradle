@@ -23,6 +23,7 @@ repositories {
     mavenLocal()
     maven { url "https://jcenter.bintray.com" }
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    maven { url 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
     maven { url "https://maven.notfab.net/Hosted" }
     maven { url "https://maven.notfab.net/SpigotMC" }
     maven { url "https://repo.codemc.org/repository/maven-public" }

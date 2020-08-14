@@ -1,6 +1,6 @@
 allprojects {
     group 'net.notfab.hubbasics'
-    version = '6.11.5'
+    version = '6.11.6'
     wrapper {
         gradleVersion = '6.3'
     }

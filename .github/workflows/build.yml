@@ -1,0 +1,31 @@
+name: Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # JDK
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      # Chmod
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      # Build
+      - name: Build with Gradle
+        run: ./gradlew clean shadowJar
+      # Upload on Master
+      - name: Save Artifacts
+        uses: actions/upload-artifact@v2
+        if: github.event_name == 'push'
+        with:
+          name: HubBasics
+          path:
+            - Bungee/build/libs/*.jar
+            - Spigot/build/libs/*.jar

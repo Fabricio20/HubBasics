@@ -26,6 +26,6 @@ jobs:
         if: github.event_name == 'push'
         with:
           name: HubBasics
-          path:
-            - Bungee/build/libs/*.jar
-            - Spigot/build/libs/*.jar
+          path: |
+            Bungee/build/libs/*.jar
+            Spigot/build/libs/*.jar

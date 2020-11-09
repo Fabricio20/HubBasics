@@ -40,6 +40,8 @@ public class NMSVersion {
     }
 
     public String getRunningNMS() {
+        if (this.getRunningVersion().getName().equals("Unsupported"))
+            return Bukkit.getServer().getClass().getPackage().getName().substring(Bukkit.getServer().getClass().getPackage().getName().lastIndexOf(".") + 1);
         return this.getRunningVersion().getNmsNames()[0];
     }
 

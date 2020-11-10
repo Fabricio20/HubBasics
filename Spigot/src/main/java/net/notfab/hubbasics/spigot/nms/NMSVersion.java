@@ -40,9 +40,14 @@ public class NMSVersion {
     }
 
     public String getRunningNMS() {
-        if (this.getRunningVersion().getName().equals("Unsupported"))
-            return Bukkit.getServer().getClass().getPackage().getName().substring(Bukkit.getServer().getClass().getPackage().getName().lastIndexOf(".") + 1);
-        return this.getRunningVersion().getNmsNames()[0];
+        CraftBukkitVersion version = this.getRunningVersion();
+
+        if (version == CraftBukkitVersion.UNSUPPORTED) {
+            String packageName = Bukkit.getServer().getClass().getPackage().getName();
+            return packageName.substring(packageName.lastIndexOf(".") + 1);
+        } else {
+            return version.getNmsNames()[0];
+        }
     }
 
 }

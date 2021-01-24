@@ -119,6 +119,21 @@ public class CustomItem {
                     HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "INVALID_MENU"));
                 else
                     menu.open(player);
+            } else if (operator.equalsIgnoreCase("item")) {
+                CustomItem item = HubBasics.getInstance().getItemManager().get(command);
+                if (item == null) {
+                    HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "ITEM_NOT_FOUND"));
+                    return;
+                }
+                if (item.getPermission() != null && !player.hasPermission(item.getPermission())) {
+                    HubBasics.getInstance().getMessenger().send(player, Messages.get(player, "NO_PERMISSION_ITEM"));
+                    return;
+                }
+                if (item.getSlot() == null || item.getSlot() == -1) {
+                    player.getInventory().addItem(item.toItemStack(player));
+                } else {
+                    player.getInventory().setItem(item.getSlot(), item.toItemStack(player));
+                }
             } else {
                 player.chat("/" + command);
             }

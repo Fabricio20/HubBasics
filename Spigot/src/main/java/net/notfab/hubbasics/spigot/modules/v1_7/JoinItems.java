@@ -99,7 +99,6 @@ public class JoinItems extends Module {
         });
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void removeItem(CustomItem item, Inventory inventory) {
         for (ItemStack content : inventory.getContents()) {
             if (content == null || (content.getType() != item.getMaterial())) {

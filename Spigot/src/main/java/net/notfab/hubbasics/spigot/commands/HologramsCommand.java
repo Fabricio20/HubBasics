@@ -1,5 +1,6 @@
 package net.notfab.hubbasics.spigot.commands;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.notfab.hubbasics.spigot.entities.Command;
 import net.notfab.hubbasics.spigot.modules.v1_7.Holograms;
 import net.notfab.hubbasics.spigot.utils.Messages;
@@ -38,6 +39,7 @@ public class HologramsCommand extends Command {
                         HubBasics.getMessenger().send(player, getHelp());
                     } else {
                         String text = ChatColor.translateAlternateColorCodes('&', argsToString(args, 1));
+                        text = PlaceholderAPI.setPlaceholders(player, text);
                         String id = Holograms.getInstance().createHologram(player.getLocation(), text) + "";
                         String holoID = ChatColor.DARK_GREEN + id + ChatColor.GREEN;
                         HubBasics.getMessenger().send(player, Messages.get(player, "HOLOGRAM_CREATED", holoID));
@@ -71,7 +73,9 @@ public class HologramsCommand extends Command {
                         if (!Holograms.getInstance().hologramExists(index)) {
                             HubBasics.getMessenger().send(player, Messages.get(player, "HOLOGRAM_DOES_NOT_EXIST"));
                         } else {
-                            Holograms.getInstance().addLines(index, ChatColor.translateAlternateColorCodes('&', argsToString(args, 2)));
+                            String text = ChatColor.translateAlternateColorCodes('&', argsToString(args, 2));
+                            text = PlaceholderAPI.setPlaceholders(player, text);
+                            Holograms.getInstance().addLines(index, text);
                             String holoID = ChatColor.DARK_GREEN + "" + index + ChatColor.GREEN;
                             HubBasics.getMessenger().send(player, Messages.get(player, "HOLOGRAM_ADDED_LINE", holoID));
                         }

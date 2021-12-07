@@ -1,6 +1,8 @@
 package net.notfab.hubbasics.spigot.nms.nbt;
 
 import net.notfab.hubbasics.spigot.HubBasics;
+import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
+import net.notfab.hubbasics.spigot.nms.NMSVersion;
 import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Method;
@@ -11,7 +13,8 @@ class NBTReflectionUtils {
     @SuppressWarnings("rawtypes")
     private static Class getCraftItemstack() {
         try {
-            return Class.forName("org.bukkit.craftbukkit." + HubBasics.getInstance().getNMS().getRunningNMS() + ".inventory.CraftItemStack");
+            return Class.forName("org.bukkit.craftbukkit." +
+                    HubBasics.getInstance().getNMS().getRunningNMS() + ".inventory.CraftItemStack");
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -21,8 +24,15 @@ class NBTReflectionUtils {
     @SuppressWarnings("rawtypes")
     private static Object getNewNBTTag() {
         try {
-            Class c = Class.forName("net.minecraft.server." + HubBasics.getInstance().getNMS().getRunningNMS() + ".NBTTagCompound");
-            return c.newInstance();
+            NMSVersion version = HubBasics.getInstance().getNMS();
+            Class clazz;
+            if (version.getRunningVersion().isOlder(CraftBukkitVersion.v1_17_X)) {
+                // 1.17 added NBTTag outside of NMS.
+                clazz = Class.forName("net.minecraft.server." + version.getRunningNMS() + ".NBTTagCompound");
+            } else {
+                clazz = Class.forName("net.minecraft.nbt.NBTTagCompound");
+            }
+            return clazz.newInstance();
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

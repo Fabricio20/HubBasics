@@ -8,10 +8,10 @@ import org.bukkit.inventory.ItemStack;
 import java.lang.reflect.Method;
 
 @SuppressWarnings("ConstantConditions")
-class NBTReflectionUtils {
+public class NbtReflectionBackend implements NBTBackend {
 
     @SuppressWarnings("rawtypes")
-    private static Class getCraftItemstack() {
+    private Class getCraftItemstack() {
         try {
             return Class.forName("org.bukkit.craftbukkit." +
                     HubBasics.getInstance().getNMS().getRunningNMS() + ".inventory.CraftItemStack");
@@ -22,7 +22,7 @@ class NBTReflectionUtils {
     }
 
     @SuppressWarnings("rawtypes")
-    private static Object getNewNBTTag() {
+    private Object getNewNBTTag() {
         try {
             NMSVersion version = HubBasics.getInstance().getNMS();
             Class clazz;
@@ -39,7 +39,7 @@ class NBTReflectionUtils {
         }
     }
 
-    private static Object setNBTTag(Object nbtTag, Object nmsItem) {
+    private Object setNBTTag(Object nbtTag, Object nmsItem) {
         try {
             Method method;
             method = nmsItem.getClass().getMethod("setTag", nbtTag.getClass());
@@ -52,7 +52,7 @@ class NBTReflectionUtils {
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    private static Object getNMSItemStack(ItemStack item) {
+    private Object getNMSItemStack(ItemStack item) {
         Class cis = getCraftItemstack();
         try {
             Method method = cis.getMethod("asNMSCopy", ItemStack.class);
@@ -64,7 +64,7 @@ class NBTReflectionUtils {
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    private static ItemStack getBukkitItemStack(Object item) {
+    private ItemStack getBukkitItemStack(Object item) {
         Class cis = getCraftItemstack();
         try {
             Method method = cis.getMethod("asBukkitCopy", item.getClass());
@@ -77,7 +77,7 @@ class NBTReflectionUtils {
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    private static Object getNBTTagCompound(Object nmsitem) {
+    private Object getNBTTagCompound(Object nmsitem) {
         Class c = nmsitem.getClass();
         java.lang.reflect.Method method;
         try {
@@ -89,8 +89,8 @@ class NBTReflectionUtils {
         }
     }
 
-
-    public static ItemStack setString(ItemStack item, String key, String Text) {
+    @Override
+    public ItemStack setString(ItemStack item, String key, String Text) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -107,7 +107,8 @@ class NBTReflectionUtils {
         }
     }
 
-    public static String getString(ItemStack item, String key) {
+    @Override
+    public String getString(ItemStack item, String key) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -122,7 +123,8 @@ class NBTReflectionUtils {
         }
     }
 
-    public static ItemStack setInt(ItemStack item, String key, Integer i) {
+    @Override
+    public ItemStack setInt(ItemStack item, String key, Integer i) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -139,7 +141,8 @@ class NBTReflectionUtils {
         }
     }
 
-    public static Integer getInt(ItemStack item, String key) {
+    @Override
+    public Integer getInt(ItemStack item, String key) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -154,7 +157,8 @@ class NBTReflectionUtils {
         }
     }
 
-    public static ItemStack setDouble(ItemStack item, String key, Double d) {
+    @Override
+    public ItemStack setDouble(ItemStack item, String key, Double d) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -171,7 +175,8 @@ class NBTReflectionUtils {
         }
     }
 
-    public static Double getDouble(ItemStack item, String key) {
+    @Override
+    public Double getDouble(ItemStack item, String key) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -186,7 +191,8 @@ class NBTReflectionUtils {
         }
     }
 
-    public static ItemStack setBoolean(ItemStack item, String key, Boolean d) {
+    @Override
+    public ItemStack setBoolean(ItemStack item, String key, Boolean d) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -203,7 +209,8 @@ class NBTReflectionUtils {
         }
     }
 
-    public static Boolean getBoolean(ItemStack item, String key) {
+    @Override
+    public Boolean getBoolean(ItemStack item, String key) {
         Object nmsitem = getNMSItemStack(item);
         if (nmsitem == null) return null;
         Object nbttag = getNBTTagCompound(nmsitem);
@@ -219,9 +226,10 @@ class NBTReflectionUtils {
         return null;
     }
 
-    public static Boolean hasKey(ItemStack item, String key) {
+    @Override
+    public boolean hasKey(ItemStack item, String key) {
         Object nmsitem = getNMSItemStack(item);
-        if (nmsitem == null) return null;
+        if (nmsitem == null) return false;
         Object nbttag = getNBTTagCompound(nmsitem);
         if (nbttag == null) nbttag = getNewNBTTag();
         Method method;
@@ -229,8 +237,8 @@ class NBTReflectionUtils {
             method = nbttag.getClass().getMethod("hasKey", String.class);
             return (Boolean) method.invoke(nbttag, key);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
+            return false;
         }
     }
+
 }

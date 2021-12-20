@@ -4,6 +4,10 @@ import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.Manager;
 import net.notfab.hubbasics.spigot.entities.Result;
 import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
+import net.notfab.hubbasics.spigot.nms.nbt.NBTBackend;
+import net.notfab.hubbasics.spigot.nms.nbt.NbtApiBackend;
+import net.notfab.hubbasics.spigot.nms.nbt.NbtDummyBackend;
+import net.notfab.hubbasics.spigot.nms.nbt.NbtReflectionBackend;
 import net.notfab.hubbasics.spigot.utils.FinderUtil;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
@@ -25,12 +29,26 @@ public class ItemManager extends Manager {
     private static final HBLogger logger = HBLogger.getLogger(ItemManager.class);
     private final Map<String, CustomItem> items = new HashMap<>();
     private final Listener itemListener;
+    private final NBTBackend nbtBackend;
 
     public ItemManager(CraftBukkitVersion version) {
-        if (version.isOlder(CraftBukkitVersion.v1_9_X)) {
-            this.itemListener = new net.notfab.hubbasics.spigot.listeners.v1_7.ItemListener();
+        // NBT API
+        if (version.isOlder(CraftBukkitVersion.v1_18_X)) {
+            this.nbtBackend = new NbtReflectionBackend();
+        } else if (Bukkit.getPluginManager().isPluginEnabled("NBTAPI")) {
+            this.nbtBackend = new NbtApiBackend();
+            logger.info("Using NBTAPI for Custom Items.");
         } else {
-            this.itemListener = new net.notfab.hubbasics.spigot.listeners.v1_9.ItemListener();
+            logger.error("You are running a minecraft version above 1.17, HubBasics depends on " +
+                    "NBTAPI for Custom Item features, please install NBTAPI.");
+            this.nbtBackend = new NbtDummyBackend();
+        }
+        if (version.isOlder(CraftBukkitVersion.v1_9_X)) {
+            this.itemListener = new net.notfab.hubbasics.spigot.listeners
+                    .v1_7.ItemListener(this.nbtBackend);
+        } else {
+            this.itemListener = new net.notfab.hubbasics.spigot.listeners
+                    .v1_9.ItemListener(this.nbtBackend);
         }
         this.onEnable();
     }
@@ -63,6 +81,10 @@ public class ItemManager extends Manager {
             }
         });
         logger.info("Loaded " + this.items.size() + " item(s).");
+    }
+
+    public NBTBackend getNbtBackend() {
+        return this.nbtBackend;
     }
 
     public CustomItem get(String id) {

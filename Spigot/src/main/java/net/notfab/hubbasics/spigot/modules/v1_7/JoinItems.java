@@ -4,7 +4,7 @@ import net.notfab.hubbasics.spigot.entities.CustomItem;
 import net.notfab.hubbasics.spigot.entities.EnumModules;
 import net.notfab.hubbasics.spigot.entities.Module;
 import net.notfab.hubbasics.spigot.nms.CraftBukkitVersion;
-import net.notfab.hubbasics.spigot.nms.nbt.NBTItem;
+import net.notfab.hubbasics.spigot.nms.nbt.NBTBackend;
 import net.notfab.spigot.simpleconfig.SimpleConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -21,10 +21,10 @@ import java.util.Map;
 @SuppressWarnings("Duplicates")
 public class JoinItems extends Module {
 
-    private List<String> worlds = new ArrayList<>();
-    private Map<String, List<String>> items = new HashMap<>();
-    private Map<String, Boolean> clearInventory = new HashMap<>();
-    private Map<String, Boolean> worldChange = new HashMap<>();
+    private final List<String> worlds = new ArrayList<>();
+    private final Map<String, List<String>> items = new HashMap<>();
+    private final Map<String, Boolean> clearInventory = new HashMap<>();
+    private final Map<String, Boolean> worldChange = new HashMap<>();
 
     public JoinItems() {
         super(EnumModules.JoinItems, CraftBukkitVersion.v1_7_X);
@@ -99,15 +99,17 @@ public class JoinItems extends Module {
         });
     }
 
-    private void removeItem(CustomItem item, Inventory inventory) {
-        for (ItemStack content : inventory.getContents()) {
-            if (content == null || (content.getType() != item.getMaterial())) {
+    private void removeItem(CustomItem custom, Inventory inventory) {
+        NBTBackend backend = HubBasics.getItemManager().getNbtBackend();
+        for (ItemStack item : inventory.getContents()) {
+            if (item == null || (item.getType() != custom.getMaterial())) {
+                continue;
+            } else if (!backend.hasKey(item, "HubBasics")) {
                 continue;
             }
-            NBTItem nbtItem = new NBTItem(content);
-            if (nbtItem.hasKey("HubBasics")
-                    && item.getId().equalsIgnoreCase(nbtItem.getString("HubBasics"))) {
-                inventory.remove(content);
+            String id = backend.getString(item, "HubBasics");
+            if (custom.getId().equals(id)) {
+                inventory.remove(item);
             }
         }
     }

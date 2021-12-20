@@ -2,7 +2,7 @@ package net.notfab.hubbasics.spigot.listeners.v1_9;
 
 import net.notfab.hubbasics.spigot.HubBasics;
 import net.notfab.hubbasics.spigot.entities.CustomItem;
-import net.notfab.hubbasics.spigot.nms.nbt.NBTItem;
+import net.notfab.hubbasics.spigot.nms.nbt.NBTBackend;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,39 +17,51 @@ import org.bukkit.inventory.ItemStack;
 @SuppressWarnings("Duplicates")
 public class ItemListener implements Listener {
 
+    private final NBTBackend nbtBackend;
+
+    public ItemListener(NBTBackend nbtBackend) {
+        this.nbtBackend = nbtBackend;
+    }
+
     @EventHandler(ignoreCancelled = true)
     public void onItemMove(InventoryClickEvent event) {
-        ItemStack currentItem = event.getCurrentItem();
-        if (currentItem == null || currentItem.getType() == Material.AIR) return;
-        NBTItem nbtItem = new NBTItem(currentItem);
-        if (!nbtItem.hasKey("HubBasics")) return;
-
-        CustomItem item = HubBasics.getInstance().getItemManager().get(nbtItem.getString("HubBasics"));
-        if (item == null) {
-            currentItem.setType(Material.AIR); // Destroy old item
+        ItemStack item = event.getCurrentItem();
+        if (item == null || item.getType() == Material.AIR) {
+            return;
+        } else if (!this.nbtBackend.hasKey(item, "HubBasics")) {
             return;
         }
-        if (item.getRunOnInventory()) {
-            item.onCommand((Player) event.getWhoClicked());
+        CustomItem custom = HubBasics.getInstance().getItemManager()
+                .get(this.nbtBackend.getString(item, "HubBasics"));
+        if (custom == null) {
+            item.setType(Material.AIR);
+            return;
         }
-        if (!item.getAllowMove())
-            event.setCancelled(true); // Call setCancelled only when needed to not conflict with other plugins
+        if (custom.getRunOnInventory()) {
+            custom.onCommand((Player) event.getWhoClicked());
+        }
+        if (!custom.getAllowMove()) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onItemDrop(PlayerDropItemEvent event) {
-        ItemStack currentItem = event.getItemDrop().getItemStack();
-        if (currentItem.getType() == Material.AIR) return;
-        NBTItem nbtItem = new NBTItem(currentItem);
-        if (!nbtItem.hasKey("HubBasics")) return;
-
-        CustomItem item = HubBasics.getInstance().getItemManager().get(nbtItem.getString("HubBasics"));
-        if (item == null) {
-            currentItem.setType(Material.AIR); // Destroy old item
+        ItemStack item = event.getItemDrop().getItemStack();
+        if (item.getType() == Material.AIR) {
+            return;
+        } else if (!this.nbtBackend.hasKey(item, "HubBasics")) {
             return;
         }
-        if (!item.getAllowDrop())
-            event.setCancelled(true); // Call setCancelled only when needed to not conflict with other plugins
+        CustomItem custom = HubBasics.getInstance().getItemManager()
+                .get(this.nbtBackend.getString(item, "HubBasics"));
+        if (custom == null) {
+            item.setType(Material.AIR);
+            return;
+        }
+        if (!custom.getAllowDrop()) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler(ignoreCancelled = true)
@@ -57,30 +69,33 @@ public class ItemListener implements Listener {
         if (!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)) {
             return;
         }
-        ItemStack itemStack;
+        ItemStack item;
         if (event.getHand() == EquipmentSlot.HAND) {
-            itemStack = event.getPlayer().getInventory().getItemInMainHand();
+            item = event.getPlayer().getInventory().getItemInMainHand();
         } else if (event.getHand() == EquipmentSlot.OFF_HAND) {
-            itemStack = event.getPlayer().getInventory().getItemInOffHand();
+            item = event.getPlayer().getInventory().getItemInOffHand();
         } else {
             return;
         }
-        if (itemStack.getType() != Material.AIR) {
-            NBTItem nbtItem = new NBTItem(itemStack);
-            if (!nbtItem.hasKey("HubBasics")) return;
-            event.setCancelled(true);
-            CustomItem item = HubBasics.getInstance().getItemManager().get(nbtItem.getString("HubBasics"));
-            if (item == null) {
-                itemStack.setType(Material.AIR); // Destroy old item
+        if (item.getType() != Material.AIR) {
+            if (!this.nbtBackend.hasKey(item, "HubBasics")) {
                 return;
             }
-            if (!item.getRunOnLeftClick()) return;
+            event.setCancelled(true);
+            CustomItem custom = HubBasics.getInstance().getItemManager()
+                    .get(this.nbtBackend.getString(item, "HubBasics"));
+            if (custom == null) {
+                item.setType(Material.AIR);
+                return;
+            } else if (!custom.getRunOnLeftClick()) {
+                return;
+            }
             if (event.getHand() == EquipmentSlot.OFF_HAND) {
-                if (item.getRunOnOffhand()) {
-                    item.onCommand(event.getPlayer());
+                if (custom.getRunOnOffhand()) {
+                    custom.onCommand(event.getPlayer());
                 }
             } else {
-                item.onCommand(event.getPlayer());
+                custom.onCommand(event.getPlayer());
             }
         }
     }
@@ -90,30 +105,33 @@ public class ItemListener implements Listener {
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
-        ItemStack itemStack;
+        ItemStack item;
         if (event.getHand() == EquipmentSlot.HAND) {
-            itemStack = event.getPlayer().getInventory().getItemInMainHand();
+            item = event.getPlayer().getInventory().getItemInMainHand();
         } else if (event.getHand() == EquipmentSlot.OFF_HAND) {
-            itemStack = event.getPlayer().getInventory().getItemInOffHand();
+            item = event.getPlayer().getInventory().getItemInOffHand();
         } else {
             return;
         }
-        if (itemStack.getType() != Material.AIR) {
-            NBTItem nbtItem = new NBTItem(itemStack);
-            if (!nbtItem.hasKey("HubBasics")) return;
-            event.setCancelled(true);
-            CustomItem item = HubBasics.getInstance().getItemManager().get(nbtItem.getString("HubBasics"));
-            if (item == null) {
-                itemStack.setType(Material.AIR); // Destroy old item
+        if (item.getType() != Material.AIR) {
+            if (!this.nbtBackend.hasKey(item, "HubBasics")) {
                 return;
             }
-            if (!item.getRunOnRightClick()) return;
+            event.setCancelled(true);
+            CustomItem custom = HubBasics.getInstance().getItemManager()
+                    .get(this.nbtBackend.getString(item, "HubBasics"));
+            if (custom == null) {
+                item.setType(Material.AIR);
+                return;
+            } else if (!custom.getRunOnRightClick()) {
+                return;
+            }
             if (event.getHand() == EquipmentSlot.OFF_HAND) {
-                if (item.getRunOnOffhand()) {
-                    item.onCommand(event.getPlayer());
+                if (custom.getRunOnOffhand()) {
+                    custom.onCommand(event.getPlayer());
                 }
             } else {
-                item.onCommand(event.getPlayer());
+                custom.onCommand(event.getPlayer());
             }
         }
     }

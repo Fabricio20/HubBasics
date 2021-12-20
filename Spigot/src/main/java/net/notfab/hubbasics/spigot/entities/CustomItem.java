@@ -5,7 +5,7 @@ import com.google.common.io.ByteStreams;
 import lombok.Getter;
 import lombok.Setter;
 import net.notfab.hubbasics.spigot.HubBasics;
-import net.notfab.hubbasics.spigot.nms.nbt.NBTItem;
+import net.notfab.hubbasics.spigot.nms.nbt.NBTBackend;
 import net.notfab.hubbasics.spigot.utils.Messages;
 import net.notfab.hubbasics.spigot.utils.PlaceHolderUtil;
 import org.bukkit.Bukkit;
@@ -69,14 +69,12 @@ public class CustomItem {
 
             stack.setItemMeta(meta);
         }
-
         stack.setDurability(this.durability);
 
-        NBTItem item = new NBTItem(stack);
-        item.setString("HubBasics", this.getId());
-        item.setBoolean("Unbreakable", this.unbreakable); // 1.10 Hack
-
-        return item.getItem();
+        NBTBackend backend = HubBasics.getInstance().getItemManager().getNbtBackend();
+        stack = backend.setString(stack, "HubBasics", this.getId());
+        stack = backend.setBoolean(stack, "Unbreakable", this.unbreakable); // 1.10 Hack
+        return stack;
     }
 
     public void onCommand(Player player) {

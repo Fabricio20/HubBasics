@@ -2,7 +2,7 @@ main: net.notfab.hubbasics.spigot.HubBasics
 version: '${VERSION}'
 name: HubBasics
 authors: [Fabricio20]
-softdepend: [Multiverse-Core, PlaceholderAPI]
+softdepend: [Multiverse-Core, PlaceholderAPI, NBTAPI]
 api-version: '1.13'
 load: POSTWORLD
 description: >

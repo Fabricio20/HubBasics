@@ -49,7 +49,8 @@ public enum CraftBukkitVersion {
     v1_17_1("1.17.1", 1.17, "v1_17_R1"),
 
     v1_18_X("1.18.X", 1.18, "v1_18_R0"),
-    v1_18_0("1.18.0", 1.18, "v1_18_R0");
+    v1_18_0("1.18.0", 1.18, "v1_18_R0"),
+    v1_18_1("1.18.1", 1.18, "v1_18_R1");
 
     private final String name;
     private final double version;
